@@ -9,7 +9,7 @@ cat <<HEADER
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="../bootstrap.min.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A problem from the Online Judge</title>
+<title>`head -1 "$@"`</title>
 </head>
 <body>
 <div class="container-fluid">
