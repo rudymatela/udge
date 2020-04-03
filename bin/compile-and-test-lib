@@ -38,8 +38,10 @@ case "$src" in
 	       objcopy --redefine-sym main=oldmain lib.o                   &&
 	       cc "$dir/main.c" lib.o -o binary                            ||
 	       errxit "No - compile error (C)"                             ;;
+
 	*.hs)  ghc $GHCFLAGS -main-is Sum2 "$src" "$dir/main.hs" -o binary ||
 	       errxit "No - compile error (Haskell)"                       ;;
+
 	*)     errxit "No - compile: unknown file format" ;;
 esac
 

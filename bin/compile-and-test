@@ -38,7 +38,9 @@ case "$src" in
 
 
 
+
 	*.hs)  ghc $GHCFLAGS "$src" -o binary || errxit "No - compile error (Haskell)"      ;;
+
 
 	*)                                       errxit "No - compile: unknown file format" ;;
 esac
