@@ -39,7 +39,7 @@ set -e
 
 
 get() {
-html-header
+html-header "New user"
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$email_error" ]    && email_has_error=" has-error"

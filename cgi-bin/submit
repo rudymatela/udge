@@ -48,33 +48,8 @@ errxit() {
 }
 
 
-html-header() {
-cat <<HTML
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="../bootstrap.min.css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A problem from the Online Judge</title>
-</head>
-<body>
-<div class="container-fluid">
-HTML
-}
-
-
-html-footer() {
-cat <<HTML
-</div>
-</body>
-</html>
-HTML
-}
-
-
 get() {
-html-header
+html-header "Submit your solution"
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$program_error" ]  && program_has_error=" has-error"
