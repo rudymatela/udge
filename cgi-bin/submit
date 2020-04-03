@@ -49,7 +49,7 @@ errxit() {
 
 
 get() {
-html-header "Submit your solution"
+html-header "Submit your solution to Udge"
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$program_error" ]  && program_has_error=" has-error"

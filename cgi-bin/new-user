@@ -39,7 +39,7 @@ set -e
 
 
 get() {
-html-header "New user"
+html-header "Create a new user on Udge"
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$email_error" ]    && email_has_error=" has-error"
