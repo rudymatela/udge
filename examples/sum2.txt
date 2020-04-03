@@ -28,5 +28,6 @@ No - compile error (Haskell)
 5/6
 $ ./bin/judge sum2 problem/sum2/yes.py
 6/6
-$ ./bin/judge sum2 problem/sum2/yes-5-6.py # TODO: make this return 5/6
-6/6
+$ ./bin/judge sum2 problem/sum2/yes-5-6.py 2>/dev/null
+No - runtime error (non-zero exit code)
+5/6
