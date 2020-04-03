@@ -39,7 +39,7 @@ case "$src" in
 	       cc "$dir/main.c" lib.o -o binary ||
 	       errxit "No - compile error (C)" ;;
 
-	*.hs)  ghc $GHCFLAGS -main-is Sum2 "$src" "$dir/main.hs" -o binary ||
+	*.hs)  ghc $GHCFLAGS -main-is AltMain "$src" "$dir/main.hs" -o binary ||
 	       errxit "No - compile error (Haskell)" ;;
 
 	*)     errxit "No - compile: unknown file format" ;;

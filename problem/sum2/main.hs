@@ -1,4 +1,4 @@
-module Sum2 (main) where
+module AltMain (main) where
 
 import Main (add)
 
