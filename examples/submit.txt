@@ -1,4 +1,5 @@
 $ curl -s udge/submit | grep Submit
+<title>Submit your solution to Udge</title>
 <h3> Submit your solution </h3>
   <input type="submit" name="submit" value="Submit">
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
