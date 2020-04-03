@@ -1,7 +1,7 @@
 $ user=test-happy2-`date "+%Y%m%d-%H%M%S"`
-$ yes=../problem/sum2/yes.c
-$ yes46=../problem/sum2/yes-4-6.c
-$ wa=../problem/sum2/wa.c
+$ yes=problem/sum2/yes.c
+$ yes46=problem/sum2/yes-4-6.c
+$ wa=problem/sum2/wa.c
 $
 $
 $ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)

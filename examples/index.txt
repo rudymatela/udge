@@ -1,4 +1,4 @@
 $ curl -s udge | grep "<title>"
-	<title>Online Judge</title>
+<title>Udge Online Judge</title>
 $ curl -s udge | grep hello
 <li><a href="hello">hello</a></li>
