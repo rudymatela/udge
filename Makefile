@@ -1,5 +1,7 @@
 # Makefile for the judge
 
+PUBLIC_HTML=public_html
+
 .PHONY: all
 all:
 
@@ -30,10 +32,10 @@ stop-services:
 	sudo systemctl stop fcgiwrap
 
 html: \
-	public_html/sum2/index.html \
-	public_html/hello/index.html
+	$(PUBLIC_HTML)/sum2/index.html \
+	$(PUBLIC_HTML)/hello/index.html
 
-public_html/%/index.html: problem/%/desc
-	mkdir -p public_html/$*
+$(PUBLIC_HTML)/%/index.html: problem/%/desc
+	mkdir -p $(PUBLIC_HTML)/$*
 	# TODO: ./bin/markdown that also adds a header and footer
 	markdown $< > $@
