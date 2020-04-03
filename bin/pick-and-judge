@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# pick-and-judge: pick then judges a submission
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# pick-and-judge:
+# 1. goes into the submissions folder
+# 2. picks something to be judged
+# 3. judges
+# 4. stores results in the desired format
+#
+# Pick and judge needs to be run with write permissions to the submissions
+# folder, to do this, you may want to add your user (or the user for which the
+# judge will run) to the http group.
+
+. /etc/udge/conf
+dirname="`dirname $0`"
+
+errxit() {
+	echo "$@" > /dev/stderr
+	exit 1
+}
+
+finish() {
+	echo "$@"
+	exit 0
+}
+
+[ -d "$UNJUDGED_DIR" ] || errxit "$0, error: submissions dir $UNJUDGED_DIR does not exist"
+
+user_dir="`find $UNJUDGED_DIR -mindepth 1 -maxdepth 1 | sort -R | head -1`"
+[ -n "$user_dir" ] || finish "$0: nothing to do"
+
+submission="`find $user_dir -type f | sort | head -1`"
+[ -n "$user_dir" ] || errxit "$0, error: user dir $user_dir is empty"
+
+echo "Picked '$submission' to judge."
+
+user="`echo $user_dir | sed -e "s,.*/,,"`"
+timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\1,'`"
+problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\2,'`"
+language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\3,'`"
+
+[ -n "$user" ]      || errxit "$0, error: could not parse user"
+[ -n "$timestamp" ] || errxit "$0, error: could not parse timestamp"
+[ -n "$problem" ]   || errxit "$0, error: could not parse problem"
+[ -n "$language" ]  || errxit "$0, error: could not parse language"
+
+echo "user = $user"
+echo "timestamp = $timestamp"
+echo "problem = $problem"
+echo "language = $language"
+
+problem_dir="$RESULTS_DIR/$user/$problem"
+dest_dir="$problem_dir/$timestamp"
+
+echo "Saving results to '$dest_dir'"
+
+mkdir -p "$dest_dir"
+
+cp "$submission" "$dest_dir/$problem.$language"
+$dirname/judge "$problem" "$submission" 2>&1 | tee "$dest_dir/result"
+for file in $problem_dir/*/result
+do
+	tail -1 "$file"
+done | sort -n | tail -1 > $problem_dir/best
+
+submission_dir="`dirname $submission`"
+submission_dir_dir="`dirname $submission_dir`"
+rm -f $submission
+rmdir --ignore-fail-on-non-empty $submission_dir
+rmdir --ignore-fail-on-non-empty $submission_dir_dir
+# TODO: add and use the judge user to run stuff

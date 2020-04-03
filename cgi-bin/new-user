@@ -1,0 +1,136 @@
+#!/bin/bash
+#
+# cgi-bin/new-user: user creation page
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Recommended config using fcgiwrap:
+#
+# location = /new-user {
+#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/new-user;
+#   include fastcgi.conf;
+# }
+#
+# Use the above inside an existing server{} entry.
+#
+# TODO: somehow define which user this will run in
+#       and add instructions how to set up
+
+
+set -e
+
+. utils
+
+
+get() {
+html-header
+[ -n "$user_error" ]     && user_has_error=" has-error"
+[ -n "$password_error" ] && password_has_error=" has-error"
+[ -n "$email_error" ]    && email_has_error=" has-error"
+[ -n "$user_error" ]     && user_error="<span class=\"help-block\">$user_error</span>"
+[ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
+[ -n "$email_error" ]    && email_error="<span class=\"help-block\">$email_error</span>"
+cat <<HTML
+<h3> New user </h3>
+<form action="/new-user" method="POST" enctype="multipart/form-data">
+  <div class="form-group$user_has_error">
+    <label class="control-label" for="user">Username</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
+  </div>
+  <div class="form-group$email_has_error">
+    <label class="control-label" for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="email" value="$email_value">$email_error
+  </div>
+  <div class="form-group$email_has_error">
+    <label class="control-label" for="email-confirmation">Email confirmation</label>
+    <input type="email" class="form-control" id="email-confirmation" name="email-confirmation" placeholder="email confirmation" value="$email_confirmation_value">$email_error
+  </div>
+  <div class="form-group$password_has_error">
+    <label class="control-label" for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="password">$password_error
+  </div>
+  <div class="form-group$password_has_error">
+    <label class="control-label" for="password-confirmation">Password confirmation</label>
+    <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" placeholder="password confirmation">$password_error
+  </div>
+  <input type="submit" name="submit" value="Create new user">
+</form>
+HTML
+html-footer
+}
+
+
+post() {
+	tmpdata=/tmp/data-files
+
+	# TODO: make this random
+	rm -rf /tmp/data-files
+	mkdir -p /tmp/data-files
+	./cgi-create-data-files $tmpdata
+
+	user_fn="$tmpdata/user/value"
+	password_fn="$tmpdata/password/value"
+	password_confirmation_fn="$tmpdata/password-confirmation/value"
+	email_fn="$tmpdata/email/value"
+	email_confirmation_fn="$tmpdata/email-confirmation/value"
+	program_fn="$tmpdata/program/value"
+	user_value=`mcat "$user_fn"`
+	email_value=`mcat "$email_fn"`
+	email_confirmation_value=`mcat "$email_confirmation_fn"`
+
+	sane "$user_fn"       || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	[ -s "$user_fn" ]     || user_error="user is missing"
+	[ -s "$password_fn" ] || password_error="password is missing"
+	[ -s "$email_fn" ]    || email_error="email is missing"
+	[ -s "$program_fn" ]  || program_error="program is missing"
+	diff -q $password_fn $password_confirmation_fn > /dev/null || password_error="passwords do not match"
+	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
+	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
+	then
+		get
+		exit
+	fi
+
+	user_dir="$USERS_DIR/$user_value"
+	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
+	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
+	then
+		get
+		exit
+	fi
+
+	echo '<h2>User successfully created</h2>'
+	echo '<pre>'
+
+	mkdir -p "$user_dir"
+	echo "$user_dir/password"
+	cat $SALT_FILE $password_fn | sha256sum | sed -e "s/ .*//" > "$user_dir/password"
+	cp "$email_fn" "$user_dir/email"
+	find $USERS_DIR
+	grep -R "" $USERS_DIR
+
+	echo '</pre>'
+}
+
+
+case $REQUEST_METHOD in
+	GET)  http-content-type; get  ;;
+	POST) http-content-type; post ;;
+	*)    errxit "Unsupported request method '$REQUEST_METHOD'" ;; # TODO: format an error 500 page
+esac

@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# compile-and-test: compiles and tests a program
+#
+#
+# Copyright (C) 2015-2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# NOTE: if I eventually split this into two, I should probably keep this as an
+# entry point, i.e.: this script calls both the compilation and test scripts
+. /etc/udge/conf
+errxit() {
+	echo "$@"
+	exit 1
+}
+cator1() {
+	[ -f "$1" ] &&
+		cat $1 ||
+		echo 1 # default score is 1
+}
+src="$1"
+[ -n "$dir" ] || dir=`dirname $0`
+case "$src" in
+	*.c)   cc $CFLAGS "$src" -o binary    || errxit "No - compile error (C)"            ;;
+
+
+
+	*.hs)  ghc $GHCFLAGS "$src" -o binary || errxit "No - compile error (Haskell)"      ;;
+
+	*)                                       errxit "No - compile: unknown file format" ;;
+esac
+
+
+# TODO: by running this in a temporary folder, we don't need to create or
+#       cleanup the tmp file.  Just use out and the temporary folder in which
+#       this is run should be nuked by the calling script afterwards.
+out=`mktemp /tmp/compile-and-test.XXXXXXXXXX`
+rmerrxit() {
+	rm $out
+	errxit "$@"
+}
+timeout `cator1 "$dir/time-limit"`s ./binary < "$dir/in" > "$out"
+case $? in
+	0)   ;;
+	124) rmerrxit "No - time limit exceeded" ;;
+	*)   rmerrxit "No - runtime error (non-zero exit code)" ;;
+esac
+diff -q "$dir/sol" "$out" >/dev/null ||
+	rmerrxit "No - wrong output"

@@ -1,0 +1,91 @@
+#!/bin/bash
+#
+# cgi-bin/utils: utilities, supposed to be sourced from other cgi scripts
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# TODO: transform some of these utilities into actual separate programs
+# TODO: add tests
+
+
+set -e
+
+. /etc/udge/conf
+
+
+errxit() {
+	echo "$@" > /dev/stderr
+	exit 1
+}
+
+
+http-content-type() {
+cat <<HTTPHEADERS
+Content-Type: text/html
+
+HTTPHEADERS
+}
+
+
+html-header() {
+cat <<HTML
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="../bootstrap.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A problem from the Online Judge</title>
+</head>
+<body>
+<div class="container-fluid">
+HTML
+}
+
+
+html-footer() {
+cat <<HTML
+</div>
+</body>
+</html>
+HTML
+}
+
+
+mcat() {
+	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
+}
+
+
+# are user and problem name sane?
+# usage: `sane filename`
+sane() {
+	grep -q "^[a-z_][a-z0-9_-]*$" "$1"
+}
+
+# not a full RFC compliant verification, but does the job.
+sane-email() {
+	grep -qE '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9.-]+$' "$1"
+}
+
+# usage: check-user username password_file
+check-user() {
+	username="$1"
+	password_fn="$2"
+	cat "$SALT_FILE" "$password_fn" | sha256sum | sed -e "s/ .*//" | diff -q - "$USERS_DIR/$username/password" >/dev/null
+}

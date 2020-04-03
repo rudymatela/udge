@@ -1,0 +1,51 @@
+TODO list for Udge
+==================
+
+vim:set filetype=markdown:
+
+* pop Udge out of this private repo
+
+* submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
+
+* allow parsing of problem name and language from file name (instead of fields)
+
+* make hello be tolerant "HellO World", "hello world" and "hello World!"
+  should be acceptable for a partial score of 2/3 or something like that.
+
+* make so that sum2/yes-5-6 does get a 5/6 score.
+
+* html generation script (and fix my dev environment to use udge/problem)
+
+Initial Goals
+=============
+
+* initial problems:
+	- hello
+	- sum2
+
+* initial supported languages:
+	- C
+	- Python
+	- Haskell
+
+* compilation types:
+	- regular compilation
+	- special compilation (when functions are required)
+
+* test types:
+	- regular test
+	- special test (heLlo WoRlD)
+
+
+Future
+======
+
+* installation script
+
+* development setup script
+
+* sandbox before running submissions
+
+* fix weird edge cases on tests
+
+* remove partial form filling on errors (for simplicity)

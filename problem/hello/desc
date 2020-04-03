@@ -1,0 +1,22 @@
+hello - Hello, World!
+---------------------
+
+Write a program that prints "Hello, World!" on the standard output device.
+Normally, the output device is the screen of a command line session:
+
+	$ ./helloworld
+	Hello, World!
+
+Hint: On some systems (Windows / Linux / OS X), it is possible to redirect the
+output of your program to a file, like so:
+
+	$ ./helloworld > outputfile.txt
+
+### Scoring
+
+* 1/6: compiles
+* 2/6: prints something
+* 3/6: prints hello world somehow
+* 4/6: prints "Hello, world!" exactly
+* 5/6: terminates
+* 6/6: exits successfully

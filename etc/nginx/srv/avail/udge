@@ -1,0 +1,24 @@
+server {
+	server_name
+		udge.localdomain
+		udge
+		;
+
+	root /srv/udge;
+
+	location / {
+		index index.html;
+	}
+
+	location = /submit {
+		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_param SCRIPT_FILENAME /path/to/cgi-bin/submit;
+		include fastcgi_params;
+	}
+
+	location = /new-user {
+		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_param SCRIPT_FILENAME /path/to/cgi-bin/new-user;
+		include fastcgi_params;
+	}
+}

@@ -1,0 +1,56 @@
+$ user1=test-user1-`date "+%Y%m%d-%H%M%S"`
+$ user2=test-user2-`date "+%Y%m%d-%H%M%S"`
+$ yes=../problem/sum2/yes.c
+$ yes46=../problem/sum2/yes-4-6.c
+$ wa=../problem/sum2/wa.c
+$ yeshs=../problem/sum2/yes.hs
+$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ curl -sXPOST udge/new-user -duser=$user1 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
+$ curl -sXPOST udge/new-user -duser=$user2 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
+$
+$ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=sum2  -dlanguage=c  --data-urlencode program@$yes   >/dev/null
+$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=sum2  -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
+$ sleep 1
+$ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=sum2  -dlanguage=c  --data-urlencode program@$yes46 >/dev/null
+$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=hello -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
+$
+$
+$ find /tmp/submissions/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
+/tmp/submissions/<u1>/YYYYMMDD-HHMMSS/sum2.c
+/tmp/submissions/<u1>/YYYYMMDD-HHMMSS/sum2.c
+/tmp/submissions/<u2>/YYYYMMDD-HHMMSS/sum2.hs
+/tmp/submissions/<u2>/YYYYMMDD-HHMMSS/hello.hs
+$
+$
+$ ./bin/pick-and-judge >/dev/null
+$ ./bin/pick-and-judge >/dev/null
+$ ./bin/pick-and-judge >/dev/null
+$ ./bin/pick-and-judge >/dev/null
+$ ./bin/pick-and-judge
+./bin/pick-and-judge: nothing to do
+$
+$
+$ find /tmp/results/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/result
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/sum2.c
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/result
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/sum2.c
+/tmp/results/<u1>/sum2/best
+/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/hello.hs
+/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result
+/tmp/results/<u2>/hello/best
+/tmp/results/<u2>/sum2/YYYYMMDD-HHMMSS/result
+/tmp/results/<u2>/sum2/YYYYMMDD-HHMMSS/sum2.hs
+/tmp/results/<u2>/sum2/best
+$
+$ for file in /tmp/results/{$user1,$user2}/*/*/result; do echo -n $file:; tail -1 $file; done | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/result:4/6
+/tmp/results/<u1>/sum2/YYYYMMDD-HHMMSS/result:6/6
+/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result:0/1
+/tmp/results/<u2>/sum2/YYYYMMDD-HHMMSS/result:6/6
+$
+$ grep "" /tmp/results/{$user1,$user2}/*/best | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
+/tmp/results/<u1>/sum2/best:6/6
+/tmp/results/<u2>/hello/best:0/1
+/tmp/results/<u2>/sum2/best:6/6

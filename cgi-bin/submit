@@ -1,0 +1,212 @@
+#!/bin/bash
+#
+# cgi-bin/submit: solution submission page
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Recommended config using fcgiwrap:
+#
+# location = /submit {
+#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/submit;
+#   include fastcgi.conf;
+# }
+#
+# Use the above inside an existing server{} entry.
+
+# TODO: somehow run this under a specific unpriviledged user
+# TODO: block to 1 submission per minute window (glob)
+# TODO: block to 5 submissions per user total in the queue
+
+# TODO: remove responsive form?
+#       (just print out the error message at the top and clear all the fields)
+
+
+set -e
+
+. utils
+
+
+errxit() {
+	echo "$@" > /dev/stderr
+	exit 1
+}
+
+
+html-header() {
+cat <<HTML
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="../bootstrap.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A problem from the Online Judge</title>
+</head>
+<body>
+<div class="container-fluid">
+HTML
+}
+
+
+html-footer() {
+cat <<HTML
+</div>
+</body>
+</html>
+HTML
+}
+
+
+get() {
+html-header
+[ -n "$user_error" ]     && user_has_error=" has-error"
+[ -n "$password_error" ] && password_has_error=" has-error"
+[ -n "$program_error" ]  && program_has_error=" has-error"
+[ -n "$problem_error" ]  && problem_has_error=" has-error"
+[ -n "$language_error" ] && language_has_error=" has-error"
+[ -n "$user_error" ]     && user_error="<span class=\"help-block\">$user_error</span>"
+[ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
+[ -n "$program_error" ]  && program_error="<span class=\"help-block\">$program_error</span>"
+[ -n "$problem_error" ]  && problem_error="<span class=\"help-block\">$problem_error</span>"
+[ -n "$language_error" ] && language_error="<span class=\"help-block\">$language_error</span>"
+cat <<HTML
+<h3> Submit your solution </h3>
+<form action="/submit" method="POST" enctype="multipart/form-data">
+  <div class="form-group$user_has_error">
+    <label class="control-label" for="user">Email address</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
+  </div>
+  <div class="form-group$password_has_error">
+    <label class="control-label" for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="password">$password_error
+  </div>
+  <div class="form-group$program_has_error">
+    <label class="control-label" for="Program">Program</label>
+    <input type="file" class="form-control" id="Program"  name="program" placeholder="program">$program_error
+  </div>
+  <div class="form-group$problem_has_error">
+    <label class="control-label" for="problem">Problem id</label>
+    <input type="text" class="form-control" id="problem" name="problem" placeholder="problem" value="$problem_value">$problem_error
+  </div>
+  <div class="form-group$language_has_error">
+    <label class="control-label" for="language">Language</label>
+    <select class="form-control" id="language" name="language" placeholder="language">
+HTML
+render-language-options
+cat <<HTML
+    </select>$language_error
+  </div>
+  <input type="submit" name="submit" value="Submit">
+</form>
+HTML
+html-footer
+}
+
+
+render-language-options() {
+sed -e "s/\"$language_value\">/\"$language_value\" selected>/" <<HTML
+      <option value="none">Select the language</option>
+      <option value="c">C</option>
+      <option value="hs">Haskell</option>
+      <option value="py">Python</option>
+HTML
+}
+
+
+mcat() {
+	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
+}
+
+
+# are user and problem name sane?
+# usage: `sane filename`
+sane() {
+	grep -q "^[a-z_][a-z0-9_-]*$" "$1"
+}
+
+
+post() {
+	tmpdata=/tmp/data-files
+
+	# TODO: make this random
+	rm -rf /tmp/data-files
+	mkdir -p /tmp/data-files
+	./cgi-create-data-files $tmpdata
+
+	user_fn="$tmpdata/user/value"
+	password_fn="$tmpdata/password/value"
+	program_fn="$tmpdata/program/value"
+	problem_fn="$tmpdata/problem/value"
+	language_fn="$tmpdata/language/value"
+	user_value="`mcat "$user_fn"`"
+	problem_value="`mcat "$problem_fn"`"
+	language_value="`mcat "$language_fn"`"
+
+	sane "$user_fn"       || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	[ -s "$user_fn" ]     || user_error="user is missing"
+	[ -s "$password_fn" ] || password_error="password is missing"
+	[ -s "$program_fn" ]  || program_error="program is missing"
+	sane "$problem_fn"    || problem_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	[ -s "$problem_fn" ]  || problem_error="problem is missing"
+	[ "$language_value" != "none" ] || language_error="select the language"
+	if [ -n "$user_error" -o -n "$password_error" -o -n "$program_error" -o -n "$problem_error" -o -n "$language_error" ]
+	then
+		get
+		exit
+	fi
+
+	check-user "$user_value" "$password_fn" || user_error="invalid credentials"
+	password_error="$user_error"
+	[ -d "$PROBLEMS_DIR/$problem_value" ] || problem_error="invalid problem id"
+	if [ -n "$user_error" -o -n "$password_error" -o -n "$program_error" -o -n "$problem_error" ]
+	then
+		get
+		exit
+	fi
+
+	echo '<h2>Submission successful</h2>'
+	echo '<pre>'
+
+	grep -R ".*" $tmpdata
+	timestamp=`date -u "+%Y%m%d-%H%M%S"`
+	umask 0002 # allows for members of the http group to write (or remove)
+	destdir="$UNJUDGED_DIR/$user_value/$timestamp"
+	destfile="$destdir/$problem_value.$language_value"
+	mkdir -p $destdir
+	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"
+
+	find $UNJUDGED_DIR
+
+	echo '</pre>'
+}
+
+
+http-content-type() {
+cat <<HTTPHEADERS
+Content-Type: text/html
+
+HTTPHEADERS
+}
+
+
+case $REQUEST_METHOD in
+	GET)  http-content-type; get  ;;
+	POST) http-content-type; post ;;
+	*)    errxit "Unsupported request method '$REQUEST_METHOD'" ;; # TODO: format an error 500 page
+esac

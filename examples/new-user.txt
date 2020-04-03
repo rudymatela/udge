@@ -1,0 +1,8 @@
+$ user=test-user-`date "+%Y%m%d-%H%M%S"`
+$ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep h2
+<h2>User successfully created</h2>
+$ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep help-block | sed -e "s/.*<span/<span/"
+<span class="help-block">username already exists (pick another)</span>
+$ grep -R ".*" /etc/udge/users/$user/ | sed -e "s,.*/,," | sort
+email:test-user@example.com
+password:b3c3e62cc12d233b23442fc9cdd226ebe60f0549a6a7e9ad9e7b6a9520c393b5
