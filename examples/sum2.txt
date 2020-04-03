@@ -26,3 +26,5 @@ $ ./bin/judge sum2 problem/sum2/yes.hs | tail -1
 $ ./bin/judge sum2 problem/sum2/yes-5-6.hs 2>&1 | tail -2
 No - compile error (Haskell)
 5/6
+$ ./bin/judge sum2 problem/sum2/yes.py
+6/6
