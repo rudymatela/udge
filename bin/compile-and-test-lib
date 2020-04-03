@@ -42,6 +42,9 @@ case "$src" in
 	*.hs)  ghc $GHCFLAGS -main-is AltMain "$src" "$dir/main.hs" -o binary ||
 	       errxit "No - compile error (Haskell)" ;;
 
+	*.py)  python -mpy_compile "$src" && cp "$src" binary && chmod +x binary ||
+	       errxit "No - parse error (Python)" ;; # TODO: FIXME: AltMain somehow
+
 	*)     errxit "No - compile: unknown file format" ;;
 esac
 
