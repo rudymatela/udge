@@ -37,5 +37,4 @@ html: \
 
 $(PUBLIC_HTML)/%/index.html: problem/%/desc
 	mkdir -p $(PUBLIC_HTML)/$*
-	# TODO: ./bin/markdown that also adds a header and footer
-	markdown $< > $@
+	./bin/markdown $< > $@

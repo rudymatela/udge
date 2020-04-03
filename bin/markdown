@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# usage: ./bin/markdown file.md > file.html
+
+cat <<HEADER
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="../bootstrap.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A problem from the Online Judge</title>
+</head>
+<body>
+<div class="container-fluid">
+HEADER
+
+markdown "$@"
+
+cat <<FOOTER
+</div>
+</body>
+</html>
+FOOTER
