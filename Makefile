@@ -1,9 +1,15 @@
 # Makefile for the judge
 
 PUBLIC_HTML=public_html
+HTMLS=\
+	$(PUBLIC_HTML)/sum2/index.html \
+	$(PUBLIC_HTML)/hello/index.html \
+	$(PUBLIC_HTML)/index.html
 
 .PHONY: all
 all:
+
+clean: clean-html
 
 test: \
   test-happy \
@@ -31,10 +37,10 @@ stop-services:
 	sudo systemctl stop fcgiwrap.socket
 	sudo systemctl stop fcgiwrap
 
-html: \
-	$(PUBLIC_HTML)/sum2/index.html \
-	$(PUBLIC_HTML)/hello/index.html \
-	$(PUBLIC_HTML)/index.html
+html: $(HTMLS)
+
+clean-html:
+	rm -f $(HTMLS)
 
 $(PUBLIC_HTML)/%/index.html: problem/%/desc
 	mkdir -p $(PUBLIC_HTML)/$*
