@@ -12,11 +12,17 @@ all:
 clean: clean-html
 
 test: \
-  test-happy \
+  test-scripts \
+  test-web
+
+test-scripts: \
+  sum2.clitest
+
+test-web: \
+  index.clitest \
   new-user.clitest \
   submit.clitest \
-  sum2.clitest \
-  index.clitest
+  test-happy
 
 test-happy: \
   happy-day-1.clitest \
