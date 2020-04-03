@@ -34,15 +34,15 @@ cator1() {
 src="$1"
 [ -n "$dir" ] || dir=`dirname $0`
 case "$src" in
-	*.c)   cc $CFLAGS "$src" -o binary    || errxit "No - compile error (C)"            ;;
+	*.c)   cc $CFLAGS "$src" -o binary ||
 
 
+	       errxit "No - compile error (C)" ;;
 
+	*.hs)  ghc $GHCFLAGS "$src" -o binary ||
+	       errxit "No - compile error (Haskell)" ;;
 
-	*.hs)  ghc $GHCFLAGS "$src" -o binary || errxit "No - compile error (Haskell)"      ;;
-
-
-	*)                                       errxit "No - compile: unknown file format" ;;
+	*)     errxit "No - compile: unknown file format" ;;
 esac
 
 
