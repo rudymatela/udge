@@ -89,7 +89,7 @@ cat <<HTML
 <h3> Submit your solution </h3>
 <form action="/submit" method="POST" enctype="multipart/form-data">
   <div class="form-group$user_has_error">
-    <label class="control-label" for="user">Email address</label>
+    <label class="control-label" for="user">Username (<a href="/new-user">new user</a>)</label>
     <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
   </div>
   <div class="form-group$password_has_error">
