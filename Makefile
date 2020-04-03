@@ -25,7 +25,7 @@ test-happy: \
 
 .PHONY: %.clitest
 %.clitest: examples/%.txt
-	clitest $<
+	clitest -1 $<
 
 start-services:
 	sudo systemctl start fcgiwrap.socket
