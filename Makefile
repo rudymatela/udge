@@ -33,8 +33,13 @@ stop-services:
 
 html: \
 	$(PUBLIC_HTML)/sum2/index.html \
-	$(PUBLIC_HTML)/hello/index.html
+	$(PUBLIC_HTML)/hello/index.html \
+	$(PUBLIC_HTML)/index.html
 
 $(PUBLIC_HTML)/%/index.html: problem/%/desc
 	mkdir -p $(PUBLIC_HTML)/$*
+	./bin/markdown $< > $@
+
+$(PUBLIC_HTML)/index.html: problem/index.md
+	mkdir -p $(PUBLIC_HTML)
 	./bin/markdown $< > $@
