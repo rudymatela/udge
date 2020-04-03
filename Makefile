@@ -42,10 +42,10 @@ html: $(HTMLS)
 clean-html:
 	rm -f $(HTMLS)
 
-$(PUBLIC_HTML)/%/index.html: problem/%/desc
+$(PUBLIC_HTML)/%/index.html: problem/%/desc bin/markdown
 	mkdir -p $(PUBLIC_HTML)/$*
 	./bin/markdown $< > $@
 
-$(PUBLIC_HTML)/index.html: problem/index.md
+$(PUBLIC_HTML)/index.html: problem/index.md bin/markdown
 	mkdir -p $(PUBLIC_HTML)
 	./bin/markdown $< > $@
