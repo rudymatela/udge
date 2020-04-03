@@ -3,8 +3,6 @@ TODO list for Udge
 
 vim:set filetype=markdown:
 
-* html generation script (and fix my dev environment to use udge/problem)
-
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
@@ -13,6 +11,8 @@ vim:set filetype=markdown:
   should be acceptable for a partial score of 2/3 or something like that.
 
 * make so that sum2/yes-5-6 does get a 5/6 score.
+
+* generate index.html from list of available problems
 
 Initial Goals
 =============

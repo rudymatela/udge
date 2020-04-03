@@ -34,9 +34,10 @@ To develop, add your user to the `http` group, so that you can erase the
 submissions created by `submit` whenever you run `pick-and-judge`.
 
 1. set up nginx, please see the example config file `etc/nginx/srv/avail/udge`;
-2. add `127.0.0.1 udge` to `/etc/hosts`
-3. link `/etc/udge/problem` to your local (repository) problem folder
-4. link `/srv/udge` to your local html problem folder
+2. add `127.0.0.1 udge` to `/etc/hosts`;
+3. link `/etc/udge/problem` to your local (repository) problem folder;
+4. run `make html` to compile html descriptions of problems;
+5. link `/srv/udge` to your local html problem folder `path/to/udge/html`.
 
 Routes
 ------

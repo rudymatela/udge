@@ -28,3 +28,12 @@ stop-services:
 	sudo systemctl stop nginx
 	sudo systemctl stop fcgiwrap.socket
 	sudo systemctl stop fcgiwrap
+
+html: \
+	html/sum2/index.html \
+	html/hello/index.html
+
+html/%/index.html: problem/%/desc
+	mkdir -p html/$*
+	# TODO: ./bin/markdown that also adds a header and footer
+	markdown $< > $@
