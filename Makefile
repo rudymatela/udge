@@ -30,10 +30,10 @@ stop-services:
 	sudo systemctl stop fcgiwrap
 
 html: \
-	html/sum2/index.html \
-	html/hello/index.html
+	public_html/sum2/index.html \
+	public_html/hello/index.html
 
-html/%/index.html: problem/%/desc
-	mkdir -p html/$*
+public_html/%/index.html: problem/%/desc
+	mkdir -p public_html/$*
 	# TODO: ./bin/markdown that also adds a header and footer
 	markdown $< > $@
