@@ -35,12 +35,10 @@ src="$1"
 dirname="`dirname $0`"
 [ -n "$dir" ] || dir="$dirname"
 case "$src" in
-	*.c)   $dirname/compile/c $src binary $dir/main.c ||
-
-
+	*.c)   "$dirname/compile/c" "$src" binary "$dir/main.c" ||
 	       errxit "No - compile error (C)" ;;
 
-	*.hs)  ghc $GHCFLAGS "$src" -o binary ||
+	*.hs)  "$dirname/compile/hs" "$src" binary "$dir/main.hs" ||
 	       errxit "No - compile error (Haskell)" ;;
 
 	*.py)  python -mpy_compile "$src" && cp "$src" binary && chmod +x binary ||

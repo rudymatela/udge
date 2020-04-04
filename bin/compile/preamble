@@ -23,7 +23,7 @@
 #
 #     . "`dirname $0`/preamble"
 #
-# This file is part of udge.
+# This file is part of Udge.
 set -e
 errxit() {
 	echo "$@" >/dev/stderr

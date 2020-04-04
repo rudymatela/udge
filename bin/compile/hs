@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# compile/c: compiles a c program
+# compile/c: compiles a Haskell program
 #
 #
 # Copyright (C) 2015-2020  Rudy Matela
@@ -19,19 +19,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Usage: ./bin/compile/c source.c binary [main.c]
+# Usage: ./bin/compile/c source.hs binary [main.hs]
 #
-# With two arguments, this program does a regular C file compilation.
+# With two arguments, this program does a regular Haskell file compilation.
 # With three arguments, this program uses an alternative main file.
 #
 # This file is part of Udge.
 . "`dirname $0`/preamble"
 if [ -f "$main" ]
 then
-	cc $CFLAGS -c "$src" -o lib.o
-	objcopy --redefine-sym main=oldmain lib.o
-	cc "$main" lib.o -o "$dst"
-	rm lib.o
+	ghc $GHCFLAGS -main-is AltMain "$src" "$dir/main.hs" -o "$dst"
 else
-	cc $CFLAGS "$src" -o "$dst"
+	ghc $GHCFLAGS "$src" -o "$dst"
 fi

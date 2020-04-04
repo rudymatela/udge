@@ -36,8 +36,6 @@ dirname="`dirname $0`"
 [ -n "$dir" ] || dir="$dirname"
 case "$src" in
 	*.c)   $dirname/compile/c $src binary $dir/main.c ||
-
-
 	       errxit "No - compile error (C)" ;;
 
 	*.hs)  ghc $GHCFLAGS -main-is AltMain "$src" "$dir/main.hs" -o binary ||
