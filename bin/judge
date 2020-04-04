@@ -45,13 +45,7 @@ for ts in $problemdir/[0-9]*; do
 done
 for ts in $problemdir/[0-9]*; do
 	pts=`cator1 $ts/pts`
-	if [ -f "$ts/test" ]
-	then
-		test=$ts/test
-	else
-		test=$compileandtest
-	fi
-	dir=$ts $test $prog && ((total+=$pts)) || break
+	dir=$ts "$compileandtest" $prog && ((total+=$pts)) || break
 done
 echo $total/$outof
 )
