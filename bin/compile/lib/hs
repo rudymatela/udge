@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+ghc $GHCFLAGS -main-is AltMain "$1" "$3" -o "$2"

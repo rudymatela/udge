@@ -34,18 +34,18 @@ cator1() {
 src="$1"
 dirname="`dirname $0`"
 [ -n "$dir" ] || dir="$dirname"
+what=compile
 case "$src" in
-	*.c)   "$dirname/compile/c" "$src" binary "$dir/main.c" ||
-	       errxit "No - compile error (C)" ;;
-
-	*.hs)  "$dirname/compile/hs" "$src" binary "$dir/main.hs" ||
-	       errxit "No - compile error (Haskell)" ;;
-
-	*.py)  "$dirname/compile/py" "$src" binary "$dir/main.py" ||
-	       errxit "No - parse error (Python)" ;;
-
+	*.c)   lang=c  ;language="C"                      ;;
+	*.hs)  lang=hs ;language="Haskell"                ;;
+	*.py)  lang=py ;language="Python"   ;what="parse" ;;
 	*)     errxit "No - compile: unknown file format" ;;
 esac
+
+main="$dir/main.$lang"
+[ -f "$main" ] && lib=lib
+"$dirname/compile/$lib/$lang" "$src" binary "$main" ||
+errxit "No - $what error ($language)"
 
 
 # TODO: by running this in a temporary folder, we don't need to create or
