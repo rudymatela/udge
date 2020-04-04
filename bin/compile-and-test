@@ -48,9 +48,6 @@ main="$dir/main.$lang"
 errxit "No - $what error ($language)"
 
 
-# TODO: by running this in a temporary folder, we don't need to create or
-#       cleanup the tmp file.  Just use out and the temporary folder in which
-#       this is run should be nuked by the calling script afterwards.
 out=`mktemp /tmp/compile-and-test.XXXXXXXXXX`
 rmerrxit() {
 	rm $out
