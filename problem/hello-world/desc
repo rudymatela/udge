@@ -1,0 +1,16 @@
+hello-world - Hello, World!
+---------------------------
+
+Write a program that prints "Hello, World!" on the standard output device.
+Normally, the output device is the screen of a command line session:
+
+	$ ./helloworld
+	Hello, World!
+
+Hint: On some systems (Windows / Linux / OS X), it is possible to redirect the
+output of your program to a file, like so:
+
+	$ ./helloworld > outputfile.txt
+
+This is one of the default examples of Udge.  This differs from [hello](/hello)
+in that this version provides a simple 0/1 or 1/1 scoring.

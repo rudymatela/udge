@@ -1,0 +1,5 @@
+$ ./bin/judge hello problem/hello/yes.c
+1/1
+$ ./bin/judge hello problem/hello/no.c
+No - wrong output
+0/1

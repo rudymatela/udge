@@ -2,8 +2,9 @@
 
 PUBLIC_HTML=public_html
 HTMLS=\
-	$(PUBLIC_HTML)/add/index.html \
 	$(PUBLIC_HTML)/hello/index.html \
+	$(PUBLIC_HTML)/hello-world/index.html \
+	$(PUBLIC_HTML)/add/index.html \
 	$(PUBLIC_HTML)/index.html
 
 .PHONY: all
@@ -16,6 +17,7 @@ test: \
   test-web
 
 test-scripts: \
+  hello-world.clitest \
   add.clitest \
   hello.clitest
 

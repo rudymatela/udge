@@ -1,5 +1,5 @@
-$ ./bin/judge hello problem/hello/yes.c
+$ ./bin/judge hello problem/hello/yes.c # TODO: FIXME: should be 6/6
 1/1
-$ ./bin/judge hello problem/hello/no.c
+$ ./bin/judge hello problem/hello/no.c # TODO: FIXME: should be 1/6, compiles
 No - wrong output
 0/1
