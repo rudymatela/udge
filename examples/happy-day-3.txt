@@ -32,25 +32,25 @@ $ ./bin/pick-and-judge
 $
 $
 $ find /tmp/results/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
-/tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/add.c
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/add.c
+/tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<u1>/add/best
+/tmp/results/<u2>/add/YYYYMMDD-HHMMSS/add.hs
+/tmp/results/<u2>/add/YYYYMMDD-HHMMSS/result
+/tmp/results/<u2>/add/best
 /tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/hello.hs
 /tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result
 /tmp/results/<u2>/hello/best
-/tmp/results/<u2>/add/YYYYMMDD-HHMMSS/result
-/tmp/results/<u2>/add/YYYYMMDD-HHMMSS/add.hs
-/tmp/results/<u2>/add/best
 $
 $ for file in /tmp/results/{$user1,$user2}/*/*/result; do echo -n $file:; tail -1 $file; done | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result:4/6
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result:6/6
-/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result:0/1
 /tmp/results/<u2>/add/YYYYMMDD-HHMMSS/result:6/6
+/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result:0/1
 $
 $ grep "" /tmp/results/{$user1,$user2}/*/best | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
 /tmp/results/<u1>/add/best:6/6
-/tmp/results/<u2>/hello/best:0/1
 /tmp/results/<u2>/add/best:6/6
+/tmp/results/<u2>/hello/best:0/1

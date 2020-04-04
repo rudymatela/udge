@@ -39,10 +39,10 @@ $ ./bin/pick-and-judge
 $
 $
 $ find /tmp/results/$user -type f | sort | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
-/tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
+/tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<user>/add/best
