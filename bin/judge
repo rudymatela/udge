@@ -44,6 +44,7 @@ for ts in $problemdir/[0-9]*; do
 	((outof+=$pts))
 done
 for ts in $problemdir/[0-9]*; do
+	[ -d $ts ] || ts=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $ts/pts`
 	dir=$ts "$compileandtest" $prog && ((total+=$pts)) || break
 done
