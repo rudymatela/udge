@@ -1,1 +1,4 @@
-int mAIn() {}
+int mAIn()
+{
+	return 0;
+}
