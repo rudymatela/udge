@@ -1,20 +1,23 @@
 $ ./bin/judge hello problem/hello/yes.c # TODO: FIXME: should be 6/6
-1/1
+2/2
 $ ./bin/judge hello problem/hello/no-0-6.c 2>/dev/null | tail -2
 No - compile error (C)
-0/1
+0/2
 $ ./bin/judge hello problem/hello/no-1-6.c # TODO: FIXME: should be 1/6
 No - wrong output
-0/1
+1/2
+$ ./bin/judge hello problem/hello/no-1-6-alt.c # TODO: FIXME: should be 1/6
+No - runtime error (non-zero exit code)
+0/2
 $ ./bin/judge hello problem/hello/no-2-6.c # TODO: FIXME: should be 2/6
 No - wrong output
-0/1
+1/2
 $ ./bin/judge hello problem/hello/no-3-6.c # TODO: FIXME: should be 3/6
 No - wrong output
-0/1
+1/2
 $ ./bin/judge hello problem/hello/no-4-6.c # TODO: FIXME: should be 4/6
 No - time limit exceeded
-0/1
+0/2
 $ ./bin/judge hello problem/hello/no-5-6.c # TODO: FIXME: should be 5/6
 No - runtime error (non-zero exit code)
-0/1
+0/2
