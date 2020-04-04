@@ -1,4 +1,4 @@
-/* model solution for sum2s
+/* model solution for add
  * compile error */
 #include <stdio.h>
 int maaain()

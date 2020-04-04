@@ -1,7 +1,5 @@
-sum2 - Addition
+add - Addition
 ---------------
-
-TODO: rename problem code to add?
 
 Write a program that
 	reads several pairs of numbers and,
@@ -10,7 +8,7 @@ The standard input and output devices
 	are usually the keyboard and screen of a command line session.
 Here is an example session with this program:
 
-	$ ./sum2
+	$ ./add
 	0 0
 	0
 	3 7

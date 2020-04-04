@@ -47,8 +47,8 @@ Routes
 * `/new-user`:      allows creation of a user
 * `/<problem>`:     a problem description
 	- `/hello`:     the `hello` problem
+	- `/add`:       the `add` problem
 	- `/prod3`:     the `prod3` problem
-	- `/sum2`:      the `sum2` problem
 * `/u/<user_name>`: user's page, lists scores for each problem (TBA)
 * `/p/<user_sha1>`: private user page, lists scores for each problem (TBA)
 * `/u/<user_name>/submissions`: lists the submissions of a user    (TBA)
@@ -140,7 +140,7 @@ It contain files in the following format:
 
 For example:
 
-* `submissions/fulano/20200224-202249/sum2.c`
+* `submissions/fulano/20200224-202249/add.c`
 * `submissions/cicrano/20200224-001234/prod3.hs`
 
 

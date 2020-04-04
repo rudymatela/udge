@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* rename sum2 to add
-
 * rename `hello` to `hello-world`
 
 * add `hello` problem alongside `hello-world`.  Hello is more forgiving and you
@@ -21,7 +19,7 @@ Initial Goals
 
 * initial problems:
 	- hello
-	- sum2
+	- add
 
 * initial supported languages:
 	- C
@@ -54,4 +52,4 @@ Future
 
 * support `err` as well (specific error output)
 
-* support running `sum2.clitest` in parallel (`clitest -j1`?)
+* support running `add.clitest` in parallel (`clitest -j1`?)

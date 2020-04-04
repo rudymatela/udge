@@ -2,7 +2,7 @@
 
 PUBLIC_HTML=public_html
 HTMLS=\
-	$(PUBLIC_HTML)/sum2/index.html \
+	$(PUBLIC_HTML)/add/index.html \
 	$(PUBLIC_HTML)/hello/index.html \
 	$(PUBLIC_HTML)/index.html
 
@@ -16,7 +16,7 @@ test: \
   test-web
 
 test-scripts: \
-  sum2.clitest \
+  add.clitest \
   hello.clitest
 
 test-web: \
