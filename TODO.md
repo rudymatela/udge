@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-vim:set filetype=markdown:
-
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
