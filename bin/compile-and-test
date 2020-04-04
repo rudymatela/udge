@@ -64,3 +64,4 @@ case $? in
 esac
 diff -q "$dir/sol" "$out" >/dev/null ||
 	rmerrxit "No - wrong output"
+rm $out
