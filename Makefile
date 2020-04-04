@@ -16,7 +16,8 @@ test: \
   test-web
 
 test-scripts: \
-  sum2.clitest
+  sum2.clitest \
+  hello.clitest
 
 test-web: \
   index.clitest \
