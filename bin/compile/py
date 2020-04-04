@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# compile/c: compiles a Haskell program
+# compile/py: compiles a Python program
 #
 #
 # Copyright (C) 2015-2020  Rudy Matela
@@ -19,16 +19,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Usage: ./bin/compile/c source.hs binary [main.hs]
+# Usage: ./bin/compile/c source.py binary [main.py]
 #
-# With two arguments, this program does a regular Haskell file compilation.
+# With two arguments, this program does a regular Python file compilation.
 # With three arguments, this program uses an alternative main file.
 #
 # This file is part of Udge.
 . "`dirname $0`/preamble"
 if [ -f "$main" ]
 then
-	ghc $GHCFLAGS -main-is AltMain "$src" "$main" -o "$dst"
+	python -mpy_compile "$src"
+	cat "$src" "$main" > "$dst"
+	chmod +x "$dst"
 else
-	ghc $GHCFLAGS "$src" -o "$dst"
+	python -mpy_compile "$src"
+	cp "$src" "$dst"
+	chmod +x "$dst"
 fi

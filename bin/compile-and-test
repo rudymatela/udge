@@ -41,7 +41,7 @@ case "$src" in
 	*.hs)  "$dirname/compile/hs" "$src" binary "$dir/main.hs" ||
 	       errxit "No - compile error (Haskell)" ;;
 
-	*.py)  python -mpy_compile "$src" && cp "$src" binary && chmod +x binary ||
+	*.py)  "$dirname/compile/py" "$src" binary "$dir/main.py" ||
 	       errxit "No - parse error (Python)" ;;
 
 	*)     errxit "No - compile: unknown file format" ;;
