@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# compile/c: compiles a c program
+# compile/preamble: preamble to all "bin/compile/" programs
 #
 #
 # Copyright (C) 2015-2020  Rudy Matela
@@ -19,16 +19,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Usage: ./bin/compile/c source.c binary [main.c]
+# Imported from all other compile/ programs using:
 #
-# With two arguments, this program does a regular C file compilation.
-# With three arguments, this program uses an alternative main file.
-. "`dirname $0`/preamble"
-if [ -f "$main" ]
-then
-	cc $CFLAGS -c "$src" -o lib.o
-	objcopy --redefine-sym main=oldmain lib.o
-	cc "$main" lib.o -o binary
-else
-	cc $CFLAGS "$src" -o binary
-fi
+#     . "`dirname $0`/preamble"
+#
+# This file is part of udge.
+set -e
+errxit() {
+	echo "$@" >/dev/stderr
+	usage
+	exit 1
+}
+usage() {
+	echo "usage: $0 source.lang binary [main.lang]" >/dev/stderr
+}
+src="$1"
+dst="$2"
+main="$3"
+[ -n "$src" ] || errxit "$0: missing source file"
+[ -n "$dst" ] || errxit "$0: missing destination file / binary"
