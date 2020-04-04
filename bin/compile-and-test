@@ -56,7 +56,9 @@ rmerrxit() {
 	rm $out
 	errxit "$@"
 }
-timeout `cator1 "$dir/time-limit"`s ./binary < "$dir/in" > "$out"
+in="$dir/in"
+[ -f "$in" ] || in=/dev/null
+timeout `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out"
 case $? in
 	0)   ;;
 	124) rmerrxit "No - time limit exceeded" ;;

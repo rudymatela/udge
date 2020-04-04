@@ -65,3 +65,7 @@ Future
 
 * allow `in` not to exist: `[ -f $dir/in ] || in=/dev/null` or something like
   that
+
+* add `hello` problem alongside `hello-world`.  Hello is more forgiving and you
+  get a score out of 6.  `hello-world` you get 0 or 1 (what is currently set as
+  `hello`)
