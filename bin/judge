@@ -39,11 +39,11 @@ cator1() {
 }
 outof=0
 total=0
-for ts in $problemdir/[0-9]*; do
+for ts in $problemdir/*/; do
 	pts=`cator1 $ts/pts`
 	((outof+=$pts))
 done
-for ts in $problemdir/[0-9]*; do
+for ts in $problemdir/*/; do
 	[ -d $ts ] || ts=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $ts/pts`
 	dir=$ts "$compileandtest" $prog && ((total+=$pts)) || break
