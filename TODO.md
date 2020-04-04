@@ -59,5 +59,6 @@ Future
 	bin/test
 	```
 
-* instead of symlinking test, simply have a file `type` with `lib` as contents
-  when we want to activate the lib compiling type.
+* ~instead of symlinking test, simply have a file `type` with `lib` as contents
+  when we want to activate the lib compiling type.~
+  UPDATE: the above is not really needed, I just need to check for `main.lang`

@@ -32,11 +32,12 @@ cator1() {
 		echo 1 # default score is 1
 }
 src="$1"
-[ -n "$dir" ] || dir=`dirname $0`
+dirname="`dirname $0`"
+[ -n "$dir" ] || dir="$dirname"
 case "$src" in
-	*.c)   cc $CFLAGS -c "$src" -o lib.o &&
-	       objcopy --redefine-sym main=oldmain lib.o &&
-	       cc "$dir/main.c" lib.o -o binary ||
+	*.c)   $dirname/compile/c $src binary $dir/main.c ||
+
+
 	       errxit "No - compile error (C)" ;;
 
 	*.hs)  ghc $GHCFLAGS -main-is AltMain "$src" "$dir/main.hs" -o binary ||
