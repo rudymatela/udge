@@ -13,14 +13,14 @@ $ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=add  -dlangua
 $ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=add  -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
 $ sleep 1
 $ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=add  -dlanguage=c  --data-urlencode program@$yes46 >/dev/null
-$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=hello -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
+$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=hello-world -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
 $
 $
 $ find /tmp/submissions/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
 /tmp/submissions/<u1>/YYYYMMDD-HHMMSS/add.c
 /tmp/submissions/<u1>/YYYYMMDD-HHMMSS/add.c
 /tmp/submissions/<u2>/YYYYMMDD-HHMMSS/add.hs
-/tmp/submissions/<u2>/YYYYMMDD-HHMMSS/hello.hs
+/tmp/submissions/<u2>/YYYYMMDD-HHMMSS/hello-world.hs
 $
 $
 $ ./bin/pick-and-judge >/dev/null
@@ -40,17 +40,17 @@ $ find /tmp/results/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$u
 /tmp/results/<u2>/add/YYYYMMDD-HHMMSS/add.hs
 /tmp/results/<u2>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<u2>/add/best
-/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/hello.hs
-/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result
-/tmp/results/<u2>/hello/best
+/tmp/results/<u2>/hello-world/YYYYMMDD-HHMMSS/hello-world.hs
+/tmp/results/<u2>/hello-world/YYYYMMDD-HHMMSS/result
+/tmp/results/<u2>/hello-world/best
 $
 $ for file in /tmp/results/{$user1,$user2}/*/*/result; do echo -n $file:; tail -1 $file; done | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result:4/6
 /tmp/results/<u1>/add/YYYYMMDD-HHMMSS/result:6/6
 /tmp/results/<u2>/add/YYYYMMDD-HHMMSS/result:6/6
-/tmp/results/<u2>/hello/YYYYMMDD-HHMMSS/result:0/1
+/tmp/results/<u2>/hello-world/YYYYMMDD-HHMMSS/result:0/1
 $
 $ grep "" /tmp/results/{$user1,$user2}/*/best | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort
 /tmp/results/<u1>/add/best:6/6
 /tmp/results/<u2>/add/best:6/6
-/tmp/results/<u2>/hello/best:0/1
+/tmp/results/<u2>/hello-world/best:0/1
