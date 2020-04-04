@@ -18,6 +18,8 @@ test: \
 
 test-scripts: \
   hello-world.clitest \
+  hello-world-hs.clitest \
+  hello-world-py.clitest \
   add.clitest \
   hello.clitest
 
