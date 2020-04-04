@@ -43,3 +43,23 @@ Future
 * fix weird edge cases on tests
 
 * remove partial form filling on errors (for simplicity)
+
+* support command line arguments (`args` file aditionally to `in` and `out`)
+
+* support `err` as well (specific error output)
+
+* support running `sum2.clitest` in parallel (`clitest -j1`?)
+
+* separate `compile-and-test` in files:
+
+	```
+	bin/compile/c
+	bin/compile/python
+	bin/compile/lib/c
+	bin/compile/lib/python
+	...
+	bin/test
+	```
+
+* instead of symlinking test, simply have a file `type` with `lib` as contents
+  when we want to activate the lib compiling type.
