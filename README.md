@@ -123,6 +123,9 @@ This directory may also contain example solutions:
 * `yes.c`: example solution in C that yields a full score.
 * `yes-4-6.hs`: example solution in Haskell that yields 4/6.
 
+If there is only one test set, you are allowed to let `in` and `out` reside
+plainly without a subdir.
+
 
 ### Submissions directory
 
