@@ -17,6 +17,6 @@ output of your program to a file, like so:
 * 1/6: compiles
 * 2/6: prints something
 * 3/6: prints "hello world" somehow
-* 4/6: prints "hello, world!" somehow
-* 5/6: prints "Hello, World!" exactly
-* 6/6: exits successfully
+* 4/6: exits successfully
+* 5/6: prints "hello, world!" somehow
+* 6/6: prints "Hello, World!" exactly

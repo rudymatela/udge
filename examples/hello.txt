@@ -1,23 +1,29 @@
 $ ./bin/judge hello problem/hello/yes.c
 6/6
-$ ./bin/judge hello problem/hello/no-0-6.c 2>/dev/null
+$ ./bin/judge hello problem/hello/no-0-6-ce.c 2>/dev/null
 No - compile error (C)
 0/6
-$ ./bin/judge hello problem/hello/no-1-6.c
+$ ./bin/judge hello problem/hello/no-0-6-tle.c 2>/dev/null
+No - time limit exceeded
+0/6
+$ ./bin/judge hello problem/hello/no-1-6-a.c
 No - wrong output
 1/6
-$ ./bin/judge hello problem/hello/no-1-6-alt.c
+$ ./bin/judge hello problem/hello/no-1-6-b.c
 No - wrong output
 1/6
-$ ./bin/judge hello problem/hello/no-2-6.c
+$ ./bin/judge hello problem/hello/no-2-6-a.c
+No - wrong output
+2/6
+$ ./bin/judge hello problem/hello/no-2-6-b.c
 No - wrong output
 2/6
 $ ./bin/judge hello problem/hello/no-3-6.c
-No - wrong output
+No - runtime error (non-zero exit code)
 3/6
 $ ./bin/judge hello problem/hello/no-4-6.c
 No - wrong output
-5/6
+4/6
 $ ./bin/judge hello problem/hello/no-5-6.c
-No - runtime error (non-zero exit code)
+No - wrong output
 5/6
