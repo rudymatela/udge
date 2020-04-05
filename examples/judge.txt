@@ -1,0 +1,10 @@
+$ ./bin/judge hello problem/hello/yes.c
+6/6
+$ ./bin/judge hello-world problem/hello-world/yes.c
+1/1
+$ ./bin/judge hello-world problem/hello-world/no.c
+No - wrong output
+0/1
+$ ./bin/judge hello path/to/file-not-found.c 2>/dev/null
+No - source file not found
+0/6

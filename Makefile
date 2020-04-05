@@ -17,6 +17,7 @@ test: \
   test-web
 
 test-scripts: \
+  judge.clitest \
   hello-world.clitest \
   hello-world-hs.clitest \
   hello-world-py.clitest \
