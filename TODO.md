@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* avoid generating Haskell temporary files (`*.hi`, `*.o`) on the problem folder
+
 * double-check that the initial goals are completed
 
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
