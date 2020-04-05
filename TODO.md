@@ -5,9 +5,6 @@ TODO list for Udge
 
 * allow parsing of problem name and language from file name (instead of fields)
 
-* make hello be tolerant "HellO World", "hello world" and "hello World!"
-  should be acceptable for a partial score of 2/3 or something like that.
-
 Initial Goals
 =============
 
