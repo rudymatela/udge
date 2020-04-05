@@ -25,13 +25,17 @@ list-results() {
 }
 #[ -n "$user" ] || errxit "missing <user> argument"
 #[ -d "$USERS_DIR/$user" ] || errxit "user not found"
-[ -d "$submissions" ] && find $submissions -name "*.*" | format | sed -e "s/$/  -  pending/"
-for filename in `list-results | head -5`
+for filename in `list-submissions; list-results | head -5`
 do
 	entry="`echo $filename | format`"
 	result_fn="`dirname $filename`/result"
-	result="`tail -1 $result_fn`"
-	reason=""
-	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
+	result=" -"
+	reason="   pending"
+	if [ -f "$result_fn" ]
+	then
+		result="`tail -1 $result_fn`"
+		reason=""
+		[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
+	fi
 	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
 done
