@@ -35,6 +35,7 @@ src="$1"
 [ -f "$src" ] || errxit "No - source file not found"
 dirname="`dirname $0`"
 [ -n "$dir" ] || dir="$dirname"
+[ -d "$dir" ] || errxit "No - unknown problem code"
 what=compile
 case "$src" in
 	*.c)   lang=c  ;language="C"                      ;;
