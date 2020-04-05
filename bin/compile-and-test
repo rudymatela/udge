@@ -61,9 +61,9 @@ case $? in
 	124) rmerrxit "No - time limit exceeded" ;;
 	*)   rmerrxit "No - runtime error (non-zero exit code)" ;;
 esac
-if [ -x "$dir/check" ]
+if [ -x "$dir/check-stdout" ]
 then
-	"$dir/check" "$dir/sol" "$out"
+	"$dir/check-stdout" "$dir/sol" "$out"
 else
 	diff -q "$dir/sol" "$out" >/dev/null
 fi || rmerrxit "No - wrong output"
