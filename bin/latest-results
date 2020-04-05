@@ -23,8 +23,8 @@ list-submissions() {
 list-results() {
 	[ -d "$results" ]     && find $results     -name "*.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
-#[ -n "$user" ] || errxit "missing <user> argument"
-#[ -d "$USERS_DIR/$user" ] || errxit "user not found"
+[ -n "$user" ] || errxit "missing <user> argument"
+[ -d "$USERS_DIR/$user" ] || errxit "user not found"
 for filename in `list-submissions; list-results | head -5`
 do
 	entry="`echo $filename | format`"
