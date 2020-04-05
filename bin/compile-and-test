@@ -40,7 +40,7 @@ case "$src" in
 	*.c)   lang=c  ;language="C"                      ;;
 	*.hs)  lang=hs ;language="Haskell"                ;;
 	*.py)  lang=py ;language="Python"   ;what="parse" ;;
-	*)     errxit "No - compile: unknown file format" ;;
+	*)     errxit "No: unknown/unsupported file format or language" ;;
 esac
 
 main="$dir/main.$lang"
