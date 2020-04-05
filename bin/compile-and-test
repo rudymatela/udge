@@ -50,13 +50,14 @@ errxit "No - $what error ($language)"
 
 tmpdir=`mktemp -d /tmp/compile-and-test.XXXXXXXXXX`
 out=$tmpdir/stdout
+err=$tmpdir/stderr
 rmerrxit() {
 	rm -r $tmpdir
 	errxit "$@"
 }
 in="$dir/in"
 [ -f "$in" ] || in=/dev/null
-timeout `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out"
+timeout `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
 case $? in
 	0)   ;;
 	124) rmerrxit "No - time limit exceeded" ;;
