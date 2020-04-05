@@ -14,11 +14,14 @@ results="$RESULTS_DIR/$user"
 format() {
 	sed -e 's,.*/\([0-9][0-9][0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)-\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)/\([^/]*\),\1-\2-\3 \4:\5:\6  \7,'
 }
+stamp() {
+	sed -e 's,.*/\([0-9][0-9][0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)-\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)/\([^/]*\),\1-\2-\3 \4:\5:\6  \7  &,'
+}
 list-submissions() {
 	[ -d "$submissions" ] && find $submissions -name "*.*" | sort -r
 }
 list-results() {
-	[ -d "$results" ]     && find $results     -name "*.*" | sort -r
+	[ -d "$results" ]     && find $results     -name "*.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS_DIR/$user" ] || errxit "user not found"
