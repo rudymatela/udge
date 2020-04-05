@@ -21,6 +21,8 @@ test-scripts: \
   hello-world-hs.clitest \
   hello-world-py.clitest \
   add.clitest \
+  add-hs.clitest \
+  add-py.clitest \
   hello.clitest
 
 test-web: \
