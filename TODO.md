@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* check all pages with `tidy`
+
 * complete the `bin/latest-results-html` script
 
 * redirect to results page after submission
