@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* allow 6/6 on `add` for Haskell without defining `Main`
-
 * double-check that the initial goals are completed
 
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
