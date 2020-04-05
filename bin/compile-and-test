@@ -57,10 +57,11 @@ rmerrxit() {
 }
 in="$dir/in"
 [ -f "$in" ] || in=/dev/null
-timeout `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
-case $? in
+timeout --preserve-status -v `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
+exitcode=$?
+grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
+case $exitcode in
 	0)   ;;
-	124) rmerrxit "No - time limit exceeded" ;;
 	*)   rmerrxit "No - runtime error (non-zero exit code)" ;;
 esac
 check="$dirname/check-out"
