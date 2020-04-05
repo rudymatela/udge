@@ -31,11 +31,7 @@ do
 	entry="`echo $filename | format`"
 	result_fn="`dirname $filename`/result"
 	result="`tail -1 $result_fn`"
-	reason="`tail -2 $result_fn | head -1`"
-	if [ "`echo $result | bc`" == 1 ]
-	then
-		printf "%-35s  %s\n"      "$entry"  "$result"
-	else
-		printf "%-35s  %s  %s\n"  "$entry"  "$result"  "$reason"
-	fi
+	reason=""
+	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
+	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
 done
