@@ -77,11 +77,7 @@ html-footer
 
 
 post() {
-	tmpdata=/tmp/data-files
-
-	# TODO: make this random
-	rm -rf /tmp/data-files
-	mkdir -p /tmp/data-files
+	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	./cgi-create-data-files $tmpdata
 
 	user_fn="$tmpdata/user/value"
@@ -104,6 +100,7 @@ post() {
 	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
 	then
 		get
+		rm -r $tmpdata
 		exit
 	fi
 
@@ -112,6 +109,7 @@ post() {
 	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
 	then
 		get
+		rm -r $tmpdata
 		exit
 	fi
 
@@ -126,6 +124,7 @@ post() {
 	grep -R "" $USERS_DIR
 
 	echo '</pre>'
+	rm -r $tmpdata
 }
 
 
