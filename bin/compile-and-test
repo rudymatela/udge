@@ -32,6 +32,7 @@ cator1() {
 		echo 1 # default score is 1
 }
 src="$1"
+[ -f "$src" ] || errxit "No - source file not found"
 dirname="`dirname $0`"
 [ -n "$dir" ] || dir="$dirname"
 what=compile

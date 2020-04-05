@@ -1,5 +1,8 @@
 $ ./bin/judge hello problem/hello/yes.c
 6/6
+$ ./bin/judge hello problem/hello/no-0-6-file-not-found.c 2>/dev/null
+No - source file not found
+0/6
 $ ./bin/judge hello problem/hello/no-0-6-ce.c 2>/dev/null
 No - compile error (C)
 0/6
