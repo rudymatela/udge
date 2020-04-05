@@ -1,23 +1,23 @@
 $ ./bin/judge hello problem/hello/yes.c
-4/4
+5/5
 $ ./bin/judge hello problem/hello/no-0-6.c 2>/dev/null
 No - compile error (C)
-0/4
+0/5
 $ ./bin/judge hello problem/hello/no-1-6.c
 No - wrong output
-1/4
+1/5
 $ ./bin/judge hello problem/hello/no-1-6-alt.c
 No - wrong output
-1/4
+1/5
 $ ./bin/judge hello problem/hello/no-2-6.c
 No - wrong output
-2/4
+2/5
 $ ./bin/judge hello problem/hello/no-3-6.c
 No - wrong output
-3/4
+3/5
 $ ./bin/judge hello problem/hello/no-4-6.c # TODO: FIXME: should be 4/6
 No - time limit exceeded
-0/4
+0/5
 $ ./bin/judge hello problem/hello/no-5-6.c
 No - runtime error (non-zero exit code)
-3/4
+4/5
