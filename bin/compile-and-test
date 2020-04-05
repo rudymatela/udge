@@ -55,16 +55,19 @@ rmerrxit() {
 	rm -r $tmpdir
 	errxit "$@"
 }
+
 in="$dir/in"
 [ -f "$in" ] || in=/dev/null
+
 timeout --preserve-status -v `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
 exitcode=$?
+
 grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
-case $exitcode in
-	0)   ;;
-	*)   rmerrxit "No - runtime error (non-zero exit code)" ;;
-esac
+
+[ "$exitcode" = 0 ] || rmerrxit "No - runtime error (non-zero exit code)"
+
 check="$dirname/check-out"
 [ -x "$dir/check-out" ] && check="$dir/check-out"
 $check "$dir/sol" "$out" || rmerrxit "No - wrong output"
+
 rm -r $tmpdir
