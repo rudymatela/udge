@@ -51,7 +51,7 @@ errxit "No - $what error ($language)"
 tmpdir=`mktemp -d /tmp/compile-and-test.XXXXXXXXXX`
 out=$tmpdir/stdout
 rmerrxit() {
-	rm $tmpdir
+	rm -r $tmpdir
 	errxit "$@"
 }
 in="$dir/in"
