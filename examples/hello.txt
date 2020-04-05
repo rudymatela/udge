@@ -1,9 +1,9 @@
-$ ./bin/judge hello problem/hello/yes.c # TODO: FIXME: should be 6/6
+$ ./bin/judge hello problem/hello/yes.c
 2/2
 $ ./bin/judge hello problem/hello/no-0-6.c 2>/dev/null | tail -2
 No - compile error (C)
 0/2
-$ ./bin/judge hello problem/hello/no-1-6.c # TODO: FIXME: should be 1/6
+$ ./bin/judge hello problem/hello/no-1-6.c
 No - wrong output
 1/2
 $ ./bin/judge hello problem/hello/no-1-6-alt.c # TODO: FIXME: should be 1/6
