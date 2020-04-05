@@ -59,7 +59,7 @@ rmerrxit() {
 in="$dir/in"
 [ -f "$in" ] || in=/dev/null
 
-timeout --preserve-status -v `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
+timeout --preserve-status -v -k1s `cator1 "$dir/time-limit"`s ./binary < "$in" > "$out" 2> "$err"
 exitcode=$?
 
 grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
