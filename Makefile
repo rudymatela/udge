@@ -56,6 +56,9 @@ html: $(HTMLS)
 clean-html:
 	rm -f $(HTMLS)
 
+clean-test-users:
+	rm -rf /etc/udge/users/test-*-*-*
+
 $(PUBLIC_HTML)/%/index.html: problem/%/desc bin/markdown
 	mkdir -p $(PUBLIC_HTML)/$*
 	./bin/markdown $< > $@
