@@ -62,6 +62,6 @@ case $? in
 	*)   rmerrxit "No - runtime error (non-zero exit code)" ;;
 esac
 check="$dirname/check-out"
-[ -x "$dir/check-stdout" ] && check="$dir/check-stdout"
+[ -x "$dir/check-out" ] && check="$dir/check-out"
 $check "$dir/sol" "$out" || rmerrxit "No - wrong output"
 rm $out

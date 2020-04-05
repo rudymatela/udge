@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* rename `check` to `check-stdout`
-
 * add `check-exit-code`
 
 * use `-v` from `timeout` to actually check for timeouts
