@@ -6,9 +6,9 @@ No - compile error (C)
 $ ./bin/judge hello problem/hello/no-1-6.c
 No - wrong output
 1/2
-$ ./bin/judge hello problem/hello/no-1-6-alt.c # TODO: FIXME: should be 1/6
+$ ./bin/judge hello problem/hello/no-1-6-alt.c
 No - runtime error (non-zero exit code)
-0/2
+1/2
 $ ./bin/judge hello problem/hello/no-2-6.c # TODO: FIXME: should be 2/6
 No - wrong output
 1/2
@@ -20,4 +20,4 @@ No - time limit exceeded
 0/2
 $ ./bin/judge hello problem/hello/no-5-6.c # TODO: FIXME: should be 5/6
 No - runtime error (non-zero exit code)
-0/2
+1/2
