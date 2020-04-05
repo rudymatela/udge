@@ -1,7 +1,7 @@
 TODO list for Udge
 ==================
 
-* avoid generating Haskell temporary files (`*.hi`, `*.o`) on the problem folder
+* allow 6/6 on `add` for Haskell without defining `Main`
 
 * double-check that the initial goals are completed
 

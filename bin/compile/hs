@@ -1,3 +1,5 @@
 #!/bin/bash
 set -e
-ghc $GHCFLAGS "$1" -o "$2"
+tmpdir=`mktemp -d "/tmp/udge-compile-hs.XXXXXXXXXX"`
+ghc -outputdir $tmpdir $GHCFLAGS "$1" -o "$2"
+rm -r $tmpdir
