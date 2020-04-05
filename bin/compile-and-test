@@ -48,7 +48,8 @@ main="$dir/main.$lang"
 errxit "No - $what error ($language)"
 
 
-out=`mktemp /tmp/compile-and-test.XXXXXXXXXX`
+tmpdir=`mktemp -d /tmp/compile-and-test.XXXXXXXXXX`
+out=$tmpdir/stdout
 rmerrxit() {
 	rm $out
 	errxit "$@"
@@ -64,4 +65,4 @@ esac
 check="$dirname/check-out"
 [ -x "$dir/check-out" ] && check="$dir/check-out"
 $check "$dir/sol" "$out" || rmerrxit "No - wrong output"
-rm $out
+rm -r $tmpdir
