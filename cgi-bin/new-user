@@ -85,7 +85,6 @@ post() {
 	password_confirmation_fn="$tmpdata/password-confirmation/value"
 	email_fn="$tmpdata/email/value"
 	email_confirmation_fn="$tmpdata/email-confirmation/value"
-	program_fn="$tmpdata/program/value"
 	user_value=`mcat "$user_fn"`
 	email_value=`mcat "$email_fn"`
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
@@ -94,7 +93,6 @@ post() {
 	[ -s "$user_fn" ]     || user_error="user is missing"
 	[ -s "$password_fn" ] || password_error="password is missing"
 	[ -s "$email_fn" ]    || email_error="email is missing"
-	[ -s "$program_fn" ]  || program_error="program is missing"
 	diff -q $password_fn $password_confirmation_fn > /dev/null || password_error="passwords do not match"
 	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
 	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
