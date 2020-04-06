@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+# usage: ./bin/latest-results <user>
+. /etc/udge/conf
+errxit() {
+	echo "$0, error: $@" >/dev/stderr
+	echo "usage:" >/dev/stderr
+	echo "  $0 <user>" >/dev/stderr
+	exit 1
+}
+user="$1"
+[ -n "$user" ] || errxit "missing <user> argument"
+[ -d "$USERS_DIR/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
 . "$dirname/../cgi-bin/utils"
 html-header "Latest submissions for $1"
