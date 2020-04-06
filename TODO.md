@@ -16,6 +16,9 @@ TODO list for Udge
 	- `bin/utils/cgi`: http-status(), the like and all of the above
 	- move `cgi-create-data-files` to just `bin/`
 
+* make so that I don't need to use `index.html` with nginx.  `/path/to/page`
+  should display the HTML given in `/path/to/page.html`
+
 Future
 ======
 
