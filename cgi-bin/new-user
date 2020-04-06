@@ -76,6 +76,30 @@ html-footer
 }
 
 
+success() {
+	html-header
+	cat <<HTML
+<h3>User created</h3>
+
+<p>
+Successfully created
+user <strong>$user_value</strong>
+with email <strong>$email_value</strong>.
+</p>
+
+<p>
+Your <a href="/u/$user_value">user page</a> will be available in a few minutes.
+</p>
+
+<p>
+You are ready to <a href="/submit">submit a solution</a> now
+for any problem in the <a href="/">problem index</a>.
+</p>
+HTML
+	html-footer
+}
+
+
 has-error() {
 	[ -n "$user_error"     ] ||
 	[ -n "$password_error" ] ||
@@ -119,18 +143,13 @@ post() {
 		exit
 	fi
 
-	echo '<h2>User successfully created</h2>'
-	echo '<pre>'
-
 	mkdir -p "$user_dir"
-	echo "$user_dir/password"
 	cat $SALT_FILE $password_fn | sha256sum | sed -e "s/ .*//" > "$user_dir/password"
 	cp "$email_fn" "$user_dir/email"
-	find $USERS_DIR
-	grep -R "" $USERS_DIR
 
-	echo '</pre>'
+
 	rm -r $tmpdata
+	success
 }
 
 
