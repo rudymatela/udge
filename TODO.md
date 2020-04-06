@@ -1,9 +1,8 @@
 TODO list for Udge
 ==================
 
-* complete the `bin/latest-results-html` script
-
-* redirect to results page after submission
+* add `bin/user-html` that generate user pages
+  (using `latest-results-html`)
 
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
 
