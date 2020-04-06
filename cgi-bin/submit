@@ -81,7 +81,7 @@ cat <<HTML
   </div>
   <div class="form-group$language_has_error">
     <label class="control-label" for="language">Language</label>
-    <select class="form-control" id="language" name="language" placeholder="language">
+    <select class="form-control" id="language" name="language">
 HTML
 render-language-options
 cat <<HTML
