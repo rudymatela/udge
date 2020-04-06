@@ -4,7 +4,7 @@ dirname="`dirname $0`"
 html-header
 echo "<h2>Latest submissions for $1</h2>"
 echo '<table class="table">'
-echo '<tr><th>timestamp</th><th>program</th><th>score</th><th>reason</th></tr>'
-"$dirname/latest-results" "$1" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td>\2</td><td>\3</td><td>\4</td></tr>,'
+echo '<tr><th>timestamp</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
+"$dirname/latest-results" "$1" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
 echo '</table>'
 html-footer
