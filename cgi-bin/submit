@@ -126,11 +126,7 @@ sane() {
 
 
 post() {
-	tmpdata=/tmp/data-files
-
-	# TODO: make this random
-	rm -rf /tmp/data-files
-	mkdir -p /tmp/data-files
+	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	./cgi-create-data-files $tmpdata
 
 	user_fn="$tmpdata/user/value"
@@ -152,6 +148,7 @@ post() {
 	if has-error
 	then
 		get
+		rm -r $tmpdata
 		exit
 	fi
 
@@ -161,6 +158,7 @@ post() {
 	if has-error
 	then
 		get
+		rm -r $tmpdata
 		exit
 	fi
 
@@ -178,6 +176,7 @@ post() {
 	find $UNJUDGED_DIR
 
 	echo '</pre>'
+	rm -r $tmpdata
 }
 
 
