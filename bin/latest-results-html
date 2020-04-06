@@ -13,10 +13,10 @@ user="$1"
 [ -d "$USERS_DIR/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
 . "$dirname/../cgi-bin/utils"
-html-header "Latest submissions for $1"
-echo "<h2>Latest submissions for $1</h2>"
+html-header "Latest submissions for $user"
+echo "<h2>Latest submissions for $user</h2>"
 echo '<table class="table">'
 echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
-"$dirname/latest-results" "$1" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
+"$dirname/latest-results" "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
 echo '</table>'
 html-footer
