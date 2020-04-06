@@ -1,3 +1,10 @@
 #!/bin/bash
 dirname="`dirname $0`"
-"$dirname/latest-results" "$1" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<td>\1</td><td>\2</td><td>\3</td><td>\4</td>,'
+. "$dirname/../cgi-bin/utils"
+html-header
+echo "<h2>Latest submissions for $1</h2>"
+echo '<table class="table">'
+echo '<tr><th>timestamp</th><th>program</th><th>score</th><th>reason</th></tr>'
+"$dirname/latest-results" "$1" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td>\2</td><td>\3</td><td>\4</td></tr>,'
+echo '</table>'
+html-footer
