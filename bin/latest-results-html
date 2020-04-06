@@ -1,7 +1,7 @@
 #!/bin/bash
 dirname="`dirname $0`"
 . "$dirname/../cgi-bin/utils"
-html-header
+html-header "Latest submissions for $1"
 echo "<h2>Latest submissions for $1</h2>"
 echo '<table class="table">'
 echo '<tr><th>timestamp</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
