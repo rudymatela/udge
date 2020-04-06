@@ -1,0 +1,2 @@
+$ curl -s udge | tidy -q >/dev/null
+$ curl -s udge/submit | tidy -q >/dev/null
