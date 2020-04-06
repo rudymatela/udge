@@ -162,10 +162,6 @@ post() {
 		exit
 	fi
 
-	echo '<h2>Submission successful</h2>'
-	echo '<pre>'
-
-	grep -R ".*" $tmpdata
 	timestamp=`date -u "+%Y%m%d-%H%M%S"`
 	umask 0002 # allows for members of the http group to write (or remove)
 	destdir="$UNJUDGED_DIR/$user_value/$timestamp"
@@ -173,9 +169,8 @@ post() {
 	mkdir -p $destdir
 	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"
 
-	find $UNJUDGED_DIR
 
-	echo '</pre>'
+	echo '<h2>Submission successful</h2>'
 	rm -r $tmpdata
 }
 
