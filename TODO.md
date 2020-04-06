@@ -9,6 +9,13 @@ TODO list for Udge
 
 * allow parsing of problem name and language from file name (instead of fields)
 
+* organize scripts, perhaps:
+
+	- `bin/utils/bash`: errxit() and the like
+	- `bin/utils/html`: html-header(), the like and all of the above
+	- `bin/utils/cgi`: http-status(), the like and all of the above
+	- move `cgi-create-data-files` to just `bin/`
+
 Future
 ======
 
