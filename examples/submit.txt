@@ -11,7 +11,7 @@ $ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&passw
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
 $ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep h2
 <h2>User successfully created</h2>
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep h2
-<h2>Submission successful</h2>
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep h3
+<h3>Submission successful</h3>
 $ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
 /tmp/submissions/<user>/YYYYMMDD-HHMMSS/add.c

@@ -113,6 +113,30 @@ HTML
 }
 
 
+success() {
+	html-header
+	cat <<HTML
+<h3>Submission successful</h3>
+
+<p>
+Successfully registered a submission <br>
+for <strong>$problem_value</strong></strong> <br>
+in <strong>$language_value</strong> <br>
+by <strong>$user_value</strong> <br>
+at $timestamp
+(UTC).
+</p>
+
+<p>
+Please check your <a href="/u/$user_value">user page</a>
+for the results
+after a few minutes.
+</p>
+HTML
+	html-footer
+}
+
+
 mcat() {
 	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
 }
@@ -170,7 +194,8 @@ post() {
 	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"
 
 
-	echo '<h2>Submission successful</h2>'
+	success
+
 	rm -r $tmpdata
 }
 
