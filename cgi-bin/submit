@@ -180,14 +180,6 @@ post() {
 }
 
 
-http-content-type() {
-cat <<HTTPHEADERS
-Content-Type: text/html
-
-HTTPHEADERS
-}
-
-
 case $REQUEST_METHOD in
 	GET)  http-content-type; get  ;;
 	POST) http-content-type; post ;;
