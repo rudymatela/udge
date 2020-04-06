@@ -76,6 +76,14 @@ html-footer
 }
 
 
+has-error() {
+	[ -n "$user_error"     ] ||
+	[ -n "$password_error" ] ||
+	[ -n "$email_error"    ] ||
+	false
+}
+
+
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	./cgi-create-data-files $tmpdata
@@ -90,12 +98,12 @@ post() {
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
 
 	sane "$user_fn"       || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$user_fn" ]     || user_error="user is missing"
+	[ -s "$user_fn" ]     || user_error="username is missing"
 	[ -s "$password_fn" ] || password_error="password is missing"
 	[ -s "$email_fn" ]    || email_error="email is missing"
 	diff -q $password_fn $password_confirmation_fn > /dev/null || password_error="passwords do not match"
 	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
-	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
+	if has-error
 	then
 		get
 		rm -r $tmpdata
@@ -104,7 +112,7 @@ post() {
 
 	user_dir="$USERS_DIR/$user_value"
 	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
-	if [ -n "$user_error" -o -n "$password_error" -o -n "$email_error" ]
+	if has-error
 	then
 		get
 		rm -r $tmpdata

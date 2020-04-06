@@ -93,6 +93,15 @@ HTML
 html-footer
 }
 
+has-error() {
+	[ -n "$user_error"     ] ||
+	[ -n "$password_error" ] ||
+	[ -n "$program_error"  ] ||
+	[ -n "$problem_error"  ] ||
+	[ -n "$language_error" ] ||
+	false
+}
+
 
 render-language-options() {
 sed -e "s/\"$language_value\">/\"$language_value\" selected>/" <<HTML
@@ -140,7 +149,7 @@ post() {
 	sane "$problem_fn"    || problem_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$problem_fn" ]  || problem_error="problem is missing"
 	[ "$language_value" != "none" ] || language_error="select the language"
-	if [ -n "$user_error" -o -n "$password_error" -o -n "$program_error" -o -n "$problem_error" -o -n "$language_error" ]
+	if has-error
 	then
 		get
 		exit
@@ -149,7 +158,7 @@ post() {
 	check-user "$user_value" "$password_fn" || user_error="invalid credentials"
 	password_error="$user_error"
 	[ -d "$PROBLEMS_DIR/$problem_value" ] || problem_error="invalid problem id"
-	if [ -n "$user_error" -o -n "$password_error" -o -n "$program_error" -o -n "$problem_error" ]
+	if has-error
 	then
 		get
 		exit
