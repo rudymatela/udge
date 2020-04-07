@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/latest-results <user>
+# usage: ./bin/user-html
 . /etc/udge/conf
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
@@ -13,10 +13,31 @@ user="$1"
 [ -d "$USERS_DIR/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
 . "$dirname/../cgi-bin/utils"
-html-header "Latest submissions for $user"
-echo "<h2>Latest submissions for $user</h2>"
+
+html-header "$user - Udge"
+echo "<h2>$user - Udge</h2>"
+
+echo "<h3>Stats</h3>"
+$dirname/user-stats $user overall | sed -e "s,^,<p>,;s,$,</p>,"
+
+echo "<h3>Problems & Tries</h3>"
 echo '<table class="table">'
-echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
-"$dirname/latest-results" "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
+echo '<thead>'
+echo '<tr><th>problem</th><th>score</th><th>tries</th></tr>'
+echo '</thead>'
+echo '<tbody>'
+$dirname/user-stats $user problem | sed -e 's,\([^ ]*\)  *\([^ ]*\)  *\([^ *]\),<tr><td><a href="/\1">\1</td><td>\2</td><td>\3</td></tr>,'
+echo '</tbody>'
 echo '</table>'
+
+echo "<h3>Latest submissions</h3>"
+echo '<table class="table">'
+echo '<thead>'
+echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
+echo '</thead>'
+echo '<tbody>'
+"$dirname/latest-results" "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
+echo '</tbody>'
+echo '</table>'
+
 html-footer
