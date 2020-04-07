@@ -43,6 +43,11 @@ problems-scored() {
 }
 
 
+problems-() {
+	bests | sed -e "s/^/$1 <= $2*/" | bc | grep "^1$" | wc -l
+}
+
+
 overall-stats() {
 	echo "`problems-solved` problems solved"
 	echo "`problems-scored` problems scored"
@@ -68,7 +73,7 @@ all-stats() {
 
 
 short-stats() {
-	echo "`problems-solved` `problems-scored` $user"
+	echo "`problems-solved` `problems- 2 3` `problems- 1 2` `problems- 1 3` `problems-scored` $user"
 }
 
 

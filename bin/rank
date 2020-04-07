@@ -13,10 +13,11 @@ do
 	$dirname/user-stats $user short
 done |
 sort -nr |
-while read solved scored user
+while read s1 s2 s3 s4 s5 user
 do
 	((i++))
-	[ "$solved $scored" = "$prev" ] || j=$i
-	printf "%s.  %-30s  %2s  %2s\n" $j $user $solved $scored
-	prev="$solved $scored"
+	this="$s1 $s2 $s3 $s4 $s5"
+	[ "$this" = "$prev" ] || j=$i
+	printf "%s.  %-30s  %2s  %2s  %2s  %2s  %2s\n" $j $user $s1 $s2 $s3 $s4 $s5
+	prev="$this"
 done
