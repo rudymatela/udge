@@ -1,0 +1,22 @@
+#!/bin/bash
+. /etc/udge/conf
+errxit() {
+	echo "$0, error: $@" >/dev/stderr
+	exit 1
+}
+dirname="`dirname $0`"
+
+i=0
+j=0
+for user in `$dirname/ls-users`
+do
+	$dirname/user-stats $user short
+done |
+sort -nr |
+while read solved scored user
+do
+	((i++))
+	[ "$solved $scored" = "$prev" ] || j=$i
+	printf "%s.  %-30s  %2s  %2s\n" $j $user $solved $scored
+	prev="$solved $scored"
+done
