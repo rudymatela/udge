@@ -23,18 +23,23 @@ cator-() {
 }
 
 
+bests() {
+	cat $results/*/best 2>/dev/null
+}
+
+
 problems-tried() {
-	ls -1 "$results" 2>/dev/null | wc -l
+	bests | wc -l
 }
 
 
 problems-solved() {
-	cat $results/*/best 2>/dev/null | bc | grep "^1$" | wc -l
+	bests | bc | grep "^1$" | wc -l
 }
 
 
 problems-scored() {
-	cat $results/*/best 2>/dev/null | grep -v "^0/" | wc -l
+	bests | grep -v "^0/" | wc -l
 }
 
 
