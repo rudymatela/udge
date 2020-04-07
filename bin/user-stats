@@ -62,9 +62,15 @@ all-stats() {
 }
 
 
+short-stats() {
+	echo "`problems-solved` `problems-scored` $user"
+}
+
+
 case "$2" in
 	overall) overall-stats ;;
 	problem) problem-stats ;;
+	short)   short-stats ;;
 	all|"")  all-stats ;;
 	*)       errxit "Unknown stat type" ;;
 esac
