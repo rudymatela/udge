@@ -18,7 +18,13 @@ HEADER
 markdown "$@"
 
 cat <<FOOTER
-<p><a href="/submit">Submit your solution.</a></p>
+<p>
+<a href="/">index</a>
+|
+<a href="/submit">submit your solution</a>
+|
+<a href="/rank">user rank</a></p>
+</p>
 </div>
 </body>
 </html>
