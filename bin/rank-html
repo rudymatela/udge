@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# usage: ./bin/rank-html
+. /etc/udge/conf
+errxit() {
+	echo "$0, error: $@" >/dev/stderr
+	exit 1
+}
+dirname="`dirname $0`"
+. "$dirname/../cgi-bin/utils"
+
+html-header "$user - Udge"
+echo "<h2>User Rank - Udge</h2>"
+echo '<table class="table">'
+echo '<thead>'
+echo '<tr><th>user</th><th>solved</th><th></th><th></th><th></th></tr>'
+echo '</thead>'
+echo '<tbody>'
+./bin/rank | sed -e 's|\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *|<tr><td>\1</td><td><a href="/u/\2">\2</a><td>\3</td><td>\4</td><td>\5</td><td>\6</td><td>\7</td></tr>|'
+echo '</tbody>'
+echo '</table>'
+html-footer

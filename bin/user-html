@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/user-html
+# usage: ./bin/user-html <user>
 . /etc/udge/conf
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
