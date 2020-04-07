@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# usage: ls-users
+. /etc/udge/conf
+errxit() {
+	echo "$0, error: $@" >/dev/stderr
+	exit 1
+}
+[ -d $PROBLEMS_DIR ] || errxit "could not find USERS_DIR=$USERS_DIR"
+echo $USERS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
