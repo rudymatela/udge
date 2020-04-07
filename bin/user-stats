@@ -23,13 +23,25 @@ cator-() {
 }
 
 
+problems-tried() {
+	ls -1 "$results" 2>/dev/null | wc -l
+}
+
+
+problems-solved() {
+	cat $results/*/best 2>/dev/null | bc | grep "^1$" | wc -l
+}
+
+
+problems-scored() {
+	cat $results/*/best 2>/dev/null | grep -v "^0/" | wc -l
+}
+
+
 overall-stats() {
-	tried="`ls -1 "$results" 2>/dev/null | wc -l`"
-	solved="`cat $results/*/best 2>/dev/null | bc | grep "^1$" | wc -l`"
-	scored="`cat $results/*/best 2>/dev/null | grep -v "^0/" | wc -l`"
-	echo "$solved problems solved"
-	echo "$scored problems scored"
-	echo "$tried problems tried"
+	echo "`problems-solved` problems solved"
+	echo "`problems-scored` problems scored"
+	echo "`problems-tried` problems tried"
 }
 
 
