@@ -8,18 +8,18 @@ $ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
 $ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $
 $
-$ curl -sXPOST udge/new-user -duser=$user -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass | grep h2
-<h2>User successfully created</h2>
+$ curl -sXPOST udge/new-user -duser=$user -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass | grep h3
+<h3>User created</h3>
 $
 $
-$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$yes   | grep h2
-<h2>Submission successful</h2>
+$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$yes   | grep h3
+<h3>Submission successful</h3>
 $ sleep 1.1  # no more than 1 submission per second per user
-$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$yes46 | grep h2
-<h2>Submission successful</h2>
+$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$yes46 | grep h3
+<h3>Submission successful</h3>
 $ sleep 1.1  # no more than 1 submission per second per user
-$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$wa    | grep h2
-<h2>Submission successful</h2>
+$ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage=c --data-urlencode program@$wa    | grep h3
+<h3>Submission successful</h3>
 $
 $
 $ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
