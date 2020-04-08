@@ -1,4 +1,3 @@
-public_html/*/*
-public_html/index.html
+public_html/**.html
 *.hi
 *.o

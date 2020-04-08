@@ -8,6 +8,15 @@ server {
 
 	location / {
 		index index.html;
+		try_files $uri $uri/index.html $uri.html =404;
+	}
+
+	location ~ \.html$ {
+		return 404;
+	}
+
+	location ~ ./$ {
+		return 404;
 	}
 
 	location = /submit {

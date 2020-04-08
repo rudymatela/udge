@@ -2,9 +2,9 @@
 
 PUBLIC_HTML=public_html
 HTMLS=\
-	$(PUBLIC_HTML)/hello/index.html \
-	$(PUBLIC_HTML)/hello-world/index.html \
-	$(PUBLIC_HTML)/add/index.html \
+	$(PUBLIC_HTML)/hello.html \
+	$(PUBLIC_HTML)/hello-world.html \
+	$(PUBLIC_HTML)/add.html \
 	$(PUBLIC_HTML)/index.html
 
 .PHONY: all
@@ -59,10 +59,10 @@ clean-html:
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
 
-$(PUBLIC_HTML)/%/index.html: problem/%/desc bin/markdown
-	mkdir -p $(PUBLIC_HTML)/$*
+$(PUBLIC_HTML)/%.html: problem/%/desc bin/markdown
+	mkdir -p $(PUBLIC_HTML)
 	./bin/markdown $< > $@
 
-$(PUBLIC_HTML)/index.html: problem/index.md bin/markdown
+$(PUBLIC_HTML)/%.html: problem/%.md bin/markdown
 	mkdir -p $(PUBLIC_HTML)
 	./bin/markdown $< > $@

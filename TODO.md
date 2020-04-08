@@ -5,9 +5,6 @@ TODO list for Udge
 
 * allow parsing of problem name and language from file name (instead of fields)
 
-* make so that I don't need to use `index.html` with nginx.  `/path/to/page`
-  should display the HTML given in `/path/to/page.html`
-
 Future
 ======
 
