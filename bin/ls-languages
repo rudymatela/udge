@@ -1,5 +1,0 @@
-#!/bin/bash
-#
-# usage: ls-languages
-dirname=`dirname $0`
-find $dirname/compile -type f | sed -e "s,.*compile/,," | grep -v /
