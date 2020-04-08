@@ -1,0 +1,37 @@
+#!/bin/bash
+html-header() {
+cat <<HTML
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="/bootstrap.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$@</title>
+</head>
+<body>
+<div class="container-fluid">
+HTML
+}
+
+
+html-navbar() {
+cat <<HTML
+<p>
+<a href="/">index</a>
+|
+<a href="/submit">submit your solution</a>
+|
+<a href="/rank">user rank</a></p>
+</p>
+HTML
+}
+
+
+html-footer() {
+cat <<HTML
+</div>
+</body>
+</html>
+HTML
+}

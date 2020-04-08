@@ -1,31 +1,12 @@
 #!/bin/bash
 #
 # usage: ./bin/markdown file.md > file.html
+. /etc/udge/conf
+dirname="`dirname $0`"
+. "$dirname/utils/core"
+. "$dirname/utils/html"
 
-cat <<HEADER
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="/bootstrap.min.css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>`head -1 "$@"`</title>
-</head>
-<body>
-<div class="container-fluid">
-HEADER
-
+html-header "`head -1 "$1"`"
 markdown "$@"
-
-cat <<FOOTER
-<p>
-<a href="/">index</a>
-|
-<a href="/submit">submit your solution</a>
-|
-<a href="/rank">user rank</a></p>
-</p>
-</div>
-</body>
-</html>
-FOOTER
+html-navbar
+html-footer
