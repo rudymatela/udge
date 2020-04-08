@@ -39,7 +39,7 @@
 
 set -e
 
-. utils
+. ../bin/utils/cgi
 
 
 errxit() {
