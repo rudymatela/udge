@@ -1,6 +1,12 @@
 TODO list for Udge
 ==================
 
+* add `update-rank-html` script
+
+* add `update-user-html` script
+
+* add `update-users-html` script
+
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
