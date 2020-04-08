@@ -70,7 +70,10 @@ exitcode=$?
 
 grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
 
-checkexitcode="$dirname/check-exit-code"
+check-exit-code() {
+	[ "$1" = 0 ]
+}
+checkexitcode=check-exit-code
 [ -x "$dir/check-exit-code" ] && checkexitcode="$dir/check-exit-code"
 $checkexitcode $exitcode || rmerrxit "No - runtime error (non-zero exit code)"
 
