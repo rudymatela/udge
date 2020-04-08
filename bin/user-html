@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # usage: ./bin/user-html <user>
-. /etc/udge/conf
 dirname="`dirname $0`"
 . "$dirname/utils/core"
 . "$dirname/../cgi-bin/utils"

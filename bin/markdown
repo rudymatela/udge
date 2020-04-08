@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # usage: ./bin/markdown file.md > file.html
-. /etc/udge/conf
 dirname="`dirname $0`"
 . "$dirname/utils/core"
 . "$dirname/utils/html"

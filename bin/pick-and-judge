@@ -29,7 +29,6 @@
 # folder, to do this, you may want to add your user (or the user for which the
 # judge will run) to the http group.
 
-. /etc/udge/conf
 dirname="`dirname $0`"
 . "$dirname/utils/core"
 
