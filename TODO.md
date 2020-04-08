@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* reuse the generated binary to avoid double compilation.  Maybe name `exe` and
-  `exe-lib` for when we are using the `lib` type of compilation.
-
 * submissions are overwritten if they are created withing the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
