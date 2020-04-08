@@ -42,31 +42,6 @@ HTTPHEADERS
 }
 
 
-html-header() {
-cat <<HTML
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="/bootstrap.min.css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>$@</title>
-</head>
-<body>
-<div class="container-fluid">
-HTML
-}
-
-
-html-footer() {
-cat <<HTML
-</div>
-</body>
-</html>
-HTML
-}
-
-
 mcat() {
 	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
 }

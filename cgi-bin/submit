@@ -39,6 +39,7 @@
 
 set -e
 
+. ../bin/utils/html
 . ../bin/utils/cgi
 
 
