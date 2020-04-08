@@ -66,3 +66,6 @@ $(PUBLIC_HTML)/%.html: problem/%/desc bin/markdown
 $(PUBLIC_HTML)/%.html: problem/%.md bin/markdown
 	mkdir -p $(PUBLIC_HTML)
 	./bin/markdown $< > $@
+
+diff-nginx:
+	diff -rud {,/}etc/nginx/srv/avail/udge
