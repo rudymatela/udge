@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-# usage: ls-problems
-dirname="`dirname $0`"
-. "$dirname/utils/core"
-ls-problems

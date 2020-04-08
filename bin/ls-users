@@ -1,6 +1,0 @@
-#!/bin/bash
-#
-# usage: ls-users
-dirname="`dirname $0`"
-. "$dirname/utils/core"
-ls-users
