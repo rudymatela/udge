@@ -22,6 +22,8 @@
 # NOTE: if I eventually split this into two, I should probably keep this as an
 # entry point, i.e.: this script calls both the compilation and test scripts
 . /etc/udge/conf
+dirname="`dirname $0`"
+. "$dirname/utils/core"
 errxit() {
 	echo "$@"
 	exit 1

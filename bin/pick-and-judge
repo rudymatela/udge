@@ -31,11 +31,7 @@
 
 . /etc/udge/conf
 dirname="`dirname $0`"
-
-errxit() {
-	echo "$@" > /dev/stderr
-	exit 1
-}
+. "$dirname/utils/core"
 
 finish() {
 	echo "$@"

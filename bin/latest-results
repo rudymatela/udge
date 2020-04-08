@@ -2,6 +2,8 @@
 #
 # usage: ./bin/latest-results <user>
 . /etc/udge/conf
+dirname="`dirname $0`"
+. "$dirname/utils/core"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr

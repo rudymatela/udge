@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Some core utilities.
+# To be imported from other Udge scripts.
+errxit() {
+	echo "$0, error: $@" >/dev/stderr
+	exit 1
+}

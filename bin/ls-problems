@@ -2,9 +2,7 @@
 #
 # usage: ls-problems
 . /etc/udge/conf
-errxit() {
-	echo "$0, error: $@" >/dev/stderr
-	exit 1
-}
+dirname="`dirname $0`"
+. "$dirname/utils/core"
 [ -d $PROBLEMS_DIR ] || errxit "could not find PROBLEMS_DIR=$PROBLEMS_DIR"
 echo $PROBLEMS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort

@@ -2,6 +2,9 @@
 #
 # usage: ./bin/user-html <user>
 . /etc/udge/conf
+dirname="`dirname $0`"
+. "$dirname/utils/core"
+. "$dirname/../cgi-bin/utils"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr
@@ -12,7 +15,6 @@ user="$1"
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS_DIR/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
-. "$dirname/../cgi-bin/utils"
 
 html-header "$user - Udge"
 echo "<h2>$user - Udge</h2>"

@@ -2,6 +2,8 @@
 #
 # usage: ./bin/user-stats <user>
 . /etc/udge/conf
+dirname="`dirname $0`"
+. "$dirname/utils/core"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr
@@ -15,7 +17,6 @@ results="$RESULTS_DIR/$user"
 #[ -d "$results" ] || errxit "user results dir not found (not generated yet?)"
 
 
-dirname="`dirname $0`"
 
 
 cator-() {

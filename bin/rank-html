@@ -2,11 +2,8 @@
 #
 # usage: ./bin/rank-html
 . /etc/udge/conf
-errxit() {
-	echo "$0, error: $@" >/dev/stderr
-	exit 1
-}
 dirname="`dirname $0`"
+. "$dirname/utils/core"
 . "$dirname/../cgi-bin/utils"
 
 html-header "$user - Udge"
