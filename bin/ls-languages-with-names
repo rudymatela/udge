@@ -1,0 +1,15 @@
+#!/bin/bash
+dirname="`dirname $0`"
+languages="`"$dirname/ls-languages"`"
+language-name() {
+	case "$1" in
+	c)   echo 'C' ;;
+	hs)  echo 'Haskell' ;;
+	py)  echo 'Python' ;;
+	*)   echo "$1" ;;
+	esac
+}
+for language in $languages
+do
+	printf "%-3s %s\n" "$language" "`language-name $language`"
+done
