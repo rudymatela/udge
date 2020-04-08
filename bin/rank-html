@@ -3,7 +3,7 @@
 # usage: ./bin/rank-html
 dirname="`dirname $0`"
 . "$dirname/utils/core"
-. "$dirname/../cgi-bin/utils"
+. "$dirname/utils/html"
 
 html-header "$user - Udge"
 echo "<h2>User Rank - Udge</h2>"
