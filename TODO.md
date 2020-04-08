@@ -34,3 +34,6 @@ Future
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
 * support `err` as well (specific error output)
+
+* reuse the generated binary to avoid double compilation.  Maybe name `exe` and
+  `exe-lib` for when we are using the `lib` type of compilation.
