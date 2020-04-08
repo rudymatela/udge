@@ -2,7 +2,20 @@
 #
 # Some core utilities.
 # To be imported from other Udge scripts.
+
+. /etc/udge/conf
+
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	exit 1
+}
+
+ls-users() {
+	[ -d $PROBLEMS_DIR ] || errxit "could not find USERS_DIR=$USERS_DIR"
+	echo $USERS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
+}
+
+ls-problems() {
+	[ -d $PROBLEMS_DIR ] || errxit "could not find PROBLEMS_DIR=$PROBLEMS_DIR"
+	echo $PROBLEMS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
 }

@@ -1,8 +1,6 @@
 #!/bin/bash
 #
 # usage: ls-users
-. /etc/udge/conf
 dirname="`dirname $0`"
 . "$dirname/utils/core"
-[ -d $PROBLEMS_DIR ] || errxit "could not find USERS_DIR=$USERS_DIR"
-echo $USERS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
+ls-users

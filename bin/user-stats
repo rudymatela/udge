@@ -58,7 +58,7 @@ overall-stats() {
 
 
 problem-stats() {
-	for problem in `$dirname/ls-problems`
+	for problem in `ls-problems`
 	do
 		score=`cator- "$results/$problem/best"`
 		# below, `head -n -1` removes "best" as it is not a problem
