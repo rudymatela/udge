@@ -2,6 +2,7 @@
 
 PUBLIC_HTML=public_html
 HTMLS=\
+	$(PUBLIC_HTML)/404.html \
 	$(PUBLIC_HTML)/hello.html \
 	$(PUBLIC_HTML)/hello-world.html \
 	$(PUBLIC_HTML)/add.html \
