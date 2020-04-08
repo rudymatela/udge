@@ -74,7 +74,10 @@ checkexitcode="$dirname/check-exit-code"
 [ -x "$dir/check-exit-code" ] && checkexitcode="$dir/check-exit-code"
 $checkexitcode $exitcode || rmerrxit "No - runtime error (non-zero exit code)"
 
-check="$dirname/check-out"
+check-out() {
+	diff -q "$1" "$2" >/dev/null
+}
+check=check-out
 [ -x "$dir/check-out" ] && check="$dir/check-out"
 $check "$dir/sol" "$out" || rmerrxit "No - wrong output"
 
