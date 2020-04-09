@@ -30,7 +30,7 @@
 # judge will run) to the http group.
 
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
+. "$prefix/lib/udge/core"
 
 finish() {
 	echo "$@"

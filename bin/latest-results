@@ -2,7 +2,7 @@
 #
 # usage: ./bin/latest-results <user>
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
+. "$prefix/lib/udge/core"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr

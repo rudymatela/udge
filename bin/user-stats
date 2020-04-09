@@ -2,8 +2,8 @@
 #
 # usage: ./bin/user-stats <user>
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
-. "$bin/utils/html"
+. "$prefix/lib/udge/core"
+. "$lib/html"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr

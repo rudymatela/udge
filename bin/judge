@@ -23,7 +23,7 @@
 #
 #   judge problem program.ext
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
+. "$prefix/lib/udge/core"
 problemdir="$PROBLEMS_DIR/$1"
 compileandtest="`realpath "$bin/compile-and-test"`"
 program="$2"

@@ -2,8 +2,8 @@
 #
 # usage: ./bin/markdown file.md > file.html
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
-. "$bin/utils/html"
+. "$prefix/lib/udge/core"
+. "$lib/html"
 
 html-header "`head -1 "$1"`"
 markdown "$@"

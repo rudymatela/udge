@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# cgi-bin/utils: utilities, supposed to be sourced from other cgi scripts
+# lib/udge/cgi: utilities, supposed to be sourced from other cgi scripts
 #
 #
 # Copyright (C) 2020  Rudy Matela

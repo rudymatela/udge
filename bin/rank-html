@@ -2,8 +2,8 @@
 #
 # usage: ./bin/rank-html
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
-. "$bin/utils/html"
+. "$prefix/lib/udge/core"
+. "$lib/html"
 
 html-header "$user - Udge"
 echo "<h2>User Rank - Udge</h2>"

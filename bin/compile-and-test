@@ -22,7 +22,7 @@
 # NOTE: if I eventually split this into two, I should probably keep this as an
 # entry point, i.e.: this script calls both the compilation and test scripts
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
+. "$prefix/lib/udge/core"
 fail() {
 	echo "$@"
 	exit 1

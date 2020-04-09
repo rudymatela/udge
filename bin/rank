@@ -1,6 +1,6 @@
 #!/bin/bash
 prefix="$(dirname "$(dirname "$0")")"
-. "$prefix/bin/utils/core"
+. "$prefix/lib/udge/core"
 
 i=0
 j=0
