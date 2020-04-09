@@ -1,12 +1,10 @@
 #!/bin/bash
 set -e
-tmpdir=`mktemp -d "/tmp/udge-compile-hs.XXXXXXXXXX"`
 
 # if there is no explicit "module Main" declaration
 # we add one that exports everything
-src="$tmpdir/Main.hs"
-grep -q "module Main" "$1" || echo "module Main where" > $src
-cat $1 >> $src
+echo -n '' > Main.hs
+grep -q "module Main" "$1" || echo "module Main where" >> Main.hs
+cat $1 >> Main.hs
 
-ghc -outputdir $tmpdir $GHCFLAGS -main-is AltMain "$src" "$3" -o "$2"
-rm -r $tmpdir
+ghc -outputdir . $GHCFLAGS -main-is AltMain Main.hs "$3" -o "$2"
