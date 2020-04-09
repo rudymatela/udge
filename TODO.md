@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* move `bin/markdown` to `lib/udge/markdown`
-
 * move `bin/*-html` to `lib/udge/*-html`
 
 * rename `bin/*` to `bin/udge-*`

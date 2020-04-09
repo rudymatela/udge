@@ -60,13 +60,13 @@ clean-html:
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
 
-$(PUBLIC_HTML)/%.html: problem/%/desc bin/markdown
+$(PUBLIC_HTML)/%.html: problem/%/desc lib/udge/markdown
 	mkdir -p $(PUBLIC_HTML)
-	./bin/markdown $< > $@
+	./lib/udge/markdown $< > $@
 
-$(PUBLIC_HTML)/%.html: problem/%.md bin/markdown
+$(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown
 	mkdir -p $(PUBLIC_HTML)
-	./bin/markdown $< > $@
+	./lib/udge/markdown $< > $@
 
 diff-nginx:
 	diff -rud {,/}etc/nginx/srv/avail/udge
