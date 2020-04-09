@@ -23,7 +23,7 @@
 # entry point, i.e.: this script calls both the compilation and test scripts
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/bin/utils/core"
-errxit() {
+fail() {
 	echo "$@"
 	exit 1
 }
@@ -33,15 +33,15 @@ cator1() {
 		echo 1 # default score is 1
 }
 src="$1"
-[ -f "$src" ] || errxit "No - source file not found"
-[ -n "$dir" ] || errxit "dir variable not set -- TODO: FIXME: move this into judge"
-[ -d "$dir" ] || errxit "No - unknown problem code"
+[ -f "$src" ] || fail "No - source file not found"
+[ -n "$dir" ] || fail "dir variable not set -- TODO: FIXME: move this into judge"
+[ -d "$dir" ] || fail "No - unknown problem code"
 what=compile
 case "$src" in
 	*.c)   lang=c  ;language="C"                      ;;
 	*.hs)  lang=hs ;language="Haskell"                ;;
 	*.py)  lang=py ;language="Python"   ;what="parse" ;;
-	*)     errxit "No: unknown/unsupported file format or language" ;;
+	*)     fail "No: unknown/unsupported file format or language" ;;
 esac
 
 main="$dir/main.$lang"
@@ -50,15 +50,15 @@ aslib=
 exe=exe$aslib
 [ -x $exe ] ||
 "$lib/compile$aslib/$lang" "$src" $exe "$main" ||
-errxit "No - $what error ($language)"
+fail "No - $what error ($language)"
 
 
 tmpdir=`mktemp -d /tmp/compile-and-test.XXXXXXXXXX`
 out=$tmpdir/stdout
 err=$tmpdir/stderr
-rmerrxit() {
+rmfail() {
 	rm -r $tmpdir
-	errxit "$@"
+	fail "$@"
 }
 
 in="$dir/in"
@@ -67,20 +67,20 @@ in="$dir/in"
 timeout --preserve-status -v -k1s `cator1 "$dir/time-limit"`s ./$exe < "$in" > "$out" 2> "$err"
 exitcode=$?
 
-grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
+grep -q "^timeout: sending signal TERM" "$err" && rmfail "No - time limit exceeded"
 
 check-exit-code() {
 	[ "$1" = 0 ]
 }
 checkexitcode=check-exit-code
 [ -x "$dir/check-exit-code" ] && checkexitcode="$dir/check-exit-code"
-$checkexitcode $exitcode || rmerrxit "No - runtime error (non-zero exit code)"
+$checkexitcode $exitcode || rmfail "No - runtime error (non-zero exit code)"
 
 check-out() {
 	diff -q "$1" "$2" >/dev/null
 }
 check=check-out
 [ -x "$dir/check-out" ] && check="$dir/check-out"
-$check "$dir/sol" "$out" || rmerrxit "No - wrong output"
+$check "$dir/sol" "$out" || rmfail "No - wrong output"
 
 rm -r $tmpdir
