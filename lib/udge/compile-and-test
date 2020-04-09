@@ -28,6 +28,8 @@ fail() {
 }
 src="$1"
 [ -f "$src" ] || fail "No - source file not found"
+# TODO: actually don't use $dir at all, just copy everything needed into the
+#       folder on judge
 [ -n "$dir" ] || fail "dir variable not set -- TODO: FIXME: move this into judge"
 [ -d "$dir" ] || fail "No - unknown problem code"
 what=compile
