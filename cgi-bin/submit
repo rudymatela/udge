@@ -73,7 +73,11 @@ cat <<HTML
   </div>
   <div class="form-group$problem_has_error">
     <label class="control-label" for="problem">Problem id</label>
-    <input type="text" class="form-control" id="problem" name="problem" placeholder="problem" value="$problem_value">$problem_error
+    <select class="form-control" id="language" name="problem">
+HTML
+render-problem-options
+cat <<HTML
+    </select>$problem_error
   </div>
   <div class="form-group$language_has_error">
     <label class="control-label" for="language">Language</label>
@@ -96,6 +100,19 @@ has-error() {
 	[ -n "$problem_error"  ] ||
 	[ -n "$language_error" ] ||
 	false
+}
+
+
+render-problem-options() {
+	render-problem-options- | sed -e "s/\"$problem_value\">/\"$problem_value\" selected>/"
+}
+
+render-problem-options-() {
+	echo '<option value="none">Select the problem</option>'
+	for problem in `ls-problems`
+	do
+		echo "<option value="$problem">$problem</option>"
+	done
 }
 
 
@@ -158,13 +175,21 @@ post() {
 	problem_value="`mcat "$problem_fn"`"
 	language_value="`mcat "$language_fn"`"
 
-	sane "$user_fn"       || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$user_fn" ]     || user_error="user is missing"
-	[ -s "$password_fn" ] || password_error="password is missing"
-	[ -s "$program_fn" ]  || program_error="program is missing"
-	sane "$problem_fn"    || problem_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$problem_fn" ]  || problem_error="problem is missing"
+	sane "$user_fn"                 || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	[ -s "$user_fn" ]               || user_error="user is missing"
+
+	[ -s "$password_fn" ]           || password_error="password is missing"
+
+	[ -s "$program_fn" ]            || program_error="program is missing"
+
+	sane "$problem_fn"              || problem_error="select the problem"
+	[ -s "$problem_fn" ]            || problem_error="select the problem"
+	[ "$problem_value" != "none" ]  || problem_error="select the problem"
+
+	sane "$language_fn"             || language_error="select the language"
+	[ -s "$language_fn" ]           || language_error="select the language"
 	[ "$language_value" != "none" ] || language_error="select the language"
+
 	if has-error
 	then
 		get
