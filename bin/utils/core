@@ -19,3 +19,7 @@ ls-problems() {
 	[ -d $PROBLEMS_DIR ] || errxit "could not find PROBLEMS_DIR=$PROBLEMS_DIR"
 	echo $PROBLEMS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
 }
+
+#[ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?" # TODO: uncomment me
+bin=$prefix/bin
+lib=$prefix/lib/udge

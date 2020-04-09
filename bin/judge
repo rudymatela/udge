@@ -22,10 +22,10 @@
 # Usage:
 #
 #   judge problem program.ext
-. /etc/udge/conf
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
 problemdir="$PROBLEMS_DIR/$1"
-dirname=`dirname $0`
-compileandtest=`realpath $dirname/compile-and-test`
+compileandtest="`realpath "$bin/compile-and-test"`"
 program="$2"
 tmpdir="`mktemp -d "/tmp/judge.XXXXXXXXXX"`"
 cp "$program" "$tmpdir"
