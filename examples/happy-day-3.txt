@@ -64,6 +64,10 @@ add          6/6  2
 hello         -   0
 hello-world   -   0
 $
+$ ./bin/latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
+YYYY-MM-DD HH:MM:SS  add.c           6/6
+$
 $ ./bin/user-stats $user2
 1 problems solved
 1 problems scored
@@ -72,3 +76,7 @@ score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
 add          6/6  1
 hello         -   0
 hello-world  0/1  1
+$
+$ ./bin/latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
+YYYY-MM-DD HH:MM:SS  add.hs          6/6

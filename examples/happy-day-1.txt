@@ -40,3 +40,5 @@ score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
 add          6/6  1
 hello         -   0
 hello-world   -   0
+$ ./bin/latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+YYYY-MM-DD HH:MM:SS  add.c           6/6
