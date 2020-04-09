@@ -30,3 +30,13 @@ $ find /tmp/results/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-
 /tmp/results/<user>/add/best
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
+$
+$
+$ ./bin/user-stats $user
+1 problems solved
+1 problems scored
+1 problems tried
+score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
+add          6/6  1
+hello         -   0
+hello-world   -   0
