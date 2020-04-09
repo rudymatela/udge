@@ -32,11 +32,6 @@ cp "$program" "$tmpdir"
 prog="`basename $program`"
 (
 cd $tmpdir
-cator1() {
-	[ -f "$1" ] &&
-		cat $1 ||
-		echo 1 # default score is 1
-}
 outof=0
 total=0
 for ts in $problemdir/*/; do

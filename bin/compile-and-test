@@ -27,11 +27,6 @@ fail() {
 	echo "$@"
 	exit 1
 }
-cator1() {
-	[ -f "$1" ] &&
-		cat $1 ||
-		echo 1 # default score is 1
-}
 src="$1"
 [ -f "$src" ] || fail "No - source file not found"
 [ -n "$dir" ] || fail "dir variable not set -- TODO: FIXME: move this into judge"

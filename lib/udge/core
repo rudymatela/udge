@@ -10,6 +10,10 @@ errxit() {
 	exit 1
 }
 
+cator1() {
+	[ -f "$1" ] && cat $1 || echo 1
+}
+
 ls-users() {
 	[ -d $PROBLEMS_DIR ] || errxit "could not find USERS_DIR=$USERS_DIR"
 	echo $USERS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
