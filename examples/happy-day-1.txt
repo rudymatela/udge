@@ -42,3 +42,7 @@ hello         -   0
 hello-world   -   0
 $ ./bin/latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           6/6
+$
+$
+$ ./bin/rank | grep $user | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user/<user>/"
+<user>      1   1   1   1   1

@@ -80,3 +80,8 @@ $
 $ ./bin/latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6
+$
+$
+$ ./bin/rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
+<u2>       1   1   1   1   1
+<u1>       1   1   1   1   1
