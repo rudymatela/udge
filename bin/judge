@@ -25,7 +25,7 @@
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 problemdir="$PROBLEMS_DIR/$1"
-compileandtest="`realpath "$bin/compile-and-test"`"
+compileandtest="`realpath "$lib/compile-and-test"`"
 program="$2"
 tmpdir="`mktemp -d "/tmp/judge.XXXXXXXXXX"`"
 cp "$program" "$tmpdir"
