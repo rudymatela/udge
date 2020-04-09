@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* move `bin/*-html` to `lib/udge/*-html`
-
 * rename `bin/*` to `bin/udge-*`
 
 * localize `compile-and-test` inside `judge`
