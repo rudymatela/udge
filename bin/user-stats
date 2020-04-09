@@ -1,8 +1,9 @@
 #!/bin/bash
 #
 # usage: ./bin/user-stats <user>
-dirname="`dirname $0`"
-. "$dirname/utils/core"
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
+. "$bin/utils/html"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr

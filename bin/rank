@@ -1,12 +1,12 @@
 #!/bin/bash
-dirname="`dirname $0`"
-. "$dirname/utils/core"
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
 
 i=0
 j=0
 for user in `ls-users`
 do
-	$dirname/user-stats $user short
+	$bin/user-stats $user short
 done |
 sort -nr |
 while read s1 s2 s3 s4 s5 user

@@ -29,8 +29,8 @@
 # folder, to do this, you may want to add your user (or the user for which the
 # judge will run) to the http group.
 
-dirname="`dirname $0`"
-. "$dirname/utils/core"
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
 
 finish() {
 	echo "$@"
@@ -70,7 +70,7 @@ echo "Saving results to '$dest_dir'"
 mkdir -p "$dest_dir"
 
 cp "$submission" "$dest_dir/$problem.$language"
-$dirname/judge "$problem" "$submission" 2>&1 | tee "$dest_dir/result"
+$bin/judge "$problem" "$submission" 2>&1 | tee "$dest_dir/result"
 for file in $problem_dir/*/result
 do
 	tail -1 "$file"

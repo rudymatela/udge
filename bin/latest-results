@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # usage: ./bin/latest-results <user>
-dirname="`dirname $0`"
-. "$dirname/utils/core"
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
 errxit() {
 	echo "$0, error: $@" >/dev/stderr
 	echo "usage:" >/dev/stderr

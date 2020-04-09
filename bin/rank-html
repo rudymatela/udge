@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # usage: ./bin/rank-html
-dirname="`dirname $0`"
-. "$dirname/utils/core"
-. "$dirname/utils/html"
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
+. "$bin/utils/html"
 
 html-header "$user - Udge"
 echo "<h2>User Rank - Udge</h2>"
