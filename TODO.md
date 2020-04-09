@@ -1,6 +1,18 @@
 TODO list for Udge
 ==================
 
+* move `bin/compile` to `lib/udge/compile`
+
+* move `bin/utils/*` to `lib/udge/*`
+
+* move `bin/markdown` to `lib/udge/markdown`
+
+* move `bin/*-html` to `lib/udge/*-html`
+
+* rename `bin/*` to `bin/udge-*`
+
+* localize `compile-and-test` inside `judge`
+
 * add `update-rank-html` script
 
 * add `update-user-html` script
