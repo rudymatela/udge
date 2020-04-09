@@ -47,9 +47,10 @@ esac
 
 main="$dir/main.$lang"
 lib=
-[ -f "$main" ] && lib=lib
-[ -x exe-$lib ] ||
-"$dirname/compile/$lib/$lang" "$src" exe-$lib "$main" ||
+[ -f "$main" ] && lib=-as-lib
+exe=exe$lib
+[ -x $exe ] ||
+"$dirname/../lib/udge/compile$lib/$lang" "$src" $exe "$main" ||
 errxit "No - $what error ($language)"
 
 
@@ -64,7 +65,7 @@ rmerrxit() {
 in="$dir/in"
 [ -f "$in" ] || in=/dev/null
 
-timeout --preserve-status -v -k1s `cator1 "$dir/time-limit"`s ./exe-$lib < "$in" > "$out" 2> "$err"
+timeout --preserve-status -v -k1s `cator1 "$dir/time-limit"`s ./$exe < "$in" > "$out" 2> "$err"
 exitcode=$?
 
 grep -q "^timeout: sending signal TERM" "$err" && rmerrxit "No - time limit exceeded"
