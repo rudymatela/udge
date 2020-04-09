@@ -35,10 +35,10 @@
 
 set -e
 
-. ../bin/utils/core
-. ../bin/utils/html
-. ../bin/utils/cgi
-
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/bin/utils/core"
+. "$bin/utils/html"
+. "$bin/utils/cgi"
 
 get() {
 html-header "Create a new user on Udge"
