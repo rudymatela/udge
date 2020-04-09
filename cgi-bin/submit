@@ -39,14 +39,9 @@
 
 set -e
 
+. ../bin/utils/core
 . ../bin/utils/html
 . ../bin/utils/cgi
-
-
-errxit() {
-	echo "$@" > /dev/stderr
-	exit 1
-}
 
 
 get() {
