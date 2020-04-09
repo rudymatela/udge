@@ -110,7 +110,6 @@ Each problem has a directory, `/etc/udge/problem/<problem>`.  Inside it:
 
 * `1/in`: test input 1
 * `1/sol`: solution for test input 1
-* `1/test`: test script 1, usually a symbolic link to `bin/compile-and-test`
 * `1/time-limit`: the time limit in seconds (1 if not present)
 * `2/...`: test set 2
 * `3/...`: test set 3
