@@ -12,8 +12,7 @@ TODO list for Udge
 	- every minute `pick-and-judge`
 	- every minute `udge-update-all-users-html`
 	- every minute `udge-update-rank-html`
-	- make sure they work even if they run for more than one minute (then cron
-	  skips running them)
+	- create lockfiles where necessary to avoid multiple instances
 
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
 
