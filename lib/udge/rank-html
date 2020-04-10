@@ -9,7 +9,7 @@ html-header "$user - Udge"
 echo "<h2>User Rank - Udge</h2>"
 echo '<table class="table">'
 echo '<thead>'
-echo '<tr><th>user</th><th>solved</th><th></th><th></th><th></th></tr>'
+echo '<tr><th>rank</th><th>user</th><th>=1</th><th>&ge;⅔</th><th>&ge;½</th><th>&ge;⅓</th><th>&gt;0</th></tr>'
 echo '</thead>'
 echo '<tbody>'
 ./bin/udge-rank | sed -e 's|\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *|<tr><td>\1</td><td><a href="/u/\2">\2</a><td>\3</td><td>\4</td><td>\5</td><td>\6</td><td>\7</td></tr>|'
