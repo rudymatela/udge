@@ -6,7 +6,7 @@
 . /etc/udge/conf
 
 errxit() {
-	echo "$0, error: $@" >/dev/stderr
+	echo "`basename "$0"`, error: $@" >/dev/stderr
 	exit 1
 }
 

@@ -4,8 +4,8 @@ $ yes46=problem/add/yes-4-6.c
 $ wa=problem/add/wa.c
 $
 $
-$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $
 $
 $ curl -sXPOST udge/new-user -duser=$user -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass | grep h3
@@ -28,14 +28,14 @@ $ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[
 /tmp/submissions/<user>/YYYYMMDD-HHMMSS/add.c
 $
 $
-$ ./bin/udge-pick-and-judge | tail -1
+$ udge-pick-and-judge | tail -1
 6/6
-$ ./bin/udge-pick-and-judge | tail -1
+$ udge-pick-and-judge | tail -1
 4/6
-$ ./bin/udge-pick-and-judge | tail -1
+$ udge-pick-and-judge | tail -1
 0/6
-$ ./bin/udge-pick-and-judge
-./bin/udge-pick-and-judge: nothing to do
+$ udge-pick-and-judge
+udge-pick-and-judge: nothing to do
 $
 $
 $ find /tmp/results/$user -type f | sort | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
@@ -48,7 +48,7 @@ $ find /tmp/results/$user -type f | sort | sed -e "s/$user/<user>/;s/[0-9][0-9-]
 /tmp/results/<user>/add/best
 $
 $
-$ ./bin/udge-user-stats $user
+$ udge-user-stats $user
 1 problems solved
 1 problems scored
 1 problems tried
@@ -56,11 +56,11 @@ score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
 add          6/6  3
 hello         -   0
 hello-world   -   0
-$ ./bin/udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+$ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           0/6  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c           6/6
 $
 $
-$ ./bin/udge-rank | grep $user | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user/<user>/"
+$ udge-rank | grep $user | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user/<user>/"
 <user>      1   1   1   1   1

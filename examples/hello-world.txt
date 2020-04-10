@@ -1,14 +1,14 @@
-$ ./bin/udge-judge hello-world problem/hello-world/yes.c
+$ udge-judge hello-world problem/hello-world/yes.c
 1/1
-$ ./bin/udge-judge hello-world problem/hello-world/no.c
+$ udge-judge hello-world problem/hello-world/no.c
 No - wrong output
 0/1
-$ ./bin/udge-judge hello-world problem/hello-world/no-ce.c 2>/dev/null
+$ udge-judge hello-world problem/hello-world/no-ce.c 2>/dev/null
 No - compile error (C)
 0/1
-$ ./bin/udge-judge hello-world problem/hello-world/no-tle.c
+$ udge-judge hello-world problem/hello-world/no-tle.c
 No - time limit exceeded
 0/1
-$ ./bin/udge-judge hello-world problem/hello-world/no-re.c
+$ udge-judge hello-world problem/hello-world/no-re.c
 No - runtime error (non-zero exit code)
 0/1
