@@ -1,6 +1,9 @@
 TODO list for Udge
 ==================
 
+* remove partial form filling on `cgi-bin/udge-new-user`
+  (and see how it looks and feels)
+
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
