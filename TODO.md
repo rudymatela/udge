@@ -3,10 +3,6 @@ TODO list for Udge
 
 * add `results/rank`
 
-* add rank to the output of user-stats
-
-* add rank to the output of user-html
-
 * remove partial form filling on `cgi-bin/udge-new-user`
   (and see how it looks and feels)
 
