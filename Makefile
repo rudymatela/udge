@@ -69,9 +69,6 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown
 	mkdir -p $(PUBLIC_HTML)
 	./lib/udge/markdown $< > $@
 
-diff-nginx:
-	diff -rud {,/}etc/nginx/srv/avail/udge
-
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
 #
