@@ -74,12 +74,19 @@ diff-nginx:
 
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
+#
+# This target will fail if your path has spaces.  (-:
 link-install:
+	mkdir -p                    /etc/udge
+	mkdir -p                    /etc/udge/users
+	ln -sfT `pwd`/etc/udge/conf /etc/udge/conf
+	ln -sfT `pwd`/etc/udge/salt /etc/udge/salt
+	ln -sfT `pwd`/problem       /etc/udge/problem
+	ln -sfT `pwd`/public_html   /srv/udge
 	for dir in `find bin/ lib/ cgi-bin/ -type d`; do \
 		mkdir -p $(PREFIX)/$$dir; done
 	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
 		ln -sf `pwd`/$$file $(PREFIX)/$$file; done
-# TODO: install other stuff, like conf and etc...
 
 uninstall:
 	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
