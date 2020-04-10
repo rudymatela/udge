@@ -19,7 +19,7 @@ html-header "$user - Udge"
 echo "<h2>$user - Udge</h2>"
 
 echo "<h3>Stats</h3>"
-$bin/udge-user-stats $user overall | sed -e "s,^,<p>,;s,$,</p>,"
+$bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
 echo "<h3>Problems & Tries</h3>"
 echo '<table class="table">'

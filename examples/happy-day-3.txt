@@ -59,6 +59,7 @@ $ udge-user-stats $user1
 1 problems solved
 1 problems scored
 1 problems tried
+position ? on the rank
 score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  2
 hello         -   0
@@ -72,6 +73,7 @@ $ udge-user-stats $user2
 1 problems solved
 1 problems scored
 2 problems tried
+position ? on the rank
 score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  1
 hello         -   0
@@ -82,6 +84,6 @@ YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6
 $
 $
-$ udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
+$ udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
 <u2>       1   1   1   1   1
 <u1>       1   1   1   1   1
