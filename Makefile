@@ -1,5 +1,6 @@
 # Makefile for the judge
 
+PREFIX=/usr/local
 PUBLIC_HTML=public_html
 HTMLS=\
 	$(PUBLIC_HTML)/404.html \
