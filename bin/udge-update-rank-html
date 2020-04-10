@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# usage: udge-update-rank-html
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+
+set -e
+
+tmprank=`mktemp /tmp/udge-rank.html.XXXXXXXXXX`
+$lib/rank-html > $tmprank
+chmod 644 $tmprank
+mv $tmprank $PUBLIC_HTML/rank.html
