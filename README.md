@@ -39,6 +39,8 @@ submissions created by `submit` whenever you run `pick-and-judge`.
 4. run `make html` to compile html descriptions of problems;
 5. link `/srv/udge` to your local html problem folder `path/to/udge/html`.
 
+Alternatively, you can simply: `make html && sudo make link-install`
+
 Routes
 ------
 
