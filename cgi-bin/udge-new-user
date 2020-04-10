@@ -43,34 +43,28 @@ prefix="$(dirname "$(dirname "$0")")"
 get() {
 http-header
 html-header "Create a new user on Udge"
-[ -n "$user_error" ]     && user_has_error=" has-error"
-[ -n "$password_error" ] && password_has_error=" has-error"
-[ -n "$email_error" ]    && email_has_error=" has-error"
-[ -n "$user_error" ]     && user_error="<span class=\"help-block\">$user_error</span>"
-[ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
-[ -n "$email_error" ]    && email_error="<span class=\"help-block\">$email_error</span>"
 cat <<HTML
 <h3>New user</h3>
 <form action="/new-user" method="POST" enctype="multipart/form-data">
-  <div class="form-group$user_has_error">
+  <div class="form-group">
     <label class="control-label" for="user">Username</label>
-    <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
+    <input type="text" class="form-control" id="user" name="user" placeholder="user">
   </div>
-  <div class="form-group$email_has_error">
+  <div class="form-group">
     <label class="control-label" for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="email" value="$email_value">$email_error
+    <input type="email" class="form-control" id="email" name="email" placeholder="email">
   </div>
-  <div class="form-group$email_has_error">
+  <div class="form-group">
     <label class="control-label" for="email-confirmation">Email confirmation</label>
-    <input type="email" class="form-control" id="email-confirmation" name="email-confirmation" placeholder="email confirmation" value="$email_confirmation_value">$email_error
+    <input type="email" class="form-control" id="email-confirmation" name="email-confirmation" placeholder="email confirmation">
   </div>
-  <div class="form-group$password_has_error">
+  <div class="form-group">
     <label class="control-label" for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="password">$password_error
+    <input type="password" class="form-control" id="password" name="password" placeholder="password">
   </div>
-  <div class="form-group$password_has_error">
+  <div class="form-group">
     <label class="control-label" for="password-confirmation">Password confirmation</label>
-    <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" placeholder="password confirmation">$password_error
+    <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" placeholder="password confirmation">
   </div>
   <input type="submit" name="submit" value="Create new user">
 </form>
@@ -104,11 +98,24 @@ HTML
 }
 
 
-has-error() {
-	[ -n "$user_error"     ] ||
-	[ -n "$password_error" ] ||
-	[ -n "$email_error"    ] ||
-	false
+failure() {
+	http-header
+	html-header
+	cat <<HTML
+<h3>Error: could not create user</h3>
+
+<ul>
+HTML
+	cat $errors | sed -e 's,^,<li>,;s,$,</li>,'
+	cat << HTML
+</ul>
+
+<p>
+Please hit your browser's <a href="javascript:history.go(-1)">back</a> button
+and try again.
+</p>
+HTML
+	html-footer
 }
 
 
@@ -125,26 +132,28 @@ post() {
 	email_value=`mcat "$email_fn"`
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
 
-	sane "$user_fn"       || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$user_fn" ]     || user_error="username is missing"
-	[ -s "$password_fn" ] || password_error="password is missing"
-	[ -s "$email_fn" ]    || email_error="email is missing"
-	diff -q $password_fn $password_confirmation_fn > /dev/null || password_error="passwords do not match"
-	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
-	if has-error
+	errors="$tmpdata/form-errors"
+	cat /dev/null > $errors
+	sane "$user_fn"       || echo "invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)" >> $errors
+	[ -s "$user_fn" ]     || echo "username is missing" >> $errors
+	[ -s "$password_fn" ] || echo "password is missing" >> $errors
+	[ -s "$email_fn" ]    || echo "email is missing" >> $errors
+	diff -q $password_fn $password_confirmation_fn > /dev/null || echo "passwords do not match" >> $errors
+	diff -q $email_fn    $email_confirmation_fn    > /dev/null || echo "emails do not match" >> $errors
+	if [ -s $errors ]
 	then
 		status=status-422-unprocessable-entity
-		get
+		failure
 		rm -r $tmpdata
 		exit
 	fi
 
 	user_dir="$USERS/$user_value"
-	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
-	if has-error
+	[ -e "$user_dir" ] && echo "username already exists (pick another)" >> $errors
+	if [ -s $errors ]
 	then
 		status=status-409-conflict
-		get
+		failure
 		rm -r $tmpdata
 		exit
 	fi
