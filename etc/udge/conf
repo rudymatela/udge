@@ -5,4 +5,5 @@ USERS_DIR=/etc/udge/users
 PROBLEMS_DIR=/etc/udge/problem
 UNJUDGED_DIR=/tmp/submissions
 RESULTS_DIR=/tmp/results
+PUBLIC_HTML=/srv/udge
 GHCFLAGS=-dynamic # for Arch Linux
