@@ -1,13 +1,16 @@
-$ curl -s udge/submit | grep Submit
+$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(Submit|^[0-9][0-9]*$)"
 <title>Submit your solution to Udge</title>
-<h3> Submit your solution </h3>
+<h3>Submit your solution</h3>
   <input type="submit" name="submit" value="Submit">
+200
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
 TypeError: not indexable
 $ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c # TODO: FIXME: should be error 400
-200
+An error occurred while reading CGI reply (no response received)
+502
 $ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" # TODO: FIXME: there should be a result
-200
+An error occurred while reading CGI reply (no response received)
+502
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
 $ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep h3
 <h3>User created</h3>

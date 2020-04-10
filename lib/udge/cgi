@@ -33,12 +33,50 @@ errxit() {
 	exit 1
 }
 
+http-header() {
+	content-type-html
+	$status
+	echo
+}
 
-http-content-type() {
-cat <<HTTPHEADERS
-Content-Type: text/html
+content-type-html() {
+	echo 'Content-Type: text/html'
+}
 
-HTTPHEADERS
+status-200-ok() {
+	echo 'Status: 200 OK'
+}
+
+status-201-created() {
+	echo 'Status: 201 Created'
+}
+
+status-202-accepted() {
+	echo 'Status: 202 Accepted'
+}
+
+status-400-bad-request() {
+	echo 'Status: 400 Bad Request'
+}
+
+status-401-unauthorized() {
+	echo 'Status: 401 Unauthorized'
+}
+
+status-403-forbidden() {
+	echo 'Status: 403 Forbidden'
+}
+
+status-409-conflict() {
+	echo 'Status: 409 Conflict'
+}
+
+status-422-unprocessable-entity() {
+	echo 'Status: 422 Unprocessable Entity'
+}
+
+status-429-too-many-requests() {
+	echo 'Status: 429 Too Many Requests'
 }
 
 

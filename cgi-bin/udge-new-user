@@ -41,6 +41,7 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/cgi"
 
 get() {
+http-header
 html-header "Create a new user on Udge"
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
@@ -49,7 +50,7 @@ html-header "Create a new user on Udge"
 [ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
 [ -n "$email_error" ]    && email_error="<span class=\"help-block\">$email_error</span>"
 cat <<HTML
-<h3> New user </h3>
+<h3>New user</h3>
 <form action="/new-user" method="POST" enctype="multipart/form-data">
   <div class="form-group$user_has_error">
     <label class="control-label" for="user">Username</label>
@@ -79,6 +80,7 @@ html-footer
 
 
 success() {
+	http-header
 	html-header
 	cat <<HTML
 <h3>User created</h3>
@@ -131,6 +133,7 @@ post() {
 	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
 	if has-error
 	then
+		status=status-422-unprocessable-entity
 		get
 		rm -r $tmpdata
 		exit
@@ -140,6 +143,7 @@ post() {
 	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
 	if has-error
 	then
+		status=status-409-conflict
 		get
 		rm -r $tmpdata
 		exit
@@ -151,12 +155,13 @@ post() {
 
 
 	rm -r $tmpdata
+	status=status-201-created
 	success
 }
 
 
 case $REQUEST_METHOD in
-	GET)  http-content-type; get  ;;
-	POST) http-content-type; post ;;
+	GET)  get  ;;
+	POST) post ;;
 	*)    errxit "Unsupported request method '$REQUEST_METHOD'" ;; # TODO: format an error 500 page
 esac
