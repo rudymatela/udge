@@ -13,6 +13,7 @@ TODO list for Udge
 	- every minute `udge-update-all-users-html`
 	- every minute `udge-update-rank-html`
 	- create lockfiles where necessary to avoid multiple instances
+	  as cron still triggers the executable even if it is already running
 
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
 
