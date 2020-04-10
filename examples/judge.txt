@@ -9,5 +9,4 @@ $ ./bin/judge hello path/to/file-not-found.c 2>/dev/null
 No - source file not found
 0/6
 $ ./bin/judge ehllo problem/hello/yes.c
-No - unknown problem code
-0/1
+./bin/judge, error: invalid problem code

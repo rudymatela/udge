@@ -28,9 +28,6 @@ fail() {
 }
 src="$1"
 [ -f "$src" ] || fail "No - source file not found"
-# TODO: actually don't use $dir at all, just copy everything needed into the
-#       folder on judge
-[ -d "$dir" ] || fail "No - unknown problem code"
 what=compile
 case "$src" in
 	*.c)   lang=c  ;language="C"                      ;;
@@ -39,7 +36,7 @@ case "$src" in
 	*)     fail "No: unknown/unsupported file format or language" ;;
 esac
 
-main="$dir/main.$lang"
+main="main.$lang"
 aslib=
 [ -f "$main" ] && aslib=-as-lib
 exe=exe$aslib
@@ -48,10 +45,10 @@ exe=exe$aslib
 fail "No - $what error ($language)"
 
 
-in="$dir/in"
+in=in
 [ -f "$in" ] || in=/dev/null
 
-timeout --preserve-status -v -k1s `cator1 "$dir/time-limit"`s ./$exe < "$in" > stdout 2> stderr
+timeout --preserve-status -v -k1s `cator1 time-limit`s ./$exe < "$in" > stdout 2> stderr
 exitcode=$?
 
 grep -q "^timeout: sending signal TERM" stderr && fail "No - time limit exceeded"
@@ -60,12 +57,12 @@ check-exit-code() {
 	[ "$1" = 0 ]
 }
 checkexitcode=check-exit-code
-[ -x "$dir/check-exit-code" ] && checkexitcode="$dir/check-exit-code"
+[ -x ./check-exit-code ] && checkexitcode=./check-exit-code
 $checkexitcode $exitcode || fail "No - runtime error (non-zero exit code)"
 
 check-out() {
 	diff -q "$1" "$2" >/dev/null
 }
 check=check-out
-[ -x "$dir/check-out" ] && check="$dir/check-out"
-$check "$dir/sol" stdout || fail "No - wrong output"
+[ -x ./check-out ] && check=./check-out
+$check sol stdout || fail "No - wrong output"

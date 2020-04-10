@@ -27,6 +27,7 @@ prefix="$(dirname "$(dirname "$0")")"
 problemdir="$PROBLEMS_DIR/$1"
 compileandtest="`realpath "$lib/compile-and-test"`"
 program="$2"
+[ -d "$problemdir" ] || errxit "invalid problem code"
 tmpdir="`mktemp -d "/tmp/judge.XXXXXXXXXX"`"
 cp "$program" "$tmpdir"
 prog="`basename $program`"
@@ -41,7 +42,9 @@ done
 for dir in $problemdir/*/; do
 	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $dir/pts`
-	dir=$dir "$compileandtest" $prog && ((total+=$pts)) || break
+	rm -f {in,sol,time-limit,check-exit-code,check-out,main.*}
+	cp $dir/{in,sol,time-limit,check-exit-code,check-out,main.*} . 2>/dev/null || true
+	"$compileandtest" $prog && ((total+=$pts)) || break
 done
 echo $total/$outof
 )
