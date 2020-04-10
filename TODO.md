@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* add `udge-update-all-problem-htmls`
+
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
@@ -30,6 +32,17 @@ Future
 * support `err` as well (specific error output)
 
 * add `results/rank` with a plaintext rank, and use it instead when generating the html
+
+* add generic handling of scores:
+
+	- on `etc/udge/config`
+
+		```
+		SCORING=udge-type-1
+		```
+
+	- on `udge-user-stats <user> short`, use the variable value instead of the
+	  custom scoring
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently)
