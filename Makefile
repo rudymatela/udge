@@ -32,6 +32,7 @@ test-web: \
   index.clitest \
   new-user.clitest \
   submit.clitest \
+  tidy.clitest \
   test-happy
 
 test-happy: \
