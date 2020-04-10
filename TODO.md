@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add `results/rank`
-
 * remove partial form filling on `cgi-bin/udge-new-user`
   (and see how it looks and feels)
 
@@ -35,3 +33,5 @@ Future
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
 * support `err` as well (specific error output)
+
+* add `results/rank` with a plaintext rank, and use it instead when generating the html
