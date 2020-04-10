@@ -75,9 +75,13 @@ diff-nginx:
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
 link-install:
-	for dir in `find lib/ -type d`; do \
+	for dir in `find bin/ lib/ cgi-bin/ -type d`; do \
 		mkdir -p $(PREFIX)/$$dir; done
-	for file in `find lib/ -type f`; do \
+	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
 		ln -sf `pwd`/$$file $(PREFIX)/$$file; done
-# TODO: use a GNU make foreach above?
 # TODO: install other stuff, like conf and etc...
+
+uninstall:
+	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
+		rm -f $(PREFIX)/$$file; done
+	rm -rf $(PREFIX)/lib/udge
