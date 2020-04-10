@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/rank-html
+# usage: lib/udge/rank-html
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
@@ -12,7 +12,7 @@ echo '<thead>'
 echo '<tr><th>user</th><th>solved</th><th></th><th></th><th></th></tr>'
 echo '</thead>'
 echo '<tbody>'
-./bin/rank | sed -e 's|\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *|<tr><td>\1</td><td><a href="/u/\2">\2</a><td>\3</td><td>\4</td><td>\5</td><td>\6</td><td>\7</td></tr>|'
+./bin/udge-rank | sed -e 's|\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *|<tr><td>\1</td><td><a href="/u/\2">\2</a><td>\3</td><td>\4</td><td>\5</td><td>\6</td><td>\7</td></tr>|'
 echo '</tbody>'
 echo '</table>'
 html-footer

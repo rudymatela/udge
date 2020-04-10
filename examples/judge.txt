@@ -1,12 +1,12 @@
-$ ./bin/judge hello problem/hello/yes.c
+$ ./bin/udge-judge hello problem/hello/yes.c
 6/6
-$ ./bin/judge hello-world problem/hello-world/yes.c
+$ ./bin/udge-judge hello-world problem/hello-world/yes.c
 1/1
-$ ./bin/judge hello-world problem/hello-world/no.c
+$ ./bin/udge-judge hello-world problem/hello-world/no.c
 No - wrong output
 0/1
-$ ./bin/judge hello path/to/file-not-found.c 2>/dev/null
+$ ./bin/udge-judge hello path/to/file-not-found.c 2>/dev/null
 No - source file not found
 0/6
-$ ./bin/judge ehllo problem/hello/yes.c
-./bin/judge, error: invalid problem code
+$ ./bin/udge-judge ehllo problem/hello/yes.c
+./bin/udge-judge, error: invalid problem code

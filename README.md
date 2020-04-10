@@ -104,7 +104,7 @@ users/fulano/password:34aceeb563fa984ddad7e549228cdcc88c97a60659d4da7d206192da89
 
 The problem directory contains test scripts, inputs and solutions for each of the problem.
 
-* `bin/judge` reads this directory
+* `bin/udge-judge` reads this directory
 
 Each problem has a directory, `/etc/udge/problem/<problem>`.  Inside it:
 
@@ -131,7 +131,7 @@ plainly without a subdir.
 The submissions directory contains submissions that are yet to be scored.
 
 * `cgi-bin/submit` creates entries in this directory
-* `bin/pick-and-judge` picks-then-deletes entries from this directory
+* `bin/udge-pick-and-judge` picks-then-deletes entries from this directory
 
 It contain files in the following format:
 
@@ -147,7 +147,7 @@ For example:
 
 The results directory contains the results of evaluated solutions.
 
-* `bin/pick-and-judge` creates entries in this directory
+* `bin/udge-pick-and-judge` creates entries in this directory
 * `bin/generate-user-pages` reads from this directory (TBA)
 
 Results contain a folder for each user which in turn contains a folder for each
@@ -175,8 +175,8 @@ Programs
 * `cgi-bin/new-user`: handles user creation
 * `cgi-bin/submit`: called when an user submits a solution,
 					creates a submission in the submissions folder.
-* `bin/judge`: judges a solution
-* `bin/pick-and-judge`: to be called every 1 minute from cron,
+* `bin/udge-judge`: judges a solution
+* `bin/udge-pick-and-judge`: to be called every 1 minute from cron,
                         picks a solution at random from `submissions`,
 						creates a result on `results`.
 

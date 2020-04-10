@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* rename `bin/*` to `bin/udge-*`
-
 * add `update-rank-html` script
 
 * add `update-user-html` script

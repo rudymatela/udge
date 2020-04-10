@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/latest-results <user>
+# usage: ./bin/udge-latest-results <user>
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 errxit() {

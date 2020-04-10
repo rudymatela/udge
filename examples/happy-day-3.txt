@@ -4,8 +4,8 @@ $ yes=problem/add/yes.c
 $ yes46=problem/add/yes-4-6.c
 $ wa=problem/add/wa.c
 $ yeshs=problem/add/yes.hs
-$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $ curl -sXPOST udge/new-user -duser=$user1 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
 $ curl -sXPOST udge/new-user -duser=$user2 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
 $
@@ -23,12 +23,12 @@ $ find /tmp/submissions/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;
 /tmp/submissions/<u2>/YYYYMMDD-HHMMSS/hello-world.hs
 $
 $
-$ ./bin/pick-and-judge >/dev/null
-$ ./bin/pick-and-judge >/dev/null
-$ ./bin/pick-and-judge >/dev/null
-$ ./bin/pick-and-judge >/dev/null
-$ ./bin/pick-and-judge
-./bin/pick-and-judge: nothing to do
+$ ./bin/udge-pick-and-judge >/dev/null
+$ ./bin/udge-pick-and-judge >/dev/null
+$ ./bin/udge-pick-and-judge >/dev/null
+$ ./bin/udge-pick-and-judge >/dev/null
+$ ./bin/udge-pick-and-judge
+./bin/udge-pick-and-judge: nothing to do
 $
 $
 $ find /tmp/results/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
@@ -55,7 +55,7 @@ $ grep "" /tmp/results/{$user1,$user2}/*/best | sed -e "s/$user1/<u1>/;s/$user2/
 /tmp/results/<u2>/add/best:6/6
 /tmp/results/<u2>/hello-world/best:0/1
 $
-$ ./bin/user-stats $user1
+$ ./bin/udge-user-stats $user1
 1 problems solved
 1 problems scored
 1 problems tried
@@ -64,11 +64,11 @@ add          6/6  2
 hello         -   0
 hello-world   -   0
 $
-$ ./bin/latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+$ ./bin/udge-latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c           6/6
 $
-$ ./bin/user-stats $user2
+$ ./bin/udge-user-stats $user2
 1 problems solved
 1 problems scored
 2 problems tried
@@ -77,11 +77,11 @@ add          6/6  1
 hello         -   0
 hello-world  0/1  1
 $
-$ ./bin/latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+$ ./bin/udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6
 $
 $
-$ ./bin/rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
+$ ./bin/udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
 <u2>       1   1   1   1   1
 <u1>       1   1   1   1   1

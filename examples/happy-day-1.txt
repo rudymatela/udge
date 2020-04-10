@@ -2,8 +2,8 @@ $ user=test-happy1-`date "+%Y%m%d-%H%M%S"`
 $ yes=problem/add/yes.c
 $
 $
-$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ ./bin/pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ ./bin/udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $
 $
 $ curl -sXPOST udge/new-user -duser=$user -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass | grep h3
@@ -18,12 +18,12 @@ $ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[
 /tmp/submissions/<user>/YYYYMMDD-HHMMSS/add.c
 $
 $
-$ ./bin/pick-and-judge | tail -1
+$ ./bin/udge-pick-and-judge | tail -1
 6/6
 $
 $
-$ ./bin/pick-and-judge
-./bin/pick-and-judge: nothing to do
+$ ./bin/udge-pick-and-judge
+./bin/udge-pick-and-judge: nothing to do
 $
 $
 $ find /tmp/results/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
@@ -32,7 +32,7 @@ $ find /tmp/results/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-
 /tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
 $
 $
-$ ./bin/user-stats $user
+$ ./bin/udge-user-stats $user
 1 problems solved
 1 problems scored
 1 problems tried
@@ -40,9 +40,9 @@ score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
 add          6/6  1
 hello         -   0
 hello-world   -   0
-$ ./bin/latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
+$ ./bin/udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           6/6
 $
 $
-$ ./bin/rank | grep $user | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user/<user>/"
+$ ./bin/udge-rank | grep $user | sed -e "s/^[^.]*[.]  //" | sed -e "s/$user/<user>/"
 <user>      1   1   1   1   1

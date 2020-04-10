@@ -1,23 +1,23 @@
-$ ./bin/judge add problem/add/yes.c
+$ ./bin/udge-judge add problem/add/yes.c
 6/6
-$ ./bin/judge add problem/add/yes-5-6.c 2>&1 | tail -2
+$ ./bin/udge-judge add problem/add/yes-5-6.c 2>&1 | tail -2
 No - compile error (C)
 5/6
-$ ./bin/judge add problem/add/yes-4-6.c
+$ ./bin/udge-judge add problem/add/yes-4-6.c
 No - wrong output
 4/6
-$ ./bin/judge add problem/add/wa.c
+$ ./bin/udge-judge add problem/add/wa.c
 No - wrong output
 0/6
-$ ./bin/judge add problem/add/re.c 2>&1 | tail -2
+$ ./bin/udge-judge add problem/add/re.c 2>&1 | tail -2
 No - runtime error (non-zero exit code)
 0/6
-$ ./bin/judge add problem/add/re2.c
+$ ./bin/udge-judge add problem/add/re2.c
 No - runtime error (non-zero exit code)
 0/6
-$ ./bin/judge add problem/add/tle.c
+$ ./bin/udge-judge add problem/add/tle.c
 No - time limit exceeded
 0/6
-$ ./bin/judge add problem/add/ce.c 2>&1 | tail -2
+$ ./bin/udge-judge add problem/add/ce.c 2>&1 | tail -2
 No - compile error (C)
 0/6

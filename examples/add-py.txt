@@ -1,5 +1,5 @@
-$ ./bin/judge add problem/add/yes.py
+$ ./bin/udge-judge add problem/add/yes.py
 6/6
-$ ./bin/judge add problem/add/yes-5-6.py 2>/dev/null
+$ ./bin/udge-judge add problem/add/yes-5-6.py 2>/dev/null
 No - runtime error (non-zero exit code)
 5/6

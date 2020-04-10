@@ -1,16 +1,16 @@
-$ ./bin/judge hello-world problem/hello-world/yes.py
+$ ./bin/udge-judge hello-world problem/hello-world/yes.py
 1/1
-$ ./bin/judge hello-world problem/hello-world/no.py
+$ ./bin/udge-judge hello-world problem/hello-world/no.py
 No - wrong output
 0/1
-$ ./bin/judge hello-world problem/hello-world/no-ce.py 2>/dev/null
+$ ./bin/udge-judge hello-world problem/hello-world/no-ce.py 2>/dev/null
 No - parse error (Python)
 0/1
-$ ./bin/judge hello-world problem/hello-world/no-tle.py
+$ ./bin/udge-judge hello-world problem/hello-world/no-tle.py
 No - time limit exceeded
 0/1
-$ ./bin/judge hello-world problem/hello-world/no-re.py
+$ ./bin/udge-judge hello-world problem/hello-world/no-re.py
 No - runtime error (non-zero exit code)
 0/1
-$ ./bin/judge hello-world problem/hello-world/yes-2.py
+$ ./bin/udge-judge hello-world problem/hello-world/yes-2.py
 1/1

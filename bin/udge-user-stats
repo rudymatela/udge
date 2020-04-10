@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/user-stats <user>
+# usage: ./bin/udge-user-stats <user>
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
