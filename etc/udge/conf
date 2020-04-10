@@ -1,9 +1,9 @@
 #!/bin/bash
 # Configuration file for the judge
 SALT_FILE=/etc/udge/salt
-USERS_DIR=/etc/udge/users
-PROBLEMS_DIR=/etc/udge/problem
-UNJUDGED_DIR=/tmp/submissions
-RESULTS_DIR=/tmp/results
+USERS=/etc/udge/users
+PROBLEMS=/etc/udge/problem
+SUBMISSIONS=/tmp/submissions
+RESULTS=/tmp/results
 PUBLIC_HTML=/srv/udge
 GHCFLAGS=-dynamic # for Arch Linux

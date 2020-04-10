@@ -24,7 +24,7 @@
 #   judge problem program.ext
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
-problemdir="$PROBLEMS_DIR/$1"
+problemdir="$PROBLEMS/$1"
 compileandtest="`realpath "$lib/compile-and-test"`"
 program="$2"
 [ -d "$problemdir" ] || errxit "invalid problem code"

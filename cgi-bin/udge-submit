@@ -199,7 +199,7 @@ post() {
 
 	check-user "$user_value" "$password_fn" || user_error="invalid credentials"
 	password_error="$user_error"
-	[ -d "$PROBLEMS_DIR/$problem_value" ] || problem_error="invalid problem id"
+	[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id"
 	if has-error
 	then
 		get
@@ -209,7 +209,7 @@ post() {
 
 	timestamp=`date -u "+%Y%m%d-%H%M%S"`
 	umask 0002 # allows for members of the http group to write (or remove)
-	destdir="$UNJUDGED_DIR/$user_value/$timestamp"
+	destdir="$SUBMISSIONS/$user_value/$timestamp"
 	destfile="$destdir/$problem_value.$language_value"
 	mkdir -p $destdir
 	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"

@@ -136,7 +136,7 @@ post() {
 		exit
 	fi
 
-	user_dir="$USERS_DIR/$user_value"
+	user_dir="$USERS/$user_value"
 	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
 	if has-error
 	then

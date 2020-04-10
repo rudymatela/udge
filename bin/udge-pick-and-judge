@@ -39,9 +39,9 @@ finish() {
 
 set -e
 
-[ -d "$UNJUDGED_DIR" ] || errxit "submissions dir $UNJUDGED_DIR does not exist"
+[ -d "$SUBMISSIONS" ] || errxit "submissions dir $SUBMISSIONS does not exist"
 
-user_dir="`find $UNJUDGED_DIR -mindepth 1 -maxdepth 1 | sort -R | head -1`"
+user_dir="`find $SUBMISSIONS -mindepth 1 -maxdepth 1 | sort -R | head -1`"
 [ -n "$user_dir" ] || finish "`basename $0`: nothing to do"
 
 submission="`find $user_dir -type f | sort | head -1`"
@@ -64,7 +64,7 @@ echo "timestamp = $timestamp"
 echo "problem = $problem"
 echo "language = $language"
 
-user_results="$RESULTS_DIR/$user"
+user_results="$RESULTS/$user"
 problem_dir="$user_results/$problem"
 dest_dir="$problem_dir/$timestamp"
 

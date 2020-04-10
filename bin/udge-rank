@@ -14,8 +14,8 @@ do
 	((i++))
 	this="$s1 $s2 $s3 $s4 $s5"
 	[ "$this" = "$prev" ] || j=$i
-	mkdir -p $RESULTS_DIR/$user
-	echo $j > $RESULTS_DIR/$user/rank
+	mkdir -p $RESULTS/$user
+	echo $j > $RESULTS/$user/rank
 	printf "%-3s  %-30s  %2s  %2s  %2s  %2s  %2s\n" $j. $user $s1 $s2 $s3 $s4 $s5
 	prev="$this"
 done

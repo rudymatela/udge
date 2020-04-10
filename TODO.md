@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* rename variables in `etc/udge/conf` with better names (think a bit)
-
 * add `results/rank`
 
 * add rank to the output of user-stats

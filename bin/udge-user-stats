@@ -12,8 +12,8 @@ errxit() {
 }
 user="$1"
 [ -n "$user" ] || errxit "missing <user> argument"
-[ -d "$USERS_DIR/$user" ] || errxit "user not found"
-results="$RESULTS_DIR/$user"
+[ -d "$USERS/$user" ] || errxit "user not found"
+results="$RESULTS/$user"
 #[ -d "$results" ] || errxit "user results dir not found (not generated yet?)"
 
 

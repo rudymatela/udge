@@ -11,9 +11,9 @@ errxit() {
 }
 user="$1"
 [ -n "$user" ] || errxit "missing <user> argument"
-[ -d "$USERS_DIR/$user" ] || errxit "user not found"
-submissions="$UNJUDGED_DIR/$user"
-results="$RESULTS_DIR/$user"
+[ -d "$USERS/$user" ] || errxit "user not found"
+submissions="$SUBMISSIONS/$user"
+results="$RESULTS/$user"
 format() {
 	sed -e 's,.*/\([0-9][0-9][0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)-\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)/\([^/]*\),\1-\2-\3 \4:\5:\6  \7,'
 }
