@@ -34,14 +34,14 @@ prog="`basename $program`"
 cd $tmpdir
 outof=0
 total=0
-for ts in $problemdir/*/; do
-	pts=`cator1 $ts/pts`
+for dir in $problemdir/*/; do
+	pts=`cator1 $dir/pts`
 	((outof+=$pts))
 done
-for ts in $problemdir/*/; do
-	[ -d $ts ] || ts=$problemdir/ # allows in and out to reside directly without subdir
-	pts=`cator1 $ts/pts`
-	dir=$ts "$compileandtest" $prog && ((total+=$pts)) || break
+for dir in $problemdir/*/; do
+	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
+	pts=`cator1 $dir/pts`
+	dir=$dir "$compileandtest" $prog && ((total+=$pts)) || break
 done
 echo $total/$outof
 )
