@@ -71,3 +71,13 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown
 
 diff-nginx:
 	diff -rud {,/}etc/nginx/srv/avail/udge
+
+# NOTE: Only use this to set up a development environment, never in a real
+#       installation.
+link-install:
+	for dir in `find lib/ -type d`; do \
+		mkdir -p $(PREFIX)/$$dir; done
+	for file in `find lib/ -type f`; do \
+		ln -sf `pwd`/$$file $(PREFIX)/$$file; done
+# TODO: use a GNU make foreach above?
+# TODO: install other stuff, like conf and etc...

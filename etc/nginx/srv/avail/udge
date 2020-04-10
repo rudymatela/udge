@@ -25,13 +25,13 @@ server {
 
 	location = /submit {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
-		fastcgi_param SCRIPT_FILENAME /path/to/cgi-bin/submit;
+		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-submit;
 		include fastcgi_params;
 	}
 
 	location = /new-user {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
-		fastcgi_param SCRIPT_FILENAME /path/to/cgi-bin/new-user;
+		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-new-user;
 		include fastcgi_params;
 	}
 
