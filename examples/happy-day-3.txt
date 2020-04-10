@@ -59,7 +59,7 @@ $ udge-user-stats $user1
 1 problems solved
 1 problems scored
 1 problems tried
-score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
+score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  2
 hello         -   0
 hello-world   -   0
@@ -72,7 +72,7 @@ $ udge-user-stats $user2
 1 problems solved
 1 problems scored
 2 problems tried
-score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ ≥0)
+score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  1
 hello         -   0
 hello-world  0/1  1
