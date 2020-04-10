@@ -13,7 +13,10 @@ mkdir -p "$PUBLIC_HTML/u"
 set -e
 
 doit() {
-	$lib/user-html "$user" > $user_html
+	tmpfile="$user_html.html"
+	[ -e "$tmpfile" ] && errxit "instance still running?  if not, delete '$tmpfile' and try again"
+	$lib/user-html "$user" > $tmpfile
+	mv $tmpfile $user_html
 	echo "`basename $0`: $@"
 	exit 0
 }

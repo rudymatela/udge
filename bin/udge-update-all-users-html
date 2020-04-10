@@ -5,8 +5,6 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 force=$1
 
-set -e
-
 for user in `ls-users`
 do
 	$bin/udge-update-user-html $user $force
