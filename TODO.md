@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* remove partial form filling on `cgi-bin/udge-new-user`
-  (and see how it looks and feels)
-
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
@@ -27,8 +24,6 @@ Future
 * sandbox before running submissions
 
 * fix weird edge cases on tests
-
-* remove partial form filling on errors (for simplicity)
 
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
