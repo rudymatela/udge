@@ -16,12 +16,12 @@ cator1() {
 
 ls-users() {
 	[ -d $PROBLEMS_DIR ] || errxit "could not find USERS_DIR=$USERS_DIR"
-	echo $USERS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
+	find $USERS_DIR -maxdepth 1 -type d | sed -e "s,.*/,," | sort
 }
 
 ls-problems() {
 	[ -d $PROBLEMS_DIR ] || errxit "could not find PROBLEMS_DIR=$PROBLEMS_DIR"
-	echo $PROBLEMS_DIR/*/ | sed -e "s/ /\n/g" | sed -e "s,/$,,;s,.*/,," | sort
+	find $PROBLEMS_DIR -maxdepth 1 -type d | sed -e "s,.*/,," | sort
 }
 
 [ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?"
