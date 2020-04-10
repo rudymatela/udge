@@ -63,11 +63,11 @@ clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
 	rm -rf public_html/u/test-*-*-*.html
 
-$(PUBLIC_HTML)/%.html: problem/%/desc lib/udge/markdown
+$(PUBLIC_HTML)/%.html: problem/%/desc lib/udge/markdown lib/udge/html
 	mkdir -p $(PUBLIC_HTML)
 	./lib/udge/markdown $< > $@
 
-$(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown
+$(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 	mkdir -p $(PUBLIC_HTML)
 	./lib/udge/markdown $< > $@
 

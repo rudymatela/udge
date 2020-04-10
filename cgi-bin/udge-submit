@@ -73,7 +73,7 @@ cat <<HTML
   </div>
   <div class="form-group$problem_has_error">
     <label class="control-label" for="problem">Problem id</label>
-    <select class="form-control" id="language" name="problem">
+    <select class="form-control" id="problem" name="problem">
 HTML
 render-problem-options
 cat <<HTML

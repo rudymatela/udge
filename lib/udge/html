@@ -22,7 +22,7 @@ cat <<HTML
 |
 <a href="/submit">submit your solution</a>
 |
-<a href="/rank">user rank</a></p>
+<a href="/rank">user rank</a>
 </p>
 HTML
 }
