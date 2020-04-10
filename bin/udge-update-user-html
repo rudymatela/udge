@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# usage: ./bin/udge-update-user-html <user> [force]
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+user="$1"
+[ -n "$user" ] || errxit "missing <user> argument"
+[ -d "$USERS_DIR/$user" ] || errxit "user not found"
+force="$2"
+user_html="$PUBLIC_HTML/u/$user.html"
+mkdir -p "$PUBLIC_HTML/u"
+
+set -e
+
+doit() {
+	$lib/user-html "$user" > $user_html
+	echo "`basename $0`: $@"
+	exit 0
+}
+
+[ ! -e "$user_html" ]                      && doit "created $user_html"
+[ "$user_html" -ot "$UNJUDGED_DIR/$user" ] && doit "updated $user_html (new submissions)"
+[ "$user_html" -ot "$RESULTS_DIR/$user"  ] && doit "updated $user_html (new results)"
+[ "$force" = force ]                       && doit "updated $user_html (force)"
+echo "$user_html is up to date"

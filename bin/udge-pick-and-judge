@@ -37,6 +37,8 @@ finish() {
 	exit 0
 }
 
+set -e
+
 [ -d "$UNJUDGED_DIR" ] || errxit "submissions dir $UNJUDGED_DIR does not exist"
 
 user_dir="`find $UNJUDGED_DIR -mindepth 1 -maxdepth 1 | sort -R | head -1`"
@@ -62,7 +64,8 @@ echo "timestamp = $timestamp"
 echo "problem = $problem"
 echo "language = $language"
 
-problem_dir="$RESULTS_DIR/$user/$problem"
+user_results="$RESULTS_DIR/$user"
+problem_dir="$user_results/$problem"
 dest_dir="$problem_dir/$timestamp"
 
 echo "Saving results to '$dest_dir'"
@@ -75,6 +78,7 @@ for file in $problem_dir/*/result
 do
 	tail -1 "$file"
 done | sort -n | tail -1 > $problem_dir/best
+touch "$user_results" # bump timestamp to generate html
 
 submission_dir="`dirname $submission`"
 submission_dir_dir="`dirname $submission_dir`"

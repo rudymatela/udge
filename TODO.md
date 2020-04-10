@@ -3,8 +3,6 @@ TODO list for Udge
 
 * add `update-rank-html` script
 
-* add `update-user-html` script
-
 * add `update-users-html` script
 
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
@@ -15,8 +13,6 @@ Future
 ======
 
 * installation script
-
-* development setup script
 
 * sandbox before running submissions
 
