@@ -107,6 +107,28 @@ html-form-input() {
 HTML
 }
 
+html-form-select() {
+	id="$1"
+	label="$2"
+	placeholder="$3"
+	error="$4"
+	value="$5"
+	has_error=""
+	[ -n "$error" ] && has_error=" has-error"
+	[ -n "$error" ] && error="<span class=\"help-block\">$error</span>"
+	echo "<div class="form-group$has_error">"
+	echo "<label class="control-label" for="$id">$label</label>"
+	echo "<select class="form-control" id="$id" name="$id">"
+	echo "<option value="none">$placeholder</option>"
+	while read option name
+	do
+		[ -n "$name" ] || name=$option
+		echo "<option value=\"$option\">$name</option>"
+	done | sed -e "s/\"$value\">/\"$value\" selected>/"
+	echo "</select>$error"
+	echo "</div>"
+}
+
 
 # are user and problem name sane?
 # usage: sane-file filename

@@ -1,7 +1,5 @@
-$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(Submit|^[0-9][0-9]*$)"
-<title>Submit your solution to Udge</title>
+$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(<h.>|^[0-9][0-9]*$)"
 <h3>Submit your solution</h3>
-  <input type="submit" name="submit" value="Submit">
 200
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
 TypeError: not indexable
