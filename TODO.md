@@ -47,3 +47,7 @@ Future
 	- `udge-update-rank-html`.
 
 * minimum password length and complexity
+
+* add instructions on how to set up an `udge` user
+
+* run stuff as `nobody` where applicable
