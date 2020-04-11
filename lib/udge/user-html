@@ -23,7 +23,7 @@ echo "<h3>Stats</h3>"
 $bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
 echo "<h3>Problems & Tries</h3>"
-echo '<table class="table">'
+echo '<table class="table table-hover">'
 echo '<thead>'
 echo '<tr><th>problem</th><th>score</th><th>tries</th></tr>'
 echo '</thead>'
@@ -33,7 +33,7 @@ echo '</tbody>'
 echo '</table>'
 
 echo "<h3>Latest submissions</h3>"
-echo '<table class="table">'
+echo '<table class="table table-hover">'
 echo '<thead>'
 echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
 echo '</thead>'
