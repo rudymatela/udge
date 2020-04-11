@@ -53,7 +53,12 @@ If you're confused, try earning a partial score first.
 
 ### Scoring
 
-* 4/6: adds numbers
+TODO: make test files reflect the following scoring (they currently don't):
+
+* 1/6: adds single pairs of numbers
+* 2/6: adds single pairs of possibly negative numbers
+* 3/6: adds multiple pairs of numbers
+* 4/6: adds multiple pairs of possibly negative numbers
 * 5/6: handles edge cases
 * 6/6: implements the `add` function
 
