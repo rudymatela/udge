@@ -61,6 +61,7 @@ get() {
 success() {
 	http-header
 	html-header
+	html-navbar
 	cat <<HTML
 <h3>User created</h3>
 
@@ -79,6 +80,7 @@ You are ready to <a href="/submit">submit a solution</a> now
 for any problem in the <a href="/">problem index</a>.
 </p>
 HTML
+	html-navbar
 	html-footer
 }
 
