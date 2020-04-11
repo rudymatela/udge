@@ -19,7 +19,7 @@ c='\([^ ]*\) *'
 t="<td>"
 r="<td$rs>"
 T="</td>"
-./bin/udge-rank | sed -e "s| *$c$c$c$c$c$c$c|<tr>$r\1$T$t<a href=\"/u/\2\">\2</a>$T$r\3$T$r\4$T$r\5$T$r\6$T$r\7$T</tr>|"
+$bin/udge-rank | sed -e "s| *$c$c$c$c$c$c$c|<tr>$r\1$T$t<a href=\"/u/\2\">\2</a>$T$r\3$T$r\4$T$r\5$T$r\6$T$r\7$T</tr>|"
 echo '</tbody>'
 echo '</table>'
 html-navbar rank
