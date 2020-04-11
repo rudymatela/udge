@@ -116,10 +116,10 @@ html-form-select() {
 	has_error=""
 	[ -n "$error" ] && has_error=" has-error"
 	[ -n "$error" ] && error="<span class=\"help-block\">$error</span>"
-	echo "<div class="form-group$has_error">"
-	echo "<label class="control-label" for="$id">$label</label>"
-	echo "<select class="form-control" id="$id" name="$id">"
-	echo "<option value="none">$placeholder</option>"
+	echo "<div class=\"form-group$has_error\">"
+	echo "<label class=\"control-label\" for=\"$id\">$label</label>"
+	echo "<select class=\"form-control\" id=\"$id\" name=\"$id\">"
+	echo "<option value=\"none\">$placeholder</option>"
 	while read option name
 	do
 		[ -n "$name" ] || name=$option
