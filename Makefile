@@ -4,6 +4,7 @@ TIDY=tidy -qe --show-filename yes
 PREFIX=/usr/local
 PUBLIC_HTML=public_html
 HTMLS=\
+	$(PUBLIC_HTML)/bootstrap.min.css \
 	$(PUBLIC_HTML)/404.html \
 	$(PUBLIC_HTML)/hello.html \
 	$(PUBLIC_HTML)/hello-world.html \
@@ -82,6 +83,9 @@ tidy-public_html: html
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
 	rm -rf public_html/u/test-*-*-*.html
+
+$(PUBLIC_HTML)/%.css: lib/udge/%.css
+	cp $< $@
 
 $(PUBLIC_HTML)/%.html: problem/%/desc lib/udge/markdown lib/udge/html
 	mkdir -p $(PUBLIC_HTML)

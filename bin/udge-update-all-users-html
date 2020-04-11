@@ -3,8 +3,10 @@
 # usage: udge-update-all-users-html [force]
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
+. "$lib/html"
 force=$1
 
+install-bootstrap
 for user in `ls-users`
 do
 	$bin/udge-update-user-html $user $force

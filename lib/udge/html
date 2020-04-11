@@ -1,4 +1,10 @@
 #!/bin/bash
+install-bootstrap() {
+	mkdir -p "$PUBLIC_HTML"
+	dst="$PUBLIC_HTML/bootstrap.min.css"
+	[ -e "$dst" ] || cp "$lib/bootstrap.min.css" "$dst"
+}
+
 html-header() {
 cat <<HTML
 <!doctype html>

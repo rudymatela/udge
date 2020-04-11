@@ -3,9 +3,11 @@
 # usage: udge-update-rank-html
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
+. "$lib/html"
 
 set -e
 
+install-bootstrap
 dst="$PUBLIC_HTML/rank.html"
 tmpfile="$dst.html"
 [ -e "$tmpfile" ] && errxit "instance still running?  if not, delete '$tmpfile' and try again"
