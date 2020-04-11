@@ -82,6 +82,7 @@ status-429-too-many-requests() {
 
 mcat() {
 	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
+	true
 }
 
 
@@ -119,12 +120,14 @@ html-form-select() {
 	echo "<div class=\"form-group$has_error\">"
 	echo "<label class=\"control-label\" for=\"$id\">$label</label>"
 	echo "<select class=\"form-control\" id=\"$id\" name=\"$id\">"
-	echo "<option value=\"none\">$placeholder</option>"
+	(
+	echo "<option disabled hidden value=\"\">$placeholder</option>"
 	while read option name
 	do
 		[ -n "$name" ] || name=$option
 		echo "<option value=\"$option\">$name</option>"
-	done | sed -e "s/\"$value\">/\"$value\" selected>/"
+	done
+	) | sed -e "s/\"$value\">/\"$value\" selected>/"
 	echo "</select>$error"
 	echo "</div>"
 }

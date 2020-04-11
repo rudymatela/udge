@@ -44,9 +44,9 @@ Alternatively, you can simply: `make html && sudo make link-install`
 You should also add the following to your crontab (use `crontab -e`):
 
 ```
-* * * * * udge-pick-and-judge
-* * * * * udge-update-all-users-html
-*/2 * * * * udge-update-rank-html
+* * * * * /usr/local/bin/udge-pick-and-judge
+* * * * * /usr/local/bin/udge-update-all-users-html
+*/2 * * * * /usr/local/bin/udge-update-rank-html
 ```
 
 The above will:

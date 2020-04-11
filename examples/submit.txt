@@ -1,14 +1,21 @@
-$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(<h.>|^[0-9][0-9]*$)"
+$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(<h.>|^[0-9]+$)"
 <h3>Submit your solution</h3>
 200
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
 TypeError: not indexable
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c # TODO: FIXME: should be error 400
-An error occurred while reading CGI reply (no response received)
-502
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" # TODO: FIXME: there should be a result
-An error occurred while reading CGI reply (no response received)
-502
+$ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
+<span class="help-block">user is missing</span>
+<span class="help-block">password is missing</span>
+<span class="help-block">program is missing</span>
+<span class="help-block">select the problem</span>
+422
+$ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
+<span class="help-block">invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)</span>
+<span class="help-block">password is missing</span>
+<span class="help-block">program is missing</span>
+<span class="help-block">select the problem</span>
+<span class="help-block">select the language</span>
+422
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
 $ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep h3
 <h3>User created</h3>

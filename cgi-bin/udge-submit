@@ -61,8 +61,8 @@ get() {
 	html-form-input text     user     'Username (<a href="/new-user">new user</a>)' 'username' "$user_error" "$user_value"
 	html-form-input password password 'Password' 'password' "$password_error"
 	html-form-input file     program  'Program'  'program'  "$program_error"  "$program_value"
-	ls-problems  | html-form-select problem  'Problem id' 'Select the problem'  "$problem_error"  "$problem_value"
-	ls-languages | html-form-select language 'Language'   'Select the language' "$language_error" "$language_value"
+	ls-problems  | html-form-select problem  'Problem id' 'select problem...'  "$problem_error"  "$problem_value"
+	ls-languages | html-form-select language 'Language'   'select language...' "$language_error" "$language_value"
 	echo "<input type="submit" name="submit" value="Submit">"
 	echo "</form>"
 	html-navbar submit
@@ -106,14 +106,9 @@ HTML
 }
 
 
-mcat() {
-	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
-}
-
-
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
-	../bin/cgi-create-data-files $tmpdata
+	$bin/cgi-create-data-files $tmpdata || errxit "problem while creating cgi-data-files"
 
 	user_fn="$tmpdata/user/value"
 	password_fn="$tmpdata/password/value"
@@ -134,11 +129,9 @@ post() {
 	sane-file "$problem_fn"           || problem_error="select the problem"
 	[ -s "$problem_fn" ]              || problem_error="select the problem"
 	[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id"
-	[ "$problem_value" != "none" ]    || problem_error="select the problem"
 
 	sane-file "$language_fn"          || language_error="select the language"
 	[ -s "$language_fn" ]             || language_error="select the language"
-	[ "$language_value" != "none" ]   || language_error="select the language"
 
 	if has-error
 	then
