@@ -18,6 +18,7 @@ update() {
 	[ ! -e "$dst" ]       && doit "created $dst from $src"
 	[ "$dst" -ot "$src" ] && doit "updated $dst from $src (outdated)"
 	[ "$force" = force ]  && doit "updated $dst from $src (force)"
+	true
 }
 
 mkdir -p $PUBLIC_HTML
