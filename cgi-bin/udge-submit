@@ -48,31 +48,16 @@ get() {
 http-header
 html-header "Submit your solution to Udge"
 html-navbar submit
-[ -n "$user_error" ]     && user_has_error=" has-error"
-[ -n "$password_error" ] && password_has_error=" has-error"
-[ -n "$program_error" ]  && program_has_error=" has-error"
-[ -n "$problem_error" ]  && problem_has_error=" has-error"
-[ -n "$language_error" ] && language_has_error=" has-error"
-[ -n "$user_error" ]     && user_error="<span class=\"help-block\">$user_error</span>"
-[ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
-[ -n "$program_error" ]  && program_error="<span class=\"help-block\">$program_error</span>"
 [ -n "$problem_error" ]  && problem_error="<span class=\"help-block\">$problem_error</span>"
 [ -n "$language_error" ] && language_error="<span class=\"help-block\">$language_error</span>"
 cat <<HTML
 <h3>Submit your solution</h3>
 <form action="/submit" method="POST" enctype="multipart/form-data">
-  <div class="form-group$user_has_error">
-    <label class="control-label" for="user">Username (<a href="/new-user">new user</a>)</label>
-    <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
-  </div>
-  <div class="form-group$password_has_error">
-    <label class="control-label" for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="password">$password_error
-  </div>
-  <div class="form-group$program_has_error">
-    <label class="control-label" for="Program">Program</label>
-    <input type="file" class="form-control" id="Program"  name="program" placeholder="program">$program_error
-  </div>
+HTML
+html-form-input text     user     'Username (<a href="/new-user">new user</a>)' 'username' "$user_error" "$user_value"
+html-form-input password password 'Password' 'password' "$password_error"
+html-form-input file     program  'Program'  'program'  "$program_error"
+cat <<HTML
   <div class="form-group$problem_has_error">
     <label class="control-label" for="problem">Problem id</label>
     <select class="form-control" id="problem" name="problem">
@@ -132,6 +117,7 @@ HTML
 success() {
 	http-header
 	html-header
+	html-navbar
 	cat <<HTML
 <h3>Submission successful</h3>
 
@@ -150,6 +136,7 @@ for the results
 after a few minutes.
 </p>
 HTML
+	html-navbar
 	html-footer
 }
 

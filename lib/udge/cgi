@@ -85,6 +85,29 @@ mcat() {
 }
 
 
+# usage: html-form-input <type> <id> <label> [placeholder] [value] [error]
+# e.g.: html-form-input text user Username "user name"
+# e.g.: html-form-input email email Email "email" "-invalid@ex.bla" "Invalid email address"
+html-form-input() {
+	type="$1"
+	id="$2"
+	label="$3"
+	placeholder="$4"
+	error="$5"
+	value="$6"
+	has_error=""
+	[ -n "$error" ] && has_error=" has-error"
+	[ -n "$error" ] && error="<span class=\"help-block\">$error</span>"
+	[ -n "$value" ] && value=" value=\"$value\""
+	cat <<HTML
+<div class="form-group$has_error">
+<label class="control-label" for="$id">$label</label>
+<input type="$type" class="form-control" id="$id" name="$id" placeholder="$placeholder"$value>$error
+</div>
+HTML
+}
+
+
 # are user and problem name sane?
 # usage: sane-file filename
 sane-file() {

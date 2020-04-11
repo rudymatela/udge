@@ -46,3 +46,5 @@ Future
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently)
+
+* minimum password length and complexity

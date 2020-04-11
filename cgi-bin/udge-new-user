@@ -41,43 +41,20 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/cgi"
 
 get() {
-http-header
-html-header "Create a new user on Udge"
-html-navbar
-[ -n "$user_error" ]     && user_has_error=" has-error"
-[ -n "$password_error" ] && password_has_error=" has-error"
-[ -n "$email_error" ]    && email_has_error=" has-error"
-[ -n "$user_error" ]     && user_error="<span class=\"help-block\">$user_error</span>"
-[ -n "$password_error" ] && password_error="<span class=\"help-block\">$password_error</span>"
-[ -n "$email_error" ]    && email_error="<span class=\"help-block\">$email_error</span>"
-cat <<HTML
-<h3>New user</h3>
-<form action="/new-user" method="POST" enctype="multipart/form-data">
-  <div class="form-group$user_has_error">
-    <label class="control-label" for="user">Username</label>
-    <input type="text" class="form-control" id="user" name="user" placeholder="user" value="$user_value">$user_error
-  </div>
-  <div class="form-group$email_has_error">
-    <label class="control-label" for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="email" value="$email_value">$email_error
-  </div>
-  <div class="form-group$email_has_error">
-    <label class="control-label" for="email-confirmation">Email confirmation</label>
-    <input type="email" class="form-control" id="email-confirmation" name="email-confirmation" placeholder="email confirmation" value="$email_confirmation_value">$email_error
-  </div>
-  <div class="form-group$password_has_error">
-    <label class="control-label" for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="password">$password_error
-  </div>
-  <div class="form-group$password_has_error">
-    <label class="control-label" for="password-confirmation">Password confirmation</label>
-    <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" placeholder="password confirmation">$password_error
-  </div>
-  <input type="submit" name="submit" value="Create new user">
-</form>
-HTML
-html-navbar
-html-footer
+	http-header
+	html-header "Create a new user on Udge"
+	html-navbar
+	echo '<h3>New user</h3>'
+	echo '<form action="/new-user" method="POST" enctype="multipart/form-data">'
+	html-form-input text     user                  'Username'              'username'              "$user_error"     "$user_value"
+	html-form-input email    email                 'Email'                 'email'                 "$email_error"    "$email_value"
+	html-form-input email    email-confirmation    'Email confimration'    'email confirmation'    "$email_error"    "$email_confirmation_value"
+	html-form-input password password              'Password'              'password'              "$password_error" "$password_value"
+	html-form-input password password-confirmation 'Password confirmation' 'password confirmation' "$password_error" "$password_confirmation_value"
+	echo '<input type="submit" name="submit" value="Create new user">'
+	echo '</form>'
+	html-navbar
+	html-footer
 }
 
 
