@@ -88,12 +88,12 @@ mcat() {
 # are user and problem name sane?
 # usage: `sane filename`
 sane() {
-	grep -q "^[a-z_][a-z0-9_-]*$" "$1"
+	grep -q "$SANE" "$1"
 }
 
 # not a full RFC compliant verification, but does the job.
 sane-email() {
-	grep -qE '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9.-]+$' "$1"
+	grep -qE "$SANE_EMAIL" "$1"
 }
 
 # usage: check-user username password_file
