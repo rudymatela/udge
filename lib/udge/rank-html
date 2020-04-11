@@ -13,9 +13,9 @@ echo '<thead>'
 echo '<tr><th>rank</th><th>user</th><th>=1</th><th>&ge;⅔</th><th>&ge;½</th><th>&ge;⅓</th><th>&gt;0</th></tr>'
 echo '</thead>'
 echo '<tbody>'
-c="\\([^ ]*\\) *"
-t="<td>"
-T="</td>"
+c='\([^ ]*\) *'
+t='<td>'
+T='</td>'
 ./bin/udge-rank | sed -e "s| *$c$c$c$c$c$c$c|<tr>$t\1$T$t<a href=\"/u/\2\">\2</a>$T$t\3$T$t\4$T$t\5$T$t\6$T$t\7$T</tr>|"
 echo '</tbody>'
 echo '</table>'
