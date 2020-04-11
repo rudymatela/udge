@@ -16,6 +16,7 @@ user="$1"
 dirname="`dirname $0`"
 
 html-header "$user - Udge"
+html-navbar
 echo "<h2>$user - Udge</h2>"
 
 echo "<h3>Stats</h3>"
@@ -41,4 +42,5 @@ $bin/udge-latest-results "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*
 echo '</tbody>'
 echo '</table>'
 
+html-navbar
 html-footer
