@@ -25,3 +25,4 @@ doit() {
 [ "$user_html" -ot "$SUBMISSIONS/$user" ] && doit "updated $user_html (new submissions)"
 [ "$user_html" -ot "$RESULTS/$user"  ]    && doit "updated $user_html (new results)"
 [ "$force" = force ]                      && doit "updated $user_html (force)"
+true
