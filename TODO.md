@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add `udge-update-all-problem-htmls`
-
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
