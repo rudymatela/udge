@@ -55,9 +55,15 @@ stop-services:
 	sudo systemctl stop fcgiwrap
 
 html: $(HTMLS)
+	./bin/udge-update-all-users-html
+	./bin/udge-update-rank-html
 
 clean-html:
 	rm -f $(HTMLS)
+
+full-tidy:
+	for file in `find public_html -name *.html`; do \
+		tidy -qe --show-filename yes "$$file" || break; done
 
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
