@@ -1,8 +1,8 @@
-$ curl -sL udge             | tidy -q >/dev/null
-$ curl -sL udge/submit      | tidy -q >/dev/null
-$ curl -sL udge/new-user    | tidy -q >/dev/null
-$ curl -sL udge/hello       | tidy -q >/dev/null
-$ curl -sL udge/hello-world | tidy -q >/dev/null
-$ curl -sL udge/add         | tidy -q >/dev/null
+$ curl -sL udge             | tidy -qe
+$ curl -sL udge/submit      | tidy -qe
+$ curl -sL udge/new-user    | tidy -qe
+$ curl -sL udge/hello       | tidy -qe
+$ curl -sL udge/hello-world | tidy -qe
+$ curl -sL udge/add         | tidy -qe
 $ udge-update-rank-html
-$ curl -sL udge/rank        | tidy -q >/dev/null
+$ curl -sL udge/rank        | tidy -qe
