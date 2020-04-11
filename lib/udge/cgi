@@ -88,13 +88,17 @@ mcat() {
 # are user and problem name sane?
 # usage: sane-file filename
 sane-file() {
-	grep -q "$SANE" "$1"
+	[ -s "$1" ] &&                  # is not empty
+	[ `cat "$1" | wc -l` -le 1 ] && # has at most one line break
+	grep -q "$SANE" "$1"            # is sane
 }
 
 # is this email sane?
 # usage: sane-email-file filename
 sane-email-file() {
-	grep -qE "$SANE_EMAIL" "$1"
+	[ -s "$1" ] &&                    # is not empty
+	[ "`cat "$1" | wc -l`" -le 1 ] && # has at most one line break
+	grep -qE "$SANE_EMAIL" "$1"       # is sane
 }
 
 # usage: check-user username password_file
