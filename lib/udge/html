@@ -16,13 +16,18 @@ HTML
 
 
 html-navbar() {
-cat <<HTML
-<p>
+if [ -n "$1" ]
+then
+	sed -e "s,^.*>$1<.*$,<b>&</b>,"
+else
+	cat
+fi <<HTML
+<p style="margin-top: 1em">
 <a href="/">index</a>
 |
-<a href="/submit">submit your solution</a>
+<a href="/submit">submit</a>
 |
-<a href="/rank">user rank</a>
+<a href="/rank">rank</a>
 </p>
 HTML
 }

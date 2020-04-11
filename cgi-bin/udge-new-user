@@ -43,6 +43,7 @@ prefix="$(dirname "$(dirname "$0")")"
 get() {
 http-header
 html-header "Create a new user on Udge"
+html-navbar
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$email_error" ]    && email_has_error=" has-error"
@@ -75,6 +76,7 @@ cat <<HTML
   <input type="submit" name="submit" value="Create new user">
 </form>
 HTML
+html-navbar
 html-footer
 }
 

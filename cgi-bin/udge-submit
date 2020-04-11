@@ -47,6 +47,7 @@ prefix="$(dirname "$(dirname "$0")")"
 get() {
 http-header
 html-header "Submit your solution to Udge"
+html-navbar submit
 [ -n "$user_error" ]     && user_has_error=" has-error"
 [ -n "$password_error" ] && password_has_error=" has-error"
 [ -n "$program_error" ]  && program_has_error=" has-error"
@@ -91,6 +92,7 @@ cat <<HTML
   <input type="submit" name="submit" value="Submit">
 </form>
 HTML
+html-navbar submit
 html-footer
 }
 
