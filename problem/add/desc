@@ -1,5 +1,5 @@
 add - Addition
----------------
+--------------
 
 Write a program that
 	reads several pairs of numbers and,
@@ -36,3 +36,23 @@ Here is an example session with this program:
 	33
 	444
 	5555
+
+### The `add` function
+
+For a full score,
+in addition to producing the correct output,
+the program should be implemented using an `add` function
+that receives two integers as arguments and returns an integer.
+Please refer to the information for the chosen language:
+
+* C prototype:        `int add(int x, int y);`
+* Haskell type:       `add :: Int -> Int -> Int`
+* Python definition:  `def add(x,y):`
+
+If you're confused, try earning a partial score first.
+
+### Scoring
+
+* 4/6: adds numbers
+* 5/6: handles edge cases
+* 6/6: implements the `add` function
