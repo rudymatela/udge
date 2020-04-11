@@ -86,13 +86,14 @@ mcat() {
 
 
 # are user and problem name sane?
-# usage: `sane filename`
-sane() {
+# usage: sane-file filename
+sane-file() {
 	grep -q "$SANE" "$1"
 }
 
-# not a full RFC compliant verification, but does the job.
-sane-email() {
+# is this email sane?
+# usage: sane-email-file filename
+sane-email-file() {
 	grep -qE "$SANE_EMAIL" "$1"
 }
 
