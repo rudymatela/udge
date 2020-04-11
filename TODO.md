@@ -18,8 +18,6 @@ TODO list for Udge
 
 * allow parsing of problem name and language from file name (instead of fields)
 
-* move tests on `examples/tidy.txt` into the Makefile itself
-
 Future
 ======
 
