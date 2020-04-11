@@ -44,14 +44,6 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/html"
 . "$lib/cgi"
 
-ls-languages() {
-	cat <<LANGUAGES
-c   C
-hs  Haskell
-py  Python
-LANGUAGES
-}
-
 get() {
 	http-header
 	html-header "Submit your solution to Udge"

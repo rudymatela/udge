@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Python
 set -e
 python -mpy_compile "$1"
 echo '#!/usr/bin/env python' > "$2"

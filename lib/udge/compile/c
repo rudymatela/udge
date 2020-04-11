@@ -1,3 +1,5 @@
 #!/bin/bash
+#
+# C
 set -e
 cc $CFLAGS "$1" -o "$2"

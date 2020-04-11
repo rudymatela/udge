@@ -1,3 +1,5 @@
 #!/bin/bash
+#
+# Haskell
 set -e
 ghc -outputdir . $GHCFLAGS "$1" -o "$2"
