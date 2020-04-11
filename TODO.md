@@ -9,13 +9,6 @@ TODO list for Udge
 
 * add `bin/udge-submit` (non-CGI)
 
-* add crontab entries:
-	- every minute `pick-and-judge`
-	- every minute `udge-update-all-users-html`
-	- every minute `udge-update-rank-html`
-	- create lockfiles where necessary to avoid multiple instances
-	  as cron still triggers the executable even if it is already running
-
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
@@ -47,6 +40,10 @@ Future
 	  custom scoring
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to
-  race conditions currently)
+  race conditions currently).  The affected scripts are:
+
+	- `udge-pick-and-judge`;
+	- `udge-update-all-users-html`;
+	- `udge-update-rank-html`.
 
 * minimum password length and complexity

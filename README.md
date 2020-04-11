@@ -41,6 +41,19 @@ submissions created by `submit` whenever you run `pick-and-judge`.
 
 Alternatively, you can simply: `make html && sudo make link-install`
 
+You should also add the following to your crontab (use `crontab -e`):
+
+```
+* * * * * udge-pick-and-judge
+* * * * * udge-update-all-users-html
+*/2 * * * * udge-update-rank-html
+```
+
+The above will:
+`pick-and-judge` and `udge-update-all-users-html` every minute;
+`udge-update-rank-html` every 2 minutes.
+Please adapt as needed.
+
 Routes
 ------
 
