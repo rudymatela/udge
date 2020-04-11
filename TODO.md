@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* add `ls-languages` function to core
+
 * add `udge-update-all-problem-htmls`
 
 * add `bin/udge-add-user` (non-CGI)
