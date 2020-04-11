@@ -127,10 +127,11 @@ post() {
 	email_value=`mcat "$email_fn"`
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
 
-	sane-file "$user_fn"  || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$user_fn" ]     || user_error="username is missing"
-	[ -s "$password_fn" ] || password_error="password is missing"
-	[ -s "$email_fn" ]    || email_error="email is missing"
+	sane-file "$user_fn"        || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	[ -s "$user_fn" ]           || user_error="username is missing"
+	[ -s "$password_fn" ]       || password_error="password is missing"
+	sane-email-file "$email_fn" || email_error="invalid or unsupported email address"
+	[ -s "$email_fn" ]          || email_error="email is missing"
 	diff -q $password_fn $password_confirmation_fn > /dev/null || password_error="passwords do not match"
 	diff -q $email_fn    $email_confirmation_fn    > /dev/null || email_error="emails do not match"
 	if has-error

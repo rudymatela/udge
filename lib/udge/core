@@ -10,7 +10,7 @@ SANE='^[a-z_][a-z0-9_-]*$'
 
 # a sanity check for emails (needs -E)
 # not a full RFC compliant verification, but does the job.
-SANE_EMAIL='^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9.-]+$'
+SANE_EMAIL='^[a-z0-9][a-z0-9._%+-]*@[a-z0-9.-]+\.[a-z0-9.-]+$'
 
 errxit() {
 	echo "`basename "$0"`, error: $@" >/dev/stderr
