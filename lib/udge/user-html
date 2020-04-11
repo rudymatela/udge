@@ -32,15 +32,20 @@ $bin/udge-user-stats $user problem | sed -e 's,\([^ ]*\)  *\([^ ]*\)  *\([^ *]\)
 echo '</tbody>'
 echo '</table>'
 
-echo "<h3>Latest submissions</h3>"
-echo '<table class="table table-hover">'
-echo '<thead>'
-echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
-echo '</thead>'
-echo '<tbody>'
-$bin/udge-latest-results "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
-echo '</tbody>'
-echo '</table>'
+if [ -d "$SUBMISSIONS/$user" ]
+then
+	echo "<h3>Latest submissions</h3>"
+	echo '<table class="table table-hover">'
+	echo '<thead>'
+	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>reason</th></tr>'
+	echo '</thead>'
+	echo '<tbody>'
+	$bin/udge-latest-results "$user" | sed -e 's,\([^ ]* [^ ]*\)  \([^ ]*\)\.\([^ ]*\)  [ ]*\([^ ]*\)[ ]*\(.*\),<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5</td></tr>,'
+	echo '</tbody>'
+	echo '</table>'
+else
+	echo '<p>No submissions yet.</p>'
+fi
 
 html-navbar
 html-footer
