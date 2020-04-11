@@ -5,7 +5,7 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 
-html-header "$user - Udge"
+html-header "User Rank - Udge"
 html-navbar rank
 echo "<h2>User Rank - Udge</h2>"
 echo '<table class="table">'
@@ -13,7 +13,10 @@ echo '<thead>'
 echo '<tr><th>rank</th><th>user</th><th>=1</th><th>&ge;⅔</th><th>&ge;½</th><th>&ge;⅓</th><th>&gt;0</th></tr>'
 echo '</thead>'
 echo '<tbody>'
-./bin/udge-rank | sed -e 's|\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *\([^ ]*\) *|<tr><td>\1</td><td><a href="/u/\2">\2</a><td>\3</td><td>\4</td><td>\5</td><td>\6</td><td>\7</td></tr>|'
+c="\\([^ ]*\\) *"
+t="<td>"
+T="</td>"
+./bin/udge-rank | sed -e "s| *$c$c$c$c$c$c$c|<tr>$t\1$T$t<a href=\"/u/\2\">\2</a>$T$t\3$T$t\4$T$t\5$T$t\6$T$t\7$T</tr>|"
 echo '</tbody>'
 echo '</table>'
 html-navbar rank
