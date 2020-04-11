@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# usage: udge-update-all-problem-htmls [force]
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+force=$1
+bn=`basename $0`
+
+doit() {
+	$lib/markdown "$src" > "$dst" &&
+		echo "$bn: $@" ||
+		echo "$bn: problem updating $dst from $src"
+}
+
+update() {
+	src="$PROBLEMS/$1"
+	dst="$PUBLIC_HTML/$2"
+	[ ! -e "$dst" ]       && doit "created $dst from $src"
+	[ "$dst" -ot "$src" ] && doit "updated $dst from $src (outdated)"
+	[ "$force" = force ]  && doit "updated $dst from $src (force)"
+}
+
+mkdir -p $PUBLIC_HTML
+update index.md index.html
+update 404.md   404.html
+for problem in `ls-problems`
+do
+	update $problem/desc $problem.html
+done
