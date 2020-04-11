@@ -1,5 +1,6 @@
 # Makefile for the judge
 
+TIDY=tidy -qe --show-filename yes
 PREFIX=/usr/local
 PUBLIC_HTML=public_html
 HTMLS=\
@@ -15,6 +16,7 @@ all:
 clean: clean-html
 
 test: \
+  tidy \
   test-scripts \
   test-web
 
@@ -32,7 +34,6 @@ test-web: \
   index.clitest \
   new-user.clitest \
   submit.clitest \
-  tidy.clitest \
   test-happy
 
 test-happy: \
@@ -61,9 +62,22 @@ html: $(HTMLS)
 clean-html:
 	rm -f $(HTMLS)
 
-full-tidy:
+%.tidy: html
+	curl -sL $* | $(TIDY)
+
+tidy: \
+	udge.tidy \
+	udge/submit.tidy \
+	udge/new-user.tidy \
+	udge/hello.tidy \
+	udge/hello-world.tidy \
+	udge/add.tidy \
+	udge/rank.tidy \
+	tidy-public_html
+
+tidy-public_html: html
 	for file in `find public_html -name *.html`; do \
-		tidy -qe --show-filename yes "$$file" || break; done
+		$(TIDY) "$$file" || break; done
 
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
