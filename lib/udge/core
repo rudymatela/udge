@@ -13,13 +13,13 @@ SANE='^[a-z_][a-z0-9_-]*$'
 SANE_EMAIL='^[a-z0-9][a-z0-9._%+-]*@[a-z0-9.-]+\.[a-z0-9.-]+$'
 
 errxit() {
-	# We use 1>&2 here instead of /dev/stderr.
+	# We use >&2 here instead of /dev/stderr.
 	#
 	# For some reason I was getting the following error when running scripts
 	# from cron:
 	#
 	#     CROND: (user) CMDOUT (/usr/local/lib/udge/core: line 18: /dev/stderr: Permission denied)
-	echo "`basename "$0"`, error: $@" 1>&2
+	echo "`basename "$0"`, error: $@" >&2
 	exit 1
 }
 
