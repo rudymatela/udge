@@ -1,6 +1,9 @@
 TODO list for Udge
 ==================
 
+* make test #6 of `add` more like test #16-20 of `add1`
+  (don't raiseError, and instead print something)
+
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
