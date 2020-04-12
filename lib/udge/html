@@ -16,7 +16,7 @@ cat <<HTML
 <title>$@</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" style="max-width: 48em">
 HTML
 }
 
