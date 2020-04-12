@@ -5,9 +5,9 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 errxit() {
-	echo "$0, error: $@" >/dev/stderr
-	echo "usage:" >/dev/stderr
-	echo "  $0 <user>" >/dev/stderr
+	echo "$0, error: $@" 1>&2
+	echo "usage:"        1>&2
+	echo "  $0 <user>"   1>&2
 	exit 1
 }
 user="$1"

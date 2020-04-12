@@ -33,16 +33,16 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
 finish() {
-	echo "$@"
+	echo "`basename $0`: $@"
 	exit 0
 }
 
 set -e
 
-[ -d "$SUBMISSIONS" ] || errxit "submissions dir $SUBMISSIONS does not exist"
+[ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"
 
 user_dir="`find $SUBMISSIONS -mindepth 1 -maxdepth 1 | sort -R | head -1`"
-[ -n "$user_dir" ] || finish "`basename $0`: nothing to do"
+[ -n "$user_dir" ] || finish "nothing to do"
 
 submission="`find $user_dir -type f | sort | head -1`"
 [ -n "$user_dir" ] || errxit "user dir $user_dir is empty"
