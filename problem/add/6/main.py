@@ -1,9 +1,8 @@
 
-if add(0,0) != 0:
-	raise ValueError('wrong output')
+# standard input is already processed
+# as the submitted programmed is run when imported
 
-if add(1,1) != 2:
-	raise ValueError('wrong output')
-
-if add(1,2) != 3:
-	raise ValueError('wrong output')
+with open("in.txt") as filein:
+  for line in filein:
+    x,y = [int(x) for x in line.split()]
+    print(add(x,y))
