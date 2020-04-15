@@ -7,9 +7,17 @@ force=$1
 bn=`basename $0`
 
 doit() {
-	$lib/markdown "$src" > "$dst" &&
+	$what &&
 		echo "$bn: $@" ||
 		echo "$bn: problem updating $dst from $src"
+}
+
+markdown-() {
+	$lib/markdown "$src" > "$dst"
+}
+
+cp-() {
+	cp "$src" "$dst"
 }
 
 update() {
@@ -26,5 +34,11 @@ update index.md index.html
 update 404.md   404.html
 for problem in `ls-problems`
 do
-	update $problem/desc $problem.html
+	what=markdown- update $problem/desc $problem.html
+done
+for asset in $PROBLEMS/*.{svg,png}
+do
+	[ -e "$asset" ] || continue
+	name=`basename $asset`
+	what=cp- update $name $name
 done
