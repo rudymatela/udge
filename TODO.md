@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* make test #6 of `add` more like test #16-20 of `add1`
-  (don't raiseError, and instead print something)
-
 * add `bin/udge-add-user` (non-CGI)
 
 * add `bin/udge-submit` (non-CGI)
@@ -11,6 +8,8 @@ TODO list for Udge
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
 
 * allow parsing of problem name and language from file name (instead of fields)
+
+* move example solutions out of the `problem/` directory
 
 Future
 ======
