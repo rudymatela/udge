@@ -30,8 +30,8 @@ update() {
 }
 
 mkdir -p $PUBLIC_HTML
-update index.md index.html
-update 404.md   404.html
+what=markdown- update index.md index.html
+what=markdown- update 404.md   404.html
 for problem in `ls-problems`
 do
 	what=markdown- update $problem/desc $problem.html
