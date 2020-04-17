@@ -1,6 +1,6 @@
 $ user=test-user-`date "+%Y%m%d-%H%M%S"`
 $ curl -w "%{http_code}\n" -sXGET udge/new-user | grep -E "(h[0-9]|^[0-9][0-9]*$)"
-<h3>New user</h3>
+<h2>New user</h2>
 200
 $ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep -E "(h[0-9]|^[0-9][0-9]*$)"
 <h3>User created</h3>

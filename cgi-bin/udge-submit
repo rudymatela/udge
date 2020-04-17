@@ -48,7 +48,7 @@ get() {
 	http-header
 	html-header "Submit your solution to Udge"
 	html-navbar submit
-	echo "<h3>Submit your solution</h3>"
+	echo "<h2>Submit your solution</h2>"
 	echo "<form action="/submit" method="POST" enctype="multipart/form-data">"
 	html-form-input text     user     'Username (<a href="/new-user">new user</a>)' 'username' "$user_error" "$user_value"
 	html-form-input password password 'Password' 'password' "$password_error"
