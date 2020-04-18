@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# C
 set -e
 cc $CFLAGS -c "$1" -o lib.o
 objcopy --redefine-sym main=oldmain lib.o
