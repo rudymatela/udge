@@ -2,6 +2,8 @@
 #
 # cgi-create-data-files: TODO: describe me
 #
+# Usage: cgi-create-data-files <folder>
+#
 #
 # Copyright (C) 2020  Rudy Matela
 #

@@ -1,6 +1,8 @@
 #!/bin/bash
 #
-# judge: judges a submission
+# udge-judge: judges a solution printing the result to the standard output
+#
+# Usage: udge-judge <problem-code> path/to/program.ext
 #
 #
 # Copyright (C) 2015-2020  Rudy Matela
@@ -19,9 +21,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Usage:
+# Examples:
 #
-#   judge problem program.ext
+# $ udge-judge problem program.ext
+# 6/6
+#
+# $ udge-judge hello hello.c
+# No - wrong output
+# 3/6
+
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 problemdir="$PROBLEMS/$1"
