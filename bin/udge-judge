@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# udge-judge: judges a solution printing the result to the standard output
+# udge-judge: judges a solution and prints the result to stdout
 #
 # Usage: udge-judge <problem-code> path/to/program.ext
 #
