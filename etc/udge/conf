@@ -3,7 +3,7 @@
 SALT_FILE=/etc/udge/salt
 USERS=/etc/udge/users
 PROBLEMS=/etc/udge/problem
-SUBMISSIONS=/tmp/submissions
-RESULTS=/tmp/results
+SUBMISSIONS=/var/lib/udge/submissions
+RESULTS=/var/lib/udge/results
 PUBLIC_HTML=/srv/udge
 GHCFLAGS=-dynamic # for Arch Linux

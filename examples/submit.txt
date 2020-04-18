@@ -21,5 +21,6 @@ $ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" -
 <h3>User created</h3>
 $ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep h3
 <h3>Submission successful</h3>
-$ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
-/tmp/submissions/<user>/YYYYMMDD-HHMMSS/add.c
+$ . etc/udge/conf
+$ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/,"
+.../submissions/<user>/YYYYMMDD-HHMMSS/add.c

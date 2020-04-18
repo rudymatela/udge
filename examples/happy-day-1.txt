@@ -14,8 +14,11 @@ $ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage
 <h3>Submission successful</h3>
 $
 $
-$ find /tmp/submissions/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
-/tmp/submissions/<user>/YYYYMMDD-HHMMSS/add.c
+$ . etc/udge/conf
+$
+$
+$ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$SUBMISSIONS,.../submissions,"
+.../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 $
 $
 $ udge-pick-and-judge | tail -1
@@ -26,10 +29,10 @@ $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
 $
 $
-$ find /tmp/results/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g"
-/tmp/results/<user>/add/best
-/tmp/results/<user>/add/YYYYMMDD-HHMMSS/result
-/tmp/results/<user>/add/YYYYMMDD-HHMMSS/add.c
+$ find $RESULTS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$RESULTS,.../results," | sort
+.../results/<user>/add/best
+.../results/<user>/add/YYYYMMDD-HHMMSS/add.c
+.../results/<user>/add/YYYYMMDD-HHMMSS/result
 $
 $
 $ udge-user-stats $user
