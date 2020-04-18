@@ -1,7 +1,7 @@
 $ user=test-happy2-`date "+%Y%m%d-%H%M%S"`
-$ yes=problem/add/yes.c
-$ yes46=problem/add/yes-4-6.c
-$ wa=problem/add/wa.c
+$ yes=examples/add/yes.c
+$ yes46=examples/add/yes-4-6.c
+$ wa=examples/add/wa.c
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
