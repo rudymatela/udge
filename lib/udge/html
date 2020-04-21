@@ -38,7 +38,6 @@ img {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
-	width: 60%;
 }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
