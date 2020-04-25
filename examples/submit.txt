@@ -1,6 +1,32 @@
 $ curl -w "%{http_code}\n" -s udge/submit | grep -E "(<h.>|^[0-9]+$)"
 <h2>Submit your solution</h2>
 200
+$
+$
+$ user=test-submit-`date "+%Y%m%d-%H%M%S"`
+$ ./examples/create-new-user $user test-user@example.com the-password
+User created
+201
+$
+$
+$ export UDGE_USERNAME=$user
+$ export UDGE_PASSWORD=the-password
+$
+$
+$ udge-submit examples/hello.c
+Submission successful
+$
+$
+$ UDGE_PASSWORD=wrong udge-submit examples/hello.c
+udge-submit: invalid credentials
+$
+$
+$ UDGE_USERNAME=$UDGE_USERNAME-does-not-exist udge-submit examples/hello.c
+udge-submit: invalid credentials
+$
+$
+$ sleep 1.1
+$
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
 TypeError: not indexable
 $ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
@@ -16,14 +42,12 @@ $ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&passw
 <span class="help-block">select the problem</span>
 <span class="help-block">select the language</span>
 422
-$ user=test-submit-`date "+%Y%m%d-%H%M%S"`
-$ curl -w "%{http_code}\n" -sXPOST udge/new-user --data-urlencode "user=$user" --data-urlencode "email=test-user@example.com" --data-urlencode "email-confirmation=test-user@example.com" --data-urlencode "password=the-password" --data-urlencode "password-confirmation=the-password" | grep h3
-<h3>User created</h3>
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep h3
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep -E "(<h.>|help-block)"
 <h3>Submission successful</h3>
 $ . etc/udge/conf
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/,"
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
+.../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 $ sleep 1.1 # no more than 1 submission per second
-$ curl -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/yes.c | grep h3
+$ curl -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/yes.c | grep -E "(<h.>|help-block)"
 <h3>Submission successful</h3>
