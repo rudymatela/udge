@@ -142,7 +142,8 @@ post() {
 	fi
 
 	timestamp=`date -u "+%Y%m%d-%H%M%S"`
-	destdir="$SUBMISSIONS/$user_value/$timestamp"
+	submissions="$SUBMISSIONS/$user_value"
+	destdir="$submissions/$timestamp"
 	[ -d $destdir ] && program_error="no more than 1 submission per second"
 	if has-error
 	then
