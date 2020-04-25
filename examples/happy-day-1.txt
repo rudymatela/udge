@@ -14,7 +14,7 @@ $ curl -sXPOST udge/submit -duser=$user -dpassword=pass -dproblem=add -dlanguage
 <h3>Submission successful</h3>
 $
 $
-$ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g" | sort
+$ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
 YYYY-MM-DD HH:MM:SS  add.c            -   pending
 $
 $
@@ -26,7 +26,7 @@ $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
 $
 $
-$ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g" | sort
+$ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
 YYYY-MM-DD HH:MM:SS  add.c           6/6
 $
 $
