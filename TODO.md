@@ -1,13 +1,9 @@
 TODO list for Udge
 ==================
 
-* add `bin/udge-submit` (non-CGI)
-
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
 
-* allow parsing of problem name and language from file name (instead of fields)
-
-* move example solutions out of the `problem/` directory
+* `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
 
 Future
 ======
