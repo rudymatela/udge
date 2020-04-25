@@ -6,8 +6,9 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $
 $
-$ curl -sXPOST udge/new-user -duser=$user -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass | grep h3
-<h3>User created</h3>
+$ ./examples/create-new-user $user u@example.com pass
+User created
+201
 $
 $
 $ export UDGE_USERNAME=$user

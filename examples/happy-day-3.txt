@@ -8,14 +8,22 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ curl -sXPOST udge/new-user -duser=$user1 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
-$ curl -sXPOST udge/new-user -duser=$user2 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
+$ ./examples/create-new-user $user1 u@example.com pass
+User created
+201
+$ ./examples/create-new-user $user2 u@example.com pass
+User created
+201
 $
-$ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=add  -dlanguage=c  --data-urlencode program@$yes   >/dev/null
-$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=add  -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes add
+Submission successful
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs add
+Submission successful
 $ sleep 1
-$ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=add  -dlanguage=c  --data-urlencode program@$yes46 >/dev/null
-$ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=hello-world -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes46 add
+Submission successful
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs hello-world
+Submission successful
 $
 $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
