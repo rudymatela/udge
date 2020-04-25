@@ -39,9 +39,9 @@ language="$3"
 user="$UDGE_USERNAME"
 password="$UDGE_PASSWORD"
 
-[ -n "$user" ]     || prompt user
+[ -n "$user" ]     || prompt user || errxit "could not read username"
 [ -n "$user" ]     || errxit "username cannot be empty"
-[ -n "$password" ] || prompt password
+[ -n "$password" ] || prompt password || errxit "could not read password"
 [ -n "$password" ] || errxit "password cannot be empty"
 
 tmp=`mktemp /tmp/udge-submit-XXXXXXXXXX`
@@ -52,11 +52,14 @@ curl -w "%{http_code}\n" \
 	-Fproblem="$problem" \
 	-Flanguage="$language" \
 	-Fprogram=@"$program" >$tmp
-case `tail -1 $tmp` in
+http_code=`tail -1 $tmp`
+case $http_code in
 2*)
 	echo 'Submission successful' ;;
 *)
-	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,`basename $0`: ,"
+	bn=`basename $0`
+	echo "$bn: $http_code"
+	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,$bn: ,"
 	rm -f $tmp
 	exit 1
 esac
