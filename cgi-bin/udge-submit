@@ -117,9 +117,9 @@ post() {
 	[ -s "$problem_fn" ]              || problem_error="select the problem"
 	[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id"
 
-	sane-file "$language_fn"          || language_error="select the language"
-	[ -s "$language_fn" ]             || language_error="select the language"
-	# TODO: check that the language is valid here!
+	sane-file "$language_fn"              || language_error="select the language"
+	[ -s "$language_fn" ]                 || language_error="select the language"
+	[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language"
 
 	if has-error
 	then
