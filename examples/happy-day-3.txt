@@ -8,6 +8,9 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge
+udge-pick-and-judge: nothing to do
 $ ./examples/create-new-user $user1 u@example.com pass
 User created
 201
