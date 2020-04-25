@@ -1,12 +1,28 @@
-$ user=test-submit-rate-`date "+%Y%m%d-%H%M%S"`
-$ ./examples/create-new-user $user u@example.com pass
-User created
-201
-$ export UDGE_USERNAME=$user
 $ export UDGE_PASSWORD=pass
 $
+$ export UDGE_USERNAME=test-submit-second-`date "+%Y%m%d-%H%M%S"`
+$ ./examples/create-new-user $UDGE_USERNAME u@example.com $UDGE_PASSWORD
+User created
+201
 $
 $ udge-submit examples/hello.c
 Submission successful
 $ (udge-submit examples/hello.c; udge-submit examples/hello.c) | grep submission | tail -1
-udge-submit: no more than 1 submission per second
+udge-submit: no more than 1 submission per second, try again in a few seconds
+$
+$
+$ export UDGE_USERNAME=test-submit-minute-`date "+%Y%m%d-%H%M%S"`
+$ ./examples/create-new-user $UDGE_USERNAME u@example.com $UDGE_PASSWORD
+User created
+201
+$ udge-submit examples/hello.c
+Submission successful
+$ sleep 1.1
+$ udge-submit examples/hello.c
+Submission successful
+$ sleep 1.1
+$ udge-submit examples/hello.c
+Submission successful
+$ sleep 1.1
+$ udge-submit examples/hello.c
+udge-submit: no more than 3 submissions on the queue per user, try again in a few minutes
