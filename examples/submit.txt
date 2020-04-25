@@ -24,3 +24,5 @@ $ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-passw
 $ . etc/udge/conf
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/,"
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
+$ curl -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/yes.c | grep h3
+<h3>Submission successful</h3>

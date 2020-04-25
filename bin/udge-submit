@@ -36,13 +36,13 @@ problem="$2"
 language="$3"
 [ -n "$language" ] || language=$(basename "$program" | cut -d. -f2)
 
-user="$UDGE_USER"
+user="$UDGE_USERNAME"
 password="$UDGE_PASSWORD"
 
 [ -n "$user" ]     || prompt user
+[ -n "$user" ]     || errxit "username cannot be empty"
 [ -n "$password" ] || prompt password
-
-echo $program $problem $language
+[ -n "$password" ] || errxit "password cannot be empty"
 
 tmp=`mktemp /tmp/udge-submit-XXXXXXXXXX`
 curl -w "%{http_code}\n" \
