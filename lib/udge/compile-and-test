@@ -63,6 +63,7 @@ checkexitcode=check-exit-code
 $checkexitcode $exitcode || fail "No - runtime error (non-zero exit code)"
 
 check-out() {
+	# TODO: add flag that shows diff?
 	diff -q "$1" "$2" >/dev/null
 }
 check=check-out
