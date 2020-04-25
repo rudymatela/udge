@@ -14,7 +14,7 @@ $ export UDGE_PASSWORD=the-password
 $
 $
 $ udge-submit examples/hello.c
-Submission successful
+Submission successful (202)
 $
 $
 $ UDGE_PASSWORD=wrong udge-submit examples/hello.c

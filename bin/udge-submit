@@ -55,7 +55,7 @@ curl -w "%{http_code}\n" \
 http_code=`tail -1 $tmp`
 case $http_code in
 2*)
-	echo 'Submission successful' ;;
+	echo "Submission successful ($http_code)" ;;
 *)
 	bn=`basename $0`
 	echo "$bn: $http_code"

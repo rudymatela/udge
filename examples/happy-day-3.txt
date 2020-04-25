@@ -16,14 +16,14 @@ User created
 201
 $
 $ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes add
-Submission successful
+Submission successful (202)
 $ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs add
-Submission successful
+Submission successful (202)
 $ sleep 1
 $ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes46 add
-Submission successful
+Submission successful (202)
 $ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs hello-world
-Submission successful
+Submission successful (202)
 $
 $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"

@@ -19,13 +19,13 @@ $ export UDGE_PASSWORD=pass
 $
 $
 $ udge-submit examples/add/yes.c add
-Submission successful
+Submission successful (202)
 $ sleep 1.1  # no more than 1 submission per second per user
 $ udge-submit examples/add/yes-4-6.c add
-Submission successful
+Submission successful (202)
 $ sleep 1.1  # no more than 1 submission per second per user
 $ udge-submit examples/add/wa.c add
-Submission successful
+Submission successful (202)
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
