@@ -1,4 +1,4 @@
-$ user=test-happy1-`date "+%Y%m%d-%H%M%S"`
+$ user=test-submit-rate-`date "+%Y%m%d-%H%M%S"`
 $ ./examples/create-new-user $user u@example.com pass
 User created
 201
