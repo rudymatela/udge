@@ -4,6 +4,7 @@ $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
 $
 $
 $ ./examples/create-new-user $user u@example.com pass
