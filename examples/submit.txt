@@ -25,6 +25,20 @@ $ UDGE_USERNAME=$UDGE_USERNAME-does-not-exist udge-submit examples/hello.c
 udge-submit: invalid credentials
 $
 $
+$ udge-submit examples/hello.c invalid-problem
+udge-submit: invalid problem id
+$
+$
+$ udge-submit examples/hello.c hello blub
+udge-submit: invalid or unsupported language
+$
+$
+$ UDGE_USERNAME='#!/\X12' UDGE_PASSWORD=pass udge-submit examples/hello.c invalid-problem blub
+udge-submit: invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+udge-submit: invalid or unsupported language
+udge-submit: invalid problem id
+$
+$
 $ sleep 1.1
 $
 $ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
