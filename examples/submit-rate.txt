@@ -25,4 +25,5 @@ $ udge-submit examples/hello.c
 Submission successful (202)
 $ sleep 1.1
 $ udge-submit examples/hello.c
+udge-submit: 429
 udge-submit: no more than 3 submissions on the queue per user, try again in a few minutes
