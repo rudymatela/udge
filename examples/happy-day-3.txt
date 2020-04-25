@@ -6,6 +6,8 @@ $ wa=examples/add/wa.c
 $ yeshs=examples/add/yes.hs
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
 $ curl -sXPOST udge/new-user -duser=$user1 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
 $ curl -sXPOST udge/new-user -duser=$user2 -demail=u@example.com -demail-confirmation=u@example.com -dpassword=pass -dpassword-confirmation=pass >/dev/null
 $
@@ -16,14 +18,12 @@ $ curl -sXPOST udge/submit -duser=$user1 -dpassword=pass -dproblem=add  -dlangua
 $ curl -sXPOST udge/submit -duser=$user2 -dpassword=pass -dproblem=hello-world -dlanguage=hs --data-urlencode program@$yeshs >/dev/null
 $
 $
-$ . etc/udge/conf
-$
-$
-$ find $SUBMISSIONS/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$SUBMISSIONS,.../submissions,"
-.../submissions/<u1>/YYYYMMDD-HHMMSS/add.c
-.../submissions/<u1>/YYYYMMDD-HHMMSS/add.c
-.../submissions/<u2>/YYYYMMDD-HHMMSS/add.hs
-.../submissions/<u2>/YYYYMMDD-HHMMSS/hello-world.hs
+$ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+YYYY-MM-DD HH:MM:SS  add.c            -   pending
+YYYY-MM-DD HH:MM:SS  add.c            -   pending
+$ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+YYYY-MM-DD HH:MM:SS  hello-world.hs   -   pending
+YYYY-MM-DD HH:MM:SS  add.hs           -   pending
 $
 $
 $ udge-pick-and-judge >/dev/null
@@ -34,29 +34,13 @@ $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
 $
 $
-$ find $RESULTS/{$user1,$user2} -type f | sort | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$RESULTS,.../results," | sort
-.../results/<u1>/add/best
-.../results/<u1>/add/YYYYMMDD-HHMMSS/add.c
-.../results/<u1>/add/YYYYMMDD-HHMMSS/add.c
-.../results/<u1>/add/YYYYMMDD-HHMMSS/result
-.../results/<u1>/add/YYYYMMDD-HHMMSS/result
-.../results/<u2>/add/best
-.../results/<u2>/add/YYYYMMDD-HHMMSS/add.hs
-.../results/<u2>/add/YYYYMMDD-HHMMSS/result
-.../results/<u2>/hello-world/best
-.../results/<u2>/hello-world/YYYYMMDD-HHMMSS/hello-world.hs
-.../results/<u2>/hello-world/YYYYMMDD-HHMMSS/result
+$ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
+YYYY-MM-DD HH:MM:SS  add.c           6/6
+$ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
+YYYY-MM-DD HH:MM:SS  add.hs          6/6
 $
-$ for file in $RESULTS/{$user1,$user2}/*/*/result; do echo -n $file:; tail -1 $file; done | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$RESULTS,.../results," | sort
-.../results/<u1>/add/YYYYMMDD-HHMMSS/result:4/6
-.../results/<u1>/add/YYYYMMDD-HHMMSS/result:6/6
-.../results/<u2>/add/YYYYMMDD-HHMMSS/result:6/6
-.../results/<u2>/hello-world/YYYYMMDD-HHMMSS/result:0/1
-$
-$ grep "" $RESULTS/{$user1,$user2}/*/best | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,$RESULTS,.../results," | sort
-.../results/<u1>/add/best:6/6
-.../results/<u2>/add/best:6/6
-.../results/<u2>/hello-world/best:0/1
 $
 $ udge-user-stats $user1
 1 problems solved
