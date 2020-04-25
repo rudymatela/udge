@@ -34,8 +34,8 @@ sane-email "$email" || errxit "invalid email address"
 user_dir="$USERS/$user"
 [ -d "$user_dir" ] && errxit "username already exists"
 
-prompt "password: "        -s password
-prompt "retype password: " -s password_confirmation
+prompt -s password              "password: "
+prompt -s password_confirmation "retype password: "
 
 [ "_$password" == "_$password_confirmation" ] || errxit "passwords do not match $password $password_confirmation"
 

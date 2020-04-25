@@ -48,10 +48,16 @@ termecho() {
 }
 
 prompt() {
-	termecho -n "$1"
-	shift
-	read "$@"
-	termecho
+	case $1 in
+	-s) flag=-s; shift;;
+	*) flag=;;
+	esac
+	var="$1"
+	msg="$2"
+	[ -n "$msg" ] || msg="$var: "
+	termecho -n "$msg"
+	read $flag "$var"
+	[ -n "$flag" ] && termecho || true
 }
 
 cator1() {

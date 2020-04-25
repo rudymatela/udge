@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# udge-submit: creates a submission on Udge by calling the web interface
+#
+# Usage: udge-submit <program> <problem> <language>
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+
+set -e
+
+program="$1"
+
+[ -n "$program" ] || errxit "missing program argument"
+[ -f "$program" ] || errxit "'$program', file not found"
+
+problem="$2"
+[ -n "$problem" ]  || problem=$(basename "$program" | cut -d. -f1)
+
+language="$3"
+[ -n "$language" ] || language=$(basename "$program" | cut -d. -f2)
+
+user="$UDGE_USER"
+password="$UDGE_PASSWORD"
+
+[ -n "$user" ]     || prompt user
+[ -n "$password" ] || prompt password
+
+echo $program $problem $language
+
+tmp=`mktemp /tmp/udge-submit-XXXXXXXXXX`
+curl -w "%{http_code}\n" \
+	-sXPOST udge/submit \
+	-Fuser="$user" \
+	-Fpassword="$password" \
+	-Fproblem="$problem" \
+	-Flanguage="$language" \
+	-Fprogram=@"$program" >$tmp
+case `tail -1 $tmp` in
+2*)
+	echo 'Submission successful' ;;
+*)
+	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,$0: ,"
+	rm -f $tmp
+	exit 1
+esac
+rm -f $tmp

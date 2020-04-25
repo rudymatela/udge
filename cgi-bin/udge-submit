@@ -124,6 +124,7 @@ post() {
 
 	sane-file "$language_fn"          || language_error="select the language"
 	[ -s "$language_fn" ]             || language_error="select the language"
+	# TODO: check that the language is valid here!
 
 	if has-error
 	then
