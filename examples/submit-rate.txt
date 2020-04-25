@@ -1,0 +1,12 @@
+$ user=test-happy1-`date "+%Y%m%d-%H%M%S"`
+$ ./examples/create-new-user $user u@example.com pass
+User created
+201
+$ export UDGE_USERNAME=$user
+$ export UDGE_PASSWORD=pass
+$
+$
+$ udge-submit examples/hello.c
+Submission successful
+$ (udge-submit examples/hello.c; udge-submit examples/hello.c) | grep submission | tail -1
+udge-submit: no more than 1 submission per second

@@ -38,6 +38,7 @@ test-web: \
 test-web-noindex: \
   new-user.clitest \
   submit.clitest \
+  submit-rate.clitest \
   test-happy
 
 test-happy: \

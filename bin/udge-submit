@@ -56,7 +56,7 @@ case `tail -1 $tmp` in
 2*)
 	echo 'Submission successful' ;;
 *)
-	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,$0: ,"
+	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,`basename $0`: ,"
 	rm -f $tmp
 	exit 1
 esac

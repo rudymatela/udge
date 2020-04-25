@@ -143,6 +143,14 @@ post() {
 
 	timestamp=`date -u "+%Y%m%d-%H%M%S"`
 	destdir="$SUBMISSIONS/$user_value/$timestamp"
+	[ -d $destdir ] && program_error="no more than 1 submission per second"
+	if has-error
+	then
+		status=status-429-too-many-requests
+		get
+		rm -r $tmpdata
+		exit
+	fi
 	destfile="$destdir/$problem_value.$language_value"
 	umask 0002 # allows for members of the http group to write (or remove)
 	mkdir -p $destdir
