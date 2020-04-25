@@ -33,9 +33,6 @@
 # TODO: block to 1 submission per minute window (glob)
 # TODO: block to 5 submissions per user total in the queue
 
-# TODO: remove responsive form?
-#       (just print out the error message at the top and clear all the fields)
-
 
 set -e
 
