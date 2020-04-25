@@ -142,9 +142,9 @@ post() {
 	fi
 
 	timestamp=`date -u "+%Y%m%d-%H%M%S"`
-	umask 0002 # allows for members of the http group to write (or remove)
 	destdir="$SUBMISSIONS/$user_value/$timestamp"
 	destfile="$destdir/$problem_value.$language_value"
+	umask 0002 # allows for members of the http group to write (or remove)
 	mkdir -p $destdir
 	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"
 
