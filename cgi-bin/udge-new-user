@@ -95,7 +95,7 @@ has-error() {
 
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
-	../bin/cgi-create-data-files $tmpdata
+	$bin/cgi-create-data-files $tmpdata
 
 	user_fn="$tmpdata/user/value"
 	password_fn="$tmpdata/password/value"
@@ -131,10 +131,8 @@ post() {
 		exit
 	fi
 
-	mkdir -p "$user_dir"
-	cat $SALT_FILE $password_fn | sha256sum | sed -e "s/ .*//" > "$user_dir/password"
-	cp "$email_fn" "$user_dir/email"
-
+	echo | cat $password_fn - $password_confirmation_fn |
+		$bin/udge-add-user $user_value $email_value
 
 	rm -r $tmpdata
 	status=status-201-created

@@ -40,6 +40,20 @@ errxit() {
 	exit 1
 }
 
+termecho() {
+	if [ -t 0 ] && [ -t 1 ]
+	then
+		echo "$@"
+	fi
+}
+
+prompt() {
+	termecho -n "$1"
+	shift
+	read "$@"
+	termecho
+}
+
 cator1() {
 	[ -f "$1" ] && cat $1 || echo 1
 }

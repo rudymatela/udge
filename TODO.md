@@ -1,11 +1,6 @@
 TODO list for Udge
 ==================
 
-* avoid `$RESULTS` and `$SUBMISSIONS` funky business on `examples/happy-day-*.txt`
-  by using `udge-latest-results` and `udge-user-stats`
-
-* add `bin/udge-add-user` (non-CGI)
-
 * add `bin/udge-submit` (non-CGI)
 
 * submissions are overwritten if they are created within the same second for the same user, rate limit to fix this
