@@ -1,23 +1,35 @@
-$ udge-judge add examples/add/yes.c
+$ udge-judge add examples/add/add.c
 6/6
-$ udge-judge add examples/add/yes-5-6.c 2>&1 | tail -2
-No - compile error (C)
-5/6
-$ udge-judge add examples/add/yes-4-6.c
-No - wrong output
-4/6
-$ udge-judge add examples/add/wa.c
+$ udge-judge add examples/add/0-wo.c
 No - wrong output
 0/6
-$ udge-judge add examples/add/re.c 2>&1 | tail -2
+$ udge-judge add examples/add/0-re.c 2>&1 | tail -2
 No - runtime error (non-zero exit code)
 0/6
-$ udge-judge add examples/add/re2.c
+$ udge-judge add examples/add/0-re2.c
 No - runtime error (non-zero exit code)
 0/6
-$ udge-judge add examples/add/tle.c
+$ udge-judge add examples/add/0-tle.c
 No - time limit exceeded
 0/6
-$ udge-judge add examples/add/ce.c 2>&1 | tail -2
+$ udge-judge add examples/add/0-ce.c 2>&1 | tail -2
 No - compile error (C)
 0/6
+$ udge-judge add examples/add/1-egio-a.c
+No - wrong output
+1/6
+$ udge-judge add examples/add/1-egio-b.c
+No - wrong output
+1/6
+$ udge-judge add examples/add/0-egio.c
+No - wrong output
+0/6
+$ udge-judge add examples/add/2-egio.c
+No - wrong output
+2/6
+$ udge-judge add examples/add/4-octals.c
+No - wrong output
+4/6
+$ udge-judge add examples/add/5-no-function.c 2>&1 | tail -2
+No - compile error (C)
+5/6
