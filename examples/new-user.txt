@@ -100,6 +100,23 @@ New user
 username already exists (pick another)
 409
 
+$ curl -XPOST udge/new-user -Fuser=../../../../../bin/ls -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=notanemail -Femail-confirmation=notanemail -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+invalid or unsupported email address
+invalid or unsupported email address
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=.@... -Femail-confirmation=.@... -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+invalid or unsupported email address
+invalid or unsupported email address
+422
+
 $ grep -R ".*" /etc/udge/users/$user/ | sed -e "s,.*/,," | sort
 email:u@example.com
 password:b3c3e62cc12d233b23442fc9cdd226ebe60f0549a6a7e9ad9e7b6a9520c393b5
