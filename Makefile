@@ -94,6 +94,8 @@ tidy-public_html: html
 
 clean-test-users:
 	rm -rf /etc/udge/users/test-*-*-*
+	rm -rf /var/lib/udge/results/test-*-*-*
+	rm -rf /var/lib/udge/submissions/test-*-*-*
 	rm -rf public_html/u/test-*-*-*.html
 
 $(PUBLIC_HTML)/%.css: lib/udge/%.css
