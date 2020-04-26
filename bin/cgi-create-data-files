@@ -23,8 +23,7 @@
 import os
 import sys
 import cgi
-
-# TODO: limit parsed params to "[-a-zA-Z0-9]"
+import re
 
 form = cgi.FieldStorage()
 
@@ -35,6 +34,9 @@ else:
 
 try:
 	for param in form:
+		if not re.match("[a-zA-Z0-9][-_a-zA-Z0-9]*", param):
+			print("cgi-create-data-files: skipping parameter `%s` as it contains invalid characters", param, file=sys.stderr)
+			continue
 		field = form[param]
 		destsubdir      = os.path.join(destdir, param)
 		destfn_value    = os.path.join(destsubdir, "value")

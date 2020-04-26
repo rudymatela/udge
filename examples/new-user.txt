@@ -117,6 +117,15 @@ invalid or unsupported email address
 invalid or unsupported email address
 422
 
+$ curl -XPOST udge/new-user -F../../../../../../../bin/ls=bla | display
+New user
+username is missing
+email is missing
+email is missing
+password is missing
+password is missing
+422
+
 $ grep -R ".*" /etc/udge/users/$user/ | sed -e "s,.*/,," | sort
 email:u@example.com
 password:b3c3e62cc12d233b23442fc9cdd226ebe60f0549a6a7e9ad9e7b6a9520c393b5
