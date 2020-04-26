@@ -54,13 +54,14 @@ udge-submit: 422
 udge-submit: invalid language
 $
 $
+$ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
-$ curl -w "%{http_code}\n" -sXGET udge/submit | display
+$ curl -XGET udge/submit | display
 Submit your solution
 200
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit | display
+$ curl -XPOST udge/submit | display
 Submit your solution
 user is missing
 password is missing
@@ -69,7 +70,7 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -duser=someone | display
+$ curl -XPOST udge/submit -duser=someone | display
 Submit your solution
 password is missing
 program is missing
@@ -77,7 +78,7 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -dpassword=pw | display
+$ curl -XPOST udge/submit -dpassword=pw | display
 Submit your solution
 user is missing
 program is missing
@@ -85,7 +86,7 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -dprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -dprogram=@examples/hello.c | display
 Submit your solution
 user is missing
 password is missing
@@ -93,7 +94,7 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -dproblem=hello | display
+$ curl -XPOST udge/submit -dproblem=hello | display
 Submit your solution
 user is missing
 password is missing
@@ -101,7 +102,7 @@ program is missing
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -dlanguage=c | display
+$ curl -XPOST udge/submit -dlanguage=c | display
 Submit your solution
 user is missing
 password is missing
@@ -109,7 +110,7 @@ program is missing
 select the problem
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" | display
+$ curl -XPOST udge/submit --data-urlencode "user=user&password=pass" | display
 Submit your solution
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 password is missing
@@ -118,33 +119,33 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submit your solution
 user is missing
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submit your solution
 password is missing
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c | display
 Submit your solution
 program is missing
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/hello.c | display
 Submit your solution
 select the problem
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Fprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Fprogram=@examples/hello.c | display
 Submit your solution
 select the language
 422
 
 $ sleep 1
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submission successful
 202
 
@@ -154,7 +155,7 @@ $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 
 $ sleep 1
-$ curl -w "%{http_code}\n" -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
+$ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
 202
 
