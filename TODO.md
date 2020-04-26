@@ -43,3 +43,5 @@ Future
 * add instructions on how to set up an `udge` user
 
 * run stuff as `nobody` where applicable
+
+* block huge files (> 8KB) and add test
