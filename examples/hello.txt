@@ -1,32 +1,32 @@
-$ udge-judge hello examples/hello/yes.c
+$ udge-judge hello examples/hello/hello.c
 6/6
-$ udge-judge hello examples/hello/no-0-6-file-not-found.c 2>/dev/null
+$ udge-judge hello examples/hello/0-fnf.c 2>/dev/null
 No - source file not found
 0/6
-$ udge-judge hello examples/hello/no-0-6-ce.c 2>/dev/null
+$ udge-judge hello examples/hello/0-ce.c 2>/dev/null
 No - compile error (C)
 0/6
-$ udge-judge hello examples/hello/no-0-6-tle.c 2>/dev/null
+$ udge-judge hello examples/hello/0-tle.c 2>/dev/null
 No - time limit exceeded
 0/6
-$ udge-judge hello examples/hello/no-1-6-a.c
+$ udge-judge hello examples/hello/1-wo-a.c
 No - wrong output
 1/6
-$ udge-judge hello examples/hello/no-1-6-b.c
+$ udge-judge hello examples/hello/1-wo-b.c
 No - wrong output
 1/6
-$ udge-judge hello examples/hello/no-2-6-a.c
+$ udge-judge hello examples/hello/2-wo-a.c
 No - wrong output
 2/6
-$ udge-judge hello examples/hello/no-2-6-b.c
+$ udge-judge hello examples/hello/2-wo-b.c
 No - wrong output
 2/6
-$ udge-judge hello examples/hello/no-3-6.c
+$ udge-judge hello examples/hello/3-re.c
 No - runtime error (non-zero exit code)
 3/6
-$ udge-judge hello examples/hello/no-4-6.c
+$ udge-judge hello examples/hello/4-wo.c
 No - wrong output
 4/6
-$ udge-judge hello examples/hello/no-5-6.c
+$ udge-judge hello examples/hello/5-wo.c
 No - wrong output
 5/6
