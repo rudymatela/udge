@@ -10,10 +10,10 @@ New user
 $ curl -XPOST udge/new-user | display
 New user
 username is missing
-emails do not match
-emails do not match
-passwords do not match
-passwords do not match
+email is missing
+email is missing
+password is missing
+password is missing
 422
 
 $ curl -XPOST udge/new-user              -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
@@ -23,14 +23,14 @@ username is missing
 
 $ curl -XPOST udge/new-user -Fuser=$user                       -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user
-emails do not match
-emails do not match
+email is missing
+email is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user                                                          -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user
-emails do not match
-emails do not match
+email is missing
+email is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com                                    -Fpassword=the-password -Fpassword-confirmation=the-password | display
@@ -41,14 +41,14 @@ emails do not match
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                         -Fpassword-confirmation=the-password | display
 New user
-passwords do not match
-passwords do not match
+password is missing
+password is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                                                              | display
 New user
-passwords do not match
-passwords do not match
+password is missing
+password is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password                                      | display
