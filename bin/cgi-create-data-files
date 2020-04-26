@@ -34,14 +34,20 @@ if len(sys.argv) > 1:
 else:
 	destdir = ""
 
-for param in form:
-	field = form[param]
-	destsubdir      = os.path.join(destdir, param)
-	destfn_value    = os.path.join(destsubdir, "value")
-	destfn_filename = os.path.join(destsubdir, "filename")
-	os.makedirs(destsubdir, exist_ok=True)
-	if field.filename == None:
-		open(destfn_value, "w").write(field.value)
-	else:
-		open(destfn_filename, "w").write(field.filename)
-		open(destfn_value, "wb").write(field.file.read())
+try:
+	for param in form:
+		field = form[param]
+		destsubdir      = os.path.join(destdir, param)
+		destfn_value    = os.path.join(destsubdir, "value")
+		destfn_filename = os.path.join(destsubdir, "filename")
+		os.makedirs(destsubdir, exist_ok=True)
+		if field.filename == None:
+			open(destfn_value, "w").write(field.value)
+		else:
+			open(destfn_filename, "w").write(field.filename)
+			open(destfn_value, "wb").write(field.file.read())
+except TypeError as e:
+	# When the form is empty, 'cgi.FieldStorage()' is not indexable.
+	# Is this a bug in the cgi library?
+	if e.args[0] != "not indexable":
+		raise e

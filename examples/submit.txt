@@ -46,8 +46,13 @@ $
 $
 $ sleep 1.1
 $
-$ curl -sXPOST udge/submit | grep TypeError:  # TODO: FIXME: should be error 400
-TypeError: not indexable
+$ curl -w "%{http_code}\n" -sXPOST udge/submit | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
+<span class="help-block">user is missing</span>
+<span class="help-block">password is missing</span>
+<span class="help-block">program is missing</span>
+<span class="help-block">select the problem</span>
+<span class="help-block">select the language</span>
+422
 $ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
 <span class="help-block">user is missing</span>
 <span class="help-block">password is missing</span>
