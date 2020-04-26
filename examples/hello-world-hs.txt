@@ -1,14 +1,14 @@
-$ udge-judge hello-world examples/hello-world/yes.hs 2>/dev/null | tail -1
+$ udge-judge hello-world examples/hello-world/hello-world.hs 2>/dev/null | tail -1
 1/1
-$ udge-judge hello-world examples/hello-world/no.hs 2>/dev/null | tail -2
+$ udge-judge hello-world examples/hello-world/0-wo.hs 2>/dev/null | tail -2
 No - wrong output
 0/1
-$ udge-judge hello-world examples/hello-world/no-ce.hs 2>/dev/null | tail -2
+$ udge-judge hello-world examples/hello-world/0-ce.hs 2>/dev/null | tail -2
 No - compile error (Haskell)
 0/1
-$ udge-judge hello-world examples/hello-world/no-tle.hs 2>/dev/null | tail -2
+$ udge-judge hello-world examples/hello-world/0-tle.hs 2>/dev/null | tail -2
 No - time limit exceeded
 0/1
-$ udge-judge hello-world examples/hello-world/no-re.hs 2>/dev/null | tail -2
+$ udge-judge hello-world examples/hello-world/0-re.hs 2>/dev/null | tail -2
 No - runtime error (non-zero exit code)
 0/1

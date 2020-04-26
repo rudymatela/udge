@@ -1,16 +1,16 @@
-$ udge-judge hello-world examples/hello-world/yes.py
+$ udge-judge hello-world examples/hello-world/hello-world.py
 1/1
-$ udge-judge hello-world examples/hello-world/no.py
+$ udge-judge hello-world examples/hello-world/0-wo.py
 No - wrong output
 0/1
-$ udge-judge hello-world examples/hello-world/no-ce.py 2>/dev/null
+$ udge-judge hello-world examples/hello-world/0-ce.py 2>/dev/null
 No - parse error (Python)
 0/1
-$ udge-judge hello-world examples/hello-world/no-tle.py
+$ udge-judge hello-world examples/hello-world/0-tle.py
 No - time limit exceeded
 0/1
-$ udge-judge hello-world examples/hello-world/no-re.py
+$ udge-judge hello-world examples/hello-world/0-re.py
 No - runtime error (non-zero exit code)
 0/1
-$ udge-judge hello-world examples/hello-world/yes-2.py
+$ udge-judge hello-world examples/hello-world/hello-world-2.py
 1/1

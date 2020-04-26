@@ -1,14 +1,14 @@
-$ udge-judge hello-world examples/hello-world/yes.c
+$ udge-judge hello-world examples/hello-world/hello-world.c
 1/1
-$ udge-judge hello-world examples/hello-world/no.c
+$ udge-judge hello-world examples/hello-world/0-wo.c
 No - wrong output
 0/1
-$ udge-judge hello-world examples/hello-world/no-ce.c 2>/dev/null
+$ udge-judge hello-world examples/hello-world/0-ce.c 2>/dev/null
 No - compile error (C)
 0/1
-$ udge-judge hello-world examples/hello-world/no-tle.c
+$ udge-judge hello-world examples/hello-world/0-tle.c
 No - time limit exceeded
 0/1
-$ udge-judge hello-world examples/hello-world/no-re.c
+$ udge-judge hello-world examples/hello-world/0-re.c
 No - runtime error (non-zero exit code)
 0/1
