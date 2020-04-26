@@ -7,6 +7,56 @@ $ curl -XGET udge/new-user | display
 New user
 200
 
+$ curl -XPOST udge/new-user | display
+New user
+username is missing
+emails do not match
+emails do not match
+passwords do not match
+passwords do not match
+422
+
+$ curl -XPOST udge/new-user              -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+username is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user                       -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+emails do not match
+emails do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user                                                          -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+emails do not match
+emails do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com                                    -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+emails do not match
+emails do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                         -Fpassword-confirmation=the-password | display
+New user
+passwords do not match
+passwords do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                                                              | display
+New user
+passwords do not match
+passwords do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password                                      | display
+New user
+passwords do not match
+passwords do not match
+422
+
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 User created
 201
