@@ -44,9 +44,6 @@ udge-submit: invalid or unsupported language
 udge-submit: invalid problem id
 $
 $
-$ sleep 1
-$
-$
 $ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
 $ curl -w "%{http_code}\n" -sXPOST udge/submit | display
@@ -100,16 +97,17 @@ Submit your solution
 select the language
 422
 
+$ sleep 1
 $ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submission successful
 202
 
-$ sleep 1
 $ . etc/udge/conf
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/," | sort; echo
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 
+$ sleep 1
 $ curl -w "%{http_code}\n" -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
 202
