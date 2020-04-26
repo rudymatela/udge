@@ -41,7 +41,7 @@ password="$UDGE_PASSWORD"
 
 [ -n "$user" ]     || prompt user || errxit "could not read username"
 [ -n "$user" ]     || errxit "username cannot be empty"
-[ -n "$password" ] || prompt password || errxit "could not read password"
+[ -n "$password" ] || prompt -s password || errxit "could not read password"
 [ -n "$password" ] || errxit "password cannot be empty"
 
 tmp=`mktemp /tmp/udge-submit-XXXXXXXXXX`
