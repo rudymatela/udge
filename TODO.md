@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* improve testing of cgi scripts, test thoroughly
-
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
 
 Future
