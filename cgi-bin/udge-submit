@@ -113,11 +113,11 @@ post() {
 
 	[ -s "$program_fn" ]  || program_error="program is missing"
 
-	sane-file "$problem_fn"           || problem_error="select the problem"
+	sane-file "$problem_fn"           || problem_error="problem id invalid" problem_value=""
 	[ -s "$problem_fn" ]              || problem_error="select the problem"
 	[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id"
 
-	sane-file "$language_fn"              || language_error="select the language"
+	sane-file "$language_fn"              || language_error="invalid language" language_value=""
 	[ -s "$language_fn" ]                 || language_error="select the language"
 	[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language"
 
