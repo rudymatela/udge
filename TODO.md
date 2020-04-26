@@ -29,6 +29,8 @@ Future
 	- on `udge-user-stats <user> short`, use the variable value instead of the
 	  custom scoring
 
+	- some types: `icpc`, `udge`, `lang`, etc...
+
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently).  The affected scripts are:
 
