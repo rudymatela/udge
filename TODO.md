@@ -8,7 +8,11 @@ Future
 
 * installation script
 
-* sandbox before running submissions
+* sandbox before running submissions:
+	- protect disk access
+	- protect from forkbombs
+	- protect from out-of-memory DOSs
+	- protect from network access
 
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
