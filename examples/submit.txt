@@ -55,7 +55,39 @@ select the problem
 select the language
 422
 
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | display
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -duser=someone | display
+Submit your solution
+password is missing
+program is missing
+select the problem
+select the language
+422
+
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -dpassword=pw | display
+Submit your solution
+user is missing
+program is missing
+select the problem
+select the language
+422
+
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -dprogram=@examples/hello.c | display
+Submit your solution
+user is missing
+password is missing
+select the problem
+select the language
+422
+
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -dproblem=hello | display
+Submit your solution
+user is missing
+password is missing
+program is missing
+select the language
+422
+
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -dlanguage=c | display
 Submit your solution
 user is missing
 password is missing
