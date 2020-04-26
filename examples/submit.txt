@@ -72,6 +72,18 @@ program is missing
 select the problem
 select the language
 422
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+Submit your solution
+user is missing
+422
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+Submit your solution
+password is missing
+422
+$ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c | display
+Submit your solution
+program is missing
+422
 $ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submission successful
 202
