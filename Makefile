@@ -22,6 +22,7 @@ test: \
   test-web
 
 test-scripts: \
+  test-makefile \
   judge.clitest \
   hello-world.clitest \
   hello-world-hs.clitest \
@@ -45,6 +46,13 @@ test-happy: \
   happy-day-1.clitest \
   happy-day-2.clitest \
   happy-day-3.clitest
+
+test-makefile:
+	rm -f /tmp/udge-clitests /tmp/udge-txts
+	cat Makefile  | grep -E '[-a-z0-9]+\.clitest' | sed -e 's/ *//g; s/.clitest.*//' | sort > /tmp/udge-clitests
+	ls -1 examples/*.txt | sed -e 's,examples/,,; s,.txt,,'                          | sort > /tmp/udge-txts
+	diff -rud /tmp/udge-clitests /tmp/udge-txts
+	rm -f /tmp/udge-clitests /tmp/udge-txts
 
 .PHONY: %.clitest
 %.clitest: examples/%.txt
