@@ -79,6 +79,18 @@ passwords do not match
 passwords do not match
 422
 
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=w@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+emails do not match
+emails do not match
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=A-password., | display
+New user
+passwords do not match
+passwords do not match
+422
+
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 User created
 201
