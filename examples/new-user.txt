@@ -16,6 +16,28 @@ password is missing
 password is missing
 422
 
+$ curl -XPOST udge/new-user -Fuser=$user | display
+New user
+email is missing
+email is missing
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user
+username is missing
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user
+username is missing
+email is missing
+email is missing
+422
+
 $ curl -XPOST udge/new-user              -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user
 username is missing
