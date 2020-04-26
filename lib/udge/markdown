@@ -27,8 +27,24 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 index=
 [ "`basename $1`" = index.md ] && index=index
 
+copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
+
 html-header "`head -1 "$1"`"
 html-navbar $index
-markdown "$@"
-html-navbar $index
+if grep -q "$copyright" "$@"
+then
+	grep -B10000 "$copyright" "$@" | head -n -1 | markdown
+	html-navbar $index
+	echo '<p style="text-align:right;font-size:smaller">'
+	# This automatically links a few license types
+	grep -A10000 "$copyright" "$@" |
+		sed -e 's|CC BY-SA 4.0|<a href="https://creativecommons.org/licenses/by-sa/4.0/">&</a>|' |
+		sed -e 's|CC BY-NC-ND 4.0|<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">&</a>|' |
+		sed -e 's|GFDL 1.3|<a href="https://www.gnu.org/licenses/fdl-1.3.html">&</a>|' |
+		sed -e "s/$/<br>/"
+	echo '</p>'
+else
+	markdown "$@"
+	html-navbar $index
+fi
 html-footer
