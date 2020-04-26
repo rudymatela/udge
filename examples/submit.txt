@@ -46,25 +46,25 @@ $
 $
 $ sleep 1.1
 $
-$ curl -w "%{http_code}\n" -sXPOST udge/submit | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
-<span class="help-block">user is missing</span>
-<span class="help-block">password is missing</span>
-<span class="help-block">program is missing</span>
-<span class="help-block">select the problem</span>
-<span class="help-block">select the language</span>
+$ curl -w "%{http_code}\n" -sXPOST udge/submit | grep -E "(help|^[0-9]+$)" | sed -e "s/<[^>]*>//g"
+user is missing
+password is missing
+program is missing
+select the problem
+select the language
 422
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
-<span class="help-block">user is missing</span>
-<span class="help-block">password is missing</span>
-<span class="help-block">program is missing</span>
-<span class="help-block">select the problem</span>
+$ curl -w "%{http_code}\n" -sXPOST udge/submit --data language=c | grep -E "(help|^[0-9]+$)" | sed -e "s/<[^>]*>//g"
+user is missing
+password is missing
+program is missing
+select the problem
 422
-$ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" | grep -E "(help|^[0-9]+$)" | sed -e "s/.*<span/<span/"
-<span class="help-block">invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)</span>
-<span class="help-block">password is missing</span>
-<span class="help-block">program is missing</span>
-<span class="help-block">select the problem</span>
-<span class="help-block">select the language</span>
+$ curl -w "%{http_code}\n" -sXPOST udge/submit --data-urlencode "user=user&password=pass" | grep -E "(help|^[0-9]+$)" | sed -e "s/<[^>]*>//g"
+invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+password is missing
+program is missing
+select the problem
+select the language
 422
 $ curl -w "%{http_code}\n" -sXPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | grep -E "(<h.>|help-block)"
 <h3>Submission successful</h3>
