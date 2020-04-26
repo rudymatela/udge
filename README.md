@@ -17,6 +17,10 @@ partial scores for:
 This is achieved both by permitting multiple sets of input/output files and
 custom test scripts.
 
+Udge is free/libre software.
+It is available under the GPL license
+unless otherwise stated in specific files.
+
 
 Installing and configuring
 --------------------------
