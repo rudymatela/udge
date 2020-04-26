@@ -119,6 +119,15 @@ select the problem
 select the language
 422
 
+$ curl -XPOST udge/submit -d../../../../../../../../../bin/ls | display
+Submit your solution
+user is missing
+password is missing
+program is missing
+select the problem
+select the language
+422
+
 $ curl -XPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
 Submit your solution
 user is missing
