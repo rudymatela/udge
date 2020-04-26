@@ -73,7 +73,7 @@ $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 $ sleep 1.1 # no more than 1 submission per second
-$ curl -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/yes.c | grep -E "(<h.>|help-block)"
+$ curl -sXPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | grep -E "(<h.>|help-block)"
 <h3>Submission successful</h3>
 $
 $

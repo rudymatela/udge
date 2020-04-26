@@ -1,5 +1,4 @@
 $ user=test-happy1-`date "+%Y%m%d-%H%M%S"`
-$ yes=examples/add/yes.c
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
@@ -18,7 +17,7 @@ $
 $
 $ export UDGE_USERNAME=$user
 $ export UDGE_PASSWORD=pass
-$ udge-submit examples/add/yes.c add
+$ udge-submit examples/add/add.c add
 Submission successful (202)
 $
 $

@@ -1,9 +1,5 @@
 $ user1=test-user1-`date "+%Y%m%d-%H%M%S"`
 $ user2=test-user2-`date "+%Y%m%d-%H%M%S"`
-$ yes=examples/add/yes.c
-$ yes46=examples/add/yes-4-6.c
-$ wa=examples/add/wa.c
-$ yeshs=examples/add/yes.hs
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
@@ -18,14 +14,14 @@ $ ./examples/create-new-user $user2 u@example.com pass
 User created
 201
 $
-$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes add
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit examples/add/add.c add
 Submission successful (202)
-$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs add
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit examples/add/add.hs add
 Submission successful (202)
 $ sleep 1
-$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit $yes46 add
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit examples/add/4-octals.c add
 Submission successful (202)
-$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit $yeshs hello-world
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit examples/hello-world/0-wo.hs hello-world
 Submission successful (202)
 $
 $
