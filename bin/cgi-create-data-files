@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #
-# cgi-create-data-files: TODO: describe me
+# cgi-create-data-files: stores CGI form field data in files
 #
-# Usage: cgi-create-data-files <folder>
+# Usage: cgi-create-data-files [folder]
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -19,6 +19,20 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Suppose the following request is made:
+#
+# $ curl -XPOST path/to/cgi-script -Fvalue1=data1 -Fvalue2=data2
+#
+# Then the following will be created if this script is called:
+#
+# $ grep -R "" .
+# value1/value:data1
+# value2/value:data2
+#
+# You can run this Python script and then get field data from files instead of
+# stdin.
 
 import os
 import sys
