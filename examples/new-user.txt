@@ -1,23 +1,20 @@
 $ user=test-new-user-`date "+%Y%m%d-%H%M%S"`
 $
+$ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
-$ curl -w "%{http_code}\n" -sXGET udge/new-user | display
+$ curl -XGET udge/new-user | display
 New user
 200
 
-$ curl -w "%{http_code}\n" -sXPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 User created
 201
 
-$ curl -w "%{http_code}\n" -sXPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user
 username already exists (pick another)
 409
-
-$ curl -w "%{http_code}\n" -sXPOST udge/new-user -Fuser=$user-2 -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
-User created
-201
 
 $ grep -R ".*" /etc/udge/users/$user/ | sed -e "s,.*/,," | sort
 email:u@example.com
