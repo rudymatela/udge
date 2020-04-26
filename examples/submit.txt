@@ -56,6 +56,10 @@ $
 $
 $ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
+$ curl -w "%{http_code}\n" -sXGET udge/submit | display
+Submit your solution
+200
+
 $ curl -w "%{http_code}\n" -sXPOST udge/submit | display
 Submit your solution
 user is missing
