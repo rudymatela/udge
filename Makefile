@@ -72,6 +72,10 @@ html: $(HTMLS)
 	./bin/udge-update-all-users-html
 	./bin/udge-update-rank-html
 
+html-force: $(HTMLS)
+	./bin/udge-update-all-users-html force
+	./bin/udge-update-rank-html
+
 clean-html:
 	rm -f $(HTMLS)
 
