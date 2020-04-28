@@ -5,5 +5,6 @@ USERS=/etc/udge/users
 PROBLEMS=/etc/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
+SCORE=fractions
 PUBLIC_HTML=/srv/udge
 GHCFLAGS=-dynamic # for Arch Linux

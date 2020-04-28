@@ -3,18 +3,7 @@ TODO list for Udge
 
 * installation script
 
-* add generic handling of scores:
-
-	- on `etc/udge/config`
-
-		```
-		SCORING=udge-type-1
-		```
-
-	- on `udge-user-stats <user> short`, use the variable value instead of the
-	  custom scoring
-
-	- some types: `icpc`, `udge`, `lang`, etc...
+* add ICPC-style scoring
 
 * add `results/rank` with a plaintext rank, and use it instead when generating the html
 

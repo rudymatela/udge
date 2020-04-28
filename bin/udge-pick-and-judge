@@ -34,11 +34,6 @@
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
-finish() {
-	echo "`basename $0`: $@"
-	exit 0
-}
-
 set -e
 
 [ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"

@@ -97,6 +97,15 @@ sane-email() {
 	echo "$1" | grep -qE "$SANE_EMAIL"
 }
 
+finish-() {
+	echo "$@"
+	exit 0
+}
+
+finish() {
+	finish- "`basename $0`: $@"
+}
+
 [ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?"
 bin=$prefix/bin
 lib=$prefix/lib/udge

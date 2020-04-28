@@ -1,6 +1,6 @@
 $ export UDGE_PASSWORD=pass
 $
-$ export UDGE_USERNAME=test-submit-second-`date "+%Y%m%d-%H%M%S"`
+$ export UDGE_USERNAME=test-submit-s-`date "+%Y%m%d-%H%M%S"`
 $ ./examples/create-new-user $UDGE_USERNAME u@example.com $UDGE_PASSWORD
 User created
 201
@@ -11,7 +11,7 @@ $ (udge-submit examples/hello.c; udge-submit examples/hello.c) | grep submission
 udge-submit: no more than 1 submission per second, try again in a few seconds
 $
 $
-$ export UDGE_USERNAME=test-submit-minute-`date "+%Y%m%d-%H%M%S"`
+$ export UDGE_USERNAME=test-submit-m-`date "+%Y%m%d-%H%M%S"`
 $ ./examples/create-new-user $UDGE_USERNAME u@example.com $UDGE_PASSWORD
 User created
 201

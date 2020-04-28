@@ -24,21 +24,26 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 
+mkrow() {
+	c='\([^ ]*\) *'
+	sed -e "s|^ *$c$c\(.*\)$|<pos<\1>><user<\2>><score<\3>>|" |
+	sed -e "s|  *|>><score<|g" |
+	sed -e "s|<pos<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
+	sed -e "s|<user<\([^>]*\)>>|<td><a href=\"/u/\1\">\1</a></td>|g" |
+	sed -e "s|<score<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
+	sed -e "s|^|<tr>|" |
+	sed -e "s|$|</tr>|"
+}
+
 html-header "User Rank - Udge"
 html-navbar rank
 echo "<h2>User Rank - Udge</h2>"
 echo '<table class="table table-hover">'
 echo '<thead>'
-rs=' style="text-align: right"'
-us=''
-echo "<tr><th$rs>#</th><th$us>user</th><th$rs>=1</th><th$rs>&ge;⅔</th><th$rs>&ge;½</th><th$rs>&ge;⅓</th><th$rs>&gt;0</th></tr>"
+echo "# user `$lib/score/$SCORE`" | html-escape | mkrow | sed -e 's/<td/<th/;s/td>/th>/' | sed -e "s|<a[^>]*>||;s|</a>||"
 echo '</thead>'
 echo '<tbody>'
-c='\([^ ]*\) *'
-t="<td>"
-r="<td$rs>"
-T="</td>"
-$bin/udge-rank | sed -e "s| *$c$c$c$c$c$c$c|<tr>$r\1$T$t<a href=\"/u/\2\">\2</a>$T$r\3$T$r\4$T$r\5$T$r\6$T$r\7$T</tr>|"
+$bin/udge-rank | mkrow
 echo '</tbody>'
 echo '</table>'
 html-navbar rank

@@ -42,7 +42,7 @@ $ udge-user-stats $user
 1 problems scored
 1 problems tried
 position ? on the rank
-score distribution: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
+score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  1
 hello         -   0
 hello-world   -   0
@@ -51,4 +51,4 @@ YYYY-MM-DD HH:MM:SS  add.c           6/6
 $
 $
 $ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/"
-<user>      1   1   1   1   1
+<user>      1  1 1 1 1

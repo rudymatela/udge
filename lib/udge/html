@@ -74,3 +74,12 @@ cat <<HTML
 </html>
 HTML
 }
+
+html-escape() {
+	if [ -n "$1" ]
+	then
+		echo "$@"
+	else
+		cat
+	fi | sed -e "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
+}

@@ -1,0 +1,30 @@
+#!/bin/bash
+prefix="$(dirname "$(dirname "$(dirname "$(dirname "$0")")")")"
+. "$prefix/lib/udge/core"
+user="$1"
+[ -n "$user" ] || finish- "=1 ≥⅔ ≥½ ≥⅓ >0"
+[ -d "$USERS/$user" ] || errxit "user not found"
+
+bests() {
+	cat $RESULTS/$user/*/best 2>/dev/null
+}
+
+problems-tried() {
+	bests | wc -l
+}
+
+problems-solved() {
+	bests | bc | grep "^1$" | wc -l
+}
+
+
+problems-scored() {
+	bests | grep -v "^0/" | wc -l
+}
+
+
+problems-() {
+	bests | sed -e "s/^/$1 <= $2*/" | bc | grep "^1$" | wc -l
+}
+
+echo "`problems-solved` `problems- 2 3` `problems- 1 2` `problems- 1 3` `problems-scored`"

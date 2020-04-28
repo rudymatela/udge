@@ -74,6 +74,7 @@ status-429-too-many-requests() {
 
 # TODO: test this very thoroughly to make sure nothing "escapes"
 # do I need more stuff on this list?
+# use html-escape() here
 mcat() {
 	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
 	true
