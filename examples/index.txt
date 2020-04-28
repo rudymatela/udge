@@ -1,5 +1,12 @@
-$ curl -s udge | grep "<title>"
-<title>Udge Online Judge</title>
+$ alias curl='curl -sw "%{http_code}\n"'
+$ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$ echo
+
+$ curl -s udge | display
+Udge Online Judge
+Problems
+200
+
 $ curl -s udge | grep hello
 <li><a href="/hello">hello</a></li>
 <li><a href="/hello-world">hello-world</a></li>

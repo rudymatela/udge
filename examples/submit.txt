@@ -1,9 +1,12 @@
-$ curl -w "%{http_code}\n" -s udge/submit | grep -E "(<h.>|^[0-9]+$)"
-<h2>Submit your solution</h2>
-200
-$
-$
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
+$ alias curl='curl -sw "%{http_code}\n"'
+$ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$
+$
+$ curl -s udge/submit | display
+Submit your solution
+200
+
 $ ./examples/create-new-user $user test-user@example.com the-password
 User created
 201
@@ -53,9 +56,6 @@ $ udge-submit examples/hello.c add "../../../../../../../bin/ls"
 udge-submit: 422
 udge-submit: invalid language
 $
-$
-$ alias curl='curl -sw "%{http_code}\n"'
-$ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
 $ curl -XGET udge/submit | display
 Submit your solution
