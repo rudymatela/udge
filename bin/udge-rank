@@ -27,7 +27,7 @@ i=0
 j=0
 for user in `ls-users`
 do
-	$bin/udge-user-stats $user short $1 ||
+	$bin/udge-user-stats $user short "$1" ||
 	errxit "`basename $0`: problem retrieving user stats ($user)"
 done |
 # the multiple nk's here allow for negative numbers to be considered
