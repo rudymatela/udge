@@ -1,0 +1,20 @@
+#!/bin/bash
+prefix="$(dirname "$(dirname "$(dirname "$(dirname "$0")")")")"
+. "$prefix/lib/udge/core"
+user="$1"
+[ -n "$user" ] || finish- "#-solved"
+[ -d "$USERS/$user" ] || errxit "user not found"
+
+bests() {
+	cat $RESULTS/$user/*/best 2>/dev/null
+}
+
+# like bests but in a single line
+bests1() {
+	bests | tr '\n' ' '
+}
+
+bests1 |
+	sed -e 's/ / + /g; s/$/0\n/; s/^/scale=1\n/' |
+	bc |
+	sed -e 's/^\./0./'
