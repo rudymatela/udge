@@ -111,7 +111,8 @@ post() {
 
 	[ -s "$password_fn" ] || password_error="password is missing"
 
-	[ -s "$program_fn" ]  || program_error="program is missing"
+	[ "`wc -c <$program_fn`" -le 8192 ] || program_error="source file is too big"
+	[ -s "$program_fn" ]                || program_error="program is missing"
 
 	sane-file "$problem_fn"           || problem_error="problem id invalid" problem_value=""
 	[ -s "$problem_fn" ]              || problem_error="select the problem"

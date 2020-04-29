@@ -9,8 +9,6 @@ TODO list for Udge
 
 	- `cgi-bin/new-user`: minimum password length and complexity
 
-	- `cgi-bin/submit`: block huge files (> 8KB) and add test
-
 Future
 ------
 

@@ -3,6 +3,13 @@ $ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
 $
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$
+$
 $ curl -s udge/submit | display
 Submit your solution
 200
@@ -163,6 +170,11 @@ $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
 $ sleep 1
 $ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
@@ -170,8 +182,24 @@ Submission successful
 
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/," | sort
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
-.../submissions/<user>/YYYYMMDD-HHMMSS/add.c
-.../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
+$
+$
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$
+$
+$ tmp=`mktemp /tmp/huge-XXXXXXXXXX`
+$ head -c8192 /dev/random > $tmp
+$ udge-submit $tmp hello-world c
+Submission successful (202)
+$ sleep 1
+$ head -c1 /dev/random >> $tmp
+$ udge-submit $tmp hello-world c
+udge-submit: 422
+udge-submit: source file is too big
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
