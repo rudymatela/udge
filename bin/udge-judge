@@ -41,12 +41,8 @@ cp "$program" "$tmpdir"
 prog="`basename $program`"
 (
 cd $tmpdir
-outof=0
 total=0
-for dir in $problemdir/*/; do
-	pts=`cator1 $dir/pts`
-	((outof+=$pts))
-done
+outof=`n-points "$1"`
 for dir in $problemdir/*/; do
 	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $dir/pts`

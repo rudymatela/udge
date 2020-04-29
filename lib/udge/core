@@ -85,6 +85,16 @@ ls-languages() {
 	done
 }
 
+# n-points <problem>
+n-points() {
+	outof=0
+	for dir in $PROBLEMS/$1/*/; do
+		pts=`cator1 $dir/pts`
+		((outof+=$pts))
+	done
+	echo $outof
+}
+
 # checks if the given argument is a sane user/problem name
 # usage: sane blah123
 sane() {
