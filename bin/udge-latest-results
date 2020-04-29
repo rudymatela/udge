@@ -29,10 +29,14 @@ errxit() {
 	exit 1
 }
 user="$1"
+amount="$2"
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS/$user" ] || errxit "user not found"
 submissions="$SUBMISSIONS/$user"
 results="$RESULTS/$user"
+[ -n "$amount" ] || amount=5
+head="cat"
+[ "$amount" != 0 ] && head="head -$amount"
 format() {
 	sed -e 's,.*/\([0-9][0-9][0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)-\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)/\([^/]*\),\1-\2-\3 \4:\5:\6  \7,'
 }
@@ -45,7 +49,7 @@ list-submissions() {
 list-results() {
 	[ -d "$results" ]     && find $results     -name "*.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
-for filename in `list-submissions; list-results | head -5`
+for filename in `list-submissions; list-results | $head`
 do
 	entry="`echo $filename | format`"
 	result_fn="`dirname $filename`/result"
