@@ -34,3 +34,6 @@ Future
 * run stuff as `nobody` where applicable
 
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
+
+* Test what happens if I submit a 128MB file and a 1GB file.
+  Can we block that on nginx itself?
