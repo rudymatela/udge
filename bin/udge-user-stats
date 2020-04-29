@@ -23,20 +23,25 @@
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
+
 errxit() {
-	echo "$0, error: $@" >&2
+	echo "`basename $0`, error: $@" >&2
 	echo "usage:"        >&2
-	echo "  $0 <user> [all/overall/problem]" >&2
+	echo "  `basename $0` <user> [all/overall/problem/short] [scoring-type]" >&2
 	exit 1
 }
+
 user="$1"
+action="$2"
+score="$3"
+
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS/$user" ] || errxit "user not found"
 results="$RESULTS/$user"
 
-
-score="$lib/score/$SCORE"
-[ -x "$score" ] || errxit "invalid SCORE type $SCORE ($score not found)"
+[ -n "$score" ] || score=$SCORE
+score="$lib/score/$score"
+[ -x "$score" ] || errxit "invalid SCORE type ($score not found)"
 
 
 cator-() {
@@ -102,7 +107,7 @@ short-stats() {
 }
 
 
-case "$2" in
+case "$action" in
 	overall) overall-stats ;;
 	problem) problem-stats ;;
 	short)   short-stats ;;
