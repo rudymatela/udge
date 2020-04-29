@@ -1,0 +1,106 @@
+#!/bin/bash
+#
+# ICPC-style scoring for Udge.
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# ICPC-style scoring (http://acmicpc-pacnw.org/rules.htm) for Udge
+#
+# Users are sorted by the number of problems _fully_ solved
+# then the total time to each successful submission.
+#
+# The total time is the number of minutes since the start of the contest until
+# the first accepted submission added to a penalty of 20 minutes for each
+# incorrect submission.  This does not account for unsolved problems.
+#
+# Note: every time this is run, all user submissions are accessed.  So this
+# script is fairly slow.  Only use it on _small_ contests and set a significant
+# interval.
+#
+# One possible fix for performance is to use
+#
+#     $RESULTS/<user>/<problem>/first:1989-12-31 23:59:00 UTC
+#
+# however for now this is what it is.
+#
+# To use this, put the following on /etc/udge/conf:
+#
+# CONTEST_START_TIME=1970-12-31T13:37:00-0000
+# SCORE=icpc
+#
+# You can optionally set the following:
+#
+# CONTEST_SCALE=60 # the default, minute scaling
+# CONTEST_PENALTY=20 # the default, 20 minute penalty
+#
+# CONTEST_SCALE=3600 # hourly scaling
+# CONTEST_PENALTY=12 # 12 hour penalty
+#
+# Caveat: the total time is reported as a negative number so that sort knows it
+# has to take it in reverse.
+prefix="$(dirname "$(dirname "$(dirname "$(dirname "$0")")")")"
+. "$prefix/lib/udge/core"
+user="$1"
+[ -n "$user" ] || finish- "#-solved time"
+[ -d "$USERS/$user" ] || errxit "user not found"
+
+
+since-epoch() {
+	date -d "$1" +%s
+}
+
+[ -n "$CONTEST_START_TIME" ] || errxit "missing start time, please set the CONTEST_START_TIME variable"
+start=`since-epoch "$CONTEST_START_TIME"` || errxit "could not parse date"
+
+[ -n "$CONTEST_SCALE" ]   || CONTEST_SCALE=60
+[ -n "$CONTEST_PENALTY" ] || CONTEST_PENALTY=20
+
+bests() {
+	cat $RESULTS/$user/*/best 2>/dev/null
+}
+
+problems-solved() {
+	bests | bc | grep "^1$" | wc -l
+}
+
+until-acc() {
+	q=`n-points $1`
+	udge-latest-results $user 0 $1 |
+	tac |
+	grep -B1080 -m1 "$q/$q"
+}
+
+time=0
+for problem in `ls-problems`
+do
+	n_submissions=`until-acc $problem | wc -l`
+	((penalty=-$CONTEST_PENALTY * $n_submissions))
+	timestamp=`until-acc $problem | tail -1 | sed -e "s/  .*/-0000/;s/ /T/"`
+	tts=0
+	if [ -n "$timestamp" ]
+	then
+		timestamp=`since-epoch "$timestamp"`
+		((tts=($start - $timestamp)/$CONTEST_SCALE))
+	fi
+	#echo $problem tts=$tts penalty=$penalty >/dev/stderr
+	((time+=$tts + $penalty))
+done
+
+echo "`problems-solved` $time"

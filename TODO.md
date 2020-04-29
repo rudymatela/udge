@@ -3,8 +3,6 @@ TODO list for Udge
 
 * installation script
 
-* add ICPC-style scoring
-
 * add `results/rank` with a plaintext rank, and use it instead when generating the html
 
 * validation:
