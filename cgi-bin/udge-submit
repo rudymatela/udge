@@ -94,6 +94,8 @@ HTML
 
 
 post() {
+	now=`date "+%Y-%m-%d %H:%M:%S"`
+
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	$bin/cgi-create-data-files $tmpdata || errxit "problem while creating cgi-data-files"
 
@@ -111,6 +113,7 @@ post() {
 
 	[ -s "$password_fn" ] || password_error="password is missing"
 
+	[ -s "$program_fn" ] &&
 	[ "`wc -c <$program_fn`" -le 8192 ] || program_error="source file is too big"
 	[ -s "$program_fn" ]                || program_error="program is missing"
 
@@ -156,7 +159,13 @@ post() {
 	destfile="$destdir/$problem_value.$language_value"
 	umask 0002 # allows for members of the http group to write (or remove)
 	mkdir -p $destdir
-	cp "$tmpdata/program/value" "$destdir/$problem_value.$language_value"
+	cp "$tmpdata/program/value" "$destfile"
+
+	logprefix="udge-submit @ $now by $user_value - $problem_value.$language_value"
+	echo "$logprefix: submission successful" >&2
+	echo "$logprefix: $destfile" >&2
+	cat -v $destfile | sed -e "s|^|$logprefix: |" >&2
+	echo "$logprefix: EOF" >&2
 
 	status-202-accepted
 	success
