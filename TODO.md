@@ -13,10 +13,12 @@ Future
 ------
 
 * sandbox before running submissions:
-	- protect disk access
-	- protect from forkbombs
-	- protect from out-of-memory DOSs
-	- protect from network access
+	- protect disk access (chroot ?)
+	- protect from forkbombs (new user + ulimit ?)
+	- protect from out-of-memory DOSs (new user + ulimit ?)
+	- protect from network access (unshare -r -n ?)
+	- protect from disk usage DOSs (new user + disk quota + ulimit ?)
+	- use `ldd file` where applicable to find out what to copy from `/lib/`
 
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
