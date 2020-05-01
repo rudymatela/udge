@@ -30,6 +30,7 @@ test-scripts: \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
+  attack.clitest \
   hello.clitest
 
 test-web: \

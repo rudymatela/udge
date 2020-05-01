@@ -50,7 +50,7 @@ fail "No - $what error ($language)"
 in=in
 [ -f "$in" ] || in=/dev/null
 
-nice timeout --preserve-status -v -k1s `cator1 time-limit`s ./$exe < "$in" > stdout 2> stderr
+nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox ./$exe < "$in" > stdout 2> stderr
 exitcode=$?
 
 grep -q "^timeout: sending signal TERM" stderr && fail "No - time limit exceeded"

@@ -1,0 +1,10 @@
+$ udge-judge hello-world examples/attack/dns.c
+No - runtime error (non-zero exit code)
+0/1
+$ tmp=`mktemp /tmp/udge-test-attack-dns-XXXXXXXXXX`
+$ cc examples/attack/dns.c -o $tmp
+$ $tmp | grep example.com | sort -u
+hostname: example.com
+$ udge-sandbox $tmp
+could not resolve hostname (-3)
+$ rm $tmp
