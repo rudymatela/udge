@@ -24,6 +24,7 @@
 # Set the CHROOT variable to run this program under a different root.
 #
 # CHROOT=. 
+ulimit -v 524288
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
 unshare -Urn -impuf env -i $chroot "$@"

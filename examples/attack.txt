@@ -20,4 +20,24 @@ Udge Online Judge
 $ udge-sandbox $tmp
 could not connect to 127.0.0.1:80
 $
+$ udge-judge hello-world examples/attack/memory.c
+No - runtime error (non-zero exit code)
+0/1
+$
+$ cc examples/attack/memory.c -o $tmp
+$ $tmp
+Allocated 1Kb.
+Allocated 1Mb.
+Allocated 256Mb.
+Allocated 1Gb.
+Used 1Kb.
+Used 1Mb.
+Used 1Mb.
+Used 1Gb.
+$ udge-sandbox $tmp 2>&1 | sort -n
+Allocated 1Kb.
+Allocated 1Mb.
+Allocated 256Mb.
+Failed to allocate 1Gb.: Cannot allocate memory
+$
 $ rm $tmp
