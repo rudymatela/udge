@@ -1,10 +1,23 @@
+$ tmp=`mktemp /tmp/udge-test-attack-exe-XXXXXXXXXX`
+$
 $ udge-judge hello-world examples/attack/dns.c
 No - runtime error (non-zero exit code)
 0/1
-$ tmp=`mktemp /tmp/udge-test-attack-dns-XXXXXXXXXX`
+$
 $ cc examples/attack/dns.c -o $tmp
 $ $tmp | grep example.com | sort -u
 hostname: example.com
 $ udge-sandbox $tmp
 could not resolve hostname (-3)
+$
+$ udge-judge hello-world examples/attack/socket.c
+No - runtime error (non-zero exit code)
+0/1
+$
+$ cc examples/attack/socket.c -o $tmp
+$ $tmp | grep "<h.>" | sed -e "s/<[^>]*>//g" | head -1
+Udge Online Judge
+$ udge-sandbox $tmp
+could not connect to 127.0.0.1:80
+$
 $ rm $tmp
