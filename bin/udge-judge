@@ -32,23 +32,28 @@
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
-problemdir="$PROBLEMS/$1"
-compileandtest="`realpath "$lib/compile-and-test"`"
+problem="$1"
 program="$2"
+problemdir="$PROBLEMS/$problem"
+compileandtest="`realpath "$lib/compile-and-test"`"
 [ -d "$problemdir" ] || errxit "invalid problem code"
 tmpdir="`mktemp -d "/tmp/judge.XXXXXXXXXX"`"
 cp "$program" "$tmpdir"
-prog="`basename $program`"
+prog=$(basename $program)
+timestamp=$(basename $(dirname $program))
+user=$(basename $(dirname $(dirname $program)))
+sane $timestamp || timestamp=`date -u "+%Y%m%d-%H%M%S"`
+sane $user      || user=unknown
 (
 cd $tmpdir
 total=0
-outof=`n-points "$1"`
+outof=`n-points "$problem"`
 for dir in $problemdir/*/; do
 	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $dir/pts`
 	rm -f {in,sol,time-limit,check-exit-code,check-out,main.*,*.txt}
 	cp $dir/{in,sol,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
-	"$compileandtest" $prog && ((total+=$pts)) || break
+	"$compileandtest" $prog -$problem-$timestamp-$user && ((total+=$pts)) || break
 done
 echo $total/$outof
 )
