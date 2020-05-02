@@ -19,6 +19,8 @@ Future
 	- protect from programs that catch SIGTERM
 	- protect from dangling child processes with different names
 
+* sandbox compilation
+
 * support command line arguments (`args` file aditionally to `in` and `out`)
 
 * support `err` as well (specific error output)
