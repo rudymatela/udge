@@ -63,6 +63,8 @@ in=in
 nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox ./$exe <"$in" >stdout 2>stderr
 exitcode=$?
 
+killall -9 $exe # kills remaining children if any
+
 grep -q "^timeout: sending signal TERM" stderr && fail "No - time limit exceeded"
 
 check-exit-code() {
