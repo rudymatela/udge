@@ -18,6 +18,7 @@ Future
 	- protect from out-of-memory DOSs (new user + ulimit ?)
 	- protect from network access (unshare -r -n ?)
 	- protect from disk usage DOSs (new user + disk quota + ulimit ?)
+	- protect from programs that catch SIGTERM
 	- use `ldd file` where applicable to find out what to copy from `/lib/`
 
 * support command line arguments (`args` file aditionally to `in` and `out`)
