@@ -42,7 +42,8 @@ cp "$program" "$tmpdir"
 prog=$(basename $program)
 timestamp=$(basename $(dirname $program))
 user=$(basename $(dirname $(dirname $program)))
-sane $timestamp || timestamp=`date -u "+%Y%m%d-%H%M%S"`
+ts=`date -u "+%Y%m%d-%H%M%S"`
+sane $timestamp || timestamp=$ts
 sane $user      || user=unknown
 (
 cd $tmpdir
@@ -53,7 +54,7 @@ for dir in $problemdir/*/; do
 	pts=`cator1 $dir/pts`
 	rm -f {in,sol,time-limit,check-exit-code,check-out,main.*,*.txt}
 	cp $dir/{in,sol,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
-	"$compileandtest" $prog -$problem-$timestamp-$user && ((total+=$pts)) || break
+	"$compileandtest" $prog -$ts-$problem-$timestamp-$user && ((total+=$pts)) || break
 done
 echo $total/$outof
 )
