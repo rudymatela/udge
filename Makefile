@@ -33,8 +33,10 @@ test-scripts: \
   attack.clitest \
   hello.clitest
 
+# these cannot be run in parallel
 test-web: \
   index.clitest \
+  attack-fork.clitest \
   test-web-noindex
 
 test-web-noindex: \

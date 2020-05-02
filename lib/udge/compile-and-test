@@ -22,6 +22,11 @@
 #
 #
 # This is intended to be called only from bin/udge-judge
+#
+#
+# If the executable is a forkbomb, one instance of this script is able to
+# disrupt other submissions.  To avoid that for now, do not call parallel
+# instance of this or udge-judge.
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 fail() {
@@ -50,7 +55,7 @@ fail "No - $what error ($language)"
 in=in
 [ -f "$in" ] || in=/dev/null
 
-nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox ./$exe < "$in" > stdout 2> stderr
+nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox ./$exe <"$in" >stdout 2>stderr
 exitcode=$?
 
 grep -q "^timeout: sending signal TERM" stderr && fail "No - time limit exceeded"

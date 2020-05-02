@@ -40,9 +40,4 @@ Allocated 1Mb.
 Allocated 256Mb.
 Failed to allocate 1Gb.: Cannot allocate memory
 $
-$ cc examples/attack/fork4096.c -o $tmp
-$ $tmp
-$ udge-sandbox $tmp 2>&1 | sed -e "s/^.*fork: /fork: /"
-fork: retry: Resource temporarily unavailable
-$
 $ rm $tmp

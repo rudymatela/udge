@@ -1,0 +1,8 @@
+$ tmp=`mktemp /tmp/udge-test-attack-fork-exe-XXXXXXXXXX`
+$
+$ cc examples/attack/fork4096.c -o $tmp
+$ $tmp
+$ udge-sandbox $tmp 2>&1 | sed -e "s/^.*fork: /fork: /"
+fork: retry: Resource temporarily unavailable
+$
+$ rm $tmp
