@@ -40,3 +40,6 @@ Future
 
 * Test what happens if I submit a 128MB file and a 1GB file.
   Can we block that on nginx itself?
+
+* configure rate limiting on nginx
+  https://www.nginx.com/blog/rate-limiting-nginx/
