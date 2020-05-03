@@ -4,7 +4,7 @@ $ echo
 
 $ curl -s udge | display
 Udge Online Judge
-Problems
+Problem Index
 200
 
 $ curl -s udge | grep hello

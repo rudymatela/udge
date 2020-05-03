@@ -1,7 +1,7 @@
 Udge Online Judge
 -----------------
 
-### Problems
+### Problem Index
 
 * [hello](/hello)
 * [hello-world](/hello-world)
