@@ -1,16 +1,30 @@
 TODO list for Udge
 ==================
 
+* customizable page titles -- "Udge"
+
+* new-user toggle
+
 * installation script
 
-* add `results/rank` with a plaintext rank, and use it instead when generating the html
+* add installation instructions
+	- including instructions on how to set up an `udge` user
+
+* document current sandboxing limitations on README
+
+* review docs and notices of each file (examples, etc.)
+
+* publish on github?
+
+
+Future
+------
+
+* improve password hash by including the username
 
 * validation:
 
 	- `cgi-bin/new-user`: minimum password length and complexity
-
-Future
-------
 
 * sandbox before running submissions:
 	- protect disk access (chroot ?)
@@ -32,11 +46,11 @@ Future
 	- `udge-update-all-users-html`;
 	- `udge-update-rank-html`.
 
-* add instructions on how to set up an `udge` user
-
 * run stuff as `nobody` where applicable
 
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
+
+* review `mcat` uses (split into two different types?)
 
 * Test what happens if I submit a 128MB file and a 1GB file.
   Can we block that on nginx itself?
