@@ -29,7 +29,11 @@ index=
 
 copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
 
-html-header "`head -1 "$1"`"
+page_title="`head -1 "$1"`"
+echo "$page_title" | grep -q "^##" &&
+	page_title=`cat "$1" | grep '^# ' | head -1 | sed -e 's/^# //'`
+
+html-header $page_title
 html-navbar $index
 if grep -q "$copyright" "$@"
 then

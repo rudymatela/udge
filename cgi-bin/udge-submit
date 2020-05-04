@@ -68,7 +68,7 @@ has-error() {
 
 success() {
 	http-header
-	html-header
+	html-header "Submission successful"
 	html-navbar
 	cat <<HTML
 <h3>Submission successful</h3>

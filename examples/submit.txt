@@ -1,6 +1,6 @@
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
 $ alias curl='curl -sw "%{http_code}\n"'
-$ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
@@ -11,6 +11,7 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $
 $
 $ curl -s udge/submit | display
+Submit your solution to Udge
 Submit your solution
 200
 
@@ -65,20 +66,24 @@ udge-submit: invalid language
 $
 $
 $ curl -XGET udge/submit | display
+Submit your solution to Udge
 Submit your solution
 200
 
 $ curl -XPUT udge/submit | display
+405 Method Not Allowed
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPATCH udge/submit | display
+405 Method Not Allowed
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPOST udge/submit | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 password is missing
@@ -88,6 +93,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -duser=someone | display
+Submit your solution to Udge
 Submit your solution
 password is missing
 program is missing
@@ -96,6 +102,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dpassword=pw | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 program is missing
@@ -104,6 +111,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dprogram=@examples/hello.c | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 password is missing
@@ -112,6 +120,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dproblem=hello | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 password is missing
@@ -120,6 +129,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dlanguage=c | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 password is missing
@@ -128,6 +138,7 @@ select the problem
 422
 
 $ curl -XPOST udge/submit --data-urlencode "user=user&password=pass" | display
+Submit your solution to Udge
 Submit your solution
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 password is missing
@@ -137,6 +148,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -d../../../../../../../../../bin/ls | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 password is missing
@@ -146,32 +158,38 @@ select the language
 422
 
 $ curl -XPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+Submit your solution to Udge
 Submit your solution
 user is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+Submit your solution to Udge
 Submit your solution
 password is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c | display
+Submit your solution to Udge
 Submit your solution
 program is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/hello.c | display
+Submit your solution to Udge
 Submit your solution
 select the problem
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Fprogram=@examples/hello.c | display
+Submit your solution to Udge
 Submit your solution
 select the language
 422
 
 $ sleep 1
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
+Submission successful
 Submission successful
 202
 
@@ -187,6 +205,7 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
 $ sleep 1
 $ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
+Submission successful
 Submission successful
 202
 

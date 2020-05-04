@@ -60,7 +60,7 @@ get() {
 
 success() {
 	http-header
-	html-header
+	html-header "User created"
 	html-navbar
 	cat <<HTML
 <h2>User created</h2>

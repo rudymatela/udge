@@ -78,7 +78,7 @@ status-429-too-many-requests() {
 page-405-method-not-allowed() {
 	status=status-405-method-not-allowed
 	http-header
-	html-header
+	html-header "405 Method Not Allowed"
 	html-navbar
 	echo '<h3>Udge Online Judge</h3>'
 	echo '<h1>405 Method Not Allowed</h1>'

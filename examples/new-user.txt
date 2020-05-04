@@ -1,23 +1,27 @@
 $ user=test-new-user-`date "+%Y%m%d-%H%M%S"`
 $
 $ alias curl='curl -sw "%{http_code}\n"'
-$ alias display='grep -E "(<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
 $ curl -XGET udge/new-user | display
+Create a new user on Udge
 New user
 200
 
 $ curl -XPUT udge/new-user | display
+405 Method Not Allowed
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPATCH udge/new-user | display
+405 Method Not Allowed
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPOST udge/new-user | display
+Create a new user on Udge
 New user
 username is missing
 email is missing
@@ -27,6 +31,7 @@ password is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user | display
+Create a new user on Udge
 New user
 email is missing
 email is missing
@@ -35,6 +40,7 @@ password is missing
 422
 
 $ curl -XPOST udge/new-user -Femail=u@example.com -Femail-confirmation=u@example.com | display
+Create a new user on Udge
 New user
 username is missing
 password is missing
@@ -42,6 +48,7 @@ password is missing
 422
 
 $ curl -XPOST udge/new-user -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 username is missing
 email is missing
@@ -49,53 +56,62 @@ email is missing
 422
 
 $ curl -XPOST udge/new-user              -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 username is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user                       -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 email is missing
 email is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user                                                          -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 email is missing
 email is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com                                    -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 emails do not match
 emails do not match
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                         -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 password is missing
 password is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com                                                              | display
+Create a new user on Udge
 New user
 password is missing
 password is missing
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password                                      | display
+Create a new user on Udge
 New user
 passwords do not match
 passwords do not match
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=w@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 emails do not match
 emails do not match
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=A-password., | display
+Create a new user on Udge
 New user
 passwords do not match
 passwords do not match
@@ -103,31 +119,37 @@ passwords do not match
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 User created
+User created
 201
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 username already exists (pick another)
 409
 
 $ curl -XPOST udge/new-user -Fuser=../../../../../bin/ls -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=notanemail -Femail-confirmation=notanemail -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 invalid or unsupported email address
 invalid or unsupported email address
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=.@... -Femail-confirmation=.@... -Fpassword=the-password -Fpassword-confirmation=the-password | display
+Create a new user on Udge
 New user
 invalid or unsupported email address
 invalid or unsupported email address
 422
 
 $ curl -XPOST udge/new-user -F../../../../../../../bin/ls=bla | display
+Create a new user on Udge
 New user
 username is missing
 email is missing
