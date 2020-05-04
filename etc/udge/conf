@@ -7,4 +7,5 @@ SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
 SCORE=fractions
 PUBLIC_HTML=/srv/udge
+NEW_USER=true
 GHCFLAGS=-dynamic # for Arch Linux

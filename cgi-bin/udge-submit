@@ -39,13 +39,17 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/html"
 . "$lib/cgi"
 
+new-user-link() {
+	$NEW_USER && echo ' (<a href="/new-user">new user</a>)'
+}
+
 get() {
 	http-header
 	html-header "Submit your solution to Udge"
 	html-navbar submit
 	echo "<h2>Submit your solution</h2>"
 	echo "<form action="/submit" method="POST" enctype="multipart/form-data">"
-	html-form-input text     user     'Username (<a href="/new-user">new user</a>)' 'username' "$user_error" "$user_value"
+	html-form-input text     user     "Username`new-user-link`" 'username' "$user_error" "$user_value"
 	html-form-input password password 'Password' 'password' "$password_error"
 	html-form-input file     program  'Program'  'program'  "$program_error"  "$program_value"
 	ls-problems  | html-form-select problem  'Problem id' 'select problem...'  "$problem_error"  "$problem_value"

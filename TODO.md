@@ -3,14 +3,15 @@ TODO list for Udge
 
 * customizable page titles -- "Udge"
 
-* new-user toggle
-
 * installation script
 
 * add installation instructions
 	- including instructions on how to set up an `udge` user
 
 * document current sandboxing limitations on README
+
+* add `addition` problem which is
+  to `add` as `hello-world` is to `hello`
 
 * review docs and notices of each file (examples, etc.)
 

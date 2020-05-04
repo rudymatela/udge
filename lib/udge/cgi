@@ -75,6 +75,17 @@ status-429-too-many-requests() {
 	echo 'Status: 429 Too Many Requests'
 }
 
+page-403-forbidden() {
+	status=status-403-forbidden
+	http-header
+	html-header "403 Forbidden"
+	html-navbar
+	echo '<h3>Udge Online Judge</h3>'
+	echo '<h1>403 Forbidden</h1>'
+	html-navbar
+	html-footer
+}
+
 page-405-method-not-allowed() {
 	status=status-405-method-not-allowed
 	http-header

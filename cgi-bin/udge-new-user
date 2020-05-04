@@ -140,8 +140,13 @@ post() {
 }
 
 
-case $REQUEST_METHOD in
+if $NEW_USER
+then
+	case $REQUEST_METHOD in
 	GET)  get  ;;
 	POST) post ;;
 	*)    page-405-method-not-allowed ;;
-esac
+	esac
+else
+	page-403-forbidden
+fi
