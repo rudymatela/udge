@@ -68,6 +68,16 @@ $ curl -XGET udge/submit | display
 Submit your solution
 200
 
+$ curl -XPUT udge/submit | display
+Udge Online Judge
+405 Method Not Allowed
+405
+
+$ curl -XPATCH udge/submit | display
+Udge Online Judge
+405 Method Not Allowed
+405
+
 $ curl -XPOST udge/submit | display
 Submit your solution
 user is missing

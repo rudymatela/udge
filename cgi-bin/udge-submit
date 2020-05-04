@@ -177,5 +177,5 @@ post() {
 case $REQUEST_METHOD in
 	GET)  get  ;;
 	POST) post ;;
-	*)    errxit "Unsupported request method '$REQUEST_METHOD'" ;; # TODO: format an error 500 page
+	*)    page-405-method-not-allowed ;;
 esac

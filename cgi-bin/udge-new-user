@@ -63,7 +63,7 @@ success() {
 	html-header
 	html-navbar
 	cat <<HTML
-<h3>User created</h3>
+<h2>User created</h2>
 
 <p>
 Successfully created
@@ -143,5 +143,5 @@ post() {
 case $REQUEST_METHOD in
 	GET)  get  ;;
 	POST) post ;;
-	*)    errxit "Unsupported request method '$REQUEST_METHOD'" ;; # TODO: format an error 500 page
+	*)    page-405-method-not-allowed ;;
 esac

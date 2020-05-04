@@ -59,6 +59,10 @@ status-403-forbidden() {
 	echo 'Status: 403 Forbidden'
 }
 
+status-405-method-not-allowed() {
+	echo 'Status: 405 Method Not Allowed'
+}
+
 status-409-conflict() {
 	echo 'Status: 409 Conflict'
 }
@@ -69,6 +73,17 @@ status-422-unprocessable-entity() {
 
 status-429-too-many-requests() {
 	echo 'Status: 429 Too Many Requests'
+}
+
+page-405-method-not-allowed() {
+	status=status-405-method-not-allowed
+	http-header
+	html-header
+	html-navbar
+	echo '<h3>Udge Online Judge</h3>'
+	echo '<h1>405 Method Not Allowed</h1>'
+	html-navbar
+	html-footer
 }
 
 

@@ -7,6 +7,16 @@ $ curl -XGET udge/new-user | display
 New user
 200
 
+$ curl -XPUT udge/new-user | display
+Udge Online Judge
+405 Method Not Allowed
+405
+
+$ curl -XPATCH udge/new-user | display
+Udge Online Judge
+405 Method Not Allowed
+405
+
 $ curl -XPOST udge/new-user | display
 New user
 username is missing
