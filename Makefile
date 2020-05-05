@@ -126,22 +126,26 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 #
 # This target will fail if your path has spaces.  (-:
 link-install:
-	mkdir -p                    /etc/udge
-	mkdir -p                    /etc/udge/users
-	ln -sfT `pwd`/etc/udge/conf /etc/udge/conf
-	ln -sfT `pwd`/etc/udge/salt /etc/udge/salt
-	ln -sfT `pwd`/problem       /etc/udge/problem
-	ln -sfT `pwd`/public_html   /srv/udge
-	install -m 755                 -d /var/lib/udge
-	install -m 775 -o http -g http -d /var/lib/udge/submissions
-	install -m 775 -o http -g http -d /var/lib/udge/results
+	mkdir -p                    $(DESTDIR)/etc/udge
+	mkdir -p                    $(DESTDIR)/etc/udge/users
+	ln -sfT `pwd`/etc/udge/conf $(DESTDIR)/etc/udge/conf
+	ln -sfT `pwd`/etc/udge/salt $(DESTDIR)/etc/udge/salt
+	ln -sfT `pwd`/problem       $(DESTDIR)/etc/udge/problem
+	mkdir -p                    $(DESTDIR)/srv
+	ln -sfT `pwd`/public_html   $(DESTDIR)/srv/udge
+	install -m 755 -d           $(DESTDIR)/var/lib/udge
+	install -m 775 -d           $(DESTDIR)/var/lib/udge/submissions
+	install -m 775 -d           $(DESTDIR)/var/lib/udge/results
 	for dir in `find bin/ lib/ cgi-bin/ -type d`; do \
-		mkdir -p $(PREFIX)/$$dir; done
+		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
-		ln -sf `pwd`/$$file $(PREFIX)/$$file; done
+		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
+	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
-
+# Use with care.  If there are files installed by other packages but with the
+# same name, those will be deleted.
 uninstall:
 	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
-		rm -f $(PREFIX)/$$file; done
-	rm -rf $(PREFIX)/lib/udge
+		rm -f $(DESTDIR)$(PREFIX)/$$file; done
+	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
