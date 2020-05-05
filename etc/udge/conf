@@ -1,11 +1,16 @@
 #!/bin/bash
 # Configuration file for the judge
+
+NAME="Udge Online Judge"
+
 SALT_FILE=/etc/udge/salt
 USERS=/etc/udge/users
 PROBLEMS=/etc/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
-SCORE=fractions
 PUBLIC_HTML=/srv/udge
+
+SCORE=fractions
 NEW_USER=true
+
 GHCFLAGS=-dynamic # for Arch Linux

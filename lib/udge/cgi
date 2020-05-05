@@ -80,7 +80,7 @@ page-403-forbidden() {
 	http-header
 	html-header "403 Forbidden"
 	html-navbar
-	echo '<h3>Udge Online Judge</h3>'
+	echo "<h3>$NAME</h3>"
 	echo '<h1>403 Forbidden</h1>'
 	html-navbar
 	html-footer
@@ -91,7 +91,7 @@ page-405-method-not-allowed() {
 	http-header
 	html-header "405 Method Not Allowed"
 	html-navbar
-	echo '<h3>Udge Online Judge</h3>'
+	echo "<h3>$NAME</h3>"
 	echo '<h1>405 Method Not Allowed</h1>'
 	html-navbar
 	html-footer

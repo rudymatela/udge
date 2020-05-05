@@ -11,7 +11,7 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $
 $
 $ curl -s udge/submit | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 200
 
@@ -66,7 +66,7 @@ udge-submit: invalid language
 $
 $
 $ curl -XGET udge/submit | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 200
 
@@ -83,7 +83,7 @@ Udge Online Judge
 405
 
 $ curl -XPOST udge/submit | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 password is missing
@@ -93,7 +93,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -duser=someone | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 password is missing
 program is missing
@@ -102,7 +102,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dpassword=pw | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 program is missing
@@ -111,7 +111,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dprogram=@examples/hello.c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 password is missing
@@ -120,7 +120,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dproblem=hello | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 password is missing
@@ -129,7 +129,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -dlanguage=c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 password is missing
@@ -138,7 +138,7 @@ select the problem
 422
 
 $ curl -XPOST udge/submit --data-urlencode "user=user&password=pass" | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 password is missing
@@ -148,7 +148,7 @@ select the language
 422
 
 $ curl -XPOST udge/submit -d../../../../../../../../../bin/ls | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 password is missing
@@ -158,31 +158,31 @@ select the language
 422
 
 $ curl -XPOST udge/submit -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 user is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 password is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 program is missing
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/hello.c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 select the problem
 422
 
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Fprogram=@examples/hello.c | display
-Submit your solution to Udge
+Submit your solution – Udge Online Judge
 Submit your solution
 select the language
 422

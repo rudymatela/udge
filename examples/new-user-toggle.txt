@@ -3,12 +3,12 @@ $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*
 $
 $ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udge/conf
 $ curl -XGET udge/new-user | display
-Create a new user on Udge
+New user – Udge Online Judge
 New user
 200
 
 $ curl -XPOST udge/new-user | display
-Create a new user on Udge
+New user – Udge Online Judge
 New user
 username is missing
 email is missing
@@ -33,7 +33,7 @@ Udge Online Judge
 
 $ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udge/conf
 $ curl -XGET udge/new-user | display
-Create a new user on Udge
+New user – Udge Online Judge
 New user
 200
 

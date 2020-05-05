@@ -42,9 +42,9 @@ prefix="$(dirname "$(dirname "$0")")"
 
 get() {
 	http-header
-	html-header "Create a new user on Udge"
+	html-header "New user – $NAME"
 	html-navbar
-	echo '<h2>New user</h2>'
+	echo "<h2>New user</h2>"
 	echo '<form action="/new-user" method="POST" enctype="multipart/form-data">'
 	html-form-input text     user                  'Username'              'username'              "$user_error"     "$user_value"
 	html-form-input email    email                 'Email'                 'email'                 "$email_error"    "$email_value"

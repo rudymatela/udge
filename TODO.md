@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* customizable page titles -- "Udge"
-
 * installation script
 
 * add installation instructions

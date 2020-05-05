@@ -35,9 +35,9 @@ mkrow() {
 	sed -e "s|$|</tr>|"
 }
 
-html-header "User Rank - Udge"
+html-header "User Rank – $NAME"
 html-navbar rank
-echo "<h2>User Rank - Udge</h2>"
+echo "<h2>User Rank – $NAME</h2>"
 echo '<table class="table table-hover">'
 echo '<thead>'
 echo "# user `$lib/score/$SCORE`" | html-escape | mkrow | sed -e 's/<td/<th/;s/td>/th>/' | sed -e "s|<a[^>]*>||;s|</a>||"

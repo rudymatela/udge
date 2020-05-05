@@ -34,14 +34,13 @@ user="$1"
 [ -d "$USERS/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
 
-html-header "$user - Udge"
+html-header "$user @ $NAME"
 html-navbar
-echo "<h2>$user - Udge</h2>"
+echo "<h2>$user @ $NAME</h2>"
 
-echo "<h3>Stats</h3>"
 $bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
-echo "<h3>Problems & Tries</h3>"
+echo "<h3>Scores by problem</h3>"
 echo '<table class="table table-hover">'
 echo '<thead>'
 echo '<tr><th>problem</th><th>score</th><th>tries</th></tr>'

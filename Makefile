@@ -16,6 +16,10 @@ all:
 
 clean: clean-html
 
+fastest:
+	make test-scripts -j
+	make test-web
+
 test: \
   tidy \
   test-scripts \
