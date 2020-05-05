@@ -55,7 +55,9 @@ test-happy: \
   happy-day-2.clitest \
   happy-day-3.clitest
 
-test-makefile:
+test-makefile: test-makefile-coverage test-link-install
+
+test-makefile-coverage:
 	rm -f /tmp/udge-clitests /tmp/udge-txts
 	cat Makefile  | grep -E '[-a-z0-9]+\.clitest' | sed -e 's/ *//g; s/.clitest.*//' | sort > /tmp/udge-clitests
 	ls -1 examples/*.txt | sed -e 's,examples/,,; s,.txt,,'                          | sort > /tmp/udge-txts
@@ -136,9 +138,9 @@ link-install:
 	install -m 755 -d           $(DESTDIR)/var/lib/udge
 	install -m 775 -d           $(DESTDIR)/var/lib/udge/submissions
 	install -m 775 -d           $(DESTDIR)/var/lib/udge/results
-	for dir in `find bin/ lib/ cgi-bin/ -type d`; do \
+	for dir in `find bin lib cgi-bin -type d`; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
-	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
+	for file in `find bin lib cgi-bin -type f`; do \
 		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
@@ -146,6 +148,20 @@ link-install:
 # Use with care.  If there are files installed by other packages but with the
 # same name, those will be deleted.
 uninstall:
-	for file in `find bin/ lib/ cgi-bin/ -type f`; do \
+	for file in `find bin lib cgi-bin -type f`; do \
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
+
+test-link-install:
+	[ ! -e pkg ]
+	make link-install DESTDIR=pkg
+	find pkg -mindepth 3 | sed -e 's,pkg,,' | sort > installed-files.txt
+	for file in `find etc/udge -mindepth 1` etc/udge/{problem,users}; do \
+		echo /$$file; done | sort > installable-files.txt
+	for file in `find bin lib cgi-bin`; do \
+		echo $(PREFIX)/$$file; done | sort >> installable-files.txt
+	for file in /var/lib/udge{,/results,/submissions}; do \
+		echo $$file; done >> installable-files.txt
+	diff -rud install{able,ed}-files.txt
+	rm install{able,ed}-files.txt
+	rm -r pkg
