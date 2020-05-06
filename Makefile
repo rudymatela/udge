@@ -190,6 +190,7 @@ install:
 	install -m 755 $(COMPILELIB)  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
+	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r udge
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
