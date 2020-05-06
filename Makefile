@@ -163,6 +163,7 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 	mkdir -p $(PUBLIC_HTML)
 	./lib/udge/markdown $< > $@
 
+# TODO: install nginx confs
 install:
 	mkdir -p                      $(DESTDIR)/etc
 	mkdir -p                      $(DESTDIR)/srv
@@ -172,7 +173,8 @@ install:
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	install -m 755 -d             $(DESTDIR)/etc/udge
 	install -m 644 /etc/udge/conf $(DESTDIR)/etc/udge/conf
-	install -m 644 /etc/udge/salt $(DESTDIR)/etc/udge/salt
+	[ -f $(DESTDIR)/etc/udge/salt ] || \
+	head -c30 /dev/random | base64 > $(DESTDIR)/etc/udge/salt
 	install -m 755 -d             $(DESTDIR)/etc/udge/users
 	install -m 755 -d             $(DESTDIR)/etc/udge/problem
 	install -m 755 -d             $(DESTDIR)/srv/udge
@@ -180,6 +182,7 @@ install:
 	install -m 755 -d             $(DESTDIR)/var/lib/udge/results
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 644 $(LIBS)        $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 755 $(LIBBINS)     $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile
@@ -222,23 +225,19 @@ uninstall:
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
 
-# TODO: replace this by:
-#   make install DESTDIR=pkg
-#   make install DESTDIR=pkg # second call should be a no-op
-#   make check-install DESTDIR=pkg
-#   rm -r pkg
 test-link-install:
 	[ ! -e pkg ]
 	make link-install DESTDIR=pkg
-	find pkg -mindepth 3 | sed -e 's,pkg,,' | sort > installed-files.txt
-	for file in `find etc/udge -mindepth 1` etc/udge/{problem,users}; do \
-		echo /$$file; done | sort > installable-files.txt
-	for file in `find bin lib cgi-bin`; do \
-		echo $(PREFIX)/$$file; done | sort >> installable-files.txt
-	for file in /var/lib/udge{,/results,/submissions}; do \
-		echo $$file; done >> installable-files.txt
-	diff -rud install{able,ed}-files.txt
-	rm install{able,ed}-files.txt
+	make check-link-install DESTDIR=pkg
+	rm -r pkg
+
+test-install:
+	[ ! -e pkg ]
+	make install DESTDIR=pkg
+	make check-install DESTDIR=pkg
+	make uninstall DESTDIR=pkg
+	find pkg -type f
+	[ "`find pkg -type f | wc -l`" -eq 2 ] # salt & conf
 	rm -r pkg
 
 # NOTE: this only works on an "empty" tree.
@@ -247,4 +246,28 @@ check-install:
 	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
-	# TODO: finish this
+	diff -rud etc/udge/conf $(DESTDIR)/etc/udge/conf
+	[ -f $(DESTDIR)/etc/udge/salt ]
+	[ -d $(DESTDIR)/etc/udge/problem ]
+	[ -d $(DESTDIR)/etc/udge/users ]
+	[ -d $(DESTDIR)/srv/udge ]
+	[ -d $(DESTDIR)/var/lib/udge/results ]
+	[ -d $(DESTDIR)/var/lib/udge/submissions ]
+	find pkg -type f | sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,^/,," | sort > installed-files.txt
+	find lib bin cgi-bin etc/udge -type f                           | sort > installable-files.txt
+	diff -rud install{able,ed}-files.txt
+	rm install{able,ed}-files.txt
+
+# NOTE: this only works on an "empty" tree.
+# Do not use this target to check a real install.
+check-link-install:
+	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
+	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
+	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
+	diff -rud etc/udge/conf $(DESTDIR)/etc/udge/conf
+	[ -f $(DESTDIR)/etc/udge/salt ]
+	[ -d $(DESTDIR)/etc/udge/problem ]
+	[ -d $(DESTDIR)/etc/udge/users ]
+	[ -d $(DESTDIR)/srv/udge ]
+	[ -d $(DESTDIR)/var/lib/udge/results ]
+	[ -d $(DESTDIR)/var/lib/udge/submissions ]
