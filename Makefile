@@ -28,6 +28,7 @@ CGIBINS = \
 	cgi-bin/udge-new-user \
 	cgi-bin/udge-submit
 LIBS = \
+	lib/udge/bootstrap.min.css \
 	lib/udge/html \
 	lib/udge/cgi \
 	lib/udge/core
@@ -239,3 +240,11 @@ test-link-install:
 	diff -rud install{able,ed}-files.txt
 	rm install{able,ed}-files.txt
 	rm -r pkg
+
+# NOTE: this only works on an "empty" tree.
+# Do not use this target to check a real install.
+check-install:
+	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
+	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
+	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
+	# TODO: finish this
