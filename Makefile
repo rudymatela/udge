@@ -127,6 +127,8 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 #       installation.
 #
 # This target will fail if your path has spaces.  (-:
+#
+# TODO: link-install nginx conf
 link-install:
 	mkdir -p                    $(DESTDIR)/etc/udge
 	mkdir -p                    $(DESTDIR)/etc/udge/users
