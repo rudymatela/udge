@@ -1,16 +1,16 @@
 # Makefile for the judge
 
-TIDY=tidy -qe --show-filename yes
-PREFIX=/usr/local
-PUBLIC_HTML=public_html
-HTMLS=\
+TIDY = tidy -qe --show-filename yes
+PREFIX = /usr/local
+PUBLIC_HTML = public_html
+HTMLS = \
 	$(PUBLIC_HTML)/bootstrap.min.css \
 	$(PUBLIC_HTML)/404.html \
 	$(PUBLIC_HTML)/hello.html \
 	$(PUBLIC_HTML)/hello-world.html \
 	$(PUBLIC_HTML)/add.html \
 	$(PUBLIC_HTML)/index.html
-BINS=\
+BINS = \
 	bin/cgi-create-data-files \
 	bin/udge-add-user \
 	bin/udge-judge \
@@ -24,10 +24,31 @@ BINS=\
 	bin/udge-update-rank-html \
 	bin/udge-update-user-html \
 	bin/udge-user-stats
-CGIBINS=\
+CGIBINS = \
 	cgi-bin/udge-new-user \
 	cgi-bin/udge-submit
-
+LIBS = \
+	lib/udge/html \
+	lib/udge/cgi \
+	lib/udge/core
+LIBBINS = \
+	lib/udge/markdown \
+	lib/udge/rank-html \
+	lib/udge/user-html \
+	lib/udge/compile-and-test
+COMPILE = \
+	lib/udge/compile/c \
+	lib/udge/compile/hs \
+	lib/udge/compile/py
+COMPILELIB = \
+	lib/udge/compile-as-lib/c \
+	lib/udge/compile-as-lib/hs \
+	lib/udge/compile-as-lib/py
+SCORE = \
+	lib/udge/score/fractions \
+	lib/udge/score/icpc \
+	lib/udge/score/solved \
+	lib/udge/score/sum
 
 .PHONY: all
 all:
@@ -145,7 +166,9 @@ install:
 	mkdir -p                      $(DESTDIR)/etc
 	mkdir -p                      $(DESTDIR)/srv
 	mkdir -p                      $(DESTDIR)/var/lib
-	mkdir -p                      $(DESTDIR)$(PREFIX)
+	mkdir -p                      $(DESTDIR)$(PREFIX)/bin
+	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
+	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	install -m 755 -d             $(DESTDIR)/etc/udge
 	install -m 644 /etc/udge/conf $(DESTDIR)/etc/udge/conf
 	install -m 644 /etc/udge/salt $(DESTDIR)/etc/udge/salt
@@ -154,11 +177,16 @@ install:
 	install -m 755 -d             $(DESTDIR)/srv/udge
 	install -m 755 -d             $(DESTDIR)/var/lib/udge/submissions
 	install -m 755 -d             $(DESTDIR)/var/lib/udge/results
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/bin
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
-	# TODO: install lib/ files
+	install -m 644 $(LIBS)        $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 755 $(LIBBINS)     $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 755 $(COMPILE)     $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 755 $(COMPILELIB)  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
