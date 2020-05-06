@@ -227,22 +227,24 @@ uninstall:
 
 test-link-install:
 	[ ! -e pkg ]
-	make link-install DESTDIR=pkg
-	make check-link-install DESTDIR=pkg
+	make link-install       DESTDIR=pkg
+	make check-install-test DESTDIR=pkg
 	rm -r pkg
 
 test-install:
 	[ ! -e pkg ]
-	make install DESTDIR=pkg
+	make install       DESTDIR=pkg
 	make check-install DESTDIR=pkg
-	make uninstall DESTDIR=pkg
+	make uninstall     DESTDIR=pkg
 	find pkg -type f
 	[ "`find pkg -type f | wc -l`" -eq 2 ] # salt & conf
 	rm -r pkg
 
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.
-check-install:
+check-install: check-install-test check-install-find
+
+check-install-test:
 	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
@@ -253,21 +255,9 @@ check-install:
 	[ -d $(DESTDIR)/srv/udge ]
 	[ -d $(DESTDIR)/var/lib/udge/results ]
 	[ -d $(DESTDIR)/var/lib/udge/submissions ]
+
+check-install-find:
 	find pkg -type f | sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,^/,," | sort > installed-files.txt
 	find lib bin cgi-bin etc/udge -type f                           | sort > installable-files.txt
 	diff -rud install{able,ed}-files.txt
 	rm install{able,ed}-files.txt
-
-# NOTE: this only works on an "empty" tree.
-# Do not use this target to check a real install.
-check-link-install:
-	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
-	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
-	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
-	diff -rud etc/udge/conf $(DESTDIR)/etc/udge/conf
-	[ -f $(DESTDIR)/etc/udge/salt ]
-	[ -d $(DESTDIR)/etc/udge/problem ]
-	[ -d $(DESTDIR)/etc/udge/users ]
-	[ -d $(DESTDIR)/srv/udge ]
-	[ -d $(DESTDIR)/var/lib/udge/results ]
-	[ -d $(DESTDIR)/var/lib/udge/submissions ]
