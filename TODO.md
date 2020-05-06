@@ -1,10 +1,9 @@
 TODO list for Udge
 ==================
 
-* installation script
-
 * add installation instructions
 	- including instructions on how to set up an `udge` user
+	- update installation script accordingly
 
 * document current sandboxing limitations on README
 
