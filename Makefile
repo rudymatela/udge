@@ -123,6 +123,20 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 	mkdir -p $(PUBLIC_HTML)
 	./lib/udge/markdown $< > $@
 
+install:
+	mkdir -p                      $(DESTDIR)/etc
+	mkdir -p                      $(DESTDIR)/srv
+	mkdir -p                      $(DESTDIR)/var/lib
+	install -d 755                $(DESTDIR)/etc/udge
+	install -m 644 /etc/udge/conf $(DESTDIR)/etc/udge/conf
+	install -m 644 /etc/udge/salt $(DESTDIR)/etc/udge/salt
+	install -d 755                $(DESTDIR)/etc/udge/users
+	install -d 755                $(DESTDIR)/etc/udge/problem
+	install -d 755                $(DESTDIR)/srv/udge
+	install -m 755 -d             $(DESTDIR)/var/lib/udge/submissions
+	install -m 755 -d             $(DESTDIR)/var/lib/udge/results
+	# TODO: complete the install target
+
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
 #
