@@ -10,6 +10,24 @@ HTMLS=\
 	$(PUBLIC_HTML)/hello-world.html \
 	$(PUBLIC_HTML)/add.html \
 	$(PUBLIC_HTML)/index.html
+BINS=\
+	bin/cgi-create-data-files \
+	bin/udge-add-user \
+	bin/udge-judge \
+	bin/udge-latest-results \
+	bin/udge-pick-and-judge \
+	bin/udge-rank \
+	bin/udge-sandbox \
+	bin/udge-submit \
+	bin/udge-update-all-problem-htmls \
+	bin/udge-update-all-users-html \
+	bin/udge-update-rank-html \
+	bin/udge-update-user-html \
+	bin/udge-user-stats
+CGIBINS=\
+	cgi-bin/udge-new-user \
+	cgi-bin/udge-submit
+
 
 .PHONY: all
 all:
@@ -127,14 +145,19 @@ install:
 	mkdir -p                      $(DESTDIR)/etc
 	mkdir -p                      $(DESTDIR)/srv
 	mkdir -p                      $(DESTDIR)/var/lib
-	install -d 755                $(DESTDIR)/etc/udge
+	mkdir -p                      $(DESTDIR)$(PREFIX)
+	install -m 755 -d             $(DESTDIR)/etc/udge
 	install -m 644 /etc/udge/conf $(DESTDIR)/etc/udge/conf
 	install -m 644 /etc/udge/salt $(DESTDIR)/etc/udge/salt
-	install -d 755                $(DESTDIR)/etc/udge/users
-	install -d 755                $(DESTDIR)/etc/udge/problem
-	install -d 755                $(DESTDIR)/srv/udge
+	install -m 755 -d             $(DESTDIR)/etc/udge/users
+	install -m 755 -d             $(DESTDIR)/etc/udge/problem
+	install -m 755 -d             $(DESTDIR)/srv/udge
 	install -m 755 -d             $(DESTDIR)/var/lib/udge/submissions
 	install -m 755 -d             $(DESTDIR)/var/lib/udge/results
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/bin
+	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
+	install -m 755 -d             $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
 	# TODO: complete the install target
 
 # NOTE: Only use this to set up a development environment, never in a real
@@ -168,6 +191,10 @@ uninstall:
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
 
+# TODO: replace this by:
+#   make install DESTDIR=pkg
+#   make check-install DESTDIR=pkg
+#   rm -r pkg
 test-link-install:
 	[ ! -e pkg ]
 	make link-install DESTDIR=pkg
