@@ -158,7 +158,8 @@ install:
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
-	# TODO: complete the install target
+	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
@@ -193,6 +194,7 @@ uninstall:
 
 # TODO: replace this by:
 #   make install DESTDIR=pkg
+#   make install DESTDIR=pkg # second call should be a no-op
 #   make check-install DESTDIR=pkg
 #   rm -r pkg
 test-link-install:
