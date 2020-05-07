@@ -147,10 +147,10 @@ tidy-public_html: html
 		$(TIDY) "$$file" || break; done
 
 clean-test-users:
-	rm -rf /etc/udge/users/test-*-*-*
+	rm -rf /var/lib/udge/users/test-*-*-*
 	rm -rf /var/lib/udge/results/test-*-*-*
 	rm -rf /var/lib/udge/submissions/test-*-*-*
-	rm -rf public_html/u/test-*-*-*.html
+	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 $(PUBLIC_HTML)/%.css: lib/udge/%.css
 	cp $< $@
@@ -165,18 +165,12 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 
 install:
 	mkdir -p                      $(DESTDIR)/etc
-	mkdir -p                      $(DESTDIR)/srv
 	mkdir -p                      $(DESTDIR)/var/lib
+	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	mkdir -p                      $(DESTDIR)$(PREFIX)/bin
 	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
-	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
-	install -m 755 -d             $(DESTDIR)/etc/udge
 	install -m 644  etc/udgerc    $(DESTDIR)/etc/udgerc
-	install -m 755 -d             $(DESTDIR)/etc/udge/users
-	install -m 755 -d             $(DESTDIR)/etc/udge/problem
-	install -m 755 -d             $(DESTDIR)/srv/udge
-	install -m 755 -d             $(DESTDIR)/var/lib/udge/submissions
-	install -m 755 -d             $(DESTDIR)/var/lib/udge/results
+	install -m 755 -d             $(DESTDIR)/var/lib/udge
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge
@@ -189,29 +183,24 @@ install:
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
-	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
 # NOTE: Only use this to set up a development environment, never in a real
 #       installation.
 #
 # This target will fail if your path has spaces.  (-:
 link-install:
-	mkdir -p                    $(DESTDIR)/etc/udge
-	mkdir -p                    $(DESTDIR)/etc/udge/users
-	ln -sfT `pwd`/etc/udgerc    $(DESTDIR)/etc/udgerc
-	ln -sfT `pwd`/problem       $(DESTDIR)/etc/udge/problem
-	mkdir -p                    $(DESTDIR)/srv
-	ln -sfT `pwd`/public_html   $(DESTDIR)/srv/udge
-	install -m 755 -d           $(DESTDIR)/var/lib/udge
-	install -m 775 -d           $(DESTDIR)/var/lib/udge/submissions
-	install -m 775 -d           $(DESTDIR)/var/lib/udge/results
+	mkdir -p                               $(DESTDIR)/etc
+	mkdir -p                               $(DESTDIR)/etc/nginx/srv/avail
+	mkdir -p                               $(DESTDIR)/var/lib
+	ln -sfT `pwd`/etc/udgerc               $(DESTDIR)/etc/udgerc
+	ln -sfT `pwd`/etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
+	install -m 775 -d                      $(DESTDIR)/var/lib/udge
+	ln -sfT `pwd`/problem                  $(DESTDIR)/var/lib/udge/problem
+	ln -sfT `pwd`/public_html              $(DESTDIR)/var/lib/udge/html
 	for dir in `find bin lib cgi-bin -type d`; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
 		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
-	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/submissions
-	[ "$$EUID" -ne 0 ] || chown http.http $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  If there are files installed by other packages but with the
 # same name, those will be deleted.
@@ -229,7 +218,6 @@ uninstall:
 today=$(shell date "+%Y%m%d")
 purge:
 	mv $(DESTDIR)/etc/udgerc{,-old-$(today)}
-	mv $(DESTDIR)/srv/udge{,-old-$(today)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(today)}
 	userdel udge
 
@@ -257,11 +245,9 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
-	[ -d $(DESTDIR)/etc/udge/problem ]
-	[ -d $(DESTDIR)/etc/udge/users ]
-	[ -d $(DESTDIR)/srv/udge ]
-	[ -d $(DESTDIR)/var/lib/udge/results ]
-	[ -d $(DESTDIR)/var/lib/udge/submissions ]
+	[ -d $(DESTDIR)/var/lib/udge             ]
+	[ -d $(DESTDIR)/var/lib/udge/html        ]
+	[ -d $(DESTDIR)/var/lib/udge/problem     ]
 
 check-install-find:
 	find pkg -type f | sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,^/,," | sort > installed-files.txt

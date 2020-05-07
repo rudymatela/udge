@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* move `/etc/udge/problem,users` and `/srv/udge` into `/var/lib/udge`
-
 * add installation instructions
 	- including instructions on how to set up an `udge` user
 	- update installation script accordingly

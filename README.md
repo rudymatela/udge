@@ -39,7 +39,7 @@ submissions created by `submit` whenever you run `pick-and-judge`.
 
 1. set up nginx, please see the example config file `etc/nginx/srv/avail/udge`;
 2. add `127.0.0.1 udge` to `/etc/hosts`;
-3. link `/etc/udge/problem` to your local (repository) problem folder;
+3. link `/var/lib/udge/problem` to your local (repository) problem folder;
 4. run `make html` to compile html descriptions of problems;
 5. link `/srv/udge` to your local html problem folder `path/to/udge/html`.
 
@@ -80,12 +80,12 @@ Files (database)
 Except for the main configuration file location, all others are configurable.
 Here are sensible defaults for the far-future:
 
-* `/etc/udgerc`:        main configuration file
-* `/etc/udge/users`:    directory with user information (credentials)
-* `/etc/udge/problem`:  test scripts and solutions
-* `/etc/udge/submissions`: submissions that are still to be judged
-* `/etc/udge/results`:  results of judging submissions
-* `/srv/udge`:          the static HTML pages (problems and users)
+* `/etc/udgerc`:               main configuration file
+* `/var/lib/udge/users`:       directory with user information (credentials)
+* `/var/lib/udge/problem`:     I/O test cases and markdown files
+* `/var/lib/udge/submissions`: submissions that are still to be judged
+* `/var/lib/udge/results`:     results of judging submissions
+* `/var/lib/udge/html`:        the static HTML pages (problems and users)
 
 
 ### User directory
@@ -124,7 +124,7 @@ The problem directory contains test scripts, inputs and solutions for each of th
 
 * `bin/udge-judge` reads this directory
 
-Each problem has a directory, `/etc/udge/problem/<problem>`.  Inside it:
+Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 
 * `1/in`: test input 1
 * `1/sol`: solution for test input 1

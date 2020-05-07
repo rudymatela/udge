@@ -4,7 +4,7 @@ server {
 		udge
 		;
 
-	root /srv/udge;
+	root /var/lib/udge/html;
 
 	location / {
 		index index.html;

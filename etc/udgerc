@@ -3,11 +3,11 @@
 
 NAME="Udge Online Judge"
 
-USERS=/etc/udge/users
-PROBLEMS=/etc/udge/problem
+USERS=/var/lib/udge/users
+PROBLEMS=/var/lib/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
-PUBLIC_HTML=/srv/udge
+PUBLIC_HTML=/var/lib/udge/html
 
 SCORE=fractions
 NEW_USER=true
