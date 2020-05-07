@@ -172,6 +172,14 @@ password is missing
 password is missing
 422
 
-$ grep -R ".*" /etc/udge/users/$user/ | sed -e "s,.*/,," | sort
-email:u@example.com
-password:b3c3e62cc12d233b23442fc9cdd226ebe60f0549a6a7e9ad9e7b6a9520c393b5
+$ . /etc/udge/conf
+$ ls -1 $USERS/$user
+email
+password
+salt
+$ cat $USERS/$user/email
+u@example.com
+$ cat $USERS/$user/password | wc -c
+65
+$ cat $USERS/$user/salt     | wc -c
+40

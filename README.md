@@ -81,7 +81,6 @@ Except for the main configuration file location, all others are configurable.
 Here are sensible defaults for the far-future:
 
 * `/etc/udge/conf`:     main configuration file
-* `/etc/udge/salt`:     salt file (for passwords)
 * `/etc/udge/users`:    directory with user information (credentials)
 * `/etc/udge/problem`:  test scripts and solutions
 * `/etc/udge/submissions`: submissions that are still to be judged

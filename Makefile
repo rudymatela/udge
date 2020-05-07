@@ -172,8 +172,6 @@ install:
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	install -m 755 -d             $(DESTDIR)/etc/udge
 	install -m 644  etc/udge/conf $(DESTDIR)/etc/udge/conf
-	[ -f $(DESTDIR)/etc/udge/salt ] || \
-	head -c30 /dev/random | base64 > $(DESTDIR)/etc/udge/salt
 	install -m 755 -d             $(DESTDIR)/etc/udge/users
 	install -m 755 -d             $(DESTDIR)/etc/udge/problem
 	install -m 755 -d             $(DESTDIR)/srv/udge
@@ -202,7 +200,6 @@ link-install:
 	mkdir -p                    $(DESTDIR)/etc/udge
 	mkdir -p                    $(DESTDIR)/etc/udge/users
 	ln -sfT `pwd`/etc/udge/conf $(DESTDIR)/etc/udge/conf
-	ln -sfT `pwd`/etc/udge/salt $(DESTDIR)/etc/udge/salt
 	ln -sfT `pwd`/problem       $(DESTDIR)/etc/udge/problem
 	mkdir -p                    $(DESTDIR)/srv
 	ln -sfT `pwd`/public_html   $(DESTDIR)/srv/udge
@@ -248,7 +245,7 @@ test-install:
 	make check-install DESTDIR=pkg
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
-	[ "`find pkg -type f | wc -l`" -eq 2 ] # salt & conf
+	[ "`find pkg -type f | wc -l`" -eq 1 ] # conf
 	rm -r pkg
 
 # NOTE: this only works on an "empty" tree.
@@ -260,7 +257,6 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udge/conf $(DESTDIR)/etc/udge/conf
-	[ -f $(DESTDIR)/etc/udge/salt ]
 	[ -d $(DESTDIR)/etc/udge/problem ]
 	[ -d $(DESTDIR)/etc/udge/users ]
 	[ -d $(DESTDIR)/srv/udge ]

@@ -174,5 +174,8 @@ sane-email-file() {
 check-user() {
 	username="$1"
 	password_fn="$2"
-	cat "$SALT_FILE" "$password_fn" | sha256sum | sed -e "s/ .*//" | diff -q - "$USERS/$username/password" >/dev/null 2>/dev/null
+	cat "$USERS/$username/salt" "$password_fn" |
+	sha256sum |
+	sed -e "s/ .*//" |
+	diff -q - "$USERS/$username/password" >/dev/null 2>/dev/null
 }

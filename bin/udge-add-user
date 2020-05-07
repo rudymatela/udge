@@ -40,5 +40,7 @@ prompt -s password_confirmation "retype password: "
 [ "_$password" == "_$password_confirmation" ] || errxit "passwords do not match $password $password_confirmation"
 
 mkdir -p "$user_dir"
-(cat $SALT_FILE; echo -n $password) | sha256sum | sed -e "s/ .*//" > "$user_dir/password"
+head -c30 /dev/random | base64 -w0 > "$user_dir/salt"
+(cat $user_dir/salt; echo -n $password) |
+sha256sum | sed -e "s/ .*//"   > "$user_dir/password"
 echo $email > "$user_dir/email"

@@ -3,7 +3,6 @@
 
 NAME="Udge Online Judge"
 
-SALT_FILE=/etc/udge/salt
 USERS=/etc/udge/users
 PROBLEMS=/etc/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
