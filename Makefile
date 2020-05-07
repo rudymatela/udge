@@ -223,6 +223,19 @@ uninstall:
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
 
+# Use with This will move:
+#
+# * all configuration files
+# * all installed problems
+# * all submissions
+# * all results
+today=$(shell date "+%Y%m%d")
+purge:
+	mv $(DESTDIR)/etc/udge{,-old-$(today)}
+	mv $(DESTDIR)/srv/udge{,-old-$(today)}
+	mv $(DESTDIR)/var/lib/udge{,-old-$(today)}
+	userdel udge
+
 test-link-install:
 	[ ! -e pkg ]
 	make link-install       DESTDIR=pkg
