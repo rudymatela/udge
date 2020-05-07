@@ -23,7 +23,7 @@
 
 set -e
 
-. /etc/udge/conf
+. /etc/udgerc
 
 http-header() {
 	content-type-html

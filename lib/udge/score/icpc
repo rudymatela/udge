@@ -40,7 +40,7 @@
 #
 # however for now this is what it is.
 #
-# To use this, put the following on /etc/udge/conf:
+# To use this, put the following on /etc/udgerc:
 #
 # CONTEST_START_TIME=1970-12-31T13:37:00-0000
 # SCORE=icpc

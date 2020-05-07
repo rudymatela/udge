@@ -1,7 +1,7 @@
 $ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
 $
-$ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udge/conf
+$ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udgerc
 $ curl -XGET udge/new-user | display
 New user – Udge Online Judge
 New user
@@ -17,25 +17,25 @@ password is missing
 password is missing
 422
 
-$ sed -i 's/NEW_USER=true/NEW_USER=false/' etc/udge/conf
+$ sed -i 's/NEW_USER=true/NEW_USER=false/' etc/udgerc
 $ curl -XGET udge/new-user | display
 403 Forbidden
 Udge Online Judge
 403 Forbidden
 403
 
-$ sed -i 's/NEW_USER=true/NEW_USER=false/' etc/udge/conf
+$ sed -i 's/NEW_USER=true/NEW_USER=false/' etc/udgerc
 $ curl -XPOST udge/new-user | display
 403 Forbidden
 Udge Online Judge
 403 Forbidden
 403
 
-$ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udge/conf
+$ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udgerc
 $ curl -XGET udge/new-user | display
 New user – Udge Online Judge
 New user
 200
 
-$ grep "^NEW_USER=" etc/udge/conf
+$ grep "^NEW_USER=" etc/udgerc
 NEW_USER=true

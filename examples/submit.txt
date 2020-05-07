@@ -193,7 +193,7 @@ Submission successful
 Submission successful
 202
 
-$ . etc/udge/conf
+$ . /etc/udgerc
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/," | sort; echo
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c

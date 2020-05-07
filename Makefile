@@ -171,7 +171,7 @@ install:
 	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	install -m 755 -d             $(DESTDIR)/etc/udge
-	install -m 644  etc/udge/conf $(DESTDIR)/etc/udge/conf
+	install -m 644  etc/udgerc    $(DESTDIR)/etc/udgerc
 	install -m 755 -d             $(DESTDIR)/etc/udge/users
 	install -m 755 -d             $(DESTDIR)/etc/udge/problem
 	install -m 755 -d             $(DESTDIR)/srv/udge
@@ -199,7 +199,7 @@ install:
 link-install:
 	mkdir -p                    $(DESTDIR)/etc/udge
 	mkdir -p                    $(DESTDIR)/etc/udge/users
-	ln -sfT `pwd`/etc/udge/conf $(DESTDIR)/etc/udge/conf
+	ln -sfT `pwd`/etc/udgerc    $(DESTDIR)/etc/udgerc
 	ln -sfT `pwd`/problem       $(DESTDIR)/etc/udge/problem
 	mkdir -p                    $(DESTDIR)/srv
 	ln -sfT `pwd`/public_html   $(DESTDIR)/srv/udge
@@ -228,7 +228,7 @@ uninstall:
 # * all results
 today=$(shell date "+%Y%m%d")
 purge:
-	mv $(DESTDIR)/etc/udge{,-old-$(today)}
+	mv $(DESTDIR)/etc/udgerc{,-old-$(today)}
 	mv $(DESTDIR)/srv/udge{,-old-$(today)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(today)}
 	userdel udge
@@ -256,7 +256,7 @@ check-install-test:
 	diff -rud lib     $(DESTDIR)$(PREFIX)/lib
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
-	diff -rud etc/udge/conf $(DESTDIR)/etc/udge/conf
+	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
 	[ -d $(DESTDIR)/etc/udge/problem ]
 	[ -d $(DESTDIR)/etc/udge/users ]
 	[ -d $(DESTDIR)/srv/udge ]

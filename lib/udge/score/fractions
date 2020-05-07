@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# To use this, simply put the following on /etc/udge/conf:
+# To use this, simply put the following on /etc/udgerc:
 #
 # SCORE=fractions
 #

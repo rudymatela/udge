@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-. /etc/udge/conf
+. /etc/udgerc
 
 # a sanity check for user and problem names
 SANE='^[a-z_][a-z0-9_-]*$'
