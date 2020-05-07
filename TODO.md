@@ -57,3 +57,6 @@ Future
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
+
+* add support to names
+	- including tests with characters of a few different languages
