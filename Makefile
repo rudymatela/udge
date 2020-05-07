@@ -171,7 +171,7 @@ install:
 	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	install -m 755 -d             $(DESTDIR)/etc/udge
-	install -m 644 /etc/udge/conf $(DESTDIR)/etc/udge/conf
+	install -m 644  etc/udge/conf $(DESTDIR)/etc/udge/conf
 	[ -f $(DESTDIR)/etc/udge/salt ] || \
 	head -c30 /dev/random | base64 > $(DESTDIR)/etc/udge/salt
 	install -m 755 -d             $(DESTDIR)/etc/udge/users
