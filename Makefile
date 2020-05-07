@@ -165,11 +165,13 @@ $(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
 
 install:
 	mkdir -p                      $(DESTDIR)/etc
+	mkdir -p                      $(DESTDIR)/etc/nginx/srv/avail
 	mkdir -p                      $(DESTDIR)/var/lib
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	mkdir -p                      $(DESTDIR)$(PREFIX)/bin
 	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 644  etc/udgerc    $(DESTDIR)/etc/udgerc
+	install -m 644 etc/udgerc     $(DESTDIR)/etc/udgerc
+	install -m 644 etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
 	install -m 755 -d             $(DESTDIR)/var/lib/udge
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
@@ -218,6 +220,7 @@ uninstall:
 today=$(shell date "+%Y%m%d")
 purge:
 	mv $(DESTDIR)/etc/udgerc{,-old-$(today)}
+	mv $(DESTDIR)/etc/nginx/srv/avail/udge{,-old-$(today)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(today)}
 	userdel udge
 
@@ -233,7 +236,7 @@ test-install:
 	make check-install DESTDIR=pkg
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
-	[ "`find pkg -type f | wc -l`" -eq 1 ] # conf
+	[ "`find pkg -type f | wc -l`" -eq 2 ] # udgerc and nginx conf
 	rm -r pkg
 
 # NOTE: this only works on an "empty" tree.
@@ -246,11 +249,9 @@ check-install-test:
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
 	[ -d $(DESTDIR)/var/lib/udge             ]
-	[ -d $(DESTDIR)/var/lib/udge/html        ]
-	[ -d $(DESTDIR)/var/lib/udge/problem     ]
 
 check-install-find:
 	find pkg -type f | sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,^/,," | sort > installed-files.txt
-	find lib bin cgi-bin etc/udge -type f                           | sort > installable-files.txt
+	find lib bin cgi-bin etc -type f                                | sort > installable-files.txt
 	diff -rud install{able,ed}-files.txt
 	rm install{able,ed}-files.txt
