@@ -2,6 +2,8 @@
 
 TIDY = tidy -qe --show-filename yes
 PREFIX = /usr/local
+NGINX_AVAIL =   /etc/nginx/srv/avail
+NGINX_ENABLED = /etc/nginx/srv/enabled
 HTTPD_USER = http
 BINS = \
 	bin/cgi-create-data-files \
@@ -159,17 +161,17 @@ clean-test-users:
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
-	mkdir -p                      $(DESTDIR)/etc
-	mkdir -p                      $(DESTDIR)/etc/nginx/srv/avail
-	mkdir -p                      $(DESTDIR)/var/lib
-	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
-	mkdir -p                      $(DESTDIR)$(PREFIX)/bin
-	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
+	mkdir -p                       $(DESTDIR)/etc
+	mkdir -p                       $(DESTDIR)$(NGINX_AVAIL)
+	mkdir -p                       $(DESTDIR)/var/lib
+	mkdir -p                       $(DESTDIR)$(PREFIX)/lib
+	mkdir -p                       $(DESTDIR)$(PREFIX)/bin
+	mkdir -p                       $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0644 etc/udgerc     $(DESTDIR)/etc/udgerc
-	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
+	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)$(NGINX_AVAIL)/udge
 	install -m 0755 -d             $(DESTDIR)/var/lib/udge
-	install -m 2770 -d            $(DESTDIR)/var/lib/udge/users
-	install -m 2775 -d            $(DESTDIR)/var/lib/udge/submissions
+	install -m 2770 -d             $(DESTDIR)/var/lib/udge/users
+	install -m 2775 -d             $(DESTDIR)/var/lib/udge/submissions
 	install -m 0755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge
@@ -195,24 +197,10 @@ uninstall:
 now=$(shell date "+%Y%m%d-%H%M%S")
 uninstall-and-purge: uninstall
 	mv $(DESTDIR)/etc/udgerc{,-old-$(now)}
-	mv $(DESTDIR)/etc/nginx/srv/avail/udge{,-old-$(now)}
+	mv $(DESTDIR)$(NGINX_AVAIL)/udge{,-old-$(now)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
 	userdel udge
 
-test-dev-install:
-	[ ! -e pkg ]
-	make dev-install        DESTDIR=pkg HTTPD_USER=
-	make check-install-test DESTDIR=pkg
-	rm -r pkg
-
-test-install:
-	[ ! -e pkg ]
-	make install       DESTDIR=pkg HTTPD_USER=
-	make check-install DESTDIR=pkg
-	make uninstall     DESTDIR=pkg
-	find pkg -type f
-	[ "`find pkg -type f | wc -l`" -eq 2 ] # udgerc and nginx conf
-	rm -r pkg
 
 # Run this as your regular user before dev-install
 dev-setup:
@@ -223,13 +211,13 @@ dev-setup:
 
 # Run this as root after dev-setup
 dev-install:
-	mkdir -p                               $(DESTDIR)/etc
-	mkdir -p                               $(DESTDIR)/etc/nginx/srv/avail
-	mkdir -p                               $(DESTDIR)/var/lib
-	ln -sfT `pwd`/etc/udgerc               $(DESTDIR)/etc/udgerc
-	ln -sfT `pwd`/etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
+	mkdir -p                         $(DESTDIR)/etc
+	mkdir -p                         $(DESTDIR)$(NGINX_AVAIL)
+	mkdir -p                         $(DESTDIR)/var/lib
+	ln -sfT `pwd`/etc/udgerc         $(DESTDIR)/etc/udgerc
+	ln -sfT `pwd`$(NGINX_AVAIL)/udge $(DESTDIR)$(NGINX_AVAIL)/udge
 	mkdir -p var
-	ln -sfT `pwd`/var                      $(DESTDIR)/var/lib/udge
+	ln -sfT `pwd`/var                $(DESTDIR)/var/lib/udge
 	for dir in `find bin lib cgi-bin -type d`; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
@@ -248,8 +236,24 @@ stop-services:
 	systemctl stop fcgiwrap
 
 enable-udge-site:
-	ln -rs /etc/nginx/srv/{avail,enabled}/udge
+	ln -rs $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
 	systemctl reload nginx
+
+
+test-install:
+	[ ! -e pkg ]
+	make install       DESTDIR=pkg HTTPD_USER=
+	make check-install DESTDIR=pkg
+	make uninstall     DESTDIR=pkg
+	find pkg -type f
+	[ "`find pkg -type f | wc -l`" -eq 2 ] # udgerc and nginx conf
+	rm -r pkg
+
+test-dev-install:
+	[ ! -e pkg ]
+	make dev-install        DESTDIR=pkg HTTPD_USER=
+	make check-install-test DESTDIR=pkg
+	rm -r pkg
 
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.
