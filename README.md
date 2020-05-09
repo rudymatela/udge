@@ -3,8 +3,6 @@ Udge
 
 Udge is an online judge of programming problems.
 
-Udge is implemented mainly in Bash.
-
 TODO: example problem and solution
 
 Features:
@@ -13,6 +11,8 @@ Features:
 * multiple sets of input/output files per problem;
 * "library" solutions where one has to implement a specific function;
 * (for now) support for solutions in C, Python and Haskell.
+
+Udge is implemented mainly in Bash and works on Linux systems with Nginx.
 
 Udge is free/libre software.
 It is available under the GPL license
