@@ -5,9 +5,6 @@ TODO list for Udge
 	- including instructions on how to set up an `udge` user
 	- update installation script accordingly
 
-* review Makefile variables: consider not using some of them
-  (e.g.: BINS)
-
 * document why permissions are set the way they are in the README
 
 * document current sandboxing limitations on README
