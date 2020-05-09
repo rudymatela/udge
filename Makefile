@@ -146,8 +146,10 @@ install:
 	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)$(NGINX_AVAIL)/udge
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
-	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/html
+	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
@@ -187,8 +189,10 @@ install:
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
+	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/html
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/results
 	# TODO: install example problems
 
 # Use with care.  This can potentially delete more than wanted.
@@ -250,7 +254,8 @@ test-install:
 	make check-install DESTDIR=pkg
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
-	[ "`find pkg -type f | wc -l`" -eq 2 ] # udgerc and nginx conf
+	find pkg -type f | wc -l
+	[ "`find pkg -type f | wc -l`" -eq 36 ] # udgerc, nginx conf and problems
 	rm -r pkg
 
 test-dev-install:
@@ -269,10 +274,14 @@ check-install-test:
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
 	diff -rud $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
-	[ -d $(DESTDIR)/var/lib/udge             ]
+	[ -d $(DESTDIR)/var/lib/udge ]
 
 check-install-find:
-	find pkg -type f | sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,^/,," | sort > installed-files.txt
-	find lib bin cgi-bin etc -type f                                | sort > installable-files.txt
+	echo $(DESTDIR) $(PREFIX)
+	find pkg -type f \
+	| sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,/var/lib/udge,,;s,^/,," \
+	| sort > installed-files.txt
+	find lib bin cgi-bin etc problem -type f \
+	| sort > installable-files.txt
 	diff -rud install{able,ed}-files.txt
 	rm install{able,ed}-files.txt
