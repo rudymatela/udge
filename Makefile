@@ -168,17 +168,6 @@ clean-test-users:
 	rm -rf /var/lib/udge/submissions/test-*-*-*
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
-$(PUBLIC_HTML)/%.css: lib/udge/%.css
-	cp $< $@
-
-$(PUBLIC_HTML)/%.html: problem/%/desc lib/udge/markdown lib/udge/html
-	mkdir -p $(PUBLIC_HTML)
-	./lib/udge/markdown $< > $@
-
-$(PUBLIC_HTML)/%.html: problem/%.md lib/udge/markdown lib/udge/html
-	mkdir -p $(PUBLIC_HTML)
-	./lib/udge/markdown $< > $@
-
 install:
 	mkdir -p                      $(DESTDIR)/etc
 	mkdir -p                      $(DESTDIR)/etc/nginx/srv/avail
