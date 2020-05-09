@@ -55,7 +55,8 @@ clean: \
 realclean: \
 	clean \
 	clean-results \
-	clean-users
+	clean-users \
+	clean-var
 
 fastest:
 	make test-scripts -j
@@ -157,6 +158,9 @@ clean-results:
 
 clean-users:
 	rm -rf var/users/*
+
+clean-var:
+	rm -rf var
 
 clean-test-users:
 	rm -rf /var/lib/udge/users/test-*-*-*
