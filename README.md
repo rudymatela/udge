@@ -50,6 +50,13 @@ First make sure you have all the [dependencies] installed.
 	sudo make install
 	```
 
+	Depending on your Linux distribution, you may need to set `HTTPD_USER`,
+	`NGINX_AVAIL` and `NGINX_ENABLED`:
+
+	```
+	sudo make install HTTPD_USER=www-data NGINX_AVAIL=/etc/nginx/sites-available NXING_ENABLED=/etc/nginx/sites-enabled
+	```
+
 2. (optional)
 	add your problems to `/var/lib/udge/problem`
 	and update `index.md` accordingly
