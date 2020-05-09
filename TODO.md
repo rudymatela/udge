@@ -5,6 +5,8 @@ TODO list for Udge
 	- including instructions on how to set up an `udge` user
 	- update installation script accordingly
 
+* document why permissions are set the way they are in the README
+
 * document current sandboxing limitations on README
 
 * add `addition` problem which is
