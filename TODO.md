@@ -23,8 +23,6 @@ TODO list for Udge
 Future
 ------
 
-* improve password hash by including the username
-
 * validation:
 
 	- `cgi-bin/new-user`: minimum password length and complexity
