@@ -3,19 +3,16 @@ Udge
 
 Udge is an online judge of programming problems.
 
-Udge is implemented as a collection of (usually bash) scripts.
+Udge is implemented mainly in Bash.
 
 TODO: example problem and solution
 
-A difference from other judges is that here we allow for problems with partial
-scoring, where in other judges the solution has to be perfect, here we give
-partial scores for:
+Features:
 
-* a slower solution ("higher" time complexity)
-* a solution that works only on smaller test cases
-
-This is achieved both by permitting multiple sets of input/output files and
-custom test scripts.
+* problems with partial scoring;
+* multiple sets of input/output files per problem;
+* "library" solutions where one has to implement a specific function;
+* (for now) support for solutions in C, Python and Haskell.
 
 Udge is free/libre software.
 It is available under the GPL license
@@ -34,6 +31,7 @@ To install and run Udge, you will also need:
 * fakechroot
 * util-linux (for `unshare`)
 * discount (for `markdown`)
+* clitest
 * TODO: complete this list
 
 [dependencies]: #dependencies
@@ -103,8 +101,7 @@ Routes
 Files (database)
 ----------------
 
-Except for the main configuration file location, all others are configurable.
-Here are sensible defaults for the far-future:
+There are the configuration file and folder locations for Udge:
 
 * `/etc/udgerc`:               main configuration file
 * `/var/lib/udge/users`:       directory with user information (credentials)
@@ -118,31 +115,33 @@ Here are sensible defaults for the far-future:
 
 The user directory stores main user information and credentials.
 
-* `cgi-bin/new-user` creates entries in this directory.
-* `cgi-bin/submit` checks credentials in this directory.
+* `bin/udge-add-user` creates entries in this directory.
+* `cgi-bin/udge-new-user` uses `bin/udge-add-user` to create entries here.
+* `cgi-bin/udge-submit` checks credentials in this directory.
 
 User information is stored in plain files under the `users` directory.
 Each user is described as a directory with it's name which should be composed
 only of English lowercase letters, dashes (`-`) and underscores (`_`).
 
-For now, we store the email and password,
-each in its own file with a single line:
+Emails and passwords are stored each in its own file with a single line:
 
 ```
-users/<user>/email
-users/<user>/password
+/var/lib/udge/users/<user>/email
+/var/lib/udge/users/<user>/password
+/var/lib/udge/users/<user>/salt
 ```
 
 For example:
 
 ```
-users/beltrano/email:beltrano@example.com
-users/beltrano/password:8165d72190bfc5a0f59adc3bde9b57aced5723656a0e2af21e2a51b03199fbef
-users/cicrano/email:cicrano@example.com
-users/cicrano/password:158a1d17ff2b5598c2066735f38883a4ba59310ad9dfe74c1ac3f178a7808700
-users/fulano/email:fulano@example.com
-users/fulano/password:34aceeb563fa984ddad7e549228cdcc88c97a60659d4da7d206192da8997606c
+/var/lib/udge/users/janeroe/salt:aSTR1PRypdeUUPeX7NFZYwVWrlXac4MYZHoCUIaq
+/var/lib/udge/users/janeroe/email:janeroe@example.net
+/var/lib/udge/users/janeroe/password:e0b3400da3f9edc96718a1b5d0da315f518e36b820404635998319662828fe44
+/var/lib/udge/users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
+/var/lib/udge/users/johndoe/email:johndoe@example.com
+/var/lib/udge/users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
 ```
+
 
 ### Problem directory
 
@@ -159,13 +158,6 @@ Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 * `3/...`: test set 3
 * ...
 
-This directory may also contain example solutions:
-
-* `tle.c`: example solution in C that yields "Time Limit Exceeded".
-* `re.c`: example solution in C that yields "Runtime Error".
-* `yes.c`: example solution in C that yields a full score.
-* `yes-4-6.hs`: example solution in Haskell that yields 4/6.
-
 If there is only one test set, you are allowed to let `in` and `out` reside
 plainly without a subdir.
 
@@ -174,7 +166,7 @@ plainly without a subdir.
 
 The submissions directory contains submissions that are yet to be scored.
 
-* `cgi-bin/submit` creates entries in this directory
+* `cgi-bin/udge-submit` creates entries in this directory
 * `bin/udge-pick-and-judge` picks-then-deletes entries from this directory
 
 It contain files in the following format:
@@ -192,7 +184,8 @@ For example:
 The results directory contains the results of evaluated solutions.
 
 * `bin/udge-pick-and-judge` creates entries in this directory
-* `bin/generate-user-pages` reads from this directory (TBA)
+* `bin/udge-update-all-user-htmls` reads from this directory
+* `bin/udge-update-user-html` reads from this directory
 
 Results contain a folder for each user which in turn contains a folder for each
 problem which contains the best result for a problem along with a folder for
@@ -213,26 +206,48 @@ results/fulano/hello/20190101-133700/hello.py
 ```
 
 
-Programs
---------
+Programs and Commands
+---------------------
 
-* `cgi-bin/new-user`: handles user creation
-* `cgi-bin/submit`: called when an user submits a solution,
-					creates a submission in the submissions folder.
-* `bin/udge-judge`: judges a solution
-* `bin/udge-pick-and-judge`: to be called every 1 minute from cron,
-                        picks a solution at random from `submissions`,
-						creates a result on `results`.
+* `cgi-bin/udge-new-user`: CGI script that handles user creation;
+* `cgi-bin/udge-submit`: CGI script that handles submission of solution;
+* `udge-add-user`: adds a user creating an entry on `users`.
+* `udge-judge`: judges a solution printing results to stdout
+* `udge-latest-results`: shows the latest results from a user
+* `udge-pick-and-judge`: to be called every 1 minute from cron,
+                         picks a solution at random from `submissions`,
+                         creates a result on `results`.
+* `udge-rank`: computes and prints the current user rank
+* `udge-sandbox`: runs a program in a sandbox
+* `udge-submit`: submits a solution to the judge using HTTP
+* `udge-update-all-problem-htmls`: updates all problem htmls
+* `udge-update-all-user-htmls`: updates all user htmls
+* `udge-update-rank-html`: updates the rank html
+* `udge-update-user-html`: updates a single user html
+* `udge-user-stats`: prints the stats for a given user
 
-Others needed:
 
-* a program that reads results and create user pages.  (to be called right after pick-and-judge)
-* a program that creates a user ranking  (to be called every 10 minutes or every hour)
+Test & Examples directory
+-------------------------
 
+The `examples/` directory contains examples of use for several programs and
+commands shipped with Udge.  These double as tests for the `clitest` tool.
 
-Future features
----------------
+Example solutions to example problems are also stored in this directory
+under `examples/<problem>`:
 
-* User can configure:
-	- appear on raking;
-	- anonymized on ranking (Anonymous) and private user page (as a single option).
+* `examples/add/0-ce.c`:
+	example solution to `add` in C
+	that yields a compile error with a score of 0/6.
+* `examples/add/0-re.c`:
+	example solution to `add` in C that
+	yields a runtime error with a score of 0/6.
+* `examples/hello/hello.c`:
+	example solution to `hello` in C
+	that gets a full score of 6/6.
+* `examples/hello/hello.py`:
+	example solution to `hello` in Python
+	that gets a full score of 6/6.
+* `examples/add/4-octals.c`:
+	example solution to `add` in C
+	that gets a score of 4/6.

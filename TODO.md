@@ -5,6 +5,8 @@ TODO list for Udge
 	- including instructions on how to set up an `udge` user
 	- update installation script accordingly
 
+* add a global `VAR` or `HOME` setting to replace others in `/etc/udgerc`
+
 * document why permissions are set the way they are in the README
 
 * document current sandboxing limitations on README
@@ -58,3 +60,6 @@ Future
 
 * add support to names
 	- including tests with characters of a few different languages
+
+* Let users configure if they would be appear anonymized on the ranking and
+  have a private user page.  (All this as a single option.)
