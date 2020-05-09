@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# udge-update-all-users-html: updates all user HTML files
+# udge-update-all-user-htmls: updates all user HTML files
 #
-# Usage: udge-update-all-users-html [force]
+# Usage: udge-update-all-user-htmls [force]
 #
 #
 # Copyright (C) 2020  Rudy Matela

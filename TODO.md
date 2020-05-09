@@ -46,7 +46,7 @@ Future
   race conditions currently).  The affected scripts are:
 
 	- `udge-pick-and-judge`;
-	- `udge-update-all-users-html`;
+	- `udge-update-all-user-htmls`;
 	- `udge-update-rank-html`.
 
 * run stuff as `nobody` where applicable

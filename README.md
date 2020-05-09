@@ -75,12 +75,12 @@ you should also add the following to your crontab (use `crontab -e`):
 
 ```
 * * * * * /usr/local/bin/udge-pick-and-judge
-* * * * * /usr/local/bin/udge-update-all-users-html
+* * * * * /usr/local/bin/udge-update-all-user-htmls
 */2 * * * * /usr/local/bin/udge-update-rank-html
 ```
 
 The above will:
-`pick-and-judge` and `udge-update-all-users-html` every minute;
+`pick-and-judge` and `udge-update-all-user-htmls` every minute;
 `udge-update-rank-html` every 2 minutes.
 Please adapt as needed.
 

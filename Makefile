@@ -30,7 +30,7 @@ BINS = \
 	bin/udge-sandbox \
 	bin/udge-submit \
 	bin/udge-update-all-problem-htmls \
-	bin/udge-update-all-users-html \
+	bin/udge-update-all-user-htmls \
 	bin/udge-update-rank-html \
 	bin/udge-update-user-html \
 	bin/udge-user-stats
@@ -129,12 +129,12 @@ test-makefile-coverage:
 
 html:
 	./bin/udge-update-all-problem-htmls
-	./bin/udge-update-all-users-html
+	./bin/udge-update-all-user-htmls
 	./bin/udge-update-rank-html
 
 html-force:
 	./bin/udge-update-all-problem-htmls force
-	./bin/udge-update-all-users-html force
+	./bin/udge-update-all-user-htmls force
 	./bin/udge-update-rank-html
 
 clean-html:
