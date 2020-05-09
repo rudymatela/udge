@@ -193,7 +193,6 @@ install:
 	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/html
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/results
-	# TODO: install example problems
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
