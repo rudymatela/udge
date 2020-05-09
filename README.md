@@ -42,7 +42,15 @@ Installing and configuring
 
 First make sure you have all the [dependencies] installed.
 
-TBA
+Then run the following as `root`:
+
+```
+make install
+udge-update-all-problem-htmls
+udge-update-rank-html
+```
+
+...
 
 
 Setting up a development environment

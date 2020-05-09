@@ -22,6 +22,12 @@ TODO list for Udge
 Future
 ------
 
+* add another user `udge-html` from which the following will be run:
+	- `udge-update-rank-html`
+	- `udge-update-all-user-htmls`
+	- `udge-update-all-problem-htmls`
+	- ?
+
 * validation:
 
 	- `cgi-bin/new-user`: minimum password length and complexity

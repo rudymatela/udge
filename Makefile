@@ -147,6 +147,7 @@ install:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
 	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
@@ -184,9 +185,11 @@ install:
 	install -m 0755 lib/udge/score/icpc      $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
+	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+	# TODO: install example problems
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
