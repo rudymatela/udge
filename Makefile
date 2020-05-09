@@ -1,10 +1,10 @@
 # Makefile for the judge
 
-TIDY = tidy -qe --show-filename yes
-PREFIX = /usr/local
-NGINX_AVAIL =   /etc/nginx/srv/avail
+PREFIX        = /usr/local
+HTTPD_USER    = http
+NGINX_AVAIL   = /etc/nginx/srv/avail
 NGINX_ENABLED = /etc/nginx/srv/enabled
-HTTPD_USER = http
+TIDY          = tidy -qe --show-filename yes
 BINS = \
 	bin/cgi-create-data-files \
 	bin/udge-add-user \
