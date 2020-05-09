@@ -182,25 +182,25 @@ install:
 	mkdir -p                      $(DESTDIR)$(PREFIX)/lib
 	mkdir -p                      $(DESTDIR)$(PREFIX)/bin
 	mkdir -p                      $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 644 etc/udgerc     $(DESTDIR)/etc/udgerc
-	install -m 644 etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
-	install -m 755 -d             $(DESTDIR)/var/lib/udge
+	install -m 0644 etc/udgerc     $(DESTDIR)/etc/udgerc
+	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
+	install -m 0755 -d             $(DESTDIR)/var/lib/udge
 	install -m 2770 -d            $(DESTDIR)/var/lib/udge/users
 	install -m 2775 -d            $(DESTDIR)/var/lib/udge/submissions
-	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
-	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 644 $(LIBS)        $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 755 $(LIBBINS)     $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 755 $(COMPILE)     $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 755 $(COMPILELIB)  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
-	install -m 755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 $(LIBS)        $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 $(LIBBINS)     $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 $(COMPILE)     $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 $(COMPILELIB)  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	chown $(HTTPD_USER) /var/lib/udge/users
-	chown $(HTTPD_USER) /var/lib/udge/submissions
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
 # Run this as your regular user before dev-install
 dev-setup:
@@ -247,7 +247,7 @@ test-dev-install:
 
 test-install:
 	[ ! -e pkg ]
-	make install       DESTDIR=pkg
+	make install       DESTDIR=pkg HTTPD_USER=
 	make check-install DESTDIR=pkg
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
