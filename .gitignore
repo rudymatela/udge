@@ -1,5 +1,5 @@
-public_html
 *.hi
 *.o
 pkg
 install*-files.txt
+var

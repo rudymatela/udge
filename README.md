@@ -22,8 +22,27 @@ It is available under the GPL license
 unless otherwise stated in specific files.
 
 
+Dependencies
+------------
+
+To install and run Udge, you will also need:
+
+* Bash
+* Python
+* nginx
+* fcgiwrap
+* fakechroot
+* util-linux (for `unshare`)
+* discount (for `markdown`)
+* TODO: complete this list
+
+[dependencies]: #dependencies
+
+
 Installing and configuring
 --------------------------
+
+First make sure you have all the [dependencies] installed.
 
 TBA
 
@@ -31,11 +50,20 @@ TBA
 Setting up a development environment
 ------------------------------------
 
+First make sure you have all the [dependencies] installed.
+
+NOTE: this section is slightly outdates
+
+TODO: update this section with the new setup instructions:
+
+```
+make dev-setup
+sudo make dev-install
+make html
+```
+
 Development is managed through Makefile.  You can for example use `make test`
 to run all available tests.
-
-To develop, add your user to the `http` group, so that you can erase the
-submissions created by `submit` whenever you run `pick-and-judge`.
 
 1. set up nginx, please see the example config file `etc/nginx/srv/avail/udge`;
 2. add `127.0.0.1 udge` to `/etc/hosts`;

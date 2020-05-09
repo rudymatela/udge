@@ -161,9 +161,9 @@ post() {
 		exit
 	fi
 	destfile="$destdir/$problem_value.$language_value"
-	umask 0002 # allows for members of the http group to write (or remove)
+	umask 0002 # allows for members of the udge group to write (or remove)
 	mkdir -p $destdir
-	cp "$tmpdata/program/value" "$destfile"
+	cp --no-preserve=all "$tmpdata/program/value" "$destfile"
 
 	logprefix="udge-submit @ $now by $user_value - $problem_value.$language_value"
 	echo "$logprefix: submission successful" >&2

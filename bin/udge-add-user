@@ -39,6 +39,7 @@ prompt -s password_confirmation "retype password: "
 
 [ "_$password" == "_$password_confirmation" ] || errxit "passwords do not match $password $password_confirmation"
 
+umask 0007 # dir: rwxrws---, file: rw-rw----
 mkdir -p "$user_dir"
 head -c30 /dev/random | base64 -w0 > "$user_dir/salt"
 (cat $user_dir/salt; echo -n $password) |

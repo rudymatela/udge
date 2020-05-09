@@ -2,14 +2,7 @@
 
 TIDY = tidy -qe --show-filename yes
 PREFIX = /usr/local
-PUBLIC_HTML = public_html
-HTMLS = \
-	$(PUBLIC_HTML)/bootstrap.min.css \
-	$(PUBLIC_HTML)/404.html \
-	$(PUBLIC_HTML)/hello.html \
-	$(PUBLIC_HTML)/hello-world.html \
-	$(PUBLIC_HTML)/add.html \
-	$(PUBLIC_HTML)/index.html
+HTTPD_USER = http
 BINS = \
 	bin/cgi-create-data-files \
 	bin/udge-add-user \
@@ -54,7 +47,15 @@ SCORE = \
 .PHONY: all
 all:
 
-clean: clean-html
+clean: \
+	clean-html \
+	clean-submissions \
+	clean-test-users
+
+realclean: \
+	clean \
+	clean-results \
+	clean-users
 
 fastest:
 	make test-scripts -j
@@ -95,7 +96,7 @@ test-happy: \
   happy-day-2.clitest \
   happy-day-3.clitest
 
-test-makefile: test-makefile-coverage test-link-install
+test-makefile: test-makefile-coverage test-dev-install
 
 test-makefile-coverage:
 	rm -f /tmp/udge-clitests /tmp/udge-txts
@@ -109,25 +110,27 @@ test-makefile-coverage:
 	PATH="./bin:$$PATH" clitest -1 $<
 
 start-services:
-	sudo systemctl start fcgiwrap.socket
-	sudo systemctl start fcgiwrap
-	sudo systemctl start nginx
+	systemctl start fcgiwrap.socket
+	systemctl start fcgiwrap
+	systemctl start nginx
 
 stop-services:
-	sudo systemctl stop nginx
-	sudo systemctl stop fcgiwrap.socket
-	sudo systemctl stop fcgiwrap
+	systemctl stop nginx
+	systemctl stop fcgiwrap.socket
+	systemctl stop fcgiwrap
 
-html: $(HTMLS)
+html:
+	./bin/udge-update-all-problem-htmls
 	./bin/udge-update-all-users-html
 	./bin/udge-update-rank-html
 
-html-force: $(HTMLS)
+html-force:
+	./bin/udge-update-all-problem-htmls force
 	./bin/udge-update-all-users-html force
 	./bin/udge-update-rank-html
 
 clean-html:
-	rm -f $(HTMLS)
+	rm -rf var/html
 
 %.tidy: html
 	curl -sL $* | $(TIDY)
@@ -145,6 +148,15 @@ tidy: \
 tidy-public_html: html
 	for file in `find public_html -name *.html`; do \
 		$(TIDY) "$$file" || break; done
+
+clean-submissions:
+	rm -rf var/submissions/*
+
+clean-results:
+	rm -rf var/results
+
+clean-users:
+	rm -rf var/users/*
 
 clean-test-users:
 	rm -rf /var/lib/udge/users/test-*-*-*
@@ -173,6 +185,8 @@ install:
 	install -m 644 etc/udgerc     $(DESTDIR)/etc/udgerc
 	install -m 644 etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
 	install -m 755 -d             $(DESTDIR)/var/lib/udge
+	install -m 2770 -d            $(DESTDIR)/var/lib/udge/users
+	install -m 2775 -d            $(DESTDIR)/var/lib/udge/submissions
 	install -m 755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
 	install -m 755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge
@@ -185,48 +199,49 @@ install:
 	install -m 755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
+	chown $(HTTPD_USER) /var/lib/udge/users
+	chown $(HTTPD_USER) /var/lib/udge/submissions
 
-# NOTE: Only use this to set up a development environment, never in a real
-#       installation.
-#
-# This target will fail if your path has spaces.  (-:
-link-install:
+# Run this as your regular user before dev-install
+dev-setup:
+	install -m 0755 -d var
+	install -m 2770 -d var/users
+	install -m 2775 -d var/submissions
+	ln -rsfT problem var/problem
+
+# Run this as root after dev-setup
+dev-install:
 	mkdir -p                               $(DESTDIR)/etc
 	mkdir -p                               $(DESTDIR)/etc/nginx/srv/avail
 	mkdir -p                               $(DESTDIR)/var/lib
 	ln -sfT `pwd`/etc/udgerc               $(DESTDIR)/etc/udgerc
 	ln -sfT `pwd`/etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
-	install -m 775 -d                      $(DESTDIR)/var/lib/udge
-	ln -sfT `pwd`/problem                  $(DESTDIR)/var/lib/udge/problem
-	ln -sfT `pwd`/public_html              $(DESTDIR)/var/lib/udge/html
+	mkdir -p var
+	ln -sfT `pwd`/var                      $(DESTDIR)/var/lib/udge
 	for dir in `find bin lib cgi-bin -type d`; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
 		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
-# Use with care.  If there are files installed by other packages but with the
-# same name, those will be deleted.
+# Use with care.  This can potentially delete more than wanted.
 uninstall:
 	for file in `find bin lib cgi-bin -type f`; do \
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
 
-# Use with This will move:
-#
-# * all configuration files
-# * all installed problems
-# * all submissions
-# * all results
-today=$(shell date "+%Y%m%d")
-purge:
-	mv $(DESTDIR)/etc/udgerc{,-old-$(today)}
-	mv $(DESTDIR)/etc/nginx/srv/avail/udge{,-old-$(today)}
-	mv $(DESTDIR)/var/lib/udge{,-old-$(today)}
+# Use with care.  This can potentially delete more than wanted.
+now=$(shell date "+%Y%m%d-%H%M%S")
+uninstall-and-purge: uninstall
+	mv $(DESTDIR)/etc/udgerc{,-old-$(now)}
+	mv $(DESTDIR)/etc/nginx/srv/avail/udge{,-old-$(now)}
+	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
 	userdel udge
 
-test-link-install:
+test-dev-install:
 	[ ! -e pkg ]
-	make link-install       DESTDIR=pkg
+	make dev-install        DESTDIR=pkg HTTPD_USER=
 	make check-install-test DESTDIR=pkg
 	rm -r pkg
 
