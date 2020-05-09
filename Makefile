@@ -20,46 +20,6 @@ HTTPD_USER    = http
 NGINX_AVAIL   = /etc/nginx/srv/avail
 NGINX_ENABLED = /etc/nginx/srv/enabled
 TIDY          = tidy -qe --show-filename yes
-BINS = \
-	bin/cgi-create-data-files \
-	bin/udge-add-user \
-	bin/udge-judge \
-	bin/udge-latest-results \
-	bin/udge-pick-and-judge \
-	bin/udge-rank \
-	bin/udge-sandbox \
-	bin/udge-submit \
-	bin/udge-update-all-problem-htmls \
-	bin/udge-update-all-user-htmls \
-	bin/udge-update-rank-html \
-	bin/udge-update-user-html \
-	bin/udge-user-stats
-CGIBINS = \
-	cgi-bin/udge-new-user \
-	cgi-bin/udge-submit
-LIBS = \
-	lib/udge/bootstrap.min.css \
-	lib/udge/html \
-	lib/udge/cgi \
-	lib/udge/core
-LIBBINS = \
-	lib/udge/markdown \
-	lib/udge/rank-html \
-	lib/udge/user-html \
-	lib/udge/compile-and-test
-COMPILE = \
-	lib/udge/compile/c \
-	lib/udge/compile/hs \
-	lib/udge/compile/py
-COMPILELIB = \
-	lib/udge/compile-as-lib/c \
-	lib/udge/compile-as-lib/hs \
-	lib/udge/compile-as-lib/py
-SCORE = \
-	lib/udge/score/fractions \
-	lib/udge/score/icpc \
-	lib/udge/score/solved \
-	lib/udge/score/sum
 
 .PHONY: all
 all:
@@ -114,7 +74,7 @@ test-happy: \
   happy-day-2.clitest \
   happy-day-3.clitest
 
-test-makefile: test-makefile-coverage test-dev-install
+test-makefile: test-makefile-coverage test-dev-install # TODO: add test-install, use mktemp to allow -j
 
 test-makefile-coverage:
 	rm -f /tmp/udge-clitests /tmp/udge-txts
@@ -176,28 +136,54 @@ clean-test-users:
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
-	mkdir -p                       $(DESTDIR)/etc
-	mkdir -p                       $(DESTDIR)$(NGINX_AVAIL)
-	mkdir -p                       $(DESTDIR)/var/lib
-	mkdir -p                       $(DESTDIR)$(PREFIX)/lib
-	mkdir -p                       $(DESTDIR)$(PREFIX)/bin
-	mkdir -p                       $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 0644 etc/udgerc     $(DESTDIR)/etc/udgerc
+	mkdir -p $(DESTDIR)/etc
+	mkdir -p $(DESTDIR)$(NGINX_AVAIL)
+	mkdir -p $(DESTDIR)/var/lib
+	mkdir -p $(DESTDIR)$(PREFIX)/lib
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	mkdir -p $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0644 etc/udgerc $(DESTDIR)/etc/udgerc
 	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)$(NGINX_AVAIL)/udge
-	install -m 0755 -d             $(DESTDIR)/var/lib/udge
-	install -m 2770 -d             $(DESTDIR)/var/lib/udge/users
-	install -m 2775 -d             $(DESTDIR)/var/lib/udge/submissions
-	install -m 0755 $(BINS)        $(DESTDIR)$(PREFIX)/bin
-	install -m 0755 $(CGIBINS)     $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0644 $(LIBS)        $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0755 $(LIBBINS)     $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 $(COMPILE)     $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 $(COMPILELIB)  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 -d             $(DESTDIR)$(PREFIX)/lib/udge/score
-	install -m 0755 $(SCORE)       $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 -d $(DESTDIR)/var/lib/udge
+	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
+	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
+	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-pick-and-judge           $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-rank                     $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-sandbox                  $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-submit                   $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-update-all-problem-htmls $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-update-all-user-htmls    $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-update-rank-html         $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-update-user-html         $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-user-stats               $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 cgi-bin/udge-new-user $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 cgi-bin/udge-submit   $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 -d                         $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 lib/udge/bootstrap.min.css $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 lib/udge/html              $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 lib/udge/cgi               $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 lib/udge/core              $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/markdown          $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/rank-html         $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/user-html         $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/compile-and-test  $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 -d                  $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/c  $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/hs $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/py $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 -d                         $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/c  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/hs $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/py $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 -d                       $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 lib/udge/score/fractions $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 lib/udge/score/icpc      $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
+	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
 	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
 	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
@@ -279,6 +265,7 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
+	diff -rud $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
 	[ -d $(DESTDIR)/var/lib/udge             ]
 
 check-install-find:
