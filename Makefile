@@ -235,7 +235,7 @@ stop-services:
 	systemctl stop fcgiwrap.socket
 	systemctl stop fcgiwrap
 
-enable-udge-site:
+enable-nginx-udge-site:
 	ln -rs $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
 	systemctl reload nginx
 

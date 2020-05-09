@@ -52,29 +52,26 @@ Setting up a development environment
 
 First make sure you have all the [dependencies] installed.
 
-NOTE: this section is slightly outdates
-
-TODO: update this section with the new setup instructions:
+The following sequence of commands can be used to set up the development
+environment.  Run them as your _regular user_.  You should only use `root`
+while running those preceded by `sudo`.
 
 ```
 make dev-setup
 sudo make dev-install
 make html
 sudo make start-services
+sudo make enable-nginx-udge-site
 ```
 
-Development is managed through Makefile.  You can for example use `make test`
-to run all available tests.
+You should also add `127.0.0.1 udge` to `/etc/hosts`.
 
-1. set up nginx, please see the example config file `etc/nginx/srv/avail/udge`;
-2. add `127.0.0.1 udge` to `/etc/hosts`;
-3. link `/var/lib/udge/problem` to your local (repository) problem folder;
-4. run `make html` to compile html descriptions of problems;
-5. link `/srv/udge` to your local html problem folder `path/to/udge/html`.
+If everything worked correctly,
+you should be able to run `make test` successfully.
 
-Alternatively, you can simply: `make html && sudo make link-install`
-
-You should also add the following to your crontab (use `crontab -e`):
+If you like your development environment
+to automatically run jobs in the background,
+you should also add the following to your crontab (use `crontab -e`):
 
 ```
 * * * * * /usr/local/bin/udge-pick-and-judge
