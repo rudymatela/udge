@@ -185,8 +185,8 @@ install:
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
@@ -223,8 +223,8 @@ dev-install:
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
 		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
 start-services:
 	systemctl start fcgiwrap.socket
@@ -243,7 +243,7 @@ enable-nginx-udge-site:
 
 test-install:
 	[ ! -e pkg ]
-	make install       DESTDIR=pkg HTTPD_USER=
+	make install       DESTDIR=pkg
 	make check-install DESTDIR=pkg
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
@@ -252,7 +252,7 @@ test-install:
 
 test-dev-install:
 	[ ! -e pkg ]
-	make dev-install        DESTDIR=pkg HTTPD_USER=
+	make dev-install        DESTDIR=pkg
 	make check-install-test DESTDIR=pkg
 	rm -r pkg
 
