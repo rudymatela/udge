@@ -190,9 +190,9 @@ install:
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
-	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/html
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
-	[ "$$EUID" -ne 0 ] || chown udge.udge          $(DESTDIR)/var/lib/udge/results
+	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/html
+	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:

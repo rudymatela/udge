@@ -9,6 +9,7 @@ Features:
 
 * problems with partial scoring;
 * multiple sets of input/output files per problem;
+* problem description in markdown;
 * "library" solutions where one has to implement a specific function;
 * (for now) support for solutions in C, Python and Haskell.
 
@@ -32,6 +33,7 @@ To install and run Udge, you will also need:
 * util-linux (for `unshare`)
 * discount (for `markdown`)
 * clitest
+* cronie
 * TODO: complete this list
 
 [dependencies]: #dependencies
@@ -42,15 +44,37 @@ Installing and configuring
 
 First make sure you have all the [dependencies] installed.
 
-Then run the following as `root`:
+1. run `make install` as `root`:
 
-```
-make install
-udge-update-all-problem-htmls
-udge-update-rank-html
-```
+	```
+	sudo make install
+	```
 
-...
+2. (optional)
+	add your problems to `/var/lib/udge/problem`
+	and update `index.md` accordingly
+	otherwise you will be using the default example problems.
+
+3. generate htmls:
+
+	```
+	sudo -u udge udge-update-all-problem-htmls
+	sudo -u udge udge-update-rank-html
+	```
+
+4. set the following on `udge`'s cron with `sudo -u udge crontab -e`
+
+	```
+	* * * * * /usr/local/bin/udge-pick-and-judge
+	* * * * * /usr/local/bin/udge-update-all-user-htmls
+	*/2 * * * * /usr/local/bin/udge-update-rank-html
+	```
+
+	The above will:
+	`pick-and-judge` and `udge-update-all-user-htmls` every minute;
+	`udge-update-rank-html` every 2 minutes.
+	Please adapt as needed.
+
 
 
 Setting up a development environment
@@ -84,11 +108,6 @@ you should also add the following to your crontab (use `crontab -e`):
 * * * * * /usr/local/bin/udge-update-all-user-htmls
 */2 * * * * /usr/local/bin/udge-update-rank-html
 ```
-
-The above will:
-`pick-and-judge` and `udge-update-all-user-htmls` every minute;
-`udge-update-rank-html` every 2 minutes.
-Please adapt as needed.
 
 Routes
 ------

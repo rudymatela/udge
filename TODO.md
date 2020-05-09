@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* add installation instructions
-	- including instructions on how to set up an `udge` user
-	- update installation script accordingly
-
 * add a global `VAR` or `HOME` setting to replace others in `/etc/udgerc`
 
 * document why permissions are set the way they are in the README
@@ -22,11 +18,7 @@ TODO list for Udge
 Future
 ------
 
-* add another user `udge-html` from which the following will be run:
-	- `udge-update-rank-html`
-	- `udge-update-all-user-htmls`
-	- `udge-update-all-problem-htmls`
-	- ?
+* automatically install crontab entries
 
 * validation:
 
