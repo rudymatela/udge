@@ -110,16 +110,6 @@ test-makefile-coverage:
 %.clitest: examples/%.txt
 	PATH="./bin:$$PATH" clitest -1 $<
 
-start-services:
-	systemctl start fcgiwrap.socket
-	systemctl start fcgiwrap
-	systemctl start nginx
-
-stop-services:
-	systemctl stop nginx
-	systemctl stop fcgiwrap.socket
-	systemctl stop fcgiwrap
-
 html:
 	./bin/udge-update-all-problem-htmls
 	./bin/udge-update-all-users-html
@@ -195,29 +185,6 @@ install:
 	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
 	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
-# Run this as your regular user before dev-install
-dev-setup:
-	install -m 0755 -d var
-	install -m 2770 -d var/users
-	install -m 2775 -d var/submissions
-	ln -rsfT problem var/problem
-
-# Run this as root after dev-setup
-dev-install:
-	mkdir -p                               $(DESTDIR)/etc
-	mkdir -p                               $(DESTDIR)/etc/nginx/srv/avail
-	mkdir -p                               $(DESTDIR)/var/lib
-	ln -sfT `pwd`/etc/udgerc               $(DESTDIR)/etc/udgerc
-	ln -sfT `pwd`/etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
-	mkdir -p var
-	ln -sfT `pwd`/var                      $(DESTDIR)/var/lib/udge
-	for dir in `find bin lib cgi-bin -type d`; do \
-		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
-	for file in `find bin lib cgi-bin -type f`; do \
-		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
-	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
-
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
 	for file in `find bin lib cgi-bin -type f`; do \
@@ -246,6 +213,43 @@ test-install:
 	find pkg -type f
 	[ "`find pkg -type f | wc -l`" -eq 2 ] # udgerc and nginx conf
 	rm -r pkg
+
+# Run this as your regular user before dev-install
+dev-setup:
+	install -m 0755 -d var
+	install -m 2770 -d var/users
+	install -m 2775 -d var/submissions
+	ln -rsfT problem var/problem
+
+# Run this as root after dev-setup
+dev-install:
+	mkdir -p                               $(DESTDIR)/etc
+	mkdir -p                               $(DESTDIR)/etc/nginx/srv/avail
+	mkdir -p                               $(DESTDIR)/var/lib
+	ln -sfT `pwd`/etc/udgerc               $(DESTDIR)/etc/udgerc
+	ln -sfT `pwd`/etc/nginx/srv/avail/udge $(DESTDIR)/etc/nginx/srv/avail/udge
+	mkdir -p var
+	ln -sfT `pwd`/var                      $(DESTDIR)/var/lib/udge
+	for dir in `find bin lib cgi-bin -type d`; do \
+		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
+	for file in `find bin lib cgi-bin -type f`; do \
+		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ -z "$(HTTPD_USER)" ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+
+start-services:
+	systemctl start fcgiwrap.socket
+	systemctl start fcgiwrap
+	systemctl start nginx
+
+stop-services:
+	systemctl stop nginx
+	systemctl stop fcgiwrap.socket
+	systemctl stop fcgiwrap
+
+enable-udge-site:
+	ln -rs /etc/nginx/srv/{avail,enabled}/udge
+	systemctl reload nginx
 
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.

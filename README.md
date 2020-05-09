@@ -60,6 +60,7 @@ TODO: update this section with the new setup instructions:
 make dev-setup
 sudo make dev-install
 make html
+sudo make start-services
 ```
 
 Development is managed through Makefile.  You can for example use `make test`
