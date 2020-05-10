@@ -20,13 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ tmp=`mktemp /tmp/udge-test-attack-fork-exe-XXXXXXXXXX`
+$ tmp=`mktemp /tmp/udge-test-sandbox-fork-exe-XXXXXXXXXX`
 $
-$ udge-judge hello-world examples/attack/forkbomb.c
+$ udge-judge hello-world examples/sandbox/forkbomb.c
 No - time limit exceeded
 0/1
 $
-$ cc examples/attack/fork4096.c -o $tmp
+$ cc examples/sandbox/fork4096.c -o $tmp
 $ $tmp
 $ udge-sandbox $tmp 2>&1 | sed -e "s/^.*fork: /fork: /"
 fork: retry: Resource temporarily unavailable

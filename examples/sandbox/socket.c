@@ -1,5 +1,5 @@
 /*
- * examples/attack/socket.c: does an HTTP GET on 127.0.0.1
+ * examples/sandbox/socket.c: does an HTTP GET on 127.0.0.1
  *
  * This program performs an HTTP GET on 127.0.0.1.
  *
@@ -11,7 +11,7 @@
  *
  * If Udge's sandbox functionality is working correctly then:
  *
- * $ udge-judge hello-world examples/attack/socket.c
+ * $ udge-judge hello-world examples/sandbox/socket.c
  * No - runtime error (non-zero exit code)
  * 0/1
  *

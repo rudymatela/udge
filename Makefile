@@ -53,13 +53,13 @@ test-scripts: \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
-  attack.clitest \
+  sandbox.clitest \
   hello.clitest
 
 # these cannot be run in parallel
 test-web: \
   index.clitest \
-  attack-fork.clitest \
+  sandbox-fork.clitest \
   test-web-noindex
 
 test-web-noindex: \

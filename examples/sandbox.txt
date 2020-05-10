@@ -20,33 +20,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ tmp=`mktemp /tmp/udge-test-attack-exe-XXXXXXXXXX`
+$ tmp=`mktemp /tmp/udge-test-sandbox-exe-XXXXXXXXXX`
 $
-$ udge-judge hello-world examples/attack/dns.c
+$ udge-judge hello-world examples/sandbox/dns.c
 No - runtime error (non-zero exit code)
 0/1
 $
-$ cc examples/attack/dns.c -o $tmp
+$ cc examples/sandbox/dns.c -o $tmp
 $ $tmp | grep example.com | sort -u
 hostname: example.com
 $ udge-sandbox $tmp
 could not resolve hostname (-3)
 $
-$ udge-judge hello-world examples/attack/socket.c
+$ udge-judge hello-world examples/sandbox/socket.c
 No - runtime error (non-zero exit code)
 0/1
 $
-$ cc examples/attack/socket.c -o $tmp
+$ cc examples/sandbox/socket.c -o $tmp
 $ $tmp | grep "<h.>" | sed -e "s/<[^>]*>//g" | head -1
 Udge Online Judge
 $ udge-sandbox $tmp
 could not connect to 127.0.0.1:80
 $
-$ udge-judge hello-world examples/attack/memory.c
+$ udge-judge hello-world examples/sandbox/memory.c
 No - runtime error (non-zero exit code)
 0/1
 $
-$ cc examples/attack/memory.c -o $tmp
+$ cc examples/sandbox/memory.c -o $tmp
 $ $tmp
 Allocated 1Kb.
 Allocated 1Mb.

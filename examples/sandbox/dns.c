@@ -1,10 +1,10 @@
 /*
- * examples/attack/dns.c: resolves the example.com hostname
+ * examples/sandbox/dns.c: resolves the example.com hostname
  *
  * This program exists successfully when the hostname is resolved
  * otherwise it exits with an error.
  *
- * If "udge-judge hello-world examples/attack/dns.c" returns
+ * If "udge-judge hello-world examples/sandbox/dns.c" returns
  *
  *     No - runtime error (non-zero exit code)
  *     0/1

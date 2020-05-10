@@ -1,10 +1,10 @@
 /*
- * examples/attack/memory.c: allocates 1GB of memory
+ * examples/sandbox/memory.c: allocates 1GB of memory
  *
  * This program allocates memory progressively up to 1GB of memory.
  * If Udge's sandbox functionality is working correctly then:
  *
- * $ udge-judge hello-world examples/attack/memory.c
+ * $ udge-judge hello-world examples/sandbox/memory.c
  * No - runtime error (non-zero exit code)
  * 0/1
  *

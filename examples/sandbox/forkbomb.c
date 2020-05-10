@@ -1,10 +1,10 @@
 /*
- * examples/attack/forkbomb.c: forks indefinitely
+ * examples/sandbox/forkbomb.c: forks indefinitely
  *
  * This program is a forkbomb that halts the system by forking indefinitely.
  * If Udge's sandbox functionality is working correctly then:
  *
- * $ udge-judge hello-world examples/attack/forkbomb.c
+ * $ udge-judge hello-world examples/sandbox/forkbomb.c
  * No - time limit exceeded
  * 0/1
  *

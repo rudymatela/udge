@@ -1,10 +1,10 @@
 /*
- * examples/attack/fork4096.c: forks into 4096 processes
+ * examples/sandbox/fork4096.c: forks into 4096 processes
  *
  * This program forks into 4096 processes.
  * If Udge's sandbox functionality is working correctly then:
  *
- * $ udge-judge hello-world examples/attack/fork4096.c
+ * $ udge-judge hello-world examples/sandbox/fork4096.c
  * No - time limit exceeded
  * 0/1
  *
