@@ -5,8 +5,9 @@ Udge Online Judge
 
 These are Udge's example problems:
 
-* [hello](/hello)
 * [hello-world](/hello-world)
+* [addition](/addition)
+* [hello](/hello)
 * [add](/add)
 
 Add your problems on `/var/lib/udge/problem` and
