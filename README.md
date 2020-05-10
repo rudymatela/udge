@@ -24,7 +24,7 @@ You should create your own problems:
 write the problem description in markdown
 and create input and output cases
 following [Udge's Problem directory] format.
-Udge comes with three example problems illustrating this.
+Udge comes with four example problems illustrating this.
 
 [Udge's Problem directory]: #problem-directory
 
@@ -236,6 +236,8 @@ To create a problem on Udge:
 7. (testing) Submit an _incorrect_ solution to the newly created problem
 	and make sure it does not receive a full score.
 
+Please see the `addition` problem for an example of this.
+
 
 ### Multiple input and output pairs
 
@@ -251,6 +253,8 @@ Inside each create `in` and `out` files:
 * `3/in`
 * `3/out`
 * ...
+
+Please see the `add` problem for an example of this.
 
 
 
