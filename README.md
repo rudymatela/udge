@@ -113,7 +113,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	You will have to re-run `udge-update-all-problem-htmls` every time you add
 	or edit a problem description so HTML files are updated.
 
-4. set the following on `udge` user crontab with `sudo -u udge crontab -e`
+4. set the following on `udge` user's crontab with `sudo -u udge crontab -e`
 
 		* * * * * /usr/local/bin/udge-pick-and-judge
 		* * * * * /usr/local/bin/udge-update-all-user-htmls
@@ -222,13 +222,19 @@ To create a problem on Udge:
 
 		/var/lib/udge/problem/index.md
 
-4. update static HTML files by running:
+4. Update static HTML files by running:
 
 		sudo -u udge udge-update-all-problem-htmls
 
-5. test by accessing the newly created problem on
+5. (testing) Access the newly created problem on:
 
 		http://udge/<problem-code>
+
+6. (testing) Submit a _correct_ solution to the newly created problem
+	and make sure it receives a full score.
+
+7. (testing) Submit an _incorrect_ solution to the newly created problem
+	and make sure it does not receive a full score.
 
 
 ### Multiple input and output pairs
