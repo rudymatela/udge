@@ -19,6 +19,8 @@ Udge is free/libre software.
 It is available under the GPL license
 unless otherwise stated in specific files.
 
+Copyright (C) 2015-2020  Rudy Matela
+
 
 Dependencies
 ------------
