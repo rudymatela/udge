@@ -10,8 +10,6 @@ TODO list for Udge
 * add `addition` problem which is
   to `add` as `hello-world` is to `hello`
 
-* review docs and notices of each file (examples, etc.)
-
 * publish on github?
 
 

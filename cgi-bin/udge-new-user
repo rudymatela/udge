@@ -23,15 +23,11 @@
 #
 # location = /new-user {
 #   fastcgi_pass unix:/run/fcgiwrap.sock;
-#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/new-user;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-new-user;
 #   include fastcgi.conf;
 # }
 #
 # Use the above inside an existing server{} entry.
-#
-# TODO: somehow define which user this will run in
-#       and add instructions how to set up
-
 
 set -e
 

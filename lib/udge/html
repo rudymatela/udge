@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# lib/udge/core: HTML utilities, supposed to be sourced in other scripts
+# lib/udge/html: HTML utilities, supposed to be sourced in other scripts
 #
 # This file is part of Udge.
 #

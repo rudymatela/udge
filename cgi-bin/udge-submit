@@ -23,14 +23,11 @@
 #
 # location = /submit {
 #   fastcgi_pass unix:/run/fcgiwrap.sock;
-#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/submit;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-submit;
 #   include fastcgi.conf;
 # }
 #
 # Use the above inside an existing server{} entry.
-
-# TODO: somehow run this under a specific unpriviledged user
-
 
 set -e
 

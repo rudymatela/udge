@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# usage: ./bin/user-html <user>
+# usage: lib/udge/user-html <user>
 #
 # This file is part of Udge.
 #
