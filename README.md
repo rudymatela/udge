@@ -5,24 +5,53 @@ Udge is an online judge for programming problems.
 
 TODO: example problem and solution
 
+Using Udge you can host programming problems in an HTTP site.
+Users can submit solution programs which are automatically scored.
+Scores are then reported in each user's page.
+
+Uses:
+
+* hosting programming contests;
+* hosting programming problems for students by teachers, lecturers or professors;
+* hosting an online judge.
+
+The usual goal of problems hosted on Udge is to create a command line program
+that reads data from standard input and produces results on standard output.
+
+Udge is not a collection of programming problems
+but rather the software used to host them.
+You should create your own problems:
+write the problem description in markdown
+and create input and output cases
+following [Udge's Problem directory] format.
+Udge comes with three example problems illustrating this.
+
+[Udge's Problem directory]: #problem-directory
+
 Features:
 
-* problems with partial scoring;
-* multiple sets of input/output files per problem;
+* multiple sets of input/output files per problem -- graded scores;
 * problem description in markdown;
 * support for "library" solutions
   where one has to implement a specific function;
+* a rank with a few selectable formats;
 * (for now) support for solutions in C, Python and Haskell.
 
-Udge is implemented mainly in Bash and works on Linux systems with Nginx.
+Udge is implemented in Bash and works on Linux systems with Nginx.
+It uses static HTML pages where possible.
+These pages are updated by minutely cron jobs.
+The only two dynamic pages are for submission and user creation.
 
 Udge is free/libre software.
 It is available under the GPLv2 license
 unless otherwise stated in specific files.
+--- Copyright (C) 2015-2020  Rudy Matela ---
+This program is distributed in the hope that it will be useful,
+but __without any warranty__; without even the implied warranty of
+__merchantability__ or __fitness for a particular purpose__.
+See the GNU General Public License for more details.
 
-Copyright (C) 2015-2020  Rudy Matela
-
-Udge is already functional and usable but it a _work in progress_.
+Udge is already functional and usable but it is a _work in progress_.
 Submission sandboxing is still pretty limited so use with care.
 For now, only give submission access to people you trust:
 either deactivate user creation or run this only on a local network.
@@ -31,107 +60,74 @@ either deactivate user creation or run this only on a local network.
 Dependencies
 ------------
 
-To install and run Udge, you will also need:
+To install and run Udge, you will need:
 
 * Bash
 * Python
 * nginx
 * fcgiwrap
 * fakechroot
-* util-linux (for `unshare`)
-* discount (for `markdown`)
-* clitest
+* util-linux --- for sandboxing with `unshare`
+* discount   --- for `markdown`
 * cronie
-* tidy
+* GCC's GCC  --- for C submission support
+* GHC        --- for Haskell submission support
+* clitest    --- for testing Udge itself
+* tidy       --- for testing Udge itself
 * TODO: complete this list
 
 [dependencies]: #dependencies
 
 
-Installing and configuring
+Installing and Configuring
 --------------------------
 
-First make sure you have all the [dependencies] installed.
+First make sure you have all the [dependencies] installed.  Then:
 
 1. run `make install` as `root`:
 
-	```
-	sudo make install
-	```
+		$ sudo make install
 
 	Depending on your Linux distribution, you may need to set `HTTPD_USER`,
 	`NGINX_AVAIL` and `NGINX_ENABLED`:
 
-	```
-	sudo make install HTTPD_USER=<user> NGINX_AVAIL=<path> NXING_ENABLED=<path>
-	```
+		$ sudo make install HTTPD_USER=<user> NGINX_AVAIL=<path> NXING_ENABLED=<path>
 
 	The Makefile should be able to figure these automatically on Arch Linux
-	(tested) and on Debian variants (untested).
+	(tested) and on Debian/Ubuntu variants (untested).
 
 2. (optional)
 	add your problems to `/var/lib/udge/problem`
 	and update `index.md` accordingly
 	otherwise you will be using the default example problems.
+	This can be done at a later point.
 
-3. generate htmls:
+3. generate static HTML files:
 
-	```
-	sudo -u udge udge-update-all-problem-htmls
-	sudo -u udge udge-update-rank-html
-	```
+		sudo -u udge udge-update-all-problem-htmls
+		sudo -u udge udge-update-rank-html
 
-4. set the following on `udge`'s cron with `sudo -u udge crontab -e`
+	You will have to re-run `udge-update-all-problem-htmls` every time you add
+	or edit a problem description so HTML files are updated.
 
-	```
-	* * * * * /usr/local/bin/udge-pick-and-judge
-	* * * * * /usr/local/bin/udge-update-all-user-htmls
-	*/2 * * * * /usr/local/bin/udge-update-rank-html
-	```
+4. set the following on `udge` user crontab with `sudo -u udge crontab -e`
+
+		* * * * * /usr/local/bin/udge-pick-and-judge
+		* * * * * /usr/local/bin/udge-update-all-user-htmls
+		*/2 * * * * /usr/local/bin/udge-update-rank-html
 
 	The above will:
 	`pick-and-judge` and `udge-update-all-user-htmls` every minute;
 	`udge-update-rank-html` every 2 minutes.
 	Please adapt as needed.
 
+[Installing and Configuring]: #installing-and-configuring
 
 
-Setting up a development environment
-------------------------------------
+Pages and Routes
+----------------
 
-First make sure you have all the [dependencies] installed.
-
-The following sequence of commands can be used to set up the development
-environment.  Run them as your _regular user_.  You should only use `root`
-while running those preceded by `sudo`.
-
-```
-make dev-setup
-sudo make dev-install
-make html
-sudo make start-services
-sudo make enable-nginx-udge-site
-```
-
-You should also add `127.0.0.1 udge` to `/etc/hosts`.
-
-If everything worked correctly,
-you should be able to run `make test` successfully.
-
-If you like your development environment
-to automatically run jobs in the background,
-you should also add the following to your crontab (use `crontab -e`):
-
-```
-* * * * * /usr/local/bin/udge-pick-and-judge
-* * * * * /usr/local/bin/udge-update-all-user-htmls
-*/2 * * * * /usr/local/bin/udge-update-rank-html
-```
-
-Routes
-------
-
-* `/`:              the index with the list of problems
+* `/`:              the index with the list of problems (`index.md`)
 * `/submit`:        allows submission of a solution to a problem
 * `/new-user`:      allows creation of a user
 * `/<problem>`:     a problem description
@@ -142,6 +138,42 @@ Routes
 * `/p/<user_sha1>`: private user page, lists scores for each problem (TBA)
 * `/u/<user_name>/submissions`: lists the submissions of a user    (TBA)
 * `/rank`:          the user rank (TBA)
+
+
+Setting up a Development Environment
+------------------------------------
+
+This section is intended for people who want to work on Udge development
+itself.  If you just want to _use_ Udge to host problems please see the
+[Installing and Configuring] section instead.
+
+First make sure you have all the [dependencies] installed.
+Make sure you _don't_ have Udge installed by `make install`.
+Use `make uninstall-and-purge` if needed.
+
+The following sequence of commands can be used to set up the development
+environment.  Run them as your _regular user_.  You should only use `root`
+while running those preceded by `sudo`.
+
+	make dev-setup
+	sudo make dev-install
+	make html
+	sudo make start-services
+	sudo make enable-nginx-udge-site
+
+You should also add `127.0.0.1 udge` to `/etc/hosts`.
+
+If everything worked correctly,
+you should be able to run `make test` successfully.
+
+If you like your development environment
+to automatically judge and update pages in the background,
+you should also add the following to your regular user's crontab
+(use `crontab -e`):
+
+	* * * * * /usr/local/bin/udge-pick-and-judge
+	* * * * * /usr/local/bin/udge-update-all-user-htmls
+	*/2 * * * * /usr/local/bin/udge-update-rank-html
 
 
 Files (database)
