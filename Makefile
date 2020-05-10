@@ -189,6 +189,17 @@ install:
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
 	[ "$$EUID" -ne 0 ] || id -u udge >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
+	# Notes on permissions and ownership.
+	#
+	# CGI scripts need permission to create entries on users/ and submissions/
+	# so they are set to be owned by the HTTPd user.
+	#
+	# pick-and-judge needs permission to delete entries from submissions/ so
+	# this directory is set with the setgid flag (2775) and the udge group
+	# which makes files created within it inhehit the group and allows deletion
+	# by the udge user.
+	#
+	# html and results need to be writable by the udge user.
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/html

@@ -254,12 +254,17 @@ Programs and Commands
                          picks a solution at random from `submissions`,
                          creates a result on `results`.
 * `udge-rank`: computes and prints the current user rank
-* `udge-sandbox`: runs a program in a sandbox
+* `udge-sandbox`: runs a program in a sandbox.
+	Currently sandboxing has a few limitations:
+	forking protection can be improved;
+	it does not chroot yet (as the chroot folders are still TBD);
+	it is not applied to compilation (but should).
+	These should be addressed in the future.
 * `udge-submit`: submits a solution to the judge using HTTP
-* `udge-update-all-problem-htmls`: updates all problem htmls
-* `udge-update-all-user-htmls`: updates all user htmls
-* `udge-update-rank-html`: updates the rank html
-* `udge-update-user-html`: updates a single user html
+* `udge-update-all-problem-htmls`: updates all problem HTML files
+* `udge-update-all-user-htmls`: updates all user HTML files
+* `udge-update-rank-html`: updates the rank HTML file
+* `udge-update-user-html`: updates a single user HTML file
 * `udge-user-stats`: prints the stats for a given user
 
 

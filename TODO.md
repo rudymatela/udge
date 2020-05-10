@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* document why permissions are set the way they are in the README
-
-* document current sandboxing limitations on README
-
 * add `addition` problem which is
   to `add` as `hello-world` is to `hello`
 
