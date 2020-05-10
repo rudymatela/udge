@@ -16,7 +16,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 PREFIX        = /usr/local
-HTTPD_USER    = http
+# HTTPD_USER is guessed to be www-data, http, nginx, www or root in that order.
+HTTPD_USER    = $(shell id -u www-data -n 2>/dev/null || \
+                        id -u http     -n 2>/dev/null || \
+                        id -u nginx    -n 2>/dev/null || \
+                        id -u www      -n 2>/dev/null || \
+                        id -u root     -n 2>/dev/null)
 NGINX_AVAIL   = /etc/nginx/srv/avail
 NGINX_ENABLED = /etc/nginx/srv/enabled
 TIDY          = tidy -qe --show-filename yes
