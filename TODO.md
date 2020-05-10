@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add a global `VAR` or `HOME` setting to replace others in `/etc/udgerc`
-
 * document why permissions are set the way they are in the README
 
 * document current sandboxing limitations on README
