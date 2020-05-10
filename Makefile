@@ -1,5 +1,6 @@
 # Makefile for Udge
 #
+#
 # Copyright (C) 2015-2020  Rudy Matela
 #
 # This program is free software; you can redistribute it and/or
@@ -14,6 +15,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# This Makefile uses GNU make extensions.
 
 PREFIX        = /usr/local
 # HTTPD_USER is guessed to be www-data, http, nginx, www or root in that order.
@@ -22,8 +26,16 @@ HTTPD_USER    = $(shell id -u www-data -n 2>/dev/null || \
                         id -u nginx    -n 2>/dev/null || \
                         id -u www      -n 2>/dev/null || \
                         id -u root     -n 2>/dev/null)
-NGINX_AVAIL   = /etc/nginx/srv/avail
-NGINX_ENABLED = /etc/nginx/srv/enabled
+# NGINX_AVAIL is guessed to be sites-available and srv/avail in that order.
+NGINX_AVAIL   = $(shell \
+	[ -d /etc/nginx/sites-available ] && echo /etc/nginx/sites-available || \
+	[ -d /etc/nginx/srv/avail ]       && echo /etc/nginx/srv/avail       || \
+	echo /etc/udge-nginx-example)
+# NGINX_ENABLED is guessed to be sites-enabled and srv/enabled in that order.
+NGINX_ENABLED = $(shell \
+	[ -d /etc/nginx/sites-enabled ]   && echo /etc/nginx/sites-enabled || \
+	[ -d /etc/nginx/srv/enabled ]     && echo /etc/nginx/srv/enabled   || \
+	true)
 TIDY          = tidy -qe --show-filename yes
 
 .PHONY: all
@@ -259,6 +271,7 @@ stop-services:
 	systemctl stop fcgiwrap
 
 enable-nginx-udge-site:
+	[ -n "$(NGINX_ENABLED)" ]
 	ln -rs $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
 	systemctl reload nginx
 
@@ -288,6 +301,7 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
+	[ -z "$(NGINX_ENABLED)" ] || \
 	diff -rud $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
 	[ -d $(DESTDIR)/var/lib/udge ]
 

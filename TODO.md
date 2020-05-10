@@ -10,11 +10,6 @@ TODO list for Udge
 Future
 ------
 
-* On the Makefile automatically figure out:
-	- `HTTPD_USER`
-	- `NGINX_AVAIL`
-	- `NGINX_ENABLED`
-
 * automatically install crontab entries
 
 * validation:
