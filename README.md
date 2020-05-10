@@ -63,8 +63,11 @@ First make sure you have all the [dependencies] installed.
 	`NGINX_AVAIL` and `NGINX_ENABLED`:
 
 	```
-	sudo make install HTTPD_USER=www-data NGINX_AVAIL=/etc/nginx/sites-available NXING_ENABLED=/etc/nginx/sites-enabled
+	sudo make install HTTPD_USER=<user> NGINX_AVAIL=<path> NXING_ENABLED=<path>
 	```
+
+	The Makefile should be able to figure these automatically on Arch Linux
+	(tested) and on Debian variants (untested).
 
 2. (optional)
 	add your problems to `/var/lib/udge/problem`
