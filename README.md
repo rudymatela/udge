@@ -42,6 +42,7 @@ To install and run Udge, you will also need:
 * discount (for `markdown`)
 * clitest
 * cronie
+* tidy
 * TODO: complete this list
 
 [dependencies]: #dependencies
