@@ -1,11 +1,6 @@
 TODO list for Udge
 ==================
 
-* review the README file
-
-* add `addition` problem which is
-  to `add` as `hello-world` is to `hello`
-
 * publish on github?
 
 
