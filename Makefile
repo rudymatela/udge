@@ -295,3 +295,10 @@ check-install-find:
 	| sort > installable-files.txt
 	diff -rud install{able,ed}-files.txt
 	rm install{able,ed}-files.txt
+
+show-vars:
+	@echo "PREFIX        = $(PREFIX)"
+	@echo "HTTPD_USER    = $(HTTPD_USER)"
+	@echo "NGINX_AVAIL   = $(NGINX_AVAIL)"
+	@echo "NGINX_ENABLED = $(NGINX_ENABLED)"
+	@echo "TIDY          = $(TIDY)"
