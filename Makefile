@@ -104,7 +104,7 @@ test-makefile-coverage:
 %.clitest: examples/%.txt
 	PATH="./bin:$$PATH" clitest -1 $<
 
-html: readme
+html: readme todo
 	./bin/udge-update-all-problem-htmls
 	./bin/udge-update-all-user-htmls
 	./bin/udge-update-rank-html
@@ -123,7 +123,13 @@ clean-html:
 .PHONY: readme
 readme: var/html/README.html
 
+.PHONY: todo
+todo: var/html/TODO.html
+
 var/html/README.html: README.md
+	./lib/udge/markdown $< > $@
+
+var/html/TODO.html: TODO.md
 	./lib/udge/markdown $< > $@
 
 tidy: \
