@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* review the README file
+
 * add `addition` problem which is
   to `add` as `hello-world` is to `hello`
 
@@ -53,3 +55,6 @@ Future
 
 * Let users configure if they would be appear anonymized on the ranking and
   have a private user page.  (All this as a single option.)
+  The private user page would be accessed on `/p/<user_sha1_base64_etc>`
+
+* Add a user's submission page?  `u/<user_name>/submissions`

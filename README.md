@@ -35,6 +35,7 @@ Features:
 * support for "library" solutions
   where one has to implement a specific function;
 * a rank with a few selectable formats;
+* simple plaintext file database, no need to setup an SQL server and database;
 * (for now) support for solutions in C, Python and Haskell.
 
 Udge is implemented in Bash and works on Linux systems with Nginx.
@@ -121,23 +122,64 @@ First make sure you have all the [dependencies] installed.  Then:
 	`udge-update-rank-html` every 2 minutes.
 	Please adapt as needed.
 
+5. Add the following entry to `/etc/hosts`.
+
+		127.0.0.1 udge udge.localdomain
+
+	If you have another domain name you would like to use,
+		replace it here instead.
+	If you already have a public DNS entry pointing to your server
+		you may skip this step.
+
+6. (optional) edit the domain name on Udge's Nginx config, located usually on either:
+
+	- `/etc/nginx/srv/avail/udge`; or
+	- `/etc/nginx/srv/sites-available/udge`
+	- ...
+
+	the actual location will depend on your Linux distribution.
+
+
+7. (optional) start the Nginx server if you haven't done so with either:
+
+	- `systemctl start nginx`; or
+	- `service nginx start`; or
+	- `/etc/inid.d/nginx start`; or
+	- ...
+
+	which will depend on your Linux distribution.
+
+8. enable Udge on Nginx and reload the configuration:
+
+		make enable-nginx-udge-site
+
+9. test that everything works
+	by typing `udge/` (or your selected domain of steps 5 and 6)
+	in your browser's address bar.
+	Do not forget the `/` at the end, otherwise your browser may search the web
+	for "udge".  If it does not work try also `http://udge/`.
+
+	You should see the problem index and the menu at the top and bottom.
+
 [Installing and Configuring]: #installing-and-configuring
 
 
 Pages and Routes
 ----------------
 
+If the installation is working you should be able to access the following pages,
+each accessed by typing `udge/<page>` or `<yourdomain>/<page>`:
+
 * `/`:              the index with the list of problems (`index.md`)
-* `/submit`:        allows submission of a solution to a problem
-* `/new-user`:      allows creation of a user
-* `/<problem>`:     a problem description
-	- `/hello`:     the `hello` problem
-	- `/add`:       the `add` problem
-	- `/prod3`:     the `prod3` problem
-* `/u/<user_name>`: user's page, lists scores for each problem (TBA)
-* `/p/<user_sha1>`: private user page, lists scores for each problem (TBA)
-* `/u/<user_name>/submissions`: lists the submissions of a user    (TBA)
-* `/rank`:          the user rank (TBA)
+* `/submit`:        submission of solutions
+* `/new-user`:      user creation
+* `/<problem>`:     a problem description, e.g.:
+	- `/hello`
+	- `/add`
+	- `/hello-world`
+* `/u/<user_name>`: user's page with
+                    scores for each problem and latest submissions
+* `/rank`:          the user rank
 
 
 Setting up a Development Environment
@@ -203,22 +245,18 @@ only of English lowercase letters, dashes (`-`) and underscores (`_`).
 
 Emails and passwords are stored each in its own file with a single line:
 
-```
-/var/lib/udge/users/<user>/email
-/var/lib/udge/users/<user>/password
-/var/lib/udge/users/<user>/salt
-```
+	/var/lib/udge/users/<user>/email
+	/var/lib/udge/users/<user>/password
+	/var/lib/udge/users/<user>/salt
 
 For example:
 
-```
-/var/lib/udge/users/janeroe/salt:aSTR1PRypdeUUPeX7NFZYwVWrlXac4MYZHoCUIaq
-/var/lib/udge/users/janeroe/email:janeroe@example.net
-/var/lib/udge/users/janeroe/password:e0b3400da3f9edc96718a1b5d0da315f518e36b820404635998319662828fe44
-/var/lib/udge/users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
-/var/lib/udge/users/johndoe/email:johndoe@example.com
-/var/lib/udge/users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
-```
+	/var/lib/udge/users/janeroe/salt:aSTR1PRypdeUUPeX7NFZYwVWrlXac4MYZHoCUIaq
+	/var/lib/udge/users/janeroe/email:janeroe@example.net
+	/var/lib/udge/users/janeroe/password:e0b3400da3f9edc96718a1b5d0da315f518e36b820404635998319662828fe44
+	/var/lib/udge/users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
+	/var/lib/udge/users/johndoe/email:johndoe@example.com
+	/var/lib/udge/users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
 
 
 ### Problem directory
@@ -269,19 +307,15 @@ Results contain a folder for each user which in turn contains a folder for each
 problem which contains the best result for a problem along with a folder for
 each of the submissions, like so:
 
-```
-results/<user>/<problem>/best
-results/<user>/<problem>/YYYYMMDD-HHMMSS/result
-results/<user>/<problem>/YYYYMMDD-HHMMSS/<problem>.<language>
-```
+	results/<user>/<problem>/best
+	results/<user>/<problem>/YYYYMMDD-HHMMSS/result
+	results/<user>/<problem>/YYYYMMDD-HHMMSS/<problem>.<language>
 
 For example:
 
-```
-results/fulano/hello/best
-results/fulano/hello/20190101-133700/result
-results/fulano/hello/20190101-133700/hello.py
-```
+	results/fulano/hello/best
+	results/fulano/hello/20190101-133700/result
+	results/fulano/hello/20190101-133700/hello.py
 
 
 Programs and Commands
