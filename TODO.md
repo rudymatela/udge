@@ -14,6 +14,8 @@ Future
 
 * automatically install crontab entries
 
+* rename `desc` to `desc.md`
+
 * validation:
 
 	- `cgi-bin/new-user`: minimum password length and complexity

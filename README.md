@@ -83,6 +83,8 @@ To install and run Udge, you will need:
 Installing and Configuring
 --------------------------
 
+TODO: provide packages for Arch Linux and Ubuntu.
+
 First make sure you have all the [dependencies] installed.  Then:
 
 1. run `make install` as `root`:
@@ -180,6 +182,68 @@ each accessed by typing `udge/<page>` or `<yourdomain>/<page>`:
 * `/u/<user_name>`: user's page with
                     scores for each problem and latest submissions
 * `/rank`:          the user rank
+
+
+Creating a Problem
+------------------
+
+To create a problem on Udge:
+
+1. Create a subdirectory to `/var/lib/udge/problem` called:
+
+		/var/lib/udge/problem/<problem-code>
+
+	The problem code should contain only
+		digits,
+		lowercase English letters and
+		dashes (`-`).
+
+2. Create three files in the newly created problem folder:
+
+	* `desc`: a markdown file with your problem description
+
+	* `in`: the input file.
+		This will be used as the standard input to submitted solutions:
+
+			./submitted-program <in
+
+	* `sol`: the solution file.
+		This will be compared to the standard output of submitted solutions:
+
+			./submitted-program <in >out
+			diff -rud out sol
+
+		If output matches exactly, the submission will get a score.
+
+3. Link to the newly created problem on the problem index
+	by editing the following file:
+
+		/var/lib/udge/problem/index.md
+
+4. update static HTML files by running:
+
+		sudo -u udge udge-update-all-problem-htmls
+
+5. test by accessing the newly created problem on
+
+		http://udge/<problem-code>
+
+
+### Multiple input and output pairs
+
+To set up a problem with multiple I/O pairs,
+instead of creating just `in` and `sol`,
+create several subdirectories `1`, `2`, `3`, ...
+Inside each create `in` and `out` files:
+
+* `1/in`
+* `1/out`
+* `2/in`
+* `2/out`
+* `3/in`
+* `3/out`
+* ...
+
 
 
 Setting up a Development Environment
