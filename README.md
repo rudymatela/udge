@@ -163,6 +163,8 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	You should see the problem index and the menu at the top and bottom.
 
+Udge can be customized on it's configuration file `/etc/udgerc`.
+
 [Installing and Configuring]: #installing-and-configuring
 
 
@@ -246,8 +248,14 @@ Inside each create `in` and `out` files:
 
 
 
-Setting up a Development Environment
-------------------------------------
+Development Information
+-----------------------
+
+This section contains development information to those interested in forking or
+contributing to Udge's development.
+
+
+### Setting up a Development Environment
 
 This section is intended for people who want to work on Udge development
 itself.  If you just want to _use_ Udge to host problems please see the
@@ -282,108 +290,9 @@ you should also add the following to your regular user's crontab
 	*/2 * * * * /usr/local/bin/udge-update-rank-html
 
 
-Files (database)
-----------------
+### Programs and Commands
 
-There are the configuration file and folder locations for Udge:
-
-* `/etc/udgerc`:               main configuration file
-* `/var/lib/udge/users`:       directory with user information (credentials)
-* `/var/lib/udge/problem`:     I/O test cases and markdown files
-* `/var/lib/udge/submissions`: submissions that are still to be judged
-* `/var/lib/udge/results`:     results of judging submissions
-* `/var/lib/udge/html`:        the static HTML pages (problems and users)
-
-
-### User directory
-
-The user directory stores main user information and credentials.
-
-* `bin/udge-add-user` creates entries in this directory.
-* `cgi-bin/udge-new-user` uses `bin/udge-add-user` to create entries here.
-* `cgi-bin/udge-submit` checks credentials in this directory.
-
-User information is stored in plain files under the `users` directory.
-Each user is described as a directory with it's name which should be composed
-only of English lowercase letters, dashes (`-`) and underscores (`_`).
-
-Emails and passwords are stored each in its own file with a single line:
-
-	/var/lib/udge/users/<user>/email
-	/var/lib/udge/users/<user>/password
-	/var/lib/udge/users/<user>/salt
-
-For example:
-
-	/var/lib/udge/users/janeroe/salt:aSTR1PRypdeUUPeX7NFZYwVWrlXac4MYZHoCUIaq
-	/var/lib/udge/users/janeroe/email:janeroe@example.net
-	/var/lib/udge/users/janeroe/password:e0b3400da3f9edc96718a1b5d0da315f518e36b820404635998319662828fe44
-	/var/lib/udge/users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
-	/var/lib/udge/users/johndoe/email:johndoe@example.com
-	/var/lib/udge/users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
-
-
-### Problem directory
-
-The problem directory contains test scripts, inputs and solutions for each of the problem.
-
-* `bin/udge-judge` reads this directory
-
-Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
-
-* `1/in`: test input 1
-* `1/sol`: solution for test input 1
-* `1/time-limit`: the time limit in seconds (1 if not present)
-* `2/...`: test set 2
-* `3/...`: test set 3
-* ...
-
-If there is only one test set, you are allowed to let `in` and `out` reside
-plainly without a subdir.
-
-
-### Submissions directory
-
-The submissions directory contains submissions that are yet to be scored.
-
-* `cgi-bin/udge-submit` creates entries in this directory
-* `bin/udge-pick-and-judge` picks-then-deletes entries from this directory
-
-It contain files in the following format:
-
-* `submissions/<user>/YYYYMMDD-HHMMSS/<problem>.<language>`
-
-For example:
-
-* `submissions/fulano/20200224-202249/add.c`
-* `submissions/cicrano/20200224-001234/prod3.hs`
-
-
-### Results
-
-The results directory contains the results of evaluated solutions.
-
-* `bin/udge-pick-and-judge` creates entries in this directory
-* `bin/udge-update-all-user-htmls` reads from this directory
-* `bin/udge-update-user-html` reads from this directory
-
-Results contain a folder for each user which in turn contains a folder for each
-problem which contains the best result for a problem along with a folder for
-each of the submissions, like so:
-
-	results/<user>/<problem>/best
-	results/<user>/<problem>/YYYYMMDD-HHMMSS/result
-	results/<user>/<problem>/YYYYMMDD-HHMMSS/<problem>.<language>
-
-For example:
-
-	results/fulano/hello/best
-	results/fulano/hello/20190101-133700/result
-	results/fulano/hello/20190101-133700/hello.py
-
-
-Programs and Commands
----------------------
+Here's a complete list of programs provided with Udge:
 
 * `cgi-bin/udge-new-user`: CGI script that handles user creation;
 * `cgi-bin/udge-submit`: CGI script that handles submission of solution;
@@ -408,27 +317,117 @@ Programs and Commands
 * `udge-user-stats`: prints the stats for a given user
 
 
-Test & Examples directory
--------------------------
+### A file-based Database
+
+Udge stores information about problems, users, submissions and results
+in plain text files:
+
+* `/var/lib/udge/users`:       directory with user information (credentials)
+* `/var/lib/udge/problem`:     I/O test cases and markdown files
+* `/var/lib/udge/submissions`: submissions that are still to be judged
+* `/var/lib/udge/results`:     results of judging submissions
+* `/var/lib/udge/html`:        the static HTML pages (problems and users)
+
+This section describes the structure of each of these directories.
+
+
+#### User Directory --- `/var/lib/udge/users`
+
+The user directory stores main user information and credentials.
+
+* `bin/udge-add-user` creates entries in this directory.
+* `cgi-bin/udge-new-user` uses `bin/udge-add-user` to create entries here.
+* `cgi-bin/udge-submit` checks credentials in this directory.
+
+User information is stored in plain files under the `users` directory.
+Each user is described as a directory with it's name which should be composed
+only of English lowercase letters, dashes (`-`) and underscores (`_`).
+
+Emails and passwords are stored each in its own file with a single line:
+
+	/var/lib/udge/users/<user>/email
+	/var/lib/udge/users/<user>/password
+	/var/lib/udge/users/<user>/salt
+
+For example:
+
+	users/janeroe/salt:aSTR1PRypdeUUPeX7NFZYwVWrlXac4MYZHoCUIaq
+	users/janeroe/email:janeroe@example.net
+	users/janeroe/password:e0b3400da3f9edc96718a1b5d0da315f518e36b820404635998319662828fe44
+	users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
+	users/johndoe/email:johndoe@example.com
+	users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
+
+
+#### Problem Directory --- `/var/lib/udge/problem`
+
+The problem directory contains test scripts, inputs and solutions for each of the problem.
+
+* `bin/udge-judge` reads this directory
+
+Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
+
+* `1/in`: test input 1
+* `1/sol`: solution for test input 1
+* `1/time-limit`: the time limit in seconds (1 if not present)
+* `2/...`: test set 2
+* `3/...`: test set 3
+* ...
+
+If there is only one test set, you are allowed to let `in` and `out` reside
+plainly without a subdir.
+
+
+#### Submissions Directory --- `/var/lib/udge/submissions`
+
+The submissions directory contains submissions that are yet to be scored.
+
+* `cgi-bin/udge-submit` creates entries in this directory
+* `bin/udge-pick-and-judge` picks-then-deletes entries from this directory
+
+It contain files in the following format:
+
+	submissions/<user>/YYYYMMDD-HHMMSS/<problem>.<language>
+
+For example:
+
+	submissions/johndoe/20200224-202249/add.c
+	submissions/janeroe/20200224-001234/hello.hs
+
+
+#### Results Directory --- `/var/lib/udge/submissions`
+
+The results directory contains the results of evaluated solutions.
+
+* `bin/udge-pick-and-judge` creates entries in this directory
+* `bin/udge-update-all-user-htmls` reads from this directory
+* `bin/udge-update-user-html` reads from this directory
+
+Results contain a folder for each user which in turn contains a folder for each
+problem which contains the best result for a problem along with a folder for
+each of the submissions, like so:
+
+	results/<user>/<problem>/best
+	results/<user>/<problem>/YYYYMMDD-HHMMSS/result
+	results/<user>/<problem>/YYYYMMDD-HHMMSS/<problem>.<language>
+
+For example:
+
+	results/fulano/hello/best
+	results/fulano/hello/20190101-133700/result
+	results/fulano/hello/20190101-133700/hello.py
+
+
+### Test & Examples directory
 
 The `examples/` directory contains examples of use for several programs and
-commands shipped with Udge.  These double as tests for the `clitest` tool.
+commands shipped with Udge.  These double as tests using the `clitest` tool.
 
 Example solutions to example problems are also stored in this directory
 under `examples/<problem>`:
 
-* `examples/add/0-ce.c`:
-	example solution to `add` in C
-	that yields a compile error with a score of 0/6.
-* `examples/add/0-re.c`:
-	example solution to `add` in C that
-	yields a runtime error with a score of 0/6.
-* `examples/hello/hello.c`:
-	example solution to `hello` in C
-	that gets a full score of 6/6.
-* `examples/hello/hello.py`:
-	example solution to `hello` in Python
-	that gets a full score of 6/6.
-* `examples/add/4-octals.c`:
-	example solution to `add` in C
-	that gets a score of 4/6.
+* `examples/add/0-ce.c`:     example solution to `add`   in C      -- 0/6 -- compile error;
+* `examples/add/0-re.c`:     example solution to `add`   in C      -- 0/6 -- runtime error;
+* `examples/hello/hello.c`:  example solution to `hello` in C      -- 6/6;
+* `examples/add/add.py`:     example solution to `add`   in Python -- 6/6;
+* `examples/add/4-octals.c`: example solution to `add`   in C      -- 4/6 -- wrong output
