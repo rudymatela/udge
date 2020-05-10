@@ -1,5 +1,8 @@
 #!/bin/bash
-# Configuration file for the judge
+#
+# Configuration file for Udge
+#
+# Udge - GPLv2 - Copyright (C) 2020 Rudy Matela
 
 NAME="Udge Online Judge"
 

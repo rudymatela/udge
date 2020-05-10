@@ -1,6 +1,9 @@
+# nginx configuration file for Udge
+#
+# Udge - GPLv2 - Copyright (C) 2020 Rudy Matela
 server {
 	server_name
-		udge.localdomain
+		udge.localdomain # replace by your actual domain
 		udge
 		;
 
