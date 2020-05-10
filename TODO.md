@@ -1,12 +1,6 @@
 TODO list for Udge
 ==================
 
-* publish on github?
-
-
-Future
-------
-
 * automatically install crontab entries
 
 * rename `desc` to `desc.md`
@@ -34,8 +28,6 @@ Future
 	- `udge-pick-and-judge`;
 	- `udge-update-all-user-htmls`;
 	- `udge-update-rank-html`.
-
-* run stuff as `nobody` where applicable
 
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
 
