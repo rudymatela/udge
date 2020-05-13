@@ -24,8 +24,7 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 
-index=
-[ "`basename $1`" = index.md ] && index=index
+index="`basename $1 .md`"
 
 copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
 
