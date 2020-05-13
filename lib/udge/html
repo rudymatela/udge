@@ -58,10 +58,7 @@ else
 fi <<HTML
 <p style="margin-top: 1em">
 <a href="/">index</a>
-|
-<a href="/submit">submit</a>
-|
-<a href="/rank">rank</a>
+`for item in submit rank $NAVBAR; do echo "| <a href=\"/$item\">$item</a>"; done`
 </p>
 HTML
 }
