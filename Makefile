@@ -146,7 +146,7 @@ tidy: \
 	tidy-public_html
 
 tidy-public_html: html
-	for file in `find public_html -name *.html`; do \
+	for file in `find var/html -name *.html`; do \
 		$(TIDY) "$$file" || break; done
 
 clean-submissions:
