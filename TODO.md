@@ -47,3 +47,5 @@ TODO list for Udge
   The private user page would be accessed on `/p/<user_sha1_base64_etc>`
 
 * Add a user's submission page?  `u/<user_name>/submissions`
+
+* Add test to assure that there are no broken links (use `wget -r`?)
