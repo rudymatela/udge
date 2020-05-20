@@ -43,10 +43,10 @@ code, pre {
 	background-color: #eee;
 }
 a {
-	color: #148;
+	color: #15A; // #16C
 }
 a:focus, a:hover {
-	color: #036;
+	color: #048;
 }
 img {
 	display: block;
