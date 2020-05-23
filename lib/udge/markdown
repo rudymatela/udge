@@ -37,11 +37,15 @@ class() {
 	sed -e 's/<table>/<table class="table table-hover">/'
 }
 
+marky() {
+	sed -e 's|^{#\([a-z0-9-]*\)}$|<a name="\1"></a>|'
+}
+
 html-header $page_title
 html-navbar $index
 if grep -q "$copyright" "$@"
 then
-	grep -B10000 "$copyright" "$@" | head -n -1 | markdown | class
+	grep -B10000 "$copyright" "$@" | head -n -1 | marky | markdown | class
 	html-navbar $index
 	echo '<p style="text-align:right;font-size:smaller">'
 	# This automatically links a few license types
@@ -52,7 +56,7 @@ then
 		sed -e "s/$/<br>/"
 	echo '</p>'
 else
-	markdown "$@" | class
+	cat "$@" | marky | markdown | class
 	html-navbar $index
 fi
 html-footer
