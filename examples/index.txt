@@ -44,6 +44,6 @@ Udge Online Judge
 404 Not Found
 404
 
-$ curl -s udge | grep hello
+$ curl -s udge | grep hello | sort
 <li><a href="/hello">hello</a></li>
 <li><a href="/hello-world">hello-world</a></li>

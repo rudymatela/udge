@@ -66,6 +66,7 @@ $ udge-user-stats $user
 position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  1
+addition      -   0
 hello         -   0
 hello-world   -   0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
