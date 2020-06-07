@@ -67,6 +67,7 @@ test-scripts: \
   hello-world.clitest \
   hello-world-hs.clitest \
   hello-world-py.clitest \
+  hello-world-cs.clitest \
   addition.clitest \
   addition-hs.clitest \
   addition-py.clitest \

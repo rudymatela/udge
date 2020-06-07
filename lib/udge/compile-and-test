@@ -45,6 +45,7 @@ case "$src" in
 	*.c)   lang=c  ;language="C"                      ;;
 	*.hs)  lang=hs ;language="Haskell"                ;;
 	*.py)  lang=py ;language="Python"   ;what="parse" ;;
+	*.cs)  lang=cs ;language="C#"       ;run=mono     ;;
 	*)     fail "No: unknown/unsupported file format or language" ;;
 esac
 
@@ -60,7 +61,7 @@ fail "No - $what error ($language)"
 in=in
 [ -f "$in" ] || in=/dev/null
 
-nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox ./$exe <"$in" >stdout 2>stderr
+nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox $run ./$exe <"$in" >stdout 2>stderr
 exitcode=$?
 
 killall -q -9 ./$exe # kills remaining child processes if any
