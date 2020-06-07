@@ -71,6 +71,7 @@ test-scripts: \
   addition.clitest \
   addition-hs.clitest \
   addition-py.clitest \
+  addition-cs.clitest \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
