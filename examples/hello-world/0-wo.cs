@@ -1,4 +1,4 @@
-// examples/hello-world/hello-world.cs: example incorrect solution to "hello-world"
+// examples/hello-world/0-wo.cs: example incorrect solution to "hello-world"
 //
 // This is a correct solution to the "hello-world" problem.
 // It should get a full 1/1 score.

@@ -1,7 +1,7 @@
-// examples/addition/addition.cs: example correct solution to "addition"
+// examples/add/add.cs: example correct solution to "add"
 //
-// This is a correct solution to the "addition" problem.
-// It should get a full 1/1 score.
+// This is a correct solution to the "add" problem.
+// It should get a full 6/6 score.
 //
 //
 // This file is part of Udge.
@@ -24,7 +24,7 @@
 
 using System;
 
-class Addition
+class Solution
 {
 	static void Main()
 	{
@@ -33,7 +33,12 @@ class Addition
 			string[] inputs = line.Split(null);
 			int x = Convert.ToInt32(inputs[0]);
 			int y = Convert.ToInt32(inputs[1]);
-			Console.WriteLine(x+y);
+			Console.WriteLine(Add(x,y));
 		}
+	}
+
+	public static int Add(int x, int y)
+	{
+		return x + y;
 	}
 }

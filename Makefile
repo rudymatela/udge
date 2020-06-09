@@ -75,6 +75,7 @@ test-scripts: \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
+  add-cs.clitest \
   sandbox.clitest \
   hello.clitest
 

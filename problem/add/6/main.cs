@@ -1,10 +1,7 @@
-// examples/addition/addition.cs: example correct solution to "addition"
+// main.cs: main file for an "add" solution
 //
-// This is a correct solution to the "addition" problem.
-// It should get a full 1/1 score.
-//
-//
-// This file is part of Udge.
+// This is to be linked to the submitted file.
+// It processes values from standard input then from the "in.txt" file.
 //
 //
 // Copyright (C) 2020  Rudy Matela
@@ -24,16 +21,29 @@
 
 using System;
 
-class Addition
+class TheNewMain
 {
 	static void Main()
 	{
 		string line;
+
+		// processes standard input
 		while ((line = Console.ReadLine()) != null) {
-			string[] inputs = line.Split(null);
-			int x = Convert.ToInt32(inputs[0]);
-			int y = Convert.ToInt32(inputs[1]);
-			Console.WriteLine(x+y);
+			Solve1(line);
 		}
+
+		// processes additional inputs from in.txt
+		var file = new System.IO.StreamReader("in.txt");
+		while ((line = file.ReadLine()) != null) {
+			Solve1(line);
+		}
+		file.Close();
+	}
+
+	static void Solve1(string line) {
+		string[] inputs = line.Split(null);
+		int x = Convert.ToInt32(inputs[0]);
+		int y = Convert.ToInt32(inputs[1]);
+		Console.WriteLine(Solution.Add(x,y));
 	}
 }

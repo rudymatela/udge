@@ -42,18 +42,18 @@ suffix="$2"
 [ -f "$src" ] || fail "No - source file not found"
 what=compile
 case "$src" in
-	*.c)   lang=c  ;language="C"                      ;;
-	*.hs)  lang=hs ;language="Haskell"                ;;
-	*.py)  lang=py ;language="Python"   ;what="parse" ;;
-	*.cs)  lang=cs ;language="C#"       ;run=mono     ;;
+	*.c)   lang=c  ;language="C"                            ;;
+	*.hs)  lang=hs ;language="Haskell"                      ;;
+	*.py)  lang=py ;language="Python"   ;what="parse"       ;;
+	*.cs)  lang=cs ;language="C#"       ;run=mono; ext=.exe ;;
 	*)     fail "No: unknown/unsupported file format or language" ;;
 esac
 
 main="main.$lang"
 aslib=
 [ -f "$main" ] && aslib=-as-lib
-exe=exe$suffix$aslib
-[ -x $exe ] ||
+exe=exe$suffix$aslib$ext
+[ -e $exe ] ||
 "$lib/compile$aslib/$lang" "$src" $exe "$main" ||
 fail "No - $what error ($language)"
 

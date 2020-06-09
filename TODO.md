@@ -1,6 +1,12 @@
 TODO list for Udge
 ==================
 
+* add Java support
+
+* add JavaScript support
+
+* add C++ support
+
 * automatically install crontab entries
 
 * rename `desc` to `desc.md`
@@ -49,3 +55,11 @@ TODO list for Udge
 * Add a user's submission page?  `u/<user_name>/submissions`
 
 * Add test to assure that there are no broken links (use `wget -r`?)
+
+* Languages to support later (in no particular order):
+
+	- Lua
+	- Ruby
+	- R
+	- Perl
+	- PHP

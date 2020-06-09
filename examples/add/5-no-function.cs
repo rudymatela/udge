@@ -1,8 +1,8 @@
-// examples/addition/addition.cs: example correct solution to "addition"
+// examples/add/5-no-function.cs: almost correct solution to "add"
 //
-// This is a correct solution to the "addition" problem.
-// It should get a full 1/1 score.
-//
+// This program is an example solution to the "add" example problem.  Although
+// it implements the solution correctly, it does not include the required "add"
+// function.  It should get a score of 5/6 with a "compile error" message.
 //
 // This file is part of Udge.
 //
@@ -24,7 +24,7 @@
 
 using System;
 
-class Addition
+class Add
 {
 	static void Main()
 	{
