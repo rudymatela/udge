@@ -23,5 +23,5 @@
 import Control.Concurrent
 main :: IO ()
 main  =  do
-  putStrLn "Hello, world!"
-  threadDelay 2000000
+  putStrLn "Hello, World!"
+  threadDelay 3000000

@@ -61,6 +61,7 @@ test: \
   test-scripts \
   test-web
 
+test-scripts: export DEFAULT_TIME_LIMIT=2
 test-scripts: \
   test-makefile \
   judge.clitest \

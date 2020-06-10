@@ -24,4 +24,4 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import time
 print("Hello, World!")
-time.sleep(2)
+time.sleep(3)

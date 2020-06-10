@@ -28,6 +28,6 @@
 int main()
 {
 	printf("Hello, World!\n");
-	sleep(2);
+	sleep(3);
 	return 0;
 }

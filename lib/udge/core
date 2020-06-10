@@ -60,8 +60,12 @@ prompt() {
 	[ -n "$flag" ] && termecho || true
 }
 
+cator() {
+	[ -f "$2" ] && cat $2 || echo "$1"
+}
+
 cator1() {
-	[ -f "$1" ] && cat $1 || echo 1
+	cator 1 "$1"
 }
 
 ls-users() {

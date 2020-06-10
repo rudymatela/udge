@@ -61,7 +61,10 @@ fail "No - $what error ($language)"
 in=in
 [ -f "$in" ] || in=/dev/null
 
-nice timeout --preserve-status -v -k1s `cator1 time-limit`s $bin/udge-sandbox $run ./$exe <"$in" >stdout 2>stderr
+[ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
+nice timeout --preserve-status -v -k1s `cator $DEFAULT_TIME_LIMIT time-limit`s \
+	$bin/udge-sandbox \
+	$run ./$exe <"$in" >stdout 2>stderr
 exitcode=$?
 
 killall -q -9 ./$exe # kills remaining child processes if any
