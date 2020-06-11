@@ -2,7 +2,7 @@
 #
 # udge-judge: judges a solution and prints the result to stdout
 #
-# Usage: udge-judge <problem-code> path/to/program.ext
+# Usage: udge-judge <problem-code> path/to/program.ext [-v]
 #
 #
 # Copyright (C) 2015-2020  Rudy Matela
@@ -29,11 +29,17 @@
 # $ udge-judge hello hello.c
 # No - wrong output
 # 3/6
-
+#
+# $ udge-judge hello hello.c -v
+# diff information
+# etc etc
+# No - wrong output
+# 2/6
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 problem="$1"
 program="$2"
+verbose="$3"
 problemdir="$PROBLEMS/$problem"
 compileandtest="`realpath "$lib/compile-and-test"`"
 [ -d "$problemdir" ] || errxit "invalid problem code"
@@ -54,7 +60,7 @@ for dir in $problemdir/*/; do
 	pts=`cator1 $dir/pts`
 	rm -f {in,sol,time-limit,check-exit-code,check-out,main.*,*.txt}
 	cp $dir/{in,sol,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
-	"$compileandtest" $prog -$ts-$problem-$timestamp-$user && ((total+=$pts)) || break
+	"$compileandtest" $prog -$ts-$problem-$timestamp-$user $verbose && ((total+=$pts)) || break
 done
 echo $total/$outof
 )

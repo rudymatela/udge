@@ -39,6 +39,7 @@ fail() {
 }
 src="$1"
 suffix="$2"
+verbose="$3"
 [ -f "$src" ] || fail "No - source file not found"
 what=compile
 case "$src" in
@@ -67,6 +68,8 @@ nice timeout --preserve-status -v -k1s `cator $DEFAULT_TIME_LIMIT time-limit`s \
 	$run ./$exe <"$in" >stdout 2>stderr
 exitcode=$?
 
+[ -n "$verbose" ] && cat stderr >&2
+
 killall -q -9 ./$exe # kills remaining child processes if any
 
 grep -q "udge-sandbox: fork: .* unavailable" stderr && fail "No - reached maximum number of processes"
@@ -80,8 +83,12 @@ checkexitcode=check-exit-code
 $checkexitcode $exitcode || fail "No - runtime error (non-zero exit code)"
 
 check-out() {
-	# TODO: add flag that shows diff?
-	diff -q "$1" "$2" >/dev/null
+	if [ -n "$verbose" ]
+	then
+		diff -rud "$1" "$2"
+	else
+		diff -q "$1" "$2" >/dev/null
+	fi
 }
 check=check-out
 [ -x ./check-out ] && check=./check-out
