@@ -69,7 +69,8 @@ exitcode=$?
 
 killall -q -9 ./$exe # kills remaining child processes if any
 
-grep -q "^timeout: sending signal TERM" stderr && fail "No - time limit exceeded"
+grep -q "udge-sandbox: fork: .* unavailable" stderr && fail "No - reached maximum number of processes"
+grep -q "^timeout: sending signal TERM"      stderr && fail "No - time limit exceeded"
 
 check-exit-code() {
 	[ "$1" = 0 ]
