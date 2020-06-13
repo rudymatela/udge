@@ -1,41 +1,70 @@
 #!/bin/bash
 #
-# Wrapper to javac that allows any file name for the first class.
+# jarvac: compiles java sources into a single jar file
 #
-# Extension must still be ".java"
+# usage: ./lib/udge/jarvac [jar] [java-files]
+#
+# Example:
+#   $ ./lib/udge/jarvac exe.jar HelloWorld.java OtherClass.java
+#   $ java -jar exe.jar
+#   Hello, World!
+#
+# This is a wrapper to javac and jar.
+# The first file contains the Main-Class.
+# The remaining files do not need to have their class names.
 
 set -e
 
-out="$1"
-shift
-src="$1"
-shift
+dn=$(dirname $0)
 
 javac="javac -d ."
 
-classname() {
+shouldbe() {
 	$javac "$1" 2>&1 |
 	grep "should be declared in a file named" |
 	head -1 |
 	sed -e "s/.*should be declared in a file named //;s/.java$//"
 }
 
-basename="`basename $src .java`"
-classname=`classname $src`
+classname() {
+	basename="$(basename $1 .java)"
+	classname="$(shouldbe $1)"
+	[ -n "$classname" ] || classname=$basename
+	echo $classname
+}
 
-if [ -z "$classname" ] || [ "$classname" == "$basename" ]
-then
-	$javac "$src" "$@"
-else
-	echo "Running cp $src $classname.java first." >&2
-	cp "$src" "$classname.java"
-	$javac "$classname.java" "$@"
-	rm "$classname.java"
-fi
+javac-() {
+	files=
+	classes=
+	classfiles=
+	for file in "$@"
+	do
+		cn=$(classname $file)
+		out=$cn.java
+		echo cp $file $out
+		cp $file $out || true
+		files="$files $out"
+		classes="$classes $cn"
+		classfiles="$classfiles $cn.class"
+	done
+	echo $javac $files
+	$javac $files
+	rm $files
+}
 
-cat > MANIFEST.MF <<INPUT
-Main-Class: HelloWorld
-INPUT
+jarvac-() {
+	jar="$1"
+	shift
+	javac- "$@"
+	for class in $classes
+	do
+		echo "echo \"Main-Class: $class\" > MANIFEST.MF"
+		echo "Main-Class: $class" > MANIFEST.MF
+		break
+	done
+	echo jar cfm $jar MANIFEST.MF $classfiles
+	jar cfm $jar MANIFEST.MF $classfiles &&
+	rm MANIFEST.MF $classfiles
+}
 
-jar cfm $out MANIFEST.MF *.class &&
-rm MANIFEST.MF *.class
+jarvac- "$@"
