@@ -1,10 +1,7 @@
-// examples/add/add.java: example correct solution to "add"
+// main.java: main file for an "add" solution
 //
-// This is a correct solution to the "add" problem.
-// It should get a full 6/6 score.
-//
-//
-// This file is part of Udge.
+// This is to be linked to the submitted file.
+// It processes values from standard input then from the "in.txt" file.
 //
 //
 // Copyright (C) 2020  Rudy Matela
@@ -22,20 +19,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import java.io.*;
 import java.util.Scanner;
 
-public class Add {
-    public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+public class AltMain {
+    public static void main(String[] args) throws IOException
+	{
+		doit(new Scanner(System.in));
+		File file = new File("in.txt");
+		doit(new Scanner(file));
+    }
+
+	public static void doit(Scanner in)
+	{
 		while (in.hasNext()) {
 			int x = in.nextInt();
 			int y = in.nextInt();
-			System.out.println(add(x,y));
+			System.out.println(Add.add(x,y));
 		}
-    }
-
-	public static int add(int x, int y)
-	{
-		return x + y;
 	}
 }
