@@ -1,6 +1,10 @@
 TODO list for Udge
 ==================
 
+* add a problem involving a user-defined data type
+
+* add C# instructions for `add`
+
 * add Java support
 
 * add JavaScript support
