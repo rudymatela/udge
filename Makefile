@@ -53,7 +53,7 @@ realclean: \
 	clean-var
 
 fastest:
-	make test-scripts -j8
+	make test-scripts -j6
 	make test-web
 
 test: \
