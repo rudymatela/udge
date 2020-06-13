@@ -24,7 +24,7 @@
 
 using System;
 
-class Solution
+class Program
 {
 	static void Main()
 	{

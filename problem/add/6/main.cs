@@ -44,6 +44,6 @@ class TheNewMain
 		string[] inputs = line.Split(null);
 		int x = Convert.ToInt32(inputs[0]);
 		int y = Convert.ToInt32(inputs[1]);
-		Console.WriteLine(Solution.Add(x,y));
+		Console.WriteLine(Program.Add(x,y));
 	}
 }
