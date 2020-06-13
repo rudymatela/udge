@@ -21,12 +21,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
-class HelloWorld
-{
-	static void Main()
-	{
-		Console.WriteLine("Ehllo, Wrodl!");
-	}
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Ehllo, Wrodl!");
+    }
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# udge-sandbox: runs a program in a sandbox
+# Java
 #
-# Usage: udge-sandbox <program> <arguments>
+# Plain compilation of Java programs on Udge.
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -19,27 +19,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-# Set the CHROOT variable to run this program under a different root.
-#
-# CHROOT=. 
-
-ulimit -c 262144 # blocks, 128M
-ulimit -d 524288 # K, 512M
-ulimit -f 262144 # blocks, 128M
-ulimit -i 1024 # signals
-ulimit -l 16 # K
-ulimit -m 524288 # K, 512M
-ulimit -n 32 # files
-ulimit -q 1024 # queues
-ulimit -s 8192 # K, 8M
-ulimit -u 1024 # processes
-ulimit -v 2097152 # K, 2G
-ulimit -x 1024 # file locks
-# use `ulimit -a` for a list
-# use `ulimit -h` for a complete list
-
-chroot=
-[ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
-unshare -Urn -impuf env -i $chroot "$@"
+set -e
+dn=$(dirname $(dirname $0))
+$dn/jarvac "$2" "$1"

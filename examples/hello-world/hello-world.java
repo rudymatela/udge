@@ -1,7 +1,7 @@
-// examples/hello-world/0-wo.cs: example incorrect solution to "hello-world"
+// examples/hello-world/hello-world.java: example correct solution to "hello-world"
 //
-// This is an incorrect solution to the "hello-world" problem.
-// It should get a 0/1 score.
+// This is a correct solution to the "hello-world" problem.
+// It should get a full 1/1 score.
 //
 // This file is part of Udge.
 //
@@ -21,12 +21,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
-class HelloWorld
-{
-	static void Main()
-	{
-		Console.WriteLine("Ehllo, Wrodl!");
-	}
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
 }

@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+# Wrapper to javac that allows any file name for the first class.
+#
+# Extension must still be ".java"
+
+set -e
+
+out="$1"
+shift
+src="$1"
+shift
+
+javac="javac -d ."
+
+classname() {
+	$javac "$1" 2>&1 |
+	grep "should be declared in a file named" |
+	head -1 |
+	sed -e "s/.*should be declared in a file named //;s/.java$//"
+}
+
+basename="`basename $src .java`"
+classname=`classname $src`
+
+if [ -z "$classname" ] || [ "$classname" == "$basename" ]
+then
+	$javac "$src" "$@"
+else
+	echo "Running cp $src $classname.java first." >&2
+	cp "$src" "$classname.java"
+	$javac "$classname.java" "$@"
+	rm "$classname.java"
+fi
+
+cat > MANIFEST.MF <<INPUT
+Main-Class: HelloWorld
+INPUT
+
+jar cfm $out MANIFEST.MF *.class &&
+rm MANIFEST.MF *.class
