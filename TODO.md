@@ -5,8 +5,6 @@ TODO list for Udge
 
 * add C# instructions for `add`
 
-* add Java support
-
 * add JavaScript support
 
 * add C++ support
