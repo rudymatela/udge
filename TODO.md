@@ -3,8 +3,6 @@ TODO list for Udge
 
 * add a problem involving a user-defined data type
 
-* add C# instructions for `add`
-
 * add JavaScript support
 
 * add C++ support
