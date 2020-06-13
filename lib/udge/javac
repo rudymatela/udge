@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+javac="javac -d ."
+
+shouldbe() {
+	$javac "$1" 2>&1 |
+	grep "should be declared in a file named" |
+	head -1 |
+	sed -e "s/.*should be declared in a file named //;s/.java$//"
+}
+
+classname() {
+	basename="$(basename $1 .java)"
+	classname="$(shouldbe $1)"
+	[ -n "$classname" ] || classname=$basename
+	echo $classname
+}
+
+files=
+for file in "$@"
+do
+	out=$(classname $file).java
+	cp $file $out || true
+	files="$files $out"
+done
+
+$javac $files
+rm $files
