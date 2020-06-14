@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# examples/rectangle/rectangle.py: solution to the "rectangle" example problem
+# examples/rectangle/rectangle-no-functions.py: solution to the "rectangle" example problem
 #
 # This program is an example solution to the "rectangle" example problem
 # that gets a 2/3 score.

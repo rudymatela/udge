@@ -2,7 +2,7 @@
 #
 # examples/rectangle/rectangle.py: solution to the "rectangle" example problem
 #
-# This program is an example solution to the "add" example problem
+# This program is an example solution to the "rectangle" example problem
 # that gets a full 3/3 score.
 #
 # This file is part of Udge.
