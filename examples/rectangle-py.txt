@@ -1,9 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env -S clitest -1
 #
-# examples/add/add.py: solution to the "add" example problem
-#
-# This program is an example solution to the "add" example problem
-# that gets a full 6/6 score.
+# Tests for the "rectangle" example problem.
 #
 # This file is part of Udge.
 #
@@ -22,11 +19,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import sys
 
-def add(i, j):
-	return i+j
-
-for line in sys.stdin:
-	x,y = [int(x) for x in line.split()]
-	print(add(x,y))
+$ udge-judge rectangle examples/rectangle/rectangle.py
+3/3
+$ udge-judge rectangle examples/rectangle/rectangle-no-functions.py
+No - compile error (C)
+2/3
+$ udge-judge rectangle examples/hello-world/hello-world.py
+No - wrong answer
+0/3

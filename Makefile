@@ -79,6 +79,9 @@ test-scripts: \
   add-py.clitest \
   add-cs.clitest \
   add-java.clitest \
+  rectangle.clitest \
+  rectangle-hs.clitest \
+  rectangle-py.clitest \
   sandbox.clitest \
   hello.clitest
 

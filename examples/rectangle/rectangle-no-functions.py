@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #
-# examples/add/add.py: solution to the "add" example problem
+# examples/rectangle/rectangle.py: solution to the "rectangle" example problem
 #
-# This program is an example solution to the "add" example problem
-# that gets a full 6/6 score.
+# This program is an example solution to the "rectangle" example problem
+# that gets a 2/3 score.
 #
 # This file is part of Udge.
 #
@@ -22,11 +22,26 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import sys
 
-def add(i, j):
-	return i+j
+class Rectangle:
+	def __init__(self, height, width, unit=''):
+		self.height = height
+		self.width = width
+		self.unit = unit
+	
+	def area(self):
+		return self.height * self.width
+
+	def perimeter(self):
+		return 2 * (self.height + self.width)
 
 for line in sys.stdin:
-	x,y = [int(x) for x in line.split()]
-	print(add(x,y))
+	w,h,u = line.split()
+	rectangle = Rectangle(int(w),int(h),u);
+	print("The area is %d square %s and the perimeter is %d %s." %
+		(rectangle..height * rectangle.width,
+		 rectangle.unit,
+		 2 * (rectangle.height + rectangle.width),
+		 rectangle.unit))
