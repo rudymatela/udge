@@ -5,7 +5,7 @@ rectangle - Rectangle
 	1 2 cm
 	The area is 2 square cm and the perimeter is 6 cm.
 	3 6 in
-	The area is 12 square in and the perimeter is 18 in.
+	The area is 18 square in and the perimeter is 18 in.
 	10 1 metres
 	The area is 10 square metres and the perimeter is 22 metres.
 
@@ -29,7 +29,7 @@ For each line of input there should be one line of output.
 #### Example output
 
 	The area is 2 square cm and the perimeter is 6 cm.
-	The area is 12 square in and the perimeter is 18 in.
+	The area is 18 square in and the perimeter is 18 in.
 	The area is 10 square metres and the perimeter is 22 metres.
 
 ### The `area` and `perimeter` functions
