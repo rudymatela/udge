@@ -9,6 +9,7 @@ These are Udge's example problems:
 * [addition](/addition)
 * [hello](/hello)
 * [add](/add)
+* [rectangle](/rectangle)
 
 Add your problems on `/var/lib/udge/problem` and
 replace `/var/lib/udge/problem/index.md` with your own problem index.
