@@ -3,6 +3,12 @@ TODO list for Udge
 
 * add a problem involving a user-defined data type
 
+	- add C# solutions to rectangle
+
+	- add Java solutions to rectangle
+
+	- remove the `unit` field from rectangle
+
 * add JavaScript support
 
 * add C++ support
