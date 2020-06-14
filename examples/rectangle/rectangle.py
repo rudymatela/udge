@@ -26,9 +26,9 @@
 import sys
 
 class Rectangle:
-	def __init__(self, height, width, unit=''):
-		self.height = height
+	def __init__(self, width, height, unit=''):
 		self.width = width
+		self.height = height
 		self.unit = unit
 	
 	def area(self):

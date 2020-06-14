@@ -23,8 +23,8 @@
 $ udge-judge rectangle examples/rectangle/rectangle.py
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-no-functions.py
-No - compile error (C)
+No - runtime error (non-zero exit code)
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.py
-No - wrong answer
+No - wrong output
 0/3
