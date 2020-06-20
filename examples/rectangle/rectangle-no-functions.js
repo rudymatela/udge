@@ -1,8 +1,8 @@
-#!/usr/bin/env node
-// examples/hello-world/hello-world.js: example correct solution to "hello-world"
+// examples/rectangle/rectangle.js: example correct solution to "rectangle"
 //
-// This is a correct solution to the "hello-world" problem.
-// It should get a full 1/1 score.
+// This is a correct solution to the "rectangle" problem.
+// It should get a full 3/3 score.
+//
 //
 // This file is part of Udge.
 //
@@ -22,4 +22,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-console.log('Hello, World!');
+var rl = require('readline').createInterface({input: process.stdin, output: process.stdout});
+
+rl.on('line', function(line){
+  words = line.split(/ /);
+  w = parseInt(words[0]),
+  h = parseInt(words[1])
+  console.log(w + "x" + h + " rectangle, " +
+              "area = " + w*h + ", " +
+              "perimeter = " + 2*(w+h));
+})

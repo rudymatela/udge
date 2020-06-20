@@ -70,20 +70,24 @@ test-scripts: \
   hello-world-py.clitest \
   hello-world-cs.clitest \
   hello-world-java.clitest \
+  hello-world-js.clitest \
   addition.clitest \
   addition-hs.clitest \
   addition-py.clitest \
   addition-cs.clitest \
+  addition-js.clitest \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
   add-cs.clitest \
   add-java.clitest \
+  add-js.clitest \
   rectangle.clitest \
   rectangle-hs.clitest \
   rectangle-py.clitest \
   rectangle-cs.clitest \
   rectangle-java.clitest \
+  rectangle-js.clitest \
   sandbox.clitest \
   hello.clitest
 
@@ -317,6 +321,9 @@ test-dev-install:
 	make dev-install        DESTDIR=pkg
 	make check-install-test DESTDIR=pkg
 	rm -r pkg
+
+list-missing-copyright:
+	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile README.md
 
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.

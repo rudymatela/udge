@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add JavaScript support
-
 * add C++ support
 
 * automatically install crontab entries

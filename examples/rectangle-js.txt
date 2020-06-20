@@ -20,11 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ udge-judge rectangle examples/rectangle/rectangle.hs 2>/dev/null | tail -1
+$ udge-judge rectangle examples/rectangle/rectangle.js
 3/3
-$ udge-judge rectangle examples/rectangle/rectangle-no-functions.hs 2>/dev/null | tail -2
-No - compile error (Haskell)
+$ udge-judge rectangle examples/rectangle/rectangle-no-functions.js
+No - runtime error (non-zero exit code)
 2/3
-$ udge-judge rectangle examples/hello-world/hello-world.hs 2>/dev/null | tail -2
+$ udge-judge rectangle examples/hello-world/hello-world.js
 No - wrong output
 0/3

@@ -1,6 +1,6 @@
 #!/usr/bin/env -S clitest -1
 #
-# Tests for the "rectangle" example problem.
+# Tests for the "addition" example problem in JavaScript.
 #
 # This file is part of Udge.
 #
@@ -20,11 +20,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ udge-judge rectangle examples/rectangle/rectangle.hs 2>/dev/null | tail -1
-3/3
-$ udge-judge rectangle examples/rectangle/rectangle-no-functions.hs 2>/dev/null | tail -2
-No - compile error (Haskell)
-2/3
-$ udge-judge rectangle examples/hello-world/hello-world.hs 2>/dev/null | tail -2
-No - wrong output
-0/3
+$ udge-judge addition examples/addition/addition.js
+1/1
