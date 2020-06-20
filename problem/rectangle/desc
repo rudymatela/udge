@@ -15,6 +15,8 @@ how a console session with this program should look like:
 	10 1
 	10x1 rectangle, area = 10, perimeter = 22
 
+_Tip:_ use control+D (^D) to simulate the end of file and exit the program.
+
 ### Input and Output
 
 Each line of input contains two numbers _w_ and _h_ where
@@ -108,4 +110,5 @@ Alternatively, you can declare the rectangle type as:
 
 * 1/3: works for the above example
 * 2/3: works for other test cases
-* 3/3: implements the `area` and `perimeter` functions.
+* 3/3: implements the `area` and `perimeter` functions
+       over the required `rectangle` type
