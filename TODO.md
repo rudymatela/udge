@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* improve test cases for the rectangle problem
-
 * add JavaScript support
 
 * add C++ support
