@@ -36,7 +36,13 @@ Features:
   where one has to implement a specific function;
 * a rank with a few selectable formats;
 * simple plaintext file database, no need to setup an SQL server and database;
-* (for now) support for solutions in C, Python and Haskell.
+* support for solutions in:
+	- C
+	- C#
+	- Haskell
+	- Java
+	- JavaScript
+	- Python
 
 Udge is implemented in Bash and works on Linux systems with Nginx.
 It uses static HTML pages where possible.
