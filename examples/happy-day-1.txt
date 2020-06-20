@@ -69,6 +69,7 @@ add          6/6  1
 addition      -   0
 hello         -   0
 hello-world   -   0
+rectangle     -   0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           6/6
 $

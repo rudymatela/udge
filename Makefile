@@ -82,6 +82,8 @@ test-scripts: \
   rectangle.clitest \
   rectangle-hs.clitest \
   rectangle-py.clitest \
+  rectangle-cs.clitest \
+  rectangle-java.clitest \
   sandbox.clitest \
   hello.clitest
 

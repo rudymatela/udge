@@ -1,4 +1,4 @@
-// main.cs: main file for an "add" solution
+// main.cs: main file for an "rectangle" solution
 //
 // This is to be linked to the submitted file.
 // It processes values from standard input then from the "in.txt" file.
@@ -42,8 +42,12 @@ class TheNewMain
 
 	static void Solve1(string line) {
 		string[] inputs = line.Split();
-		int x = Convert.ToInt32(inputs[0]);
-		int y = Convert.ToInt32(inputs[1]);
-		Console.WriteLine(Program.Add(x,y));
+		int w = Convert.ToInt32(inputs[0]);
+		int h = Convert.ToInt32(inputs[1]);
+		string u = inputs[2];
+		Rectangle rectangle = new Rectangle(w, h, u);
+		Console.WriteLine("The area is " + rectangle.Area()
+						+ " square " + rectangle.Unit
+						+ " and the perimeter is " + rectangle.Perimeter() + " " + rectangle.Unit + ".");
 	}
 }

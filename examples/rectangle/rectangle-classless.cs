@@ -1,7 +1,10 @@
-// main.cs: main file for an "add" solution
+// examples/rectangle/rectangle-classless.cs: example almost correct solution to "rectangle"
 //
-// This is to be linked to the submitted file.
-// It processes values from standard input then from the "in.txt" file.
+// This is a correct solution to the "rectangle" problem.
+// It should get a 2/3 score.
+//
+//
+// This file is part of Udge.
 //
 //
 // Copyright (C) 2020  Rudy Matela
@@ -21,29 +24,19 @@
 
 using System;
 
-class TheNewMain
+class Program
 {
 	static void Main()
 	{
 		string line;
-
-		// processes standard input
 		while ((line = Console.ReadLine()) != null) {
-			Solve1(line);
+			string[] inputs = line.Split();
+			int w = Convert.ToInt32(inputs[0]);
+			int h = Convert.ToInt32(inputs[1]);
+			string u = inputs[2];
+			Console.WriteLine("The area is " + w*h
+			                + " square " + u
+							+ " and the perimeter is " + 2*(w+h) + " " + u + ".");
 		}
-
-		// processes additional inputs from in.txt
-		var file = new System.IO.StreamReader("in.txt");
-		while ((line = file.ReadLine()) != null) {
-			Solve1(line);
-		}
-		file.Close();
-	}
-
-	static void Solve1(string line) {
-		string[] inputs = line.Split();
-		int x = Convert.ToInt32(inputs[0]);
-		int y = Convert.ToInt32(inputs[1]);
-		Console.WriteLine(Program.Add(x,y));
 	}
 }

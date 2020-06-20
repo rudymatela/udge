@@ -1,4 +1,4 @@
-// main.cs: main file for an "add" solution
+// main.java: main file for a "rectangle" solution
 //
 // This is to be linked to the submitted file.
 // It processes values from standard input then from the "in.txt" file.
@@ -19,31 +19,26 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+import java.io.*;
+import java.util.Scanner;
 
-class TheNewMain
-{
-	static void Main()
+public class AltMain {
+    public static void main(String[] args) throws IOException
 	{
-		string line;
+		doit(new Scanner(System.in));
+		File file = new File("in.txt");
+		doit(new Scanner(file));
+    }
 
-		// processes standard input
-		while ((line = Console.ReadLine()) != null) {
-			Solve1(line);
+	public static void doit(Scanner in)
+	{
+		while (in.hasNext()) {
+			int w = in.nextInt();
+			int h = in.nextInt();
+			String u = in.next();
+			Rectangle rectangle = new Rectangle(w, h, u);
+			System.out.println("The area is " + rectangle.area() + " square " + rectangle.unit
+			                 + " and the perimeter is " + rectangle.perimeter() + " " + rectangle.unit + ".");
 		}
-
-		// processes additional inputs from in.txt
-		var file = new System.IO.StreamReader("in.txt");
-		while ((line = file.ReadLine()) != null) {
-			Solve1(line);
-		}
-		file.Close();
-	}
-
-	static void Solve1(string line) {
-		string[] inputs = line.Split();
-		int x = Convert.ToInt32(inputs[0]);
-		int y = Convert.ToInt32(inputs[1]);
-		Console.WriteLine(Program.Add(x,y));
 	}
 }

@@ -81,6 +81,7 @@ add          6/6  2
 addition      -   0
 hello         -   0
 hello-world   -   0
+rectangle     -   0
 $
 $ udge-latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
@@ -96,6 +97,7 @@ add          6/6  1
 addition      -   0
 hello         -   0
 hello-world  0/1  1
+rectangle     -   0
 $
 $ udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output

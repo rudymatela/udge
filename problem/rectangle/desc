@@ -42,7 +42,6 @@ Please refer to the information for your chosen language.
 #### C
 
 	struct rectangle {
-		char unit[100];
 		int height;
 		int width;
 	};
@@ -51,8 +50,7 @@ Please refer to the information for your chosen language.
 
 #### Haskell
 
-	data Rectangle = Rectangle { unit :: String
-	                           , height :: Int
+	data Rectangle = Rectangle { height :: Int
 	                           , width :: Int
 	                           }
 	area :: Rectangle -> Int
@@ -60,19 +58,42 @@ Please refer to the information for your chosen language.
 
 Alternatively, you can declare the rectangle type as:
 
-	data Rectangle = Rectangle String Int Int
+	data Rectangle = Rectangle Int Int
 
 #### Python
 
-	...
+	class Rectangle:
+		def __init__(self, width, height):
+			self.width = width
+			self.height = height
+
+		def area(self):
+			...
+
+		def perimeter(self):
+			...
 
 #### C#
 
-	...
+	class Rectangle
+	{
+		public int Width { get; set; }
+		public int Height { get; set; }
+		public Rectangle(int width, int height);
+		public int Area();
+		public int Perimeter();
+	}
 
 #### Java
 
-	...
+	public class Rectangle
+	{
+		public int width;
+		public int height;
+		public Rectangle(int width, int height);
+		public int area();
+		public int perimeter();
+	}
 
 
 ### Scoring

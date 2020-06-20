@@ -1,7 +1,10 @@
-// main.cs: main file for an "add" solution
+// examples/rectangle/rectangle-classless.java: example almost correct solution to "rectangle"
 //
-// This is to be linked to the submitted file.
-// It processes values from standard input then from the "in.txt" file.
+// This is a correct solution to the "rectangle" problem.
+// It should get a 2/3 score.
+//
+//
+// This file is part of Udge.
 //
 //
 // Copyright (C) 2020  Rudy Matela
@@ -19,31 +22,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+import java.util.Scanner;
 
-class TheNewMain
-{
-	static void Main()
-	{
-		string line;
-
-		// processes standard input
-		while ((line = Console.ReadLine()) != null) {
-			Solve1(line);
+public class Rectangle {
+    public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		while (in.hasNext()) {
+			int w = in.nextInt();
+			int h = in.nextInt();
+			String u = in.next();
+			System.out.println("The area is " + w * h + " square " + u
+			                 + " and the perimeter is " + 2 * (w + h) + " " + u + ".");
 		}
-
-		// processes additional inputs from in.txt
-		var file = new System.IO.StreamReader("in.txt");
-		while ((line = file.ReadLine()) != null) {
-			Solve1(line);
-		}
-		file.Close();
-	}
-
-	static void Solve1(string line) {
-		string[] inputs = line.Split();
-		int x = Convert.ToInt32(inputs[0]);
-		int y = Convert.ToInt32(inputs[1]);
-		Console.WriteLine(Program.Add(x,y));
-	}
+    }
 }
