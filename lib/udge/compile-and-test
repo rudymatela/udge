@@ -44,12 +44,13 @@ verbose="$3"
 what=compile
 java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
-	*.c)    lang=c    ;language="C"                                ;;
-	*.hs)   lang=hs   ;language="Haskell"                          ;;
-	*.py)   lang=py   ;language="Python"   ;what="parse"           ;;
-	*.cs)   lang=cs   ;language="C#"       ;run=mono     ;ext=.exe ;;
-	*.java) lang=java ;language="Java"     ;run="$java"  ;ext=.jar ;;
-	*)      fail "No: unknown/unsupported file format or language" ;;
+	*.c)    lang=c    ;language="C"                                  ;;
+	*.hs)   lang=hs   ;language="Haskell"                            ;;
+	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
+	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
+	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;
+	*.js)   lang=js   ;language="JavaScript" ;run=node     ;ext=.js  ;;
+	*)      fail "No: unknown/unsupported file format or language"   ;;
 esac
 
 main="main.$lang"
