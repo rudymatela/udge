@@ -26,16 +26,15 @@
 import sys
 
 class Rectangle:
-	def __init__(self, width, height, unit=''):
+	def __init__(self, width, height):
 		self.width = width
 		self.height = height
-		self.unit = unit
 
 for line in sys.stdin:
-	w,h,u = line.split()
-	rectangle = Rectangle(int(w),int(h),u);
-	print("The area is %d square %s and the perimeter is %d %s." %
-		(rectangle.height * rectangle.width,
-		 rectangle.unit,
-		 2 * (rectangle.height + rectangle.width),
-		 rectangle.unit))
+	w,h = line.split()
+	rectangle = Rectangle(int(w),int(h));
+	print("%dx%d rectangle, area = %d, perimeter = %d" %
+		(rectangle.width,
+		 rectangle.height,
+		 rectangle.width * rectangle.height,
+		 2 * (rectangle.width + rectangle.height)))

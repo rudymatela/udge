@@ -26,10 +26,9 @@
 import sys
 
 class Rectangle:
-	def __init__(self, width, height, unit=''):
+	def __init__(self, width, height):
 		self.width = width
 		self.height = height
-		self.unit = unit
 	
 	def area(self):
 		return self.height * self.width
@@ -38,7 +37,7 @@ class Rectangle:
 		return 2 * (self.height + self.width)
 
 for line in sys.stdin:
-	w,h,u = line.split()
-	rectangle = Rectangle(int(w),int(h),u);
-	print("The area is %d square %s and the perimeter is %d %s." %
-		(rectangle.area(), rectangle.unit, rectangle.perimeter(), rectangle.unit))
+	w,h = line.split()
+	rectangle = Rectangle(int(w),int(h));
+	print("%dx%d rectangle, area = %d, perimeter = %d" %
+		(rectangle.width, rectangle.height, rectangle.area(), rectangle.perimeter()))
