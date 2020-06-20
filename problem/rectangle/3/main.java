@@ -35,10 +35,10 @@ public class AltMain {
 		while (in.hasNext()) {
 			int w = in.nextInt();
 			int h = in.nextInt();
-			String u = in.next();
-			Rectangle rectangle = new Rectangle(w, h, u);
-			System.out.println("The area is " + rectangle.area() + " square " + rectangle.unit
-			                 + " and the perimeter is " + rectangle.perimeter() + " " + rectangle.unit + ".");
+			Rectangle rectangle = new Rectangle(w, h);
+			System.out.println(rectangle.width + "x" + rectangle.height + " rectangle, " +
+			                   "area = " + rectangle.area() + ", " +
+			  				   "perimeter = " + rectangle.perimeter());
 		}
 	}
 }

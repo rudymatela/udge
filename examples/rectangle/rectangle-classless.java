@@ -30,9 +30,9 @@ public class Rectangle {
 		while (in.hasNext()) {
 			int w = in.nextInt();
 			int h = in.nextInt();
-			String u = in.next();
-			System.out.println("The area is " + w * h + " square " + u
-			                 + " and the perimeter is " + 2 * (w + h) + " " + u + ".");
+			System.out.println(w + "x" + h + " rectangle, " +
+			                   "area = " + w * h + ", " +
+			  				   "perimeter = " + 2 * (w + h));
 		}
     }
 }

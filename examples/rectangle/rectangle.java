@@ -27,12 +27,10 @@ import java.util.Scanner;
 public class Rectangle {
 	public int width;
 	public int height;
-	public String unit;
 
-	public Rectangle(int width, int height, String unit) {
+	public Rectangle(int width, int height) {
 		this.width  = width;
 		this.height = height;
-		this.unit   = unit;
 	}
 
 	public int area() {
@@ -48,10 +46,10 @@ public class Rectangle {
 		while (in.hasNext()) {
 			int w = in.nextInt();
 			int h = in.nextInt();
-			String u = in.next();
-			Rectangle rectangle = new Rectangle(w, h, u);
-			System.out.println("The area is " + rectangle.area() + " square " + rectangle.unit
-			                 + " and the perimeter is " + rectangle.perimeter() + " " + rectangle.unit + ".");
+			Rectangle rectangle = new Rectangle(w, h);
+			System.out.println(rectangle.width + "x" + rectangle.height + " rectangle, " +
+			                   "area = " + rectangle.area() + ", " +
+			  				   "perimeter = " + rectangle.perimeter());
 		}
     }
 }
