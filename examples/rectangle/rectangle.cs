@@ -28,13 +28,11 @@ class Rectangle
 {
 	public int Width { get; set; }
 	public int Height { get; set; }
-	public string Unit { get; set; }
 
-	public Rectangle(int width, int height, string unit)
+	public Rectangle(int width, int height)
 	{
 		this.Width  = width;
 		this.Height = height;
-		this.Unit   = unit;
 	}
 
 	public int Area()
@@ -57,11 +55,10 @@ class Program
 			string[] inputs = line.Split();
 			int w = Convert.ToInt32(inputs[0]);
 			int h = Convert.ToInt32(inputs[1]);
-			string u = inputs[2];
-			Rectangle rectangle = new Rectangle(w, h, u);
-			Console.WriteLine("The area is " + rectangle.Area()
-			                + " square " + rectangle.Unit
-							+ " and the perimeter is " + rectangle.Perimeter() + " " + rectangle.Unit + ".");
+			Rectangle rectangle = new Rectangle(w, h);
+			Console.WriteLine(rectangle.Width + "x" + rectangle.Height + " rectangle, " +
+			                  "area = " + rectangle.Area() + ", " +
+			  				  "perimeter = " + rectangle.Perimeter());
 		}
 	}
 }

@@ -33,10 +33,9 @@ class Program
 			string[] inputs = line.Split();
 			int w = Convert.ToInt32(inputs[0]);
 			int h = Convert.ToInt32(inputs[1]);
-			string u = inputs[2];
-			Console.WriteLine("The area is " + w*h
-			                + " square " + u
-							+ " and the perimeter is " + 2*(w+h) + " " + u + ".");
+			Console.WriteLine(w + "x" + h + " rectangle, " +
+							  "area = " + w*h + ", " +
+							  "perimeter = " + 2*(w+h));
 		}
 	}
 }
