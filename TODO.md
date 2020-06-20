@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* improve test cases for the rectangle problem
+
 * add a problem involving a user-defined data type
 
 	- add C# solutions to rectangle

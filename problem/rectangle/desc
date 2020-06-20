@@ -1,10 +1,16 @@
 rectangle - Rectangle
 ---------------------
 
+Write a program that reads a pair of numbers
+representing the width and height of a rectangle
+and prints its area an perimeter.
+Here is an example of
+how a console session with this program should look like:
+
 	$ ./rectangle
-	1 2 cm
+	1 2
 	1x2 rectangle, area = 2, perimeter = 6
-	3 6 in
+	3 6
 	3x6 rectangle, area = 18, perimeter = 18
 	10 1
 	10x1 rectangle, area = 10, perimeter = 22
@@ -15,19 +21,24 @@ Each line of input contains two numbers _w_ and _h_ where
 
 -1 000 ≤ w, h ≤ 1 000
 
-For each line of input there should be one line of output.
+For each line of input there should be one line of output in the following format:
+
+	<W>x<H> rectangle, area = <AREA>, perimeter = <PERIMETER>
+
+Replace `<W>`, `<H>`, `<AREA>` and `<PERIMETER>` by
+the width, height, area and perimeter of the given rectangle respectively.
 
 #### Example input
 
-	1 2 cm
-	3 6 in
-	10 1 metres
+	1 2
+	3 6
+	10 1
 
 #### Example output
 
-	The area is 2 square cm and the perimeter is 6 cm.
-	The area is 18 square in and the perimeter is 18 in.
-	The area is 10 square metres and the perimeter is 22 metres.
+	1x2 rectangle, area = 2, perimeter = 6
+	3x6 rectangle, area = 18, perimeter = 18
+	10x1 rectangle, area = 10, perimeter = 22
 
 ### The `area` and `perimeter` functions
 
