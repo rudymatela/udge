@@ -50,16 +50,16 @@ Please refer to the information for your chosen language.
 #### C
 
 	struct rectangle {
-		int height;
 		int width;
+		int height;
 	};
 	int area(struct rectangle rectangle);
 	int perimeter(struct rectangle rectangle);
 
 #### Haskell
 
-	data Rectangle = Rectangle { height :: Int
-	                           , width :: Int
+	data Rectangle = Rectangle { width :: Int
+	                           , height :: Int
 	                           }
 	area :: Rectangle -> Int
 	perimeter :: Rectangle -> Int

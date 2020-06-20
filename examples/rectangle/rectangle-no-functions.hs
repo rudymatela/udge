@@ -21,16 +21,9 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-data Rectangle  =  Rectangle { unit :: String
-                             , width :: Int
+data Rectangle  =  Rectangle { width :: Int
                              , height :: Int
                              }
-
-ar :: Rectangle -> Int
-ar (Rectangle _ w h)  =  w * h
-
-pe :: Rectangle -> Int
-pe (Rectangle _ w h)  =  2 * (w + h)
 
 main :: IO ()
 main  =  interact solve
@@ -39,10 +32,12 @@ solve :: String -> String
 solve  =  unlines . map (solve1 . readRectangle) . lines
 
 readRectangle :: String -> Rectangle
-readRectangle s  =  Rectangle u (read w') (read h')  where  [w',h',u] = words s
+readRectangle s  =  Rectangle w h  where  [w,h] = map read $ words s
 
 solve1 :: Rectangle -> String
-solve1 rectangle  =  "The area is " ++ show (ar rectangle)
-                  ++ " square " ++ unit rectangle
-                  ++ " and the perimeter is " ++ show (pe rectangle)
-                  ++ " " ++ unit rectangle ++ "."
+solve1 rectangle  =  show (width rectangle) ++ "x" ++ show (height rectangle) ++ " rectangle, "
+                  ++ "area = " ++ show (w * h) ++ ", "
+                  ++ "perimeter = " ++ show (2 * (w + h))
+  where
+  w = width rectangle
+  h = height rectangle

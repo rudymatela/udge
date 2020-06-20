@@ -36,10 +36,9 @@ solve :: String -> String
 solve  =  unlines . map (solve1 . readRectangle) . lines
 
 readRectangle :: String -> Rectangle
-readRectangle s  =  Rectangle u (read w') (read h')  where  [w',h',u] = words s
+readRectangle s  =  Rectangle w h  where  [w,h] = map read $ words s
 
 solve1 :: Rectangle -> String
-solve1 rectangle@(Rectangle unit _ _)  =  "The area is " ++ show (area rectangle)
-                                       ++ " square " ++ unit
-                                       ++ " and the perimeter is " ++ show (perimeter rectangle)
-                                       ++ " " ++ unit ++ "."
+solve1 rectangle  =  show (width rectangle) ++ "x" ++ show (height rectangle) ++ " rectangle, "
+                  ++ "area = " ++ show (area rectangle) ++ ", "
+                  ++ "perimeter = " ++ show (perimeter rectangle)
