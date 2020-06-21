@@ -209,7 +209,7 @@ To create a problem on Udge:
 
 2. Create three files in the newly created problem folder:
 
-	* `desc`: a markdown file with your problem description
+	* `desc.md`: a markdown file with your problem description
 
 	* `in`: the input file.
 		This will be used as the standard input to submitted solutions:
