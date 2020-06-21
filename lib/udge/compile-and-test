@@ -45,6 +45,8 @@ what=compile
 java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
 	*.c)    lang=c    ;language="C"                                  ;;
+	*.cc)   lang=cc   ;language="C++"                                ;;
+	*.cpp)  lang=cc   ;language="C++"                                ;;
 	*.hs)   lang=hs   ;language="Haskell"                            ;;
 	*.lhs)  lang=hs   ;language="Haskell"                            ;;
 	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
