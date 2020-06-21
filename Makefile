@@ -328,6 +328,9 @@ test-dev-install:
 list-missing-copyright:
 	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile README.md
 
+cloc:
+	cloc bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile problem/ README.md TODO.md
+
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.
 check-install: check-install-test check-install-find
