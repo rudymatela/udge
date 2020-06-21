@@ -46,6 +46,7 @@ java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetasp
 case "$src" in
 	*.c)    lang=c    ;language="C"                                  ;;
 	*.hs)   lang=hs   ;language="Haskell"                            ;;
+	*.lhs)  lang=hs   ;language="Haskell"                            ;;
 	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
 	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
 	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;
