@@ -180,6 +180,34 @@ password is missing
 password is missing
 422
 
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=password -Fpassword-confirmation=password | display
+New user – Udge Online Judge
+New user
+it is based on a dictionary word (hint: use two dictionary words)
+it is based on a dictionary word (hint: use two dictionary words)
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=a -Fpassword-confirmation=a | display
+New user – Udge Online Judge
+New user
+it is WAY too short
+it is WAY too short
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=51932 -Fpassword-confirmation=51932 | display
+New user – Udge Online Judge
+New user
+it is too short
+it is too short
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=abcd1234 -Fpassword-confirmation=abcd1234 | display
+New user – Udge Online Judge
+New user
+it is too simplistic/systematic
+it is too simplistic/systematic
+422
+
 $ . /etc/udgerc
 $ ls -1 $USERS/$user
 email

@@ -89,6 +89,17 @@ has-error() {
 }
 
 
+password-errors() {
+	[ -s "$password_fn" ] || echo "password is missing"
+	cracklib-check < "$password_fn" |
+	sed -e "s/.*: //" |
+	sed -e "s/^OK$//" |
+	sed -e "s/dictionary word$/& (hint: use two dictionary words)/" |
+	grep -v "^$"
+	diff -q $password_fn $password_confirmation_fn >/dev/null 2>/dev/null || echo "passwords do not match"
+}
+
+
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	$bin/cgi-create-data-files $tmpdata
@@ -102,11 +113,10 @@ post() {
 	email_value=`mcat "$email_fn"`
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
 
-	diff -q $password_fn $password_confirmation_fn >/dev/null 2>/dev/null || password_error="passwords do not match"
 	diff -q $email_fn    $email_confirmation_fn    >/dev/null 2>/dev/null || email_error="emails do not match"
 	sane-file "$user_fn"        || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]           || user_error="username is missing"
-	[ -s "$password_fn" ]       || password_error="password is missing"
+	password_error="`password-errors | head -1`"
 	sane-email-file "$email_fn" || email_error="invalid or unsupported email address"
 	[ -s "$email_fn" ]          || email_error="email is missing"
 	if has-error

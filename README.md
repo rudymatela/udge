@@ -78,6 +78,7 @@ To install and run Udge, you will need:
 * util-linux --- for sandboxing with `unshare`
 * discount   --- for `markdown`
 * cronie
+* cracklib   --- for checking password strength
 * GCC's GCC  --- for C submission support
 * GHC        --- for Haskell submission support
 * clitest    --- for testing Udge itself

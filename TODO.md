@@ -5,10 +5,6 @@ TODO list for Udge
 
 * rename `desc` to `desc.md`
 
-* validation:
-
-	- `cgi-bin/new-user`: minimum password length and complexity
-
 * sandbox before running submissions:
 	- protect disk access (chroot ?)
 	  (use `ldd file` to find out what to copy from `/lib/`)
