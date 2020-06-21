@@ -68,6 +68,7 @@ test-scripts: \
   hello-world.clitest \
   hello-world-hs.clitest \
   hello-world-py.clitest \
+  hello-world-cc.clitest \
   hello-world-cs.clitest \
   hello-world-java.clitest \
   hello-world-js.clitest \
@@ -79,12 +80,14 @@ test-scripts: \
   add.clitest \
   add-hs.clitest \
   add-py.clitest \
+  add-cc.clitest \
   add-cs.clitest \
   add-java.clitest \
   add-js.clitest \
   rectangle.clitest \
   rectangle-hs.clitest \
   rectangle-py.clitest \
+  rectangle-cc.clitest \
   rectangle-cs.clitest \
   rectangle-java.clitest \
   rectangle-js.clitest \

@@ -38,6 +38,7 @@ Features:
 * simple plaintext file database, no need to setup an SQL server and database;
 * support for solutions in:
 	- C
+	- C++
 	- C#
 	- Haskell
 	- Java

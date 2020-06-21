@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add C++ support
-
 * automatically install crontab entries
 
 * rename `desc` to `desc.md`

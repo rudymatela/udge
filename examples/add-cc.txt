@@ -22,6 +22,6 @@
 
 $ udge-judge add examples/add/add.cc
 6/6
-$ udge-judge add examples/add/5-no-function.cc
+$ udge-judge add examples/add/5-no-function.cc 2>/dev/null
 No - compile error (C++)
 5/6
