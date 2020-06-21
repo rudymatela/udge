@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ export UDGE_PASSWORD=pass
+$ export UDGE_PASSWORD=a-good-password
 $
 $ export UDGE_USERNAME=test-submit-s-`date "+%Y%m%d-%H%M%S"`
 $ ./examples/create-new-user $UDGE_USERNAME u@example.com $UDGE_PASSWORD

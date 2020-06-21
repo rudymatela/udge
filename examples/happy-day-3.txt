@@ -29,21 +29,21 @@ $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
 $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
-$ ./examples/create-new-user $user1 u@example.com pass
+$ ./examples/create-new-user $user1 u@example.com correct-horse-
 User created
 201
-$ ./examples/create-new-user $user2 u@example.com pass
+$ ./examples/create-new-user $user2 u@example.com battery-staple
 User created
 201
 $
-$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit examples/add/add.c add
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=correct-horse- udge-submit examples/add/add.c add
 Submission successful (202)
-$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit examples/add/add.hs add
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=battery-staple udge-submit examples/add/add.hs add
 Submission successful (202)
 $ sleep 1
-$ UDGE_USERNAME=$user1 UDGE_PASSWORD=pass udge-submit examples/add/4-octals.c add
+$ UDGE_USERNAME=$user1 UDGE_PASSWORD=correct-horse- udge-submit examples/add/4-octals.c add
 Submission successful (202)
-$ UDGE_USERNAME=$user2 UDGE_PASSWORD=pass udge-submit examples/hello-world/0-wo.hs hello-world
+$ UDGE_USERNAME=$user2 UDGE_PASSWORD=battery-staple udge-submit examples/hello-world/0-wo.hs hello-world
 Submission successful (202)
 $
 $

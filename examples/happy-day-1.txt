@@ -32,13 +32,13 @@ $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
 $
 $
-$ ./examples/create-new-user $user u@example.com pass
+$ ./examples/create-new-user $user u@example.com correct-horse-battery-staple
 User created
 201
 $
 $
 $ export UDGE_USERNAME=$user
-$ export UDGE_PASSWORD=pass
+$ export UDGE_PASSWORD=correct-horse-battery-staple
 $ udge-submit examples/add/add.c add
 Submission successful (202)
 $

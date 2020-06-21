@@ -32,13 +32,13 @@ $ udge-pick-and-judge
 udge-pick-and-judge: nothing to do
 $
 $
-$ ./examples/create-new-user $user u@example.com pass
+$ ./examples/create-new-user $user u@example.com a-good-password
 User created
 201
 $
 $
 $ export UDGE_USERNAME=$user
-$ export UDGE_PASSWORD=pass
+$ export UDGE_PASSWORD=a-good-password
 $
 $
 $ udge-submit examples/add/add.c add
