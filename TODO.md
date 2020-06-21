@@ -3,8 +3,6 @@ TODO list for Udge
 
 * automatically install crontab entries
 
-* rename `desc` to `desc.md`
-
 * sandbox before running submissions:
 	- protect disk access (chroot ?)
 	  (use `ldd file` to find out what to copy from `/lib/`)
