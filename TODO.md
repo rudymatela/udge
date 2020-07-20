@@ -33,8 +33,9 @@ TODO list for Udge
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 
-* add support to names
-	- including tests with characters of a few different languages
+* test name support with characters from a few different languages
+
+* test name support with computer characters `-&\0#<>"'`
 
 * Let users configure if they would be appear anonymized on the ranking and
   have a private user page.  (All this as a single option.)
