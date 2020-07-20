@@ -47,6 +47,14 @@ termecho() {
 	fi
 }
 
+print() {
+	printf "%s" "$1"
+}
+
+println() {
+	printf "%s\n" "$1"
+}
+
 prompt() {
 	case $1 in
 	-s) flag=-s; shift;;

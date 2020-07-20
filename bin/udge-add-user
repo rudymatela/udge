@@ -44,7 +44,7 @@ prompt -s password_confirmation "retype password: "
 umask 0007 # dir: rwxrws---, file: rw-rw----
 mkdir -p "$user_dir"
 head -c30 /dev/random | base64 -w0 > "$user_dir/salt"
-(cat $user_dir/salt; echo -n $password) |
+(cat $user_dir/salt; print "$password") |
 sha256sum | sed -e "s/ .*//"   > "$user_dir/password"
-echo $email > "$user_dir/email"
-printf '%s\n' $name > "$user_dir/name"
+println "$email" > "$user_dir/email"
+println "$name"  > "$user_dir/name"
