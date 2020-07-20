@@ -43,6 +43,7 @@ get() {
 	echo "<h2>New user</h2>"
 	echo '<form action="/new-user" method="POST" enctype="multipart/form-data">'
 	html-form-input text     user                  'Username'              'username'              "$user_error"     "$user_value"
+	html-form-input text     name                  'Name (optional)'       'name'                  "$name_error"     "$name_value"
 	html-form-input email    email                 'Email'                 'email'                 "$email_error"    "$email_value"
 	html-form-input email    email-confirmation    'Email confimration'    'email confirmation'    "$email_error"    "$email_confirmation_value"
 	html-form-input password password              'Password'              'password'              "$password_error" "$password_value"
@@ -64,7 +65,8 @@ success() {
 <p>
 Successfully created
 user <strong>$user_value</strong>
-with email <strong>$email_value</strong>.
+with email <strong>$email_value</strong>
+and name <strong>$name_value</strong>.
 </p>
 
 <p>
@@ -105,11 +107,13 @@ post() {
 	$bin/cgi-create-data-files $tmpdata
 
 	user_fn="$tmpdata/user/value"
+	name_fn="$tmpdata/name/value"
 	password_fn="$tmpdata/password/value"
 	password_confirmation_fn="$tmpdata/password-confirmation/value"
 	email_fn="$tmpdata/email/value"
 	email_confirmation_fn="$tmpdata/email-confirmation/value"
 	user_value=`mcat "$user_fn"`
+	name_value=`mcat "$name_fn"` # TODO: double-quotes
 	email_value=`mcat "$email_fn"`
 	email_confirmation_value=`mcat "$email_confirmation_fn"`
 
@@ -138,7 +142,8 @@ post() {
 	fi
 
 	echo | cat $password_fn - $password_confirmation_fn |
-		$bin/udge-add-user $user_value $email_value
+		$bin/udge-add-user $user_value $email_value "$name_value"
+	[ -n "$name_value" ] || name_value=$user_value
 
 	rm -r $tmpdata
 	status=status-201-created

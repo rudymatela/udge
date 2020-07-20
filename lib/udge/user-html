@@ -34,9 +34,11 @@ user="$1"
 [ -d "$USERS/$user" ] || errxit "user not found"
 dirname="`dirname $0`"
 
+name="`cat $USERS/$user/name 2>/dev/null || echo $user`"
+
 html-header "$user @ $NAME"
 html-navbar
-echo "<h2>$user @ $NAME</h2>"
+echo "<h2>$name @ $NAME</h2>"
 
 $bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
