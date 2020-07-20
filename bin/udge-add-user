@@ -2,7 +2,7 @@
 #
 # udge-add-user: creates a new user for udge
 #
-# Usage: udge-add-user <username> <u@example.com>
+# Usage: udge-add-user <username> <u@example.com> [name]
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -25,9 +25,11 @@ prefix="$(dirname "$(dirname "$0")")"
 
 user="$1"
 email="$2"
+name="$3"
 
 [ -n "$user" ]      || errxit "missing username argument"
 [ -n "$email" ]     || errxit "missing email argument"
+[ -n "$name" ]      || name="$user"
 sane "$user"        || errxit "username contains invalid characters"
 sane-email "$email" || errxit "invalid email address"
 
@@ -45,3 +47,4 @@ head -c30 /dev/random | base64 -w0 > "$user_dir/salt"
 (cat $user_dir/salt; echo -n $password) |
 sha256sum | sed -e "s/ .*//"   > "$user_dir/password"
 echo $email > "$user_dir/email"
+printf '%s\n' $name > "$user_dir/name"

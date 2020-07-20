@@ -211,10 +211,13 @@ it is too simplistic/systematic
 $ . /etc/udgerc
 $ ls -1 $USERS/$user
 email
+name
 password
 salt
 $ cat $USERS/$user/email
 u@example.com
+$ cat $USERS/$user/name | sed -e "s/$user/username/"
+username
 $ cat $USERS/$user/password | wc -c
 65
 $ cat $USERS/$user/salt     | wc -c
