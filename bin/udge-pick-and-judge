@@ -82,4 +82,3 @@ submission_dir_dir="`dirname $submission_dir`"
 rm -f $submission
 rmdir --ignore-fail-on-non-empty $submission_dir
 rmdir --ignore-fail-on-non-empty $submission_dir_dir
-# TODO: add and use the "udge" user to run stuff
