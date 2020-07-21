@@ -24,6 +24,8 @@ $ now=`date "+%Y%m%d-%H%M%S"`
 $ johndoe=test-johndoe-$now
 $ janeroe=test-janeroe-$now
 $
+$ umask 0022
+$
 $ alias curl='curl -sw "%{http_code}\n"'
 $ alias yyyymmdd="sed -e 's/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]/YYYYMMDD-HHMMSS/'"
 $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g" | yyyymmdd; echo'
@@ -31,7 +33,6 @@ $
 $ ./examples/create-new-user $johndoe johndoe@example.com the-password "John Doe"
 User created
 201
-$ umask 0022
 $ udge-update-user-html $johndoe >/dev/null
 $ curl udge/u/$johndoe | display
 test-johndoe-YYYYMMDD-HHMMSS @ Udge Online Judge
