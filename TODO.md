@@ -1,11 +1,7 @@
 TODO list for Udge
 ==================
 
-* `cat` problem:
-
-	- proper description
-	- test case involving `-`
-	- examples passing and not passing each of the test cases
+* add a proper description to the `cat` problem:
 
 * automatically install crontab entries
 
