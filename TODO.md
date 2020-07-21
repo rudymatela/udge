@@ -37,8 +37,6 @@ TODO list for Udge
 
 * Add a user's submission page?  `u/<user_name>/submissions`
 
-* Add test to assure that there are no broken links (use `wget -r`?)
-
 * Languages to support later (in no particular order):
 
 	- Lua
