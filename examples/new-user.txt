@@ -222,3 +222,6 @@ $ cat $USERS/$user/password | wc -c
 65
 $ cat $USERS/$user/salt     | wc -c
 40
+$
+$
+$ udge-delete-user $user -f

@@ -1,7 +1,7 @@
 TODO list for Udge
 ==================
 
-* delete test users as we go
+* create `udge-backup` script
 
 * automatically install crontab entries
 

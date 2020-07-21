@@ -76,3 +76,6 @@ $
 $
 $ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/"
 <user>      1  1 1 1 1
+$
+$
+$ udge-delete-user $user -f
