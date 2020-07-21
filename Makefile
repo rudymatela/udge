@@ -92,6 +92,7 @@ test-scripts: \
   rectangle-cs.clitest \
   rectangle-java.clitest \
   rectangle-js.clitest \
+  cat.clitest \
   sandbox.clitest \
   hello.clitest
 
