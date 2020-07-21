@@ -2,7 +2,7 @@
  * examples/cat/cat.c: example solution to the "cat" example problem
  *
  * This program is an example solution to the "cat" example problem.
- * It should get a full score of 1/1.
+ * It should get a score of 5/6 due to failing to treat "-"
  *
  * This is a feature-limited reimplementation of the POSIX cat program.
  *
@@ -27,7 +27,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int filecopy(FILE *in, FILE *out)
 {
@@ -41,10 +40,7 @@ int main(int argc, char **argv)
 	int i;
 	FILE *f;
 	for (i=1; i<argc; i++) {
-		if (strcmp(argv[i], "-")==0)
-			f = stdin;
-		else
-			f = fopen(argv[i], "r");
+		f = fopen(argv[i], "r");
 		if (!f) {
 			fprintf(stderr, "cat: %s: could not open file\n", argv[i]);
 			continue;
