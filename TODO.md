@@ -27,8 +27,6 @@ TODO list for Udge
 
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
 
-* review `mcat` uses (split into two different types?)
-
 * Test what happens if I submit a 128MB file and a 1GB file.
   Can we block that on nginx itself?
 

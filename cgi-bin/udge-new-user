@@ -112,10 +112,10 @@ post() {
 	password_confirmation_fn="$tmpdata/password-confirmation/value"
 	email_fn="$tmpdata/email/value"
 	email_confirmation_fn="$tmpdata/email-confirmation/value"
-	user_value="`mcat "$user_fn"`"
-	name_value="`mcat "$name_fn"`"
-	email_value="`mcat "$email_fn"`"
-	email_confirmation_value=`mcat "$email_confirmation_fn"`
+	user_value="`html-cat "$user_fn"`"
+	name_value="`html-cat "$name_fn"`"
+	email_value="`html-cat "$email_fn"`"
+	email_confirmation_value="`html-cat "$email_confirmation_fn"`"
 
 	diff -q $email_fn    $email_confirmation_fn    >/dev/null 2>/dev/null || email_error="emails do not match"
 	sane-file "$user_fn"        || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"

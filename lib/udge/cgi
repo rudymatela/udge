@@ -98,10 +98,14 @@ page-405-method-not-allowed() {
 }
 
 
-# TODO: split into maybe-cat and html-cat
-mcat() {
-	[ -f "$1" ] && cat "$1" | html-escape
+maybe-cat() {
+	[ -f "$1" ] && cat "$1"
 	true
+}
+
+
+html-cat() {
+	maybe-cat "$@" | html-escape
 }
 
 

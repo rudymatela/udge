@@ -105,9 +105,9 @@ post() {
 	program_fn="$tmpdata/program/value"
 	problem_fn="$tmpdata/problem/value"
 	language_fn="$tmpdata/language/value"
-	user_value="`mcat "$user_fn"`"
-	problem_value="`mcat "$problem_fn"`"
-	language_value="`mcat "$language_fn"`"
+	user_value="`html-cat "$user_fn"`"
+	problem_value="`html-cat "$problem_fn"`"
+	language_value="`html-cat "$language_fn"`"
 
 	sane-file "$user_fn"  || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]     || user_error="user is missing"
