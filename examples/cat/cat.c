@@ -39,6 +39,7 @@ int filecopy(FILE *in, FILE *out)
 int main(int argc, char **argv)
 {
 	int i;
+	int err = 0;
 	FILE *f;
 	for (i=1; i<argc; i++) {
 		if (strcmp(argv[i], "-")==0)
@@ -47,10 +48,11 @@ int main(int argc, char **argv)
 			f = fopen(argv[i], "r");
 		if (!f) {
 			fprintf(stderr, "cat: %s: could not open file\n", argv[i]);
+			err = 1;
 			continue;
 		}
 		filecopy(f, stdout);
 		fclose(f);
 	}
-	return 0;
+	return err;
 }

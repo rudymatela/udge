@@ -38,13 +38,16 @@ int filecopy(FILE *in, FILE *out)
 int main(int argc, char **argv)
 {
 	int i;
+	int err = 0;
 	FILE *f;
 	for (i=1; i<argc; i++) {
 		f = fopen(argv[i], "r");
-		if (!f)
+		if (!f) {
+			err = 1;
 			continue;
+		}
 		filecopy(f, stdout);
 		fclose(f);
 	}
-	return 0;
+	return err;
 }
