@@ -48,6 +48,7 @@ $ ruf=test-ru-f-$now
 $ rum=test-ru-m-$now
 $ spf=test-sp-f-$now
 $ zhf=test-zh-f-$now
+$ zz1=test-zz-1-$now
 $
 $ umask 0022
 $
@@ -208,6 +209,15 @@ Júlia Muñoz @ Udge Online Judge
 Scores by problem
 200
 
+$ ./examples/create-new-user $zz1 zz1@example.com some-password "ZYX Ææ <%2B-*%25%26> 123"
+User created
+201
+$ curl udge/u/$zz1 | display
+test-zz-1-YYYYMMDD-HHMMSS @ Udge Online Judge
+ZYX Ææ &lt;+-*%&amp;&gt; 123 @ Udge Online Judge
+Scores by problem
+200
+
 $ udge-delete-user $janeroe -f
 $ udge-delete-user $johndoe -f
 $ udge-delete-user $arf -f
@@ -225,3 +235,4 @@ $ udge-delete-user $ruf -f
 $ udge-delete-user $rum -f
 $ udge-delete-user $spf -f
 $ udge-delete-user $zhf -f
+$ echo udge-delete-user $zz1 -f
