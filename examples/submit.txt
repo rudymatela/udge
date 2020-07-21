@@ -251,6 +251,9 @@ $ head -c1 /dev/random >> $tmp
 $ udge-submit $tmp hello-world c
 udge-submit: 422
 udge-submit: source file is too big
+$ head -c1M /dev/zero > $tmp # nginx blocks files bigger than 1MiB
+$ udge-submit $tmp hello-world c
+udge-submit: 413
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)

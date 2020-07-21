@@ -25,11 +25,6 @@ TODO list for Udge
 
 * `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
 
-* Test what happens if I submit a 128MB file and a 1GB file.
-  Can we block that on nginx itself?
-
-	- nginx by default blocks request entities greater than 1MiB
-
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 
