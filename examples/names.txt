@@ -1,6 +1,6 @@
 #!/usr/bin/env -S clitest -1
 #
-# Tests for the new user page.
+# Tests Udge with names using different character sets.
 #
 # This file is part of Udge.
 #
@@ -19,10 +19,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Names were taken from the following lists of common given names and surnames:
+#
+# * https://en.wikipedia.org/wiki/List_of_most_popular_given_names
+# * https://en.wikipedia.org/wiki/Lists_of_most_common_surnames
+#
+# The objective here is to test special characters with accents (áéíóúßąęÿü) so
+# preference was given to names with these.  For example, in Portuguese, "Inês"
+# instead of "Maria".
 
 $ now=`date "+%Y%m%d-%H%M%S"`
 $ johndoe=test-johndoe-$now
 $ janeroe=test-janeroe-$now
+$ ptf=test-pt-f-$now
+$ ptm=test-pt-m-$now
 $
 $ umask 0022
 $
@@ -33,7 +45,6 @@ $
 $ ./examples/create-new-user $janeroe janeroe@example.org correct-horse "Jane Roe"
 User created
 201
-$ udge-update-user-html $janeroe >/dev/null
 $ curl udge/u/$janeroe | display
 test-janeroe-YYYYMMDD-HHMMSS @ Udge Online Judge
 Jane Roe @ Udge Online Judge
@@ -43,12 +54,31 @@ Scores by problem
 $ ./examples/create-new-user $johndoe johndoe@example.com battery-staple "John Doe"
 User created
 201
-$ udge-update-user-html $johndoe >/dev/null
 $ curl udge/u/$johndoe | display
 test-johndoe-YYYYMMDD-HHMMSS @ Udge Online Judge
 John Doe @ Udge Online Judge
 Scores by problem
 200
 
+$ ./examples/create-new-user $ptf maria.ines@example.org cavalo-correcto "Inês Gonçalves Araújo"
+User created
+201
+$ curl udge/u/$ptf | display
+test-pt-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+Inês Gonçalves Araújo @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $ptm joao-tomas@example.org bateria-grampeador "João Tomás Simões Lourenço"
+User created
+201
+$ curl udge/u/$ptm | display
+test-pt-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+João Tomás Simões Lourenço @ Udge Online Judge
+Scores by problem
+200
+
 $ udge-delete-user $janeroe -f
 $ udge-delete-user $johndoe -f
+$ udge-delete-user $ptf -f
+$ udge-delete-user $ptm -f
