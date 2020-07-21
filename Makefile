@@ -131,12 +131,12 @@ test-makefile-coverage:
 %.clitest: examples/%.txt
 	PATH="./bin:$$PATH" clitest -1 $<
 
-html: readme todo
+html: readme todo robots
 	./bin/udge-update-all-problem-htmls
 	./bin/udge-update-all-user-htmls
 	./bin/udge-update-rank-html
 
-html-force: readme todo
+html-force: readme todo robots
 	./bin/udge-update-all-problem-htmls force
 	./bin/udge-update-all-user-htmls force
 	./bin/udge-update-rank-html
@@ -153,11 +153,17 @@ readme: var/html/README.html
 .PHONY: todo
 todo: var/html/TODO.html
 
+.PHONY: robots
+robots: var/html/robots.txt
+
 var/html/README.html: README.md
 	./lib/udge/markdown $< > $@
 
 var/html/TODO.html: TODO.md
 	./lib/udge/markdown $< > $@
+
+var/html/robots.txt:
+	echo -e 'User-agent: *\nAllow: /' > $@
 
 tidy: \
 	udge.tidy \
