@@ -64,6 +64,7 @@ test: \
 test-scripts: export DEFAULT_TIME_LIMIT=2
 test-scripts: \
   test-makefile \
+  test-no-broken-links \
   judge.clitest \
   hello-world.clitest \
   hello-world-hs.clitest \
@@ -112,6 +113,10 @@ test-happy: \
   happy-day-1.clitest \
   happy-day-2.clitest \
   happy-day-3.clitest
+
+test-no-broken-links: html
+	wget -nv -r udge/
+	rm -r udge/
 
 test-makefile: test-makefile-coverage test-dev-install # TODO: add test-install, use mktemp to allow -j
 
