@@ -4,8 +4,8 @@ TODO list for Udge
 * `cat` problem:
 
 	- proper description
-	- test case involving stderr
 	- test case involving `-`
+	- example `cat` with wrong error output (e.g.: missing)
 	- examples passing and not passing each of the test cases
 
 * automatically install crontab entries
@@ -18,8 +18,6 @@ TODO list for Udge
 	- protect from dangling child processes with different names
 
 * sandbox compilation
-
-* support `err` as well (specific error output)
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently).  The affected scripts are:

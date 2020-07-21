@@ -100,3 +100,7 @@ check-out() {
 check=check-out
 [ -x ./check-out ] && check=./check-out
 $check sol stdout || fail "No - wrong output"
+if [ -e err ]
+then
+	$check err stderr || fail "No - wrong error output"
+fi
