@@ -58,8 +58,8 @@ outof=`n-points "$problem"`
 for dir in $problemdir/*/; do
 	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
 	pts=`cator1 $dir/pts`
-	rm -f {in,sol,time-limit,check-exit-code,check-out,main.*,*.txt}
-	cp $dir/{in,sol,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
+	rm -f {in,sol,args,time-limit,check-exit-code,check-out,main.*,*.txt}
+	cp $dir/{in,sol,args,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
 	"$compileandtest" $prog -$ts-$problem-$timestamp-$user $verbose && ((total+=$pts)) || break
 done
 echo $total/$outof

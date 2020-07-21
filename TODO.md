@@ -1,6 +1,13 @@
 TODO list for Udge
 ==================
 
+* `cat` problem:
+
+	- proper description
+	- test case involving stderr
+	- test case involving `-`
+	- examples passing and not passing each of the test cases
+
 * automatically install crontab entries
 
 * sandbox before running submissions:

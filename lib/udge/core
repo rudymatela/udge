@@ -76,6 +76,11 @@ cator1() {
 	cator 1 "$1"
 }
 
+maybe-cat() {
+	[ -f "$1" ] && cat "$1"
+	true
+}
+
 ls-users() {
 	[ -d $USERS ] || errxit "could not find USERS=$USERS"
 	find $USERS/ -mindepth 1 -maxdepth 1 -type d | sed -e "s,.*/,," | sort

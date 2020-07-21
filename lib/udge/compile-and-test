@@ -67,11 +67,12 @@ fail "No - $what error ($language)"
 
 in=in
 [ -f "$in" ] || in=/dev/null
+args=`maybe-cat args`
 
 [ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
 nice timeout --preserve-status -v -k1s `cator $DEFAULT_TIME_LIMIT time-limit`s \
 	$bin/udge-sandbox \
-	$run ./$exe <"$in" >stdout 2>stderr
+	$run ./$exe $args <"$in" >stdout 2>stderr
 exitcode=$?
 
 [ -n "$verbose" ] && cat stderr >&2
