@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* add a proper description to the `cat` problem:
-
 * automatically install crontab entries
 
 * sandbox before running submissions:
