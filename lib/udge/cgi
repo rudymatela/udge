@@ -98,11 +98,9 @@ page-405-method-not-allowed() {
 }
 
 
-# TODO: test this very thoroughly to make sure nothing "escapes"
-# do I need more stuff on this list?
-# use html-escape() here
+# TODO: split into maybe-cat and html-cat
 mcat() {
-	[ -f "$1" ] && cat "$1" | sed "s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/\"/\&quot;/g; s/'/\&\#39;/g"
+	[ -f "$1" ] && cat "$1" | html-escape
 	true
 }
 
