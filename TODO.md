@@ -19,8 +19,6 @@ TODO list for Udge
 
 * sandbox compilation
 
-* support command line arguments (`args` file aditionally to `in` and `out`)
-
 * support `err` as well (specific error output)
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to

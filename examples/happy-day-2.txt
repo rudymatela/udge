@@ -81,6 +81,7 @@ position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  3
 addition      -   0
+cat           -   0
 hello         -   0
 hello-world   -   0
 rectangle     -   0
