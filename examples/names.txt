@@ -33,8 +33,21 @@
 $ now=`date "+%Y%m%d-%H%M%S"`
 $ johndoe=test-johndoe-$now
 $ janeroe=test-janeroe-$now
+$ arf=test-ar-f-$now
+$ dem=test-de-m-$now
+$ gef=test-ge-f-$now
+$ grf=test-gr-f-$now
+$ inf=test-in-f-$now
+$ jaf=test-ja-f-$now
+$ krf=test-kr-f-$now
+$ plf=test-pl-f-$now
+$ plm=test-pl-m-$now
 $ ptf=test-pt-f-$now
 $ ptm=test-pt-m-$now
+$ ruf=test-ru-f-$now
+$ rum=test-ru-m-$now
+$ spf=test-sp-f-$now
+$ zhf=test-zh-f-$now
 $
 $ umask 0022
 $
@@ -60,6 +73,96 @@ John Doe @ Udge Online Judge
 Scores by problem
 200
 
+$ ./examples/create-new-user $arf maryam-sarah@example.org the-321-password "مريم سارة"
+User created
+201
+$ curl udge/u/$arf | display
+test-ar-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+مريم سارة @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $zhf ai@example.org the-321-password "王李爱"
+User created
+201
+$ curl udge/u/$zhf | display
+test-zh-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+王李爱 @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $dem zuzanna@example.org richtige-heftklammer-für-pferdebatterien "Ben Müller Gößmann"
+User created
+201
+$ curl udge/u/$dem | display
+test-de-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+Ben Müller Gößmann @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $gef mariami.beridze@example.org the-password "მარიამი ბერიძე"
+User created
+201
+$ curl udge/u/$gef | display
+test-ge-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+მარიამი ბერიძე @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $grf maria.samaras@example.org the-password "Μαρία Σαμαράς"
+User created
+201
+$ curl udge/u/$grf | display
+test-gr-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+Μαρία Σαμαράς @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $inf aadya@example.org the-123-password आध्या
+User created
+201
+$ curl udge/u/$inf | display
+test-in-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+आध्या @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $jaf sakura@example.org the-123-password "佐藤さくら"
+User created
+201
+$ curl udge/u/$jaf | display
+test-ja-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+佐藤さくら @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $krf seo-yeon.kim@example.org the-123-password "김서연"
+User created
+201
+$ curl udge/u/$krf | display
+test-kr-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+김서연 @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $plf zuzanna@example.org poprawny-koń-bateria-zszywka "Zuzanna Wiśniewski"
+User created
+201
+$ curl udge/u/$plf | display
+test-pl-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+Zuzanna Wiśniewski @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $plm grzegorz@example.com "Chrząszczyżewoszyce, powiat Łękołody" "Grzegorz Brzęczyszczykiewicz"
+User created
+201
+$ curl udge/u/$plm | display
+test-pl-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+Grzegorz Brzęczyszczykiewicz @ Udge Online Judge
+Scores by problem
+200
+
 $ ./examples/create-new-user $ptf maria.ines@example.org cavalo-correcto "Inês Gonçalves Araújo"
 User created
 201
@@ -78,7 +181,47 @@ João Tomás Simões Lourenço @ Udge Online Judge
 Scores by problem
 200
 
+$ ./examples/create-new-user $ruf ssmirnova@example.com some-password "София Ивано́ва"
+User created
+201
+$ curl udge/u/$ruf | display
+test-ru-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+София Ивано́ва @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $rum asmirnov@example.com some-password "Александр Смирно́в"
+User created
+201
+$ curl udge/u/$rum | display
+test-ru-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+Александр Смирно́в @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $spf jm@example.com some-password "Júlia Muñoz"
+User created
+201
+$ curl udge/u/$spf | display
+test-sp-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+Júlia Muñoz @ Udge Online Judge
+Scores by problem
+200
+
 $ udge-delete-user $janeroe -f
 $ udge-delete-user $johndoe -f
+$ udge-delete-user $arf -f
+$ udge-delete-user $dem -f
+$ udge-delete-user $gef -f
+$ udge-delete-user $grf -f
+$ udge-delete-user $inf -f
+$ udge-delete-user $jaf -f
+$ udge-delete-user $krf -f
+$ udge-delete-user $plf -f
+$ udge-delete-user $plm -f
 $ udge-delete-user $ptf -f
 $ udge-delete-user $ptm -f
+$ udge-delete-user $ruf -f
+$ udge-delete-user $rum -f
+$ udge-delete-user $spf -f
+$ udge-delete-user $zhf -f
