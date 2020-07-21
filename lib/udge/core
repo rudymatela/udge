@@ -115,13 +115,13 @@ n-points() {
 # checks if the given argument is a sane user/problem name
 # usage: sane blah123
 sane() {
-	echo "$1" | grep -q "$SANE"
+	print "$1" | grep -q "$SANE"
 }
 
 # checks if the given argument is a sane email
 # usage: sane user@example.com
 sane-email() {
-	echo "$1" | grep -qE "$SANE_EMAIL"
+	print "$1" | grep -qE "$SANE_EMAIL"
 }
 
 finish-() {
