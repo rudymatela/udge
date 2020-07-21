@@ -126,10 +126,12 @@ First make sure you have all the [dependencies] installed.  Then:
 		* * * * * /usr/local/bin/udge-pick-and-judge
 		* * * * * /usr/local/bin/udge-update-all-user-htmls
 		*/2 * * * * /usr/local/bin/udge-update-rank-html
+		33 3 * * * /usr/local/bin/udge-backup
 
 	The above will:
 	`pick-and-judge` and `udge-update-all-user-htmls` every minute;
-	`udge-update-rank-html` every 2 minutes.
+	`udge-update-rank-html` every 2 minutes; and
+	`udge-backup` daily at 3:33.
 	Please adapt as needed.
 
 5. Add the following entry to `/etc/hosts`.

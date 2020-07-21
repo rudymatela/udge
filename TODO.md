@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* create `udge-backup` script
-
 * automatically install crontab entries
 
 * sandbox before running submissions:
