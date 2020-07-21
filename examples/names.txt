@@ -49,6 +49,7 @@ $ rum=test-ru-m-$now
 $ spf=test-sp-f-$now
 $ zhf=test-zh-f-$now
 $ zz1=test-zz-1-$now
+$ zz2=test-zz-2-$now
 $
 $ umask 0022
 $
@@ -218,6 +219,15 @@ ZYX Ææ &lt;+-*%&amp;&gt; 123 @ Udge Online Judge
 Scores by problem
 200
 
+$ ./examples/create-new-user $zz2 pedroii@example.com some-password 'Pedro "Dom Pedro II" de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga'
+User created
+201
+$ curl udge/u/$zz2 | display
+test-zz-2-YYYYMMDD-HHMMSS @ Udge Online Judge
+Pedro &quot;Dom Pedro II&quot; de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga @ Udge Online Judge
+Scores by problem
+200
+
 $ udge-delete-user $janeroe -f
 $ udge-delete-user $johndoe -f
 $ udge-delete-user $arf -f
@@ -235,4 +245,5 @@ $ udge-delete-user $ruf -f
 $ udge-delete-user $rum -f
 $ udge-delete-user $spf -f
 $ udge-delete-user $zhf -f
-$ echo udge-delete-user $zz1 -f
+$ udge-delete-user $zz1 -f
+$ udge-delete-user $zz2 -f
