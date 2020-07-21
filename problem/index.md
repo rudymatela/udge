@@ -10,6 +10,7 @@ These are Udge's example problems:
 * [hello](/hello)
 * [add](/add)
 * [rectangle](/rectangle)
+* [cat](/cat)
 
 Add your problems on `/var/lib/udge/problem` and
 replace `/var/lib/udge/problem/index.md` with your own problem index.

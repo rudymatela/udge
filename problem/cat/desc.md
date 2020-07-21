@@ -1,5 +1,5 @@
-cat - concatenate files and print on the standard output
---------------------------------------------------------
+cat - concatenate files on stdout
+---------------------------------
 
 TODO: add a proper description for the cat problem
 
