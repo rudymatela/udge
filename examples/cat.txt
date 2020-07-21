@@ -21,10 +21,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $ udge-judge cat examples/cat/cat.c
-4/4
+5/5
 $ udge-judge cat examples/hello/hello.c
 No - wrong output
-0/4
+0/5
 $ udge-judge cat examples/cat/3-wrong-stderr.c
 No - wrong error output
-3/4
+3/5
