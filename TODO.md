@@ -19,7 +19,7 @@ TODO list for Udge
 	- `udge-update-all-user-htmls`;
 	- `udge-update-rank-html`.
 
-* `cgi-bin/submit`: allow parsing of problem name and language from file name (instead of fields)
+* `cgi-bin/udge-submit`: allow parsing of problem name and language from file name (instead of fields)
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
