@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* delete test users as we go
+
 * automatically install crontab entries
 
 * sandbox before running submissions:
