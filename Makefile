@@ -217,7 +217,7 @@ install:
 	install -m 0755 cgi-bin/udge-new-user $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 cgi-bin/udge-submit   $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 -d                         $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0644 lib/udge/bootstrap.min.css $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0644 lib/udge/bootstrap.css     $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/html              $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/cgi               $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/core              $(DESTDIR)$(PREFIX)/lib/udge

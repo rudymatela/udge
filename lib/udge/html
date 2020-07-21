@@ -22,8 +22,8 @@
 
 install-bootstrap() {
 	mkdir -p "$PUBLIC_HTML"
-	dst="$PUBLIC_HTML/bootstrap.min.css"
-	[ -e "$dst" ] || cp "$lib/bootstrap.min.css" "$dst"
+	dst="$PUBLIC_HTML/bootstrap.css"
+	[ -e "$dst" ] || cp "$lib/bootstrap.css" "$dst"
 }
 
 html-header() {
@@ -32,7 +32,7 @@ cat <<HTML
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="/bootstrap.min.css"/>
+<link rel="stylesheet" href="/bootstrap.css"/>
 <style>
 body {
 	color:            #111;
