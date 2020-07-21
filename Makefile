@@ -103,6 +103,7 @@ test-web: \
 test-web-noindex: \
   new-user.clitest \
   new-user-toggle.clitest \
+  names.clitest \
   submit.clitest \
   submit-rate.clitest \
   test-happy
