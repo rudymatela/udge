@@ -130,7 +130,7 @@ html: readme todo
 	./bin/udge-update-all-user-htmls
 	./bin/udge-update-rank-html
 
-html-force:
+html-force: readme todo
 	./bin/udge-update-all-problem-htmls force
 	./bin/udge-update-all-user-htmls force
 	./bin/udge-update-rank-html
