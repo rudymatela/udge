@@ -22,3 +22,9 @@
 
 $ udge-judge cat examples/cat/cat.c
 4/4
+$ udge-judge cat examples/hello/hello.c
+No - wrong output
+0/4
+$ udge-judge cat examples/cat/3-wrong-stderr.c
+No - wrong error output
+3/4

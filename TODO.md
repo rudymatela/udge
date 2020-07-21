@@ -5,7 +5,6 @@ TODO list for Udge
 
 	- proper description
 	- test case involving `-`
-	- example `cat` with wrong error output (e.g.: missing)
 	- examples passing and not passing each of the test cases
 
 * automatically install crontab entries
