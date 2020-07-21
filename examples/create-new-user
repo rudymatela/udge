@@ -23,11 +23,11 @@
 curl \
 	-w"%{http_code}\n" \
 	-sXPOST udge/new-user \
-	-duser=$1 \
-	-demail=$2 \
-	-demail-confirmation=$2 \
-	-dpassword=$3 \
-	-dpassword-confirmation=$3 \
+	-duser="$1" \
+	-demail="$2" \
+	-demail-confirmation="$2" \
+	-dpassword="$3" \
+	-dpassword-confirmation="$3" \
 	-dname="$4" \
 	| grep -E "(<h.>|help-block|^[0-9]+$)" \
 	| sed -e "s/<[^>]*>//g"

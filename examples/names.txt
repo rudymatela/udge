@@ -30,7 +30,17 @@ $ alias curl='curl -sw "%{http_code}\n"'
 $ alias yyyymmdd="sed -e 's/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]/YYYYMMDD-HHMMSS/'"
 $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g" | yyyymmdd; echo'
 $
-$ ./examples/create-new-user $johndoe johndoe@example.com the-password "John Doe"
+$ ./examples/create-new-user $janeroe janeroe@example.org correct-horse "Jane Roe"
+User created
+201
+$ udge-update-user-html $janeroe >/dev/null
+$ curl udge/u/$janeroe | display
+test-janeroe-YYYYMMDD-HHMMSS @ Udge Online Judge
+Jane Roe @ Udge Online Judge
+Scores by problem
+200
+
+$ ./examples/create-new-user $johndoe johndoe@example.com battery-staple "John Doe"
 User created
 201
 $ udge-update-user-html $johndoe >/dev/null
@@ -40,4 +50,5 @@ John Doe @ Udge Online Judge
 Scores by problem
 200
 
+$ udge-delete-user $janeroe -f
 $ udge-delete-user $johndoe -f
