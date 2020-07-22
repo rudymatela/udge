@@ -23,6 +23,7 @@
 $ user=test-submit-`date "+%Y%m%d-%H%M%S"`
 $ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$ alias anonymize='sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo'
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
@@ -216,7 +217,7 @@ Submission successful
 202
 
 $ . /etc/udgerc
-$ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo
+$ find $SUBMISSIONS/$user -type f | anonymize
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/add.c
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
@@ -232,7 +233,7 @@ Submission successful
 Submission successful
 202
 
-$ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo
+$ find $SUBMISSIONS/$user -type f | anonymize
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/add.c
 
 $
