@@ -109,6 +109,10 @@ post() {
 	problem_value="`html-cat "$problem_fn"`"
 	language_value="`html-cat "$language_fn"`"
 
+	filename="`maybe-cat $tmpdata/program/filename`"
+	extension="${filename##*.}"
+	filename="${filename%.*}"
+
 	sane-file "$user_fn"  || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]     || user_error="user is missing"
 
@@ -122,9 +126,16 @@ post() {
 	[ -s "$problem_fn" ]              || problem_error="select the problem"
 	[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id"
 
-	sane-file "$language_fn"              || language_error="invalid language" language_value=""
-	[ -s "$language_fn" ]                 || language_error="select the language"
-	[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language"
+	if [ -s "$language_fn" ]
+	then
+		sane-file "$language_fn"              || language_error="invalid language"                language_value=""
+		[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language" language_value=""
+	else
+		sane "$extension" &&
+		[ -x "$lib/compile/$extension" ] &&
+		language_value="$extension" ||
+		language_error="select the language"
+	fi
 
 	if has-error
 	then

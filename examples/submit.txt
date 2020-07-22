@@ -203,11 +203,11 @@ Submit your solution
 select the problem
 422
 
-$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Fprogram=@examples/hello.c | display
-Submit your solution – Udge Online Judge
-Submit your solution
-select the language
-422
+$ sleep 1
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=hello-world -Fprogram=@examples/hello.c | display
+Submission successful
+Submission successful
+202
 
 $ sleep 1
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
@@ -219,6 +219,7 @@ $ . /etc/udgerc
 $ find $SUBMISSIONS/$user -type f | sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g;s,.*/submissions/,.../submissions/," | sort; echo
 .../submissions/<user>/YYYYMMDD-HHMMSS/add.c
 .../submissions/<user>/YYYYMMDD-HHMMSS/hello.c
+.../submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
 
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
 $ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
