@@ -1,7 +1,21 @@
 TODO list for Udge
 ==================
 
+* add and use the `udge-run` user (ssh)
+
 * automatically install crontab entries
+
+* access a separate user through ssh to run and compile?
+	- udge-run: to run
+	- udge-c: to compile in C
+	- udge-py: to "compile" in Python
+	- udge-hs: to compile in Haskell
+	- udge-java: to compile Java
+	- ...
+	- advantage: separating the web and runner servers becomes trivial
+	- advantage: ^ easy to put up an extra iptables restriction on outgoing connections
+	- advantage: easy to terminate in case of hanging processes
+	- disadvantage: a little processing overhead
 
 * sandbox before running submissions:
 	- protect disk access (chroot ?)
