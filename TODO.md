@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* remove "..." from examples where applicable
-
 * automatically install crontab entries
 
 * sandbox before running submissions:
