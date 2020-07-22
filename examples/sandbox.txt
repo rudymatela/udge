@@ -22,6 +22,9 @@
 
 $ tmp=`mktemp /tmp/udge-test-sandbox-exe-XXXXXXXXXX`
 $
+$ udge-judge hello-world examples/hello-world/hello-world.c
+1/1
+$
 $ udge-judge hello-world examples/sandbox/dns.c
 No - runtime error (non-zero exit code)
 0/1
