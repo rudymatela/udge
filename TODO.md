@@ -2,6 +2,7 @@ TODO list for Udge
 ==================
 
 * add and use the `udge-run` user (ssh)
+	- try to fix the "sol" issue as well (`examples/sandbox/sol.c`)
 
 * automatically install crontab entries
 
@@ -49,3 +50,5 @@ TODO list for Udge
 	- R
 	- Perl
 	- PHP
+
+* Make a second "sol.c" that searches on `/var/lib/udge/problem/<prob>/sol`

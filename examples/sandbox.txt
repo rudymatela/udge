@@ -66,3 +66,20 @@ Allocated 256Mb.
 Failed to allocate 1Gb.: Cannot allocate memory
 $
 $ rm $tmp
+$
+$ udge-judge hello-world examples/sandbox/sol.c           # TODO: FIXME: should get 0/1
+1/1
+$ udge-judge hello examples/sandbox/sol.c                 # TODO: FIXME: should get 0/6
+No - wrong output
+1/6
+$ udge-judge add examples/sandbox/sol.c 2>/dev/null       # TODO: FIXME: should get 0/6
+No - compile error (C)
+5/6
+$ udge-judge addition examples/sandbox/sol.c              # TODO: FIXME: should get 0/1
+1/1
+$ udge-judge rectangle examples/sandbox/sol.c 2>/dev/null # TODO: FIXME: should get 0/1
+No - compile error (C)
+2/3
+$ udge-judge cat examples/sandbox/sol.c                   # TODO: FIXME: should get 0/1
+No - runtime error (non-zero exit code)
+3/6
