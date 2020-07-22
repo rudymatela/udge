@@ -204,6 +204,12 @@ Submit your solution
 select the problem
 422
 
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=hello-world -Fprogram=@examples/hello-world.txt | display
+Submit your solution – Udge Online Judge
+Submit your solution
+select the language
+422
+
 $ sleep 1
 $ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=hello-world -Fprogram=@examples/hello.c | display
 Submission successful
