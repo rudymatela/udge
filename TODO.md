@@ -4,6 +4,8 @@ TODO list for Udge
 * add and use the `udge-run` user (ssh)
 	- try to fix the "sol" issue as well (`examples/sandbox/sol.c`)
 
+* compute and record runtime and memory
+
 * automatically install crontab entries
 
 * access a separate user through ssh to run and compile?
@@ -52,3 +54,17 @@ TODO list for Udge
 	- PHP
 
 * Make a second "sol.c" that searches on `/var/lib/udge/problem/<prob>/sol`
+
+* User page changes
+
+	- for each problem, add extra column showing the best scores for Python, C,
+	  Haskell and the last submitted language
+
+	- for each problem, add extra column showing the best scores for the last
+	  submitted languages
+
+	- problems appearing on a specific order
+
+	- problems separated by chapter/volume
+
+	- only show problems with tries
