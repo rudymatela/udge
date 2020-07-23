@@ -29,31 +29,15 @@ TODO list for Udge
 
 * sandbox compilation
 
+* configure rate limiting on nginx
+  https://www.nginx.com/blog/rate-limiting-nginx/
+
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently).  The affected scripts are:
 
 	- `udge-pick-and-judge`;
 	- `udge-update-all-user-htmls`;
 	- `udge-update-rank-html`.
-
-* configure rate limiting on nginx
-  https://www.nginx.com/blog/rate-limiting-nginx/
-
-* Let users configure if they would be appear anonymized on the ranking and
-  have a private user page.  (All this as a single option.)
-  The private user page would be accessed on `/p/<user_sha1_base64_etc>`
-
-* Add a user's submission page?  `u/<user_name>/submissions`
-
-* Languages to support later (in no particular order):
-
-	- Lua
-	- Ruby
-	- R
-	- Perl
-	- PHP
-
-* Make a second "sol.c" that searches on `/var/lib/udge/problem/<prob>/sol`
 
 * User page changes
 
@@ -68,3 +52,23 @@ TODO list for Udge
 	- problems separated by chapter/volume
 
 	- only show problems with tries
+
+* Make a second "sol.c" that searches on `/var/lib/udge/problem/<prob>/sol`
+
+
+For later
+---------
+
+* Let users configure if they would be appear anonymized on the ranking and
+  have a private user page.  (All this as a single option.)
+  The private user page would be accessed on `/p/<user_sha1_base64_etc>`
+
+* Add a user's submission page?  `u/<user_name>/submissions`
+
+* Languages to support later (in no particular order):
+
+	- Lua
+	- Ruby
+	- R
+	- Perl
+	- PHP
