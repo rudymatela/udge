@@ -77,6 +77,9 @@ exitcode=$?
 
 [ -n "$verbose" ] && cat stderr >&2
 
+# kills any process from the udge-run user
+# TODO: use -9, and only do it if needed and LOG when this happens
+# ssh udge-run@localhost killall -u udge-run
 killall -q -9 ./$exe # kills remaining child processes if any
 
 grep -q "udge-sandbox: fork: .* unavailable" stderr && fail "No - reached maximum number of processes"

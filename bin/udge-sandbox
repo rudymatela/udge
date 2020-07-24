@@ -43,3 +43,17 @@ ulimit -x 1024 # file locks
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
 unshare -Urn -impuf env -i $chroot "$@"
+
+# In a fresh user, only 7 processes are needed, they are:
+#
+# 1. systemd --user
+# 2. (sd-pam)
+# 3. sshd
+# 4. timeout
+# 5. udge-sandbox
+# 6. unshare
+# 7. exe
+#
+# We can set an 8 process limit so
+# we can have room to automatically ssh into the server
+# and kill a dangling process.

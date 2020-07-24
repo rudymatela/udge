@@ -4,6 +4,17 @@ TODO list for Udge
 * add and use the `udge-run` user (ssh)
 	- try to fix the "sol" issue as well (`examples/sandbox/sol.c`)
 
+* create a script that sets up 6 `udge-run` users:
+	- `udge-run-1`
+	- `udge-run-2`
+	- `udge-run-3`
+	- `udge-run-4`
+	- `udge-run-5`
+	- `udge-run-6`
+	- including adding the currennt user to `authorzed_keys`
+
+* create a script that deletes the 6 `udge-run` users
+
 * compute and record runtime and memory
 
 * automatically install crontab entries
