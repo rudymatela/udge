@@ -69,8 +69,32 @@ in=in
 [ -f "$in" ] || in=/dev/null
 args=`maybe-cat args`
 
+# tries to pick up a user to run with
+with=
+u=
+until [ -n "$with" ]
+do
+	# FIXME: will loop forever if no lock can be grabbed
+	# TODO: somehow set a time limit of 600 tries to get a lock (60s)
+	[ -n "$u" ] && sleep 0.1
+	for u in $RUN_WITH
+	do
+		lockfile -r0 "$RUN/$u.lock" 2>/dev/null || continue
+		with=$u
+		break
+	done >&2
+done
+[ -n "$verbose" ] && echo "running as $with" >&2
+
 [ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
-nice timeout --preserve-status -v -k1s `cator $DEFAULT_TIME_LIMIT time-limit`s \
+time_limit=`cator $DEFAULT_TIME_LIMIT time-limit`
+
+txt=
+[ "$(echo *.txt)" != '*.txt' ] && txt=*.txt
+scp -q $exe $txt $with:
+nice timeout --preserve-status -v -k1s $(($time_limit+1))s \
+	ssh $with \
+	nice timeout --preserve-status -v -k1s ${time_limit}s \
 	$bin/udge-sandbox \
 	$run ./$exe $args <"$in" >stdout 2>stderr
 exitcode=$?
@@ -80,7 +104,9 @@ exitcode=$?
 # kills any process from the udge-run user
 # TODO: use -9, and only do it if needed and LOG when this happens
 # ssh udge-run@localhost killall -u udge-run
-killall -q -9 ./$exe # kills remaining child processes if any
+ssh $with killall -q -9 ./$exe </dev/null
+ssh $with rm $exe $txt </dev/null
+rm -f $RUN/$with.lock
 
 grep -q "udge-sandbox: fork: .* unavailable" stderr && fail "No - reached maximum number of processes"
 grep -q "^timeout: sending signal TERM"      stderr && fail "No - time limit exceeded"

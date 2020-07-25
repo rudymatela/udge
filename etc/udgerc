@@ -11,8 +11,18 @@ PROBLEMS=/var/lib/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
 PUBLIC_HTML=/var/lib/udge/html
+RUN=/var/lib/udge/run
 
 SCORE=fractions
 NEW_USER=true
 
 GHCFLAGS=-dynamic # for Arch Linux
+
+RUN_WITH="
+udge-run-1@localhost
+udge-run-2@localhost
+udge-run-3@localhost
+udge-run-4@localhost
+udge-run-5@localhost
+udge-run-6@localhost
+"

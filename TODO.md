@@ -1,26 +1,13 @@
 TODO list for Udge
 ==================
 
-* add and use the `udge-run` user (ssh)
-	- try to fix the "sol" issue as well (`examples/sandbox/sol.c`)
-
-* create a script that sets up 6 `udge-run` users:
-	- `udge-run-1`
-	- `udge-run-2`
-	- `udge-run-3`
-	- `udge-run-4`
-	- `udge-run-5`
-	- `udge-run-6`
-	- including adding the currennt user to `authorzed_keys`
-
-* create a script that deletes the 6 `udge-run` users
+* review handling of multiple users to compile (better termination/etc)
 
 * compute and record runtime and memory
 
 * automatically install crontab entries
 
-* access a separate user through ssh to run and compile?
-	- udge-run: to run
+* access a separate user through ssh to compile?
 	- udge-c: to compile in C
 	- udge-py: to "compile" in Python
 	- udge-hs: to compile in Haskell
@@ -49,6 +36,8 @@ TODO list for Udge
 	- `udge-pick-and-judge`;
 	- `udge-update-all-user-htmls`;
 	- `udge-update-rank-html`.
+
+	- use `lockfile -r0` from procmail.
 
 * User page changes
 
