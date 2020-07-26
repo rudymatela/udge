@@ -29,6 +29,7 @@ set -e
 install-bootstrap
 dst="$PUBLIC_HTML/rank.html"
 tmpfile="$dst.html"
-[ -e "$tmpfile" ] && errxit "instance still running?  if not, delete '$tmpfile' and try again"
+lockfile -r0 "$tmpfile" || errxit "instance still running?  if not, delete '$tmpfile' and try again"
+chmod +w "$tmpfile"
 $lib/rank-html > $tmpfile
 mv "$tmpfile" "$dst"

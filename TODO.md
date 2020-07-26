@@ -23,9 +23,7 @@ TODO list for Udge
 * use flock for a proper hanling of locks (as scripts are still succeptible to
   race conditions currently).  The affected scripts are:
 
-	- `udge-pick-and-judge`;
-	- `udge-update-all-user-htmls`;
-	- `udge-update-rank-html`.
+	- `udge-pick-and-judge`.
 
 	- use `lockfile -r0` from procmail.
 
