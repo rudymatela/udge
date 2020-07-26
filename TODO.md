@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* `udge-passwd` command, to reset the password of a user
+
 * compute and record runtime and memory
 
 * automatically install crontab entries
