@@ -10,8 +10,6 @@
  *
  * WARNING: DO NOT RUN THIS UNSANDBOXED OR YOUR WILL FREEZE YOUR SYSTEM
  *
- * TODO: block this on udge
- *
  *
  * Copyright (C) 2020  Rudy Matela
  *
