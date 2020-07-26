@@ -88,13 +88,16 @@ done
 
 [ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
 time_limit=`cator $DEFAULT_TIME_LIMIT time-limit`
+timeout="timeout --preserve-status -v -k1s"
 
 txt=
 [ "$(echo *.txt)" != '*.txt' ] && txt=*.txt
 scp -q $exe $txt $with:
-nice timeout --preserve-status -v -k1s $(($time_limit+1))s \
+nice \
+	$timeout $(($time_limit+2))s \
 	ssh $with \
-	nice timeout --preserve-status -v -k1s ${time_limit}s \
+	nice \
+	$timeout ${time_limit}s \
 	$bin/udge-sandbox \
 	$run ./$exe $args <"$in" >stdout 2>stderr
 exitcode=$?
