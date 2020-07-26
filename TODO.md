@@ -3,6 +3,13 @@ TODO list for Udge
 
 * `udge-passwd` command, to reset the password of a user
 
+* use flock for a proper hanling of locks (as scripts are still succeptible to
+  race conditions currently).  The affected scripts are:
+
+	- `udge-pick-and-judge`.
+
+	- use `lockfile -r0` from procmail.
+
 * compute and record runtime and memory
 
 * automatically install crontab entries
@@ -21,13 +28,6 @@ TODO list for Udge
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
-
-* use flock for a proper hanling of locks (as scripts are still succeptible to
-  race conditions currently).  The affected scripts are:
-
-	- `udge-pick-and-judge`.
-
-	- use `lockfile -r0` from procmail.
 
 * User page changes
 
