@@ -25,6 +25,8 @@
 #
 # CHROOT=. 
 
+[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=32
+
 ulimit -c 262144 # blocks, 128M
 ulimit -d 524288 # K, 512M
 ulimit -f 262144 # blocks, 128M
@@ -34,7 +36,7 @@ ulimit -m 524288 # K, 512M
 ulimit -n 32 # files
 ulimit -q 1024 # queues
 ulimit -s 8192 # K, 8M
-ulimit -u 1024 # processes
+ulimit -u $MAX_PROCESSES # processes
 ulimit -v 2097152 # K, 2G
 ulimit -x 1024 # file locks
 # use `ulimit -a` for a list

@@ -32,7 +32,7 @@ $
 $ cc examples/sandbox/dns.c -o $tmp
 $ $tmp | grep example.com | sort -u
 hostname: example.com
-$ udge-sandbox $tmp
+$ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not resolve hostname (-3)
 $
 $ udge-judge hello-world examples/sandbox/socket.c
@@ -42,7 +42,7 @@ $
 $ cc examples/sandbox/socket.c -o $tmp
 $ $tmp | grep "<h.>" | sed -e "s/<[^>]*>//g" | head -1
 Udge Online Judge
-$ udge-sandbox $tmp
+$ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not connect to 127.0.0.1:80
 $
 $ udge-judge hello-world examples/sandbox/memory.c
@@ -59,7 +59,7 @@ Used 1Kb.
 Used 1Mb.
 Used 1Mb.
 Used 1Gb.
-$ udge-sandbox $tmp 2>&1 | sort -n
+$ MAX_PROCESSES=2048 udge-sandbox $tmp 2>&1 | sort -n
 Allocated 1Kb.
 Allocated 1Mb.
 Allocated 256Mb.

@@ -28,7 +28,7 @@ No - time limit exceeded
 $
 $ cc examples/sandbox/fork4096.c -o $tmp
 $ $tmp
-$ udge-sandbox $tmp 2>&1 | sed -e "s/^.*fork: /fork: /"
+$ MAX_PROCESSES=2048 udge-sandbox $tmp 2>&1 | sed -e "s/^.*fork: /fork: /"
 fork: retry: Resource temporarily unavailable
 $
 $ rm $tmp
