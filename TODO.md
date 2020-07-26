@@ -5,7 +5,8 @@ TODO list for Udge
 
 * automatically install crontab entries
 
-* access a separate user through ssh to compile?
+* sandbox compilation
+	- access a separate user through ssh to compile?
 	- udge-c: to compile in C
 	- udge-py: to "compile" in Python
 	- udge-hs: to compile in Haskell
@@ -15,8 +16,6 @@ TODO list for Udge
 	- advantage: ^ easy to put up an extra iptables restriction on outgoing connections
 	- advantage: easy to terminate in case of hanging processes
 	- disadvantage: a little processing overhead
-
-* sandbox compilation
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
