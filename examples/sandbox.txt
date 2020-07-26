@@ -74,8 +74,7 @@ $
 $ udge-judge hello-world examples/sandbox/dangling.c
 No - time limit exceeded
 0/1
-$ pgrep -af "/usr/bin/sleep" | cut -d' ' -f2- | grep "sleep 66" | head -1 # TODO: should be empty
-/usr/bin/sleep 66
+$ pgrep -af "/usr/bin/sleep" | cut -d' ' -f2- | grep "sleep 66"
 $
 $ udge-judge hello-world examples/sandbox/busy.c
 No - time limit exceeded

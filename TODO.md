@@ -22,7 +22,6 @@ TODO list for Udge
 	- protect disk access (chroot ?)
 	  (use `ldd file` to find out what to copy from `/lib/`)
 	- protect from disk usage DOSs (new user + disk quota + ulimit ?)
-	- protect from dangling child processes with different names
 
 * sandbox compilation
 

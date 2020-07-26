@@ -104,10 +104,9 @@ exitcode=$?
 
 [ -n "$verbose" ] && cat stderr >&2
 
-# kills any process from the udge-run user
-# TODO: use -9, and only do it if needed and LOG when this happens
-# ssh udge-run@localhost killall -u udge-run
-ssh $with killall -q -9 ./$exe </dev/null
+user=${with%@*}
+count="`ssh udge-run@localhost ps -U$user -u$user </dev/null | tail -n +2 | wc -l`"
+[ "$count" != 2 ] && ssh $with killall -q -9 -u$user </dev/null >/dev/null 2>/dev/null
 ssh $with rm $exe $txt </dev/null
 rm -f $RUN/$with.lock
 

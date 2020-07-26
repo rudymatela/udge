@@ -376,25 +376,29 @@ show-vars:
 
 # TODO: avoid the id_rsa.pub link somehow
 create-udge-run-users:
+	id -u udge-run   >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/0 -s/bin/bash udge-run
 	id -u udge-run-1 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/1 -s/bin/bash udge-run-1
 	id -u udge-run-2 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/2 -s/bin/bash udge-run-2
 	id -u udge-run-3 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/3 -s/bin/bash udge-run-3
 	id -u udge-run-4 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/4 -s/bin/bash udge-run-4
 	id -u udge-run-5 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/5 -s/bin/bash udge-run-5
 	id -u udge-run-6 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/6 -s/bin/bash udge-run-6
-	mkdir -p /var/lib/udge/run/{1,2,3,4,5,6}/{.ssh,.config}
+	mkdir -p /var/lib/udge/run/{0,1,2,3,4,5,6}/{.ssh,.config}
+	cat .id_rsa.pub   >/var/lib/udge/run/0/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/1/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/2/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/3/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/4/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/5/.ssh/authorized_keys
 	cat .id_rsa.pub   >/var/lib/udge/run/6/.ssh/authorized_keys
+	cp .user-dirs.dirs /var/lib/udge/run/0/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/1/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/2/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/3/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/4/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/5/.config/user-dirs.dirs
 	cp .user-dirs.dirs /var/lib/udge/run/6/.config/user-dirs.dirs
+	chown -R udge-run.udge-run      /var/lib/udge/run/0
 	chown -R udge-run-1.udge-run-1  /var/lib/udge/run/1
 	chown -R udge-run-2.udge-run-2  /var/lib/udge/run/2
 	chown -R udge-run-3.udge-run-3  /var/lib/udge/run/3
@@ -403,10 +407,11 @@ create-udge-run-users:
 	chown -R udge-run-6.udge-run-6  /var/lib/udge/run/6
 
 purge-udge-run-users:
+	userdel udge-run
 	userdel udge-run-1
 	userdel udge-run-2
 	userdel udge-run-3
 	userdel udge-run-4
 	userdel udge-run-5
 	userdel udge-run-6
-	rm -rf /var/lib/udge/run/{1,2,3,4,5,6}
+	rm -rf /var/lib/udge/run/{0,1,2,3,4,5,6}
