@@ -21,7 +21,6 @@ TODO list for Udge
 * sandbox before running submissions:
 	- protect disk access (chroot ?)
 	  (use `ldd file` to find out what to copy from `/lib/`)
-	- protect from disk usage DOSs (new user + disk quota + ulimit ?)
 
 * sandbox compilation
 
