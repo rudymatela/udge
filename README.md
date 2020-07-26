@@ -227,6 +227,9 @@ To create a problem on Udge:
 
 		If output matches exactly, the submission will get a score.
 
+		Make sure you `chmod o-r` the `sol` file after installing it
+		to make sure solution programs are not able to read from it.
+
 3. Link to the newly created problem on the problem index
 	by editing the following file:
 
