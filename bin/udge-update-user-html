@@ -36,7 +36,8 @@ install-bootstrap
 
 doit() {
 	tmpfile="$user_html.html"
-	[ -e "$tmpfile" ] && errxit "instance still running?  if not, delete '$tmpfile' and try again"
+	lockfile -r0 $tmpfile || errxit "instance still running?  if not, delete '$tmpfile' and try again"
+	chmod +w $tmpfile
 	$lib/user-html "$user" > $tmpfile
 	mv $tmpfile $user_html
 	echo "`basename $0`: $@"
