@@ -18,10 +18,6 @@ TODO list for Udge
 	- advantage: easy to terminate in case of hanging processes
 	- disadvantage: a little processing overhead
 
-* sandbox before running submissions:
-	- protect disk access (chroot ?)
-	  (use `ldd file` to find out what to copy from `/lib/`)
-
 * sandbox compilation
 
 * configure rate limiting on nginx
