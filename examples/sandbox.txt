@@ -74,21 +74,9 @@ $
 $ udge-judge hello-world examples/sandbox/sol.c
 No - runtime error (non-zero exit code)
 0/1
-$ udge-judge hello       examples/sandbox/sol.c
-No - wrong output
-2/6
-$ udge-judge add         examples/sandbox/sol.c 2>/dev/null
-No - runtime error (non-zero exit code)
-0/6
 $ udge-judge addition    examples/sandbox/sol.c
 No - runtime error (non-zero exit code)
 0/1
-$ udge-judge rectangle   examples/sandbox/sol.c 2>/dev/null
-No - runtime error (non-zero exit code)
-0/3
-$ udge-judge cat         examples/sandbox/sol.c
-No - runtime error (non-zero exit code)
-0/6
 $
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > examples/sandbox/sol-searcher-hello-world.c
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/addition/"    > examples/sandbox/sol-searcher-addition.c
