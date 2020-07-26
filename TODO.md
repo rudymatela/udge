@@ -1,6 +1,9 @@
 TODO list for Udge
 ==================
 
+* move `/var/lib/udge/run` to `/var/run/udge`,
+  we will need a mechasism to recreate `/var/run/udge` upon rebooting
+
 * `udge-passwd` command, to reset the password of a user
 
 * use flock for a proper hanling of locks (as scripts are still succeptible to
