@@ -3,15 +3,17 @@ TODO list for Udge
 
 * move `/var/lib/udge/run` to `/var/run/udge`,
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
+  perhaps use `/etc/tmpfiles.d`
 
 * `udge-passwd` command, to reset the password of a user
 
-* use flock for a proper hanling of locks (as scripts are still succeptible to
-  race conditions currently).  The affected scripts are:
+* fix race condition issue on `udge-pick-and-judge`, two possible solutions:
 
-	- `udge-pick-and-judge`.
+	1. use `lockfile -r0` to "lock" a submission
 
-	- use `lockfile -r0` from procmail.
+	2. simply move the submission to `/var/lib/udge/tribunal` upon picking it
+	   if it cannot be moved, we "exit 0" telling that it is simply gone
+	   meanwhile
 
 * compute and record runtime and memory
 
