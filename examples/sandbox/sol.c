@@ -1,7 +1,7 @@
 /*
  * example/sandbox/sol.c: cheats by reading the solution file
  *
- * This currently gets a lot of points for most example problems.
+ * This used to get a lot of points for most example problems.
  * It shouldn't.
  *
  *
@@ -26,6 +26,7 @@ int main()
 {
 	int c;
 	FILE *sol = fopen("sol","r");
+	/* TODO: check if FILE is NULL */
 	while ((c=fgetc(sol)) != EOF)
 		putchar(c);
 	return 0;
