@@ -76,7 +76,7 @@ No - runtime error (non-zero exit code)
 0/1
 $ udge-judge hello       examples/sandbox/sol.c
 No - wrong output
-1/6
+2/6
 $ udge-judge add         examples/sandbox/sol.c 2>/dev/null
 No - runtime error (non-zero exit code)
 0/6

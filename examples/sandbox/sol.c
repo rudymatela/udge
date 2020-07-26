@@ -26,7 +26,10 @@ int main()
 {
 	int c;
 	FILE *sol = fopen("sol","r");
-	/* TODO: check if FILE is NULL */
+	if (!sol) {
+		printf("Could not open the solution file.\n");
+		return 1;
+	}
 	while ((c=fgetc(sol)) != EOF)
 		putchar(c);
 	return 0;
