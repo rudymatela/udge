@@ -72,10 +72,10 @@ args=`maybe-cat args`
 # tries to pick up a user to run with
 with=
 u=
+i=0
 until [ -n "$with" ]
 do
-	# FIXME: will loop forever if no lock can be grabbed
-	# TODO: somehow set a time limit of 600 tries to get a lock (60s)
+	[ "$i" == 600 ] && fail "No: could not get a user lock"
 	[ -n "$u" ] && sleep 0.1
 	for u in $RUN_WITH
 	do
@@ -83,6 +83,7 @@ do
 		with=$u
 		break
 	done >&2
+	i=$(($i+1))
 done
 [ -n "$verbose" ] && echo "running as $with" >&2
 
