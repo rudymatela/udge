@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* review handling of multiple users to compile (better termination/etc)
-
 * compute and record runtime and memory
 
 * automatically install crontab entries
