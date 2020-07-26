@@ -67,6 +67,10 @@ Failed to allocate 1Gb.: Cannot allocate memory
 $
 $ rm $tmp
 $
+$ udge-judge hello-world examples/sandbox/sigterm.c
+No - time limit exceeded
+0/1
+$
 $ udge-judge hello-world examples/sandbox/busy.c
 No - time limit exceeded
 0/1
