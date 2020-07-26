@@ -53,8 +53,6 @@ TODO list for Udge
 
 	- only show problems with tries
 
-* Make a second "sol.c" that searches on `/var/lib/udge/problem/<prob>/sol`
-
 
 For later
 ---------

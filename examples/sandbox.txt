@@ -89,3 +89,12 @@ No - runtime error (non-zero exit code)
 $ udge-judge cat         examples/sandbox/sol.c
 No - runtime error (non-zero exit code)
 0/6
+$
+$ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > examples/sandbox/sol-searcher-hello-world.c
+$ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/addition/"    > examples/sandbox/sol-searcher-addition.c
+$ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c
+1/1
+$ udge-judge addition    examples/sandbox/sol-searcher-addition.c
+1/1
+$ rm examples/sandbox/sol-searcher-addition.c
+$ rm examples/sandbox/sol-searcher-hello-world.c
