@@ -4,9 +4,6 @@
 #
 # Usage: udge-add-user <username> <u@example.com> [name]
 #
-# NOTE: This should be run as the http or www-data user
-#       otherwise the cgi script will not be able to authenticate
-#
 #
 # Copyright (C) 2020  Rudy Matela
 #
@@ -38,6 +35,10 @@ sane-email "$email" || errxit "invalid email address"
 
 user_dir="$USERS/$user"
 [ -d "$user_dir" ] && errxit "username already exists"
+
+# check if we are running as www-data / http user
+www=`stat -c%U $USERS`
+[ "$www" == "`whoami`" ] || warn "not running as the $www user, auth mail fail later"
 
 prompt -s password              "password: "
 prompt -s password_confirmation "retype password: "
