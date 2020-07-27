@@ -40,15 +40,8 @@ user_dir="$USERS/$user"
 www=`stat -c%U $USERS`
 [ "$www" == "`whoami`" ] || WARN "not running as the $www user, auth mail fail later"
 
-prompt -s password              "password: "
-prompt -s password_confirmation "retype password: "
-
-[ "_$password" == "_$password_confirmation" ] || errxit "passwords do not match $password $password_confirmation"
-
 umask 0007 # dir: rwxrws---, file: rw-rw----
 mkdir -p "$user_dir"
-head -c30 /dev/random | base64 -w0 > "$user_dir/salt"
-(cat $user_dir/salt; print "$password") |
-sha256sum | sed -e "s/ .*//"   > "$user_dir/password"
+udge-passwd "$user"
 println "$email" > "$user_dir/email"
 println "$name"  > "$user_dir/name"

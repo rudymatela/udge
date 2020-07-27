@@ -5,8 +5,6 @@ TODO list for Udge
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
   perhaps use `/etc/tmpfiles.d`
 
-* use `udge-passwd` on `udge-add-user`
-
 * fix race condition issue on `udge-pick-and-judge`, two possible solutions:
 
 	1. use `lockfile -r0` to "lock" a submission
