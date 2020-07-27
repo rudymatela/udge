@@ -61,21 +61,20 @@ echo "timestamp = $timestamp"
 echo "problem = $problem"
 echo "language = $language"
 
-user_results="$RESULTS/$user"
-problem_dir="$user_results/$problem"
-dest_dir="$problem_dir/$timestamp"
+up=$user/$problem
+upt=$user/$problem/$timestamp
 
-echo "Saving results to '$dest_dir'"
+echo "Saving results to '$RESULTS/$upt'"
 
-mkdir -p "$dest_dir"
+mkdir -p "$RESULTS/$upt"
 
-cp "$submission" "$dest_dir/$problem.$language"
-$bin/udge-judge "$problem" "$submission" 2>&1 | tee "$dest_dir/result"
-for file in $problem_dir/*/result
+cp "$submission" "$RESULTS/$upt/$problem.$language"
+$bin/udge-judge "$problem" "$submission" 2>&1 | tee "$RESULTS/$upt/result"
+for file in $RESULTS/$up/*/result
 do
 	tail -1 "$file"
-done | sort -n | tail -1 > $problem_dir/best
-touch "$user_results" # bump timestamp to generate html
+done | sort -n | tail -1 > $RESULTS/$up/best
+touch "$RESULTS/$user" # bump timestamp to generate html
 
 submission_dir="`dirname $submission`"
 submission_dir_dir="`dirname $submission_dir`"
