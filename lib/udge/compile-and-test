@@ -106,7 +106,7 @@ exitcode=$?
 [ -n "$verbose" ] && cat stderr >&2
 
 user=${with%@*}
-count="`ssh udge-run@localhost ps -U$user -u$user </dev/null | tail -n +2 | wc -l`"
+count="`ssh $PS_WITH ps -U$user -u$user </dev/null | tail -n +2 | wc -l`"
 [ "$count" != 2 ] && ssh $with killall -q -9 -u$user </dev/null >/dev/null 2>/dev/null
 ssh $with rm -rf "*" </dev/null
 rm -f $RUN/$with.lock

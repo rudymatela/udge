@@ -5,7 +5,7 @@ TODO list for Udge
   perhaps use `/etc/tmpfiles.d`
 
 * make sure `/var/run/udge/1/.ssh/authorized_keys` is neither owned or writable
-  by udge-run-1.  An udge-run user should not be able to change its
+  by `udge-1`.  An `udge-?` user should not be able to change its
   `authorized_keys`.  The folder shouldn't be movable as well.
 
 * compute and record runtime and memory

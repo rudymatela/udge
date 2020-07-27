@@ -20,10 +20,12 @@ NEW_USER=true
 GHCFLAGS=-dynamic # for Arch Linux
 
 RUN_WITH="
-udge-run-1@localhost
-udge-run-2@localhost
-udge-run-3@localhost
-udge-run-4@localhost
-udge-run-5@localhost
-udge-run-6@localhost
+udge-1@localhost
+udge-2@localhost
+udge-3@localhost
+udge-4@localhost
+udge-5@localhost
+udge-6@localhost
 "
+
+PS_WITH="udge-0@localhost"

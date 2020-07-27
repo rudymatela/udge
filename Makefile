@@ -379,13 +379,13 @@ show-vars:
 
 # TODO: avoid the id_rsa.pub link somehow
 create-udge-run-users:
-	id -u udge-run   >/dev/null 2>&1 || useradd -r -d/run/udge/0 -s/bin/bash udge-run
-	id -u udge-run-1 >/dev/null 2>&1 || useradd -r -d/run/udge/1 -s/bin/bash udge-run-1
-	id -u udge-run-2 >/dev/null 2>&1 || useradd -r -d/run/udge/2 -s/bin/bash udge-run-2
-	id -u udge-run-3 >/dev/null 2>&1 || useradd -r -d/run/udge/3 -s/bin/bash udge-run-3
-	id -u udge-run-4 >/dev/null 2>&1 || useradd -r -d/run/udge/4 -s/bin/bash udge-run-4
-	id -u udge-run-5 >/dev/null 2>&1 || useradd -r -d/run/udge/5 -s/bin/bash udge-run-5
-	id -u udge-run-6 >/dev/null 2>&1 || useradd -r -d/run/udge/6 -s/bin/bash udge-run-6
+	id -u udge-0 >/dev/null 2>&1 || useradd -r -d/run/udge/0 -s/bin/bash udge-0
+	id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge/1 -s/bin/bash udge-1
+	id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge/2 -s/bin/bash udge-2
+	id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge/3 -s/bin/bash udge-3
+	id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge/4 -s/bin/bash udge-4
+	id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge/5 -s/bin/bash udge-5
+	id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge/6 -s/bin/bash udge-6
 	mkdir -p /run/udge/{0,1,2,3,4,5,6}/{.ssh,.config}
 	cat .id_rsa.pub   >/run/udge/0/.ssh/authorized_keys
 	cat .id_rsa.pub   >/run/udge/1/.ssh/authorized_keys
@@ -401,21 +401,21 @@ create-udge-run-users:
 	cp .user-dirs.dirs /run/udge/4/.config/user-dirs.dirs
 	cp .user-dirs.dirs /run/udge/5/.config/user-dirs.dirs
 	cp .user-dirs.dirs /run/udge/6/.config/user-dirs.dirs
-	chown -R udge-run.udge-run      /run/udge/0
-	chown -R udge-run-1.udge-run-1  /run/udge/1
-	chown -R udge-run-2.udge-run-2  /run/udge/2
-	chown -R udge-run-3.udge-run-3  /run/udge/3
-	chown -R udge-run-4.udge-run-4  /run/udge/4
-	chown -R udge-run-5.udge-run-5  /run/udge/5
-	chown -R udge-run-6.udge-run-6  /run/udge/6
+	chown -R udge-0.udge-0  /run/udge/0
+	chown -R udge-1.udge-1  /run/udge/1
+	chown -R udge-2.udge-2  /run/udge/2
+	chown -R udge-3.udge-3  /run/udge/3
+	chown -R udge-4.udge-4  /run/udge/4
+	chown -R udge-5.udge-5  /run/udge/5
+	chown -R udge-6.udge-6  /run/udge/6
 	echo 'now run chown <user>.<user> /run/udge'
 
 purge-udge-run-users:
-	userdel udge-run
-	userdel udge-run-1
-	userdel udge-run-2
-	userdel udge-run-3
-	userdel udge-run-4
-	userdel udge-run-5
-	userdel udge-run-6
+	userdel udge-0
+	userdel udge-1
+	userdel udge-2
+	userdel udge-3
+	userdel udge-4
+	userdel udge-5
+	userdel udge-6
 	rm -rf /run/udge/{0,1,2,3,4,5,6}
