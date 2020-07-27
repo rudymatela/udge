@@ -44,6 +44,10 @@ warn() {
 	echo "`basename "$0"`, warning: $@" >&2
 }
 
+WARN() {
+	echo "`basename "$0"`, WARNING: $@" >&2
+}
+
 termecho() {
 	if [ -t 0 ] && [ -t 1 ]
 	then

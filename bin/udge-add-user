@@ -38,7 +38,7 @@ user_dir="$USERS/$user"
 
 # check if we are running as www-data / http user
 www=`stat -c%U $USERS`
-[ "$www" == "`whoami`" ] || warn "not running as the $www user, auth mail fail later"
+[ "$www" == "`whoami`" ] || WARN "not running as the $www user, auth mail fail later"
 
 prompt -s password              "password: "
 prompt -s password_confirmation "retype password: "
