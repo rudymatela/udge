@@ -196,6 +196,7 @@ clean-test-users:
 	rm -rf /var/lib/udge/users/test-*-*-*
 	rm -rf /var/lib/udge/results/test-*-*-*
 	rm -rf /var/lib/udge/submissions/test-*-*-*
+	rm -rf /var/lib/udge/trial/test-*-*-*
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
@@ -212,6 +213,7 @@ install:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/html
 	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/trial
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
@@ -262,10 +264,11 @@ install:
 	# which makes files created within it inhehit the group and allows deletion
 	# by the udge user.
 	#
-	# html and results need to be writable by the udge user.
+	# html, trial and results need to be writable by the udge user.
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/html
+	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/trial
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
