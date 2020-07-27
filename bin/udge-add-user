@@ -4,6 +4,9 @@
 #
 # Usage: udge-add-user <username> <u@example.com> [name]
 #
+# NOTE: This should be run as the http or www-data user
+#       otherwise the cgi script will not be able to authenticate
+#
 #
 # Copyright (C) 2020  Rudy Matela
 #

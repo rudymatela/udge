@@ -5,7 +5,7 @@ TODO list for Udge
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
   perhaps use `/etc/tmpfiles.d`
 
-* `udge-passwd` command, to reset the password of a user
+* use `udge-passwd` on `udge-add-user`
 
 * fix race condition issue on `udge-pick-and-judge`, two possible solutions:
 
