@@ -61,23 +61,28 @@ echo "timestamp = $timestamp"
 echo "problem = $problem"
 echo "language = $language"
 
-up=$user/$problem
-upt=$user/$problem/$timestamp
+echo "Saving results to '$RESULTS/$user/$problem/$timestamp'"
 
-echo "Saving results to '$RESULTS/$upt'"
-
-mkdir -p "$RESULTS/$upt"
-
-cp "$submission" "$RESULTS/$upt/$problem.$language"
-$bin/udge-judge "$problem" "$submission" 2>&1 | tee "$RESULTS/$upt/result"
-for file in $RESULTS/$up/*/result
-do
-	tail -1 "$file"
-done | sort -n | tail -1 > $RESULTS/$up/best
-touch "$RESULTS/$user" # bump timestamp to generate html
+# The following builds the results on $TRIAL
+# then moves files to $RESULTS.
+# This assumes atomicity of mv operations.
 
 submission_dir="`dirname $submission`"
-submission_dir_dir="`dirname $submission_dir`"
-rm -f $submission
-rmdir --ignore-fail-on-non-empty $submission_dir
-rmdir --ignore-fail-on-non-empty $submission_dir_dir
+mkdir -p         $RESULTS/$user/$problem
+mkdir -p           $TRIAL/$user/$problem/$timestamp
+mv $submission_dir $TRIAL/$user/$problem || finish "'$submission' is now gone (already being judged?)"
+submission=$TRIAL/$user/$problem/$timestamp/$problem.$language
+rmdir --ignore-fail-on-non-empty "`dirname $submission_dir`"
+$bin/udge-judge "$problem" "$submission" 2>&1 |
+	tee            $TRIAL/$user/$problem/$timestamp/result
+mv      {$TRIAL,$RESULTS}/$user/$problem/$timestamp
+lockfile -1 -r6    $TRIAL/$user/$problem/best || errxit "could not acquire $TRIAL/$user/$problem/best"
+chmod +w           $TRIAL/$user/$problem/best
+for file in      $RESULTS/$user/$problem/*/result
+do
+	tail -1 "$file"
+done | sort -n | tail -1 > $TRIAL/$user/$problem/best
+mv {$TRIAL,$RESULTS}/$user/$problem/best
+rmdir --ignore-fail-on-non-empty $TRIAL/$user/$problem
+rmdir --ignore-fail-on-non-empty $TRIAL/$user
+touch "$RESULTS/$user" # bump timestamp to regenerate the user's html

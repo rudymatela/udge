@@ -1,17 +1,11 @@
 TODO list for Udge
 ==================
 
+* make sure entries in `/var/lib/udge/trial` are listed in the user page
+
 * move `/var/lib/udge/run` to `/var/run/udge`,
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
   perhaps use `/etc/tmpfiles.d`
-
-* fix race condition issue on `udge-pick-and-judge`, two possible solutions:
-
-	1. use `lockfile -r0` to "lock" a submission
-
-	2. simply move the submission to `/var/lib/udge/tribunal` upon picking it
-	   if it cannot be moved, we "exit 0" telling that it is simply gone
-	   meanwhile
 
 * compute and record runtime and memory
 
