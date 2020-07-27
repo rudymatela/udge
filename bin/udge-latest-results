@@ -34,6 +34,7 @@ problem="$3"
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS/$user" ] || errxit "user not found"
 submissions="$SUBMISSIONS/$user"
+trial="$TRIAL/$user"
 results="$RESULTS/$user"
 [ -n "$amount" ] || amount=5
 head="cat"
@@ -48,10 +49,27 @@ stamp() {
 list-submissions() {
 	[ -d "$submissions" ] && find $submissions -name "$problem.*" | sort -r
 }
+list-trial() {
+	[ -d "$trial" ]       && find $trial       -name "$problem.*" | stamp | sort -r | sed -e "s/^.*  //"
+}
 list-results() {
 	[ -d "$results" ]     && find $results     -name "$problem.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
-for filename in `list-submissions; list-results | $head`
+for filename in `list-trial`
+do
+	entry="`echo $filename | format`"
+	result=" -"
+	reason="   running"
+	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
+done
+for filename in `list-submissions`
+do
+	entry="`echo $filename | format`"
+	result=" -"
+	reason="   queued"
+	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
+done
+for filename in `list-results | $head`
 do
 	entry="`echo $filename | format`"
 	result_fn="`dirname $filename`/result"

@@ -1,11 +1,15 @@
 TODO list for Udge
 ==================
 
-* make sure entries in `/var/lib/udge/trial` are listed in the user page
+* refactor udge-latest-results
 
 * move `/var/lib/udge/run` to `/var/run/udge`,
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
   perhaps use `/etc/tmpfiles.d`
+
+* make sure `/var/run/udge/1/.ssh/authorized_keys` is neither owned or writable
+  by udge-run-1.  An udge-run user should not be able to change its
+  `authorized_keys`.  The folder shouldn't be movable as well.
 
 * compute and record runtime and memory
 
