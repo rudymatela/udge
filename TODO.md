@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* refactor udge-latest-results
-
 * move `/var/lib/udge/run` to `/var/run/udge`,
   we will need a mechasism to recreate `/var/run/udge` upon rebooting
   perhaps use `/etc/tmpfiles.d`

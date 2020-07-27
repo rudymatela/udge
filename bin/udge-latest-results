@@ -53,33 +53,23 @@ list-trial() {
 	[ -d "$trial" ]       && find $trial       -name "$problem.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
 list-results() {
+	# stamp|sort is needed so we list chronologically and not by problem
 	[ -d "$results" ]     && find $results     -name "$problem.*" | stamp | sort -r | sed -e "s/^.*  //"
 }
-for filename in `list-trial`
-do
+entry() {
+	filename="$1"
 	entry="`echo $filename | format`"
-	result=" -"
-	reason="   running"
+	result="$2"
+	reason="$3"
 	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
-done
-for filename in `list-submissions`
-do
-	entry="`echo $filename | format`"
-	result=" -"
-	reason="   queued"
-	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
-done
+}
+for filename in `list-submissions`; do entry "$filename" " -" "   queued";  done
+for filename in `list-trial`;       do entry "$filename" " -" "   running"; done
 for filename in `list-results | $head`
 do
-	entry="`echo $filename | format`"
 	result_fn="`dirname $filename`/result"
-	result=" -"
-	reason="   pending"
-	if [ -f "$result_fn" ]
-	then
-		result="`tail -1 $result_fn`"
-		reason=""
-		[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
-	fi
-	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
+	result="`tail -1 $result_fn`"
+	reason=""
+	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
+	entry  "$filename"  "$result"  "$reason"
 done
