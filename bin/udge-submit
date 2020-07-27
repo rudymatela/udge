@@ -51,16 +51,17 @@ curl -w "%{http_code}\n" \
 	-Fpassword="$password" \
 	-Fproblem="$problem" \
 	-Flanguage="$language" \
-	-Fprogram=@"$program" >$tmp
+	-Fprogram=@"$program" >$tmp || true
 http_code=`tail -1 $tmp`
 case $http_code in
-2*)
-	echo "Submission successful ($http_code)" ;;
+000) errxit "could not connect to udge/submit" ;;
+2*) echo "Submission successful ($http_code)" ;;
 *)
 	bn=`basename $0`
 	echo "$bn: $http_code"
 	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,$bn: ,"
 	rm -f $tmp
 	exit 1
+	;;
 esac
 rm -f $tmp
