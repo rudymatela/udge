@@ -379,35 +379,36 @@ show-vars:
 
 # TODO: avoid the id_rsa.pub link somehow
 create-udge-run-users:
-	id -u udge-run   >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/0 -s/bin/bash udge-run
-	id -u udge-run-1 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/1 -s/bin/bash udge-run-1
-	id -u udge-run-2 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/2 -s/bin/bash udge-run-2
-	id -u udge-run-3 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/3 -s/bin/bash udge-run-3
-	id -u udge-run-4 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/4 -s/bin/bash udge-run-4
-	id -u udge-run-5 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/5 -s/bin/bash udge-run-5
-	id -u udge-run-6 >/dev/null 2>&1 || useradd -r -d/var/lib/udge/run/6 -s/bin/bash udge-run-6
-	mkdir -p /var/lib/udge/run/{0,1,2,3,4,5,6}/{.ssh,.config}
-	cat .id_rsa.pub   >/var/lib/udge/run/0/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/1/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/2/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/3/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/4/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/5/.ssh/authorized_keys
-	cat .id_rsa.pub   >/var/lib/udge/run/6/.ssh/authorized_keys
-	cp .user-dirs.dirs /var/lib/udge/run/0/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/1/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/2/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/3/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/4/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/5/.config/user-dirs.dirs
-	cp .user-dirs.dirs /var/lib/udge/run/6/.config/user-dirs.dirs
-	chown -R udge-run.udge-run      /var/lib/udge/run/0
-	chown -R udge-run-1.udge-run-1  /var/lib/udge/run/1
-	chown -R udge-run-2.udge-run-2  /var/lib/udge/run/2
-	chown -R udge-run-3.udge-run-3  /var/lib/udge/run/3
-	chown -R udge-run-4.udge-run-4  /var/lib/udge/run/4
-	chown -R udge-run-5.udge-run-5  /var/lib/udge/run/5
-	chown -R udge-run-6.udge-run-6  /var/lib/udge/run/6
+	id -u udge-run   >/dev/null 2>&1 || useradd -r -d/run/udge/0 -s/bin/bash udge-run
+	id -u udge-run-1 >/dev/null 2>&1 || useradd -r -d/run/udge/1 -s/bin/bash udge-run-1
+	id -u udge-run-2 >/dev/null 2>&1 || useradd -r -d/run/udge/2 -s/bin/bash udge-run-2
+	id -u udge-run-3 >/dev/null 2>&1 || useradd -r -d/run/udge/3 -s/bin/bash udge-run-3
+	id -u udge-run-4 >/dev/null 2>&1 || useradd -r -d/run/udge/4 -s/bin/bash udge-run-4
+	id -u udge-run-5 >/dev/null 2>&1 || useradd -r -d/run/udge/5 -s/bin/bash udge-run-5
+	id -u udge-run-6 >/dev/null 2>&1 || useradd -r -d/run/udge/6 -s/bin/bash udge-run-6
+	mkdir -p /run/udge/{0,1,2,3,4,5,6}/{.ssh,.config}
+	cat .id_rsa.pub   >/run/udge/0/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/1/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/2/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/3/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/4/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/5/.ssh/authorized_keys
+	cat .id_rsa.pub   >/run/udge/6/.ssh/authorized_keys
+	cp .user-dirs.dirs /run/udge/0/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/1/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/2/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/3/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/4/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/5/.config/user-dirs.dirs
+	cp .user-dirs.dirs /run/udge/6/.config/user-dirs.dirs
+	chown -R udge-run.udge-run      /run/udge/0
+	chown -R udge-run-1.udge-run-1  /run/udge/1
+	chown -R udge-run-2.udge-run-2  /run/udge/2
+	chown -R udge-run-3.udge-run-3  /run/udge/3
+	chown -R udge-run-4.udge-run-4  /run/udge/4
+	chown -R udge-run-5.udge-run-5  /run/udge/5
+	chown -R udge-run-6.udge-run-6  /run/udge/6
+	echo 'now run chown <user>.<user> /run/udge'
 
 purge-udge-run-users:
 	userdel udge-run
@@ -417,4 +418,4 @@ purge-udge-run-users:
 	userdel udge-run-4
 	userdel udge-run-5
 	userdel udge-run-6
-	rm -rf /var/lib/udge/run/{0,1,2,3,4,5,6}
+	rm -rf /run/udge/{0,1,2,3,4,5,6}

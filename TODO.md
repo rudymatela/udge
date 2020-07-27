@@ -1,8 +1,7 @@
 TODO list for Udge
 ==================
 
-* move `/var/lib/udge/run` to `/var/run/udge`,
-  we will need a mechasism to recreate `/var/run/udge` upon rebooting
+* create `/run/udge` automatically upon boot somehow
   perhaps use `/etc/tmpfiles.d`
 
 * make sure `/var/run/udge/1/.ssh/authorized_keys` is neither owned or writable

@@ -12,7 +12,7 @@ SUBMISSIONS=/var/lib/udge/submissions
 TRIAL=/var/lib/udge/trial
 RESULTS=/var/lib/udge/results
 PUBLIC_HTML=/var/lib/udge/html
-RUN=/var/lib/udge/run
+RUN=/run/udge
 
 SCORE=fractions
 NEW_USER=true
