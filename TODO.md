@@ -45,6 +45,12 @@ TODO list for Udge
 For later
 ---------
 
+* Remove the `udge-0` user algogether, simply use `udge`
+
+* Use chroot jail directly through ssh:
+	- https://www.tecmint.com/restrict-ssh-user-to-directory-using-chrooted-jail/
+	- https://linuxconfig.org/how-to-automatically-chroot-jail-selected-ssh-user-logins
+
 * Let users configure if they would be appear anonymized on the ranking and
   have a private user page.  (All this as a single option.)
   The private user page would be accessed on `/p/<user_sha1_base64_etc>`
