@@ -41,7 +41,7 @@ errxit() {
 }
 
 warn() {
-	echo "`basename "$0"`, warn: $@" >&2
+	echo "`basename "$0"`, warning: $@" >&2
 }
 
 termecho() {
