@@ -25,7 +25,7 @@
 #
 # CHROOT=. 
 
-[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=32
+[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=2048 # just for now...
 
 ulimit -c 262144 # blocks, 128M
 ulimit -d 524288 # K, 512M
@@ -46,16 +46,12 @@ chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
 unshare -Urn -impuf env -i $chroot "$@"
 
-# In a fresh user, only 7 processes are needed, they are:
+# In a fresh user, only 5 processes are needed, they are:
 #
-# 1. systemd --user
-# 2. (sd-pam)
-# 3. sshd
-# 4. timeout
-# 5. udge-sandbox
-# 6. unshare
-# 7. exe
+# 1. udge-build-and-run
+# 2. timeout
+# 3. udge-sandbox
+# 4. unshare
+# 5. exe
 #
-# We can set an 8 process limit so
-# we can have room to automatically ssh into the server
-# and kill a dangling process.
+# TODO: eventually test to decide a better default

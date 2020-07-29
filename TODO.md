@@ -1,29 +1,6 @@
 TODO list for Udge
 ==================
 
-* revert back to not using ssh, cleanup this file
-
-* Create POC that changes the `authorized_keys` of `udge-*` users
-
-	- to block it:
-	- use `chattr +i` on the directory structure
-	- or; use a ssh sandbox
-
-* Remove the `udge-0` user algogether, simply use `udge`
-
-* scp stuff using the `udge` user instead of `udge-0` (maybe, may cause issues)
-
-* to set up a chroot, I'll need:
-
-	sudo mount --bind /dev/null dev/null
-
-* create `/run/udge` automatically upon boot somehow
-  perhaps use `/etc/tmpfiles.d`
-
-* make sure `/var/run/udge/1/.ssh/authorized_keys` is neither owned or writable
-  by `udge-1`.  An `udge-?` user should not be able to change its
-  `authorized_keys`.  The folder shouldn't be movable as well.
-
 * compute and record runtime and memory
 
 * automatically install crontab entries
@@ -57,13 +34,11 @@ TODO list for Udge
 
 	- only show problems with tries
 
+* sweep "TODOs" scattered throughout the code
+
 
 For later
 ---------
-
-* Use chroot jail directly through ssh:
-	- https://www.tecmint.com/restrict-ssh-user-to-directory-using-chrooted-jail/
-	- https://linuxconfig.org/how-to-automatically-chroot-jail-selected-ssh-user-logins
 
 * `touch` problem that requires files to appear
 

@@ -3,5 +3,4 @@
 pkg
 install*-files.txt
 var
-.id_rsa.pub
 examples/sandbox/sol-searcher-*.c

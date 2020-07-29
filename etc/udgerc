@@ -18,14 +18,3 @@ SCORE=fractions
 NEW_USER=true
 
 GHCFLAGS=-dynamic # for Arch Linux
-
-RUN_WITH="
-udge-1@localhost
-udge-2@localhost
-udge-3@localhost
-udge-4@localhost
-udge-5@localhost
-udge-6@localhost
-"
-
-PS_WITH="udge-0@localhost"

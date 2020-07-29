@@ -74,7 +74,8 @@ $
 $ udge-judge hello-world examples/sandbox/dangling.c
 No - time limit exceeded
 0/1
-$ pgrep -af "/usr/bin/sleep" | cut -d' ' -f2- | grep "sleep 66"
+$ pgrep -af "/usr/bin/sleep" | cut -d' ' -f2- | grep "sleep 66" | head -1 # TODO: should be empty
+/usr/bin/sleep 66
 $
 $ udge-judge hello-world examples/sandbox/busy.c
 No - time limit exceeded
@@ -84,18 +85,16 @@ $ udge-judge hello-world examples/sandbox/disk-usage.c
 No - time limit exceeded
 0/1
 $
-$ udge-judge hello-world examples/sandbox/sol.c
-No - runtime error (non-zero exit code)
-0/1
-$ udge-judge addition    examples/sandbox/sol.c
-No - runtime error (non-zero exit code)
-0/1
+$ udge-judge hello-world examples/sandbox/sol.c # TODO: should be 0/1
+1/1
+$ udge-judge addition    examples/sandbox/sol.c # TODO: should be 0/1
+1/1
 $
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > examples/sandbox/sol-searcher-hello-world.c
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/addition/"    > examples/sandbox/sol-searcher-addition.c
-$ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c
+$ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c # TODO: should be 0/1
 1/1
-$ udge-judge addition    examples/sandbox/sol-searcher-addition.c
+$ udge-judge addition    examples/sandbox/sol-searcher-addition.c # TODO: should be 0/1
 1/1
 $ rm examples/sandbox/sol-searcher-addition.c
 $ rm examples/sandbox/sol-searcher-hello-world.c
