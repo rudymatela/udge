@@ -1,6 +1,22 @@
 TODO list for Udge
 ==================
 
+* revert back to not using ssh, cleanup this file
+
+* Create POC that changes the `authorized_keys` of `udge-*` users
+
+	- to block it:
+	- use `chattr +i` on the directory structure
+	- or; use a ssh sandbox
+
+* Remove the `udge-0` user algogether, simply use `udge`
+
+* scp stuff using the `udge` user instead of `udge-0` (maybe, may cause issues)
+
+* to set up a chroot, I'll need:
+
+	sudo mount --bind /dev/null dev/null
+
 * create `/run/udge` automatically upon boot somehow
   perhaps use `/etc/tmpfiles.d`
 
@@ -45,11 +61,11 @@ TODO list for Udge
 For later
 ---------
 
-* Remove the `udge-0` user algogether, simply use `udge`
-
 * Use chroot jail directly through ssh:
 	- https://www.tecmint.com/restrict-ssh-user-to-directory-using-chrooted-jail/
 	- https://linuxconfig.org/how-to-automatically-chroot-jail-selected-ssh-user-logins
+
+* `touch` problem that requires files to appear
 
 * Let users configure if they would be appear anonymized on the ranking and
   have a private user page.  (All this as a single option.)
