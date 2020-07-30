@@ -141,6 +141,23 @@ finish() {
 	finish- "`basename $0`: $@"
 }
 
+# like killall but excludes the current process
+# accepts -STOP -CONT or -KILL as arguments
+# defaults to -TERM
+killallother() {
+    me=$(whoami)
+    for pid in $(pgrep -u$me | grep -v "^$$\$")
+    do
+        kill $1 $pid 2>/dev/null || true
+    done
+}
+
+stopthenkillallother() {
+    killallother -STOP
+    killallother -STOP
+    killallother -KILL
+}
+
 [ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?"
 bin=$prefix/bin
 lib=$prefix/lib/udge
