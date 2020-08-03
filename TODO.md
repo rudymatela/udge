@@ -1,23 +1,19 @@
 TODO list for Udge
 ==================
 
+* add `udge-pick` -- use a `/var/lib/udge/slot` directory
+
+* add `udge-compile-and-run`
+
+* add `udge-check`
+
+* reimplement `udge-pick-and-judge` using the above
+
 * on timeout, stop running (if we timeout on set 3, don't run 4, 5 and 6)
 
 * compute and record runtime and memory
 
 * automatically install crontab entries
-
-* sandbox compilation
-	- access a separate user through ssh to compile?
-	- udge-c: to compile in C
-	- udge-py: to "compile" in Python
-	- udge-hs: to compile in Haskell
-	- udge-java: to compile Java
-	- ...
-	- advantage: separating the web and runner servers becomes trivial
-	- advantage: ^ easy to put up an extra iptables restriction on outgoing connections
-	- advantage: easy to terminate in case of hanging processes
-	- disadvantage: a little processing overhead
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
