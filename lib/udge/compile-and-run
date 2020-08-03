@@ -1,0 +1,105 @@
+#!/bin/bash
+#
+# compile-and-run: compiles and and runs program
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2015-2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# usage:
+#   lib/udge/compile-and-run path/to/problem.lang path/to/problem/1 path/to/dest [-v]
+#
+# TODO: the above does not work, perhaps...
+prefix="$(dirname "$(dirname "$(dirname "$0")")")"
+. "$prefix/lib/udge/core"
+set="$1"
+src="$2"
+dst="$3"
+verbose="$4"
+
+[ -n "$set" ] || errxit "must provide input folder"
+[ -n "$src" ] || errxit "must provide source"
+[ -n "$dst" ] || errxit "must provide destination folder"
+
+[ -d "$set" ] || errxit "input folder not found"
+[ -f "$src" ] || errxit "source file not found"
+mkdir "$dst"  || errxit "could not create destination directory"
+
+rmerrxit() {
+	msg="$1"
+	shift
+	rm -f "$@"
+	errxit $msg
+}
+
+what=compile
+case "$src" in
+	*.c)    lang=c    ;language="C"                                  ;;
+	*.cc)   lang=cc   ;language="C++"                                ;;
+	*.cpp)  lang=cc   ;language="C++"                                ;;
+	*.hs)   lang=hs   ;language="Haskell"                            ;;
+	*.lhs)  lang=hs   ;language="Haskell"                            ;;
+	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
+	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
+	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;
+	*.js)   lang=js   ;language="JavaScript" ;run=node     ;ext=.js  ;;
+	*)      errxit "unknown/unsupported file format or language"     ;;
+esac
+
+[ -n "$verbose" ] && echo Compiling solution $src for $set in $language.
+
+main="main.$lang"
+aslib=
+[ -f "$main" ] && aslib=-as-lib
+exe=exe$aslib$ext
+[ -e $exe ] ||
+"$lib/compile$aslib/$lang" "$src" $exe "$main" >$dst/log 2>&1 ||
+errxit "compilation error"
+cp $exe $dst
+touch $dst/log
+
+[ -n "$verbose" ] && cat $dst/log
+
+[ -n "$verbose" ] && echo Testing solution $src for $set in $language.
+
+in=$set/in
+[ -f "$in" ] || in=/dev/null
+args=`maybe-cat $set/args`
+
+[ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
+time_limit=`cator $DEFAULT_TIME_LIMIT $set/time-limit`
+
+sandbox=`realpath $bin/udge-sandbox`
+
+mkdir $dst/files
+[ "$(echo $set/*.txt)" != "$set/*.txt" ] && cp $set/*.txt $dst/files
+cd $dst/files
+
+nice \
+	timeout --preserve-status -v -k1s ${time_limit}s \
+	$sandbox \
+	$run ../$exe $args <"$in" >../out 2>../err
+echo $? > ../exit
+
+cd -
+
+touch "$dst"
+
+find $dst  # TODO: remove me
+grep -R "" $dst
+rm -r $dst # TODO: remove me
