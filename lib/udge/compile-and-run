@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# compile-and-run: compiles and runs program for all test sets
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2015-2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# usage:
+#   lib/udge/compile-and-run path/to/problem path/to/problem.lang path/to/dest [-v]
+prefix="$(dirname "$(dirname "$(dirname "$0")")")"
+. "$prefix/lib/udge/core"
+set="$1"
+src="$2"
+dst="$3"
+verbose="$4"
+
+[ -n "$set" ] || errxit "must provide input folder"
+[ -n "$src" ] || errxit "must provide source"
+[ -n "$dst" ] || errxit "must provide destination folder"
+
+[ -d "$set" ] || errxit "input folder not found"
+[ -f "$src" ] || errxit "source file not found"
+mkdir "$dst"  || errxit "could not create destination directory"
+
+for dir in $set/*/
+do
+	[ -d $dir ] || dir=$set/
+	id=`echo $dir | sed -e "s#$set/##"`
+	[ -n "$id" ] || rmdir $dst # compile-and-run-1 creates it
+	$lib/compile-and-run-1 $dir $src $dst/$id $verbose
+done
+
+[ -n "$verbose" ] && grep -R "" $dst

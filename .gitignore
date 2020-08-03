@@ -4,3 +4,5 @@ pkg
 install*-files.txt
 var
 examples/sandbox/sol-searcher-*.c
+dst/ # this is temporary... TODO: remove me
+exe  # this is temporary... TODO: remove me

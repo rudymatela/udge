@@ -96,8 +96,6 @@ echo $? > ../exit
 
 cd -
 
-touch "$dst"
+[ -n "$verbose" ] && grep -R "" $dst
 
-find $dst  # TODO: remove me
-grep -R "" $dst
-rm -r $dst # TODO: remove me
+touch "$dst"
