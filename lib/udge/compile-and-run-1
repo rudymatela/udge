@@ -94,6 +94,8 @@ nice \
 	$run ../$exe $args <"$in" >../out 2>../err
 echo $? > ../exit
 
+# TODO: killall
+
 cd -
 
 [ -n "$verbose" ] && grep -R "" $dst
