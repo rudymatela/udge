@@ -21,4 +21,4 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 set -e
 dn=$(dirname $(dirname $0))
-$dn/jarvac "$2" main.java "$1"
+$dn/jarvac "$2" "$3" "$1"
