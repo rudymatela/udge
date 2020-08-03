@@ -46,6 +46,7 @@ rmerrxit() {
 }
 
 what=compile
+java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
 	*.c)    lang=c    ;language="C"                                  ;;
 	*.cc)   lang=cc   ;language="C++"                                ;;
@@ -73,7 +74,7 @@ touch $dst/log
 
 [ -n "$verbose" ] && cat $dst/log
 
-[ -n "$verbose" ] && echo Testing solution $src for $set in $language.
+[ -n "$verbose" ] && echo Running solution $src for $set in $language.
 
 in=$set/in
 [ -f "$in" ] || in=/dev/null
