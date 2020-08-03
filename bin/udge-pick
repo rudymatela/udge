@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# udge-pick: picks a submission and places it in a slot
+#
+# Usage: udge-pick
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# reads from:
+#
+#   /var/lib/udge/submissions/<user>/<timestamp>/<problem>.<lang>
+#
+# and writes to:
+#
+#   /var/lib/udge/trial/<slot>/lock/submission/<timestamp>/<user>/<problem>.<lang>
+#
+# Pick and judge needs to be run with write permissions to the submissions
+# folder, to do this, you may want to add your user (or the user for which the
+# judge will run) to the http group.
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+
+set -e
+
+# TODO: automatically set up slots in the Makefile
+
+[ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"
+[ -d "$SLOTS" ] || errxit "the slots dir does not exist ($SLOTS)"
+slot=
+for s in $SLOTS/*/
+do
+	[ -d $s ] || errxit "there are no slots in $SLOTS"
+	if mkdir $s/lock 2>/dev/null  # relies on atomicity of mkdir
+	then
+		slot=$s
+		break
+	fi
+done
+[ -n "$slot" ] || finish "nothing to do (no available slots)"
+echo "slot = $slot"
+
+unlock-and-finish() {
+	rmdir $slot/lock
+	finish "$@" "(unlocking $slot)"
+}
+
+unlock-and-errxit() {
+	rmdir $slot/lock
+	errxit "$@" "(unlocking $slot)"
+}
+
+user_dir="`find $SUBMISSIONS -mindepth 1 -maxdepth 1 | sort -R | head -1`"
+[ -n "$user_dir" ] || unlock-and-finish "nothing to do"
+
+submission="`find $user_dir -type f | sort | head -1`"
+[ -n "$user_dir" ] || unlock-and-errxit "user dir $user_dir is empty"
+
+echo "Picked '$submission' to judge."
+
+user="`echo $user_dir | sed -e "s,.*/,,"`"
+timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\1,'`"
+problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\2,'`"
+language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\3,'`"
+
+[ -n "$user" ]      || errxit "could not parse user"
+[ -n "$timestamp" ] || errxit "could not parse timestamp"
+[ -n "$problem" ]   || errxit "could not parse problem"
+[ -n "$language" ]  || errxit "could not parse language"
+
+echo "user = $user"
+echo "timestamp = $timestamp"
+echo "problem = $problem"
+echo "language = $language"

@@ -223,6 +223,7 @@ install:
 	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-passwd                   $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-pick-and-judge           $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-pick                     $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-rank                     $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-sandbox                  $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-submit                   $(DESTDIR)$(PREFIX)/bin
