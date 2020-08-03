@@ -50,3 +50,4 @@ do
 done
 
 [ -n "$verbose" ] && find $dst
+true
