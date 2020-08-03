@@ -35,7 +35,7 @@ $ udge-judge add examples/add/0-tle.c
 No - time limit exceeded
 0/6
 $ udge-judge add examples/add/0-ce.c 2>&1 | tail -2
-No - compile error (C)
+No - compile error
 0/6
 $ udge-judge add examples/add/1-egio-a.c
 No - wrong output
@@ -53,5 +53,5 @@ $ udge-judge add examples/add/4-octals.c
 No - wrong output
 4/6
 $ udge-judge add examples/add/5-no-function.c 2>&1 | tail -2
-No - compile error (C)
+No - compile error
 5/6

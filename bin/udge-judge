@@ -41,27 +41,13 @@ problem="$1"
 program="$2"
 verbose="$3"
 problemdir="$PROBLEMS/$problem"
-compileandtest="`realpath "$lib/compile-and-test"`"
 [ -d "$problemdir" ] || errxit "invalid problem code"
+[ -f "$program" ] || errxit "source file not found"
 tmpdir="`mktemp -d "/tmp/judge.XXXXXXXXXX"`"
-cp "$program" "$tmpdir"
-prog=$(basename $program)
-timestamp=$(basename $(dirname $program))
-user=$(basename $(dirname $(dirname $program)))
-ts=`date -u "+%Y%m%d-%H%M%S"`
-sane $timestamp || timestamp=$ts
-sane $user      || user=unknown
-(
+program="`realpath $program`"
+compileandrun="`realpath "$lib/compile-and-run"`"
 cd $tmpdir
-total=0
-outof=`n-points "$problem"`
-for dir in $problemdir/*/; do
-	[ -d $dir ] || dir=$problemdir/ # allows in and out to reside directly without subdir
-	pts=`cator1 $dir/pts`
-	rm -f {in,sol,err,args,time-limit,check-exit-code,check-out,main.*,*.txt}
-	cp $dir/{in,sol,err,args,time-limit,check-exit-code,check-out,main.*,*.txt} . 2>/dev/null || true
-	"$compileandtest" $prog -$ts-$problem-$timestamp-$user $verbose && ((total+=$pts)) || break
-done
-echo $total/$outof
-)
+$compileandrun $problemdir $program $tmpdir/out $verbose
+cd - >/dev/null
+$lib/check $problemdir $tmpdir/out $verbose
 rm -r $tmpdir

@@ -62,7 +62,12 @@ esac
 
 [ -n "$verbose" ] && echo Compiling solution $src for $set in $language.
 
+cp $src .
+src=`basename $src`
+
 main="$set/main.$lang"
+[ -f "$main" ] && cp $main .
+main=`basename $main`
 aslib=
 [ -f "$main" ] && aslib=-as-lib
 exe=exe$aslib$ext

@@ -22,11 +22,10 @@
 
 $ udge-judge hello examples/hello/hello.c
 6/6
-$ udge-judge hello examples/hello/0-fnf.c 2>/dev/null
-No - source file not found
-0/6
+$ udge-judge hello examples/hello/0-fnf.c
+udge-judge, error: source file not found
 $ udge-judge hello examples/hello/0-ce.c 2>/dev/null
-No - compile error (C)
+No - compile error
 0/6
 $ udge-judge hello examples/hello/0-tle.c 2>/dev/null
 No - time limit exceeded

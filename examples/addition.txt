@@ -26,7 +26,7 @@ $ udge-judge addition examples/addition/0-wo.c
 No - wrong output
 0/1
 $ udge-judge addition examples/addition/0-ce.c 2>/dev/null
-No - compile error (C)
+No - compile error
 0/1
 $ udge-judge addition examples/addition/0-tle.c
 No - time limit exceeded

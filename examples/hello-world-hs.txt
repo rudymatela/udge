@@ -26,7 +26,7 @@ $ udge-judge hello-world examples/hello-world/0-wo.hs 2>/dev/null | tail -2
 No - wrong output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.hs 2>/dev/null | tail -2
-No - compile error (Haskell)
+No - compile error
 0/1
 $ udge-judge hello-world examples/hello-world/0-tle.hs 2>/dev/null | tail -2
 No - time limit exceeded

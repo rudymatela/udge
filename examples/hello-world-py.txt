@@ -26,7 +26,7 @@ $ udge-judge hello-world examples/hello-world/0-wo.py
 No - wrong output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.py 2>/dev/null
-No - parse error (Python)
+No - compile error
 0/1
 $ udge-judge hello-world examples/hello-world/0-tle.py
 No - time limit exceeded

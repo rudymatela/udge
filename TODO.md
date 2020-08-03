@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* on timeout, stop running (if we timeout on set 3, don't run 4, 5 and 6)
+
 * compute and record runtime and memory
 
 * automatically install crontab entries

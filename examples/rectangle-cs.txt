@@ -23,7 +23,7 @@
 $ udge-judge rectangle examples/rectangle/rectangle.cs 2>/dev/null | tail -1
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-classless.cs 2>/dev/null | tail -2
-No - compile error (C#)
+No - compile error
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.cs 2>/dev/null | tail -2
 No - wrong output

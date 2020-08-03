@@ -5,8 +5,3 @@ pkg
 install*-files.txt
 var
 examples/sandbox/sol-searcher-*.c
-# temporary ignores:
-# TODO: remove below
-dst/
-exe
-# TODO: remove above
