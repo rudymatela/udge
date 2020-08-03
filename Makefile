@@ -55,11 +55,8 @@ realclean: \
 fastest:
 	make test-scripts -j7
 	make test-web
-	make test-install
-	make test-dev-install
 
 test: \
-  tidy \
   test-scripts \
   test-web
 
@@ -67,6 +64,7 @@ test-scripts: export DEFAULT_TIME_LIMIT=2
 test-scripts: \
   test-makefile \
   test-no-broken-links \
+  tidy \
   judge.clitest \
   hello-world.clitest \
   hello-world-hs.clitest \
@@ -121,7 +119,7 @@ test-no-broken-links: html
 	wget -nv -r udge/
 	rm -r udge/
 
-test-makefile: test-makefile-coverage test-dev-install # TODO: add test-install, use mktemp to allow -j
+test-makefile: test-makefile-coverage test-install test-dev-install
 
 test-makefile-coverage:
 	rm -f /tmp/udge-clitests /tmp/udge-txts
@@ -343,20 +341,25 @@ enable-nginx-udge-site:
 
 
 test-install:
-	[ ! -e pkg ]
-	make install       DESTDIR=pkg
-	make check-install DESTDIR=pkg
-	make uninstall     DESTDIR=pkg
-	find pkg -type f
-	find pkg -type f | wc -l
-	[ "`find pkg -type f | wc -l`" -eq 86 ] # udgerc, nginx conf and problems
-	rm -r pkg
+	[ ! -e pkg/i ]
+	make install       DESTDIR=pkg/i
+	make check-install DESTDIR=pkg/i
+	make uninstall     DESTDIR=pkg/i
+	find pkg/i -type f
+	find pkg/i -type f | wc -l
+	[ "`find pkg/i -type f | wc -l`" -eq 86 ] # udgerc, nginx conf and problems
+	rm -r pkg/i
+	rmdir pkg || true
+
+misc:
+	var=`mktemp -d /tmp/misc-makefile-XXXXXXXXXX`; echo $$var
 
 test-dev-install:
-	[ ! -e pkg ]
-	make dev-install        DESTDIR=pkg
-	make check-install-test DESTDIR=pkg
-	rm -r pkg
+	[ ! -e pkg/d ]
+	make dev-install        DESTDIR=pkg/d
+	make check-install-test DESTDIR=pkg/d
+	rm -r pkg/d
+	rmdir pkg || true
 
 list-missing-copyright:
 	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile README.md
