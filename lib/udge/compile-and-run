@@ -41,7 +41,7 @@ mkdir "$dst"  || errxit "could not create destination directory"
 for dir in $set/*/
 do
 	[ -d $dir ] || dir=$set/
-	id=`echo $dir | sed -e "s#$set/##"`
+	id=`echo $dir | sed -e "s|$set/||"`
 	[ -n "$id" ] || rmdir $dst # compile-and-run-1 creates it
 	$lib/compile-and-run-1 $dir $src $dst/$id $verbose
 done
