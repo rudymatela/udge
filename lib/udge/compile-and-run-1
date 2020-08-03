@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# compile-and-run: compiles and and runs program
+# compile-and-run-1: compiles and runs program for a single test set
 #
 # This file is part of Udge.
 #
@@ -22,9 +22,7 @@
 #
 #
 # usage:
-#   lib/udge/compile-and-run path/to/problem.lang path/to/problem/1 path/to/dest [-v]
-#
-# TODO: the above does not work, perhaps...
+#   lib/udge/compile-and-run-1 path/to/problem/1 path/to/problem.lang path/to/dest [-v]
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 set="$1"
