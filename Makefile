@@ -184,7 +184,7 @@ clean-submissions:
 	rm -rf var/submissions/*
 
 clean-slots:
-	rm -rf var/slots/*/lock
+	rm -rf var/slot/*/lock
 
 clean-results:
 	rm -rf var/results

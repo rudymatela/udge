@@ -96,3 +96,8 @@ mv $submission_dir $dir ||  # relies on mv's atomicity
 	unlock-and-finish "'$submission' is now gone!  Was picked meanwhile?"
 rmdir --ignore-fail-on-non-empty "`dirname $submission_dir`"
 echo created $dir/$timestamp/$problem.$language
+
+# executing again to see if there is another submission
+echo
+echo "trying again..."
+exec $bin/udge-pick
