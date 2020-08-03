@@ -183,6 +183,9 @@ tidy-public_html: html
 clean-submissions:
 	rm -rf var/submissions/*
 
+clean-slots:
+	rm -rf var/slots/*/lock
+
 clean-results:
 	rm -rf var/results
 

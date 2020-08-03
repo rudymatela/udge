@@ -43,7 +43,7 @@ set -e
 [ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"
 [ -d "$SLOTS" ] || errxit "the slots dir does not exist ($SLOTS)"
 slot=
-for s in $SLOTS/*/
+for s in $SLOTS/*
 do
 	[ -d $s ] || errxit "there are no slots in $SLOTS"
 	if mkdir $s/lock 2>/dev/null  # relies on atomicity of mkdir
@@ -56,12 +56,12 @@ done
 echo "slot = $slot"
 
 unlock-and-finish() {
-	rmdir $slot/lock
+	rm -r $slot/lock
 	finish "$@" "(unlocking $slot)"
 }
 
 unlock-and-errxit() {
-	rmdir $slot/lock
+	rm -r $slot/lock
 	errxit "$@" "(unlocking $slot)"
 }
 
@@ -78,12 +78,20 @@ timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\1,'`"
 problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\2,'`"
 language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)\.\(.*\),\3,'`"
 
-[ -n "$user" ]      || errxit "could not parse user"
-[ -n "$timestamp" ] || errxit "could not parse timestamp"
-[ -n "$problem" ]   || errxit "could not parse problem"
-[ -n "$language" ]  || errxit "could not parse language"
+[ -n "$user" ]      || unlock-and-errxit "could not parse user"
+[ -n "$timestamp" ] || unlock-and-errxit "could not parse timestamp"
+[ -n "$problem" ]   || unlock-and-errxit "could not parse problem"
+[ -n "$language" ]  || unlock-and-errxit "could not parse language"
 
 echo "user = $user"
 echo "timestamp = $timestamp"
 echo "problem = $problem"
 echo "language = $language"
+
+submission_dir="`dirname $submission`"
+dir="$slot/lock/$user"
+mkdir $dir
+mv $submission_dir $dir ||  # relies on mv's atomicity
+	unlock-and-finish "'$submission' is now gone!  Was picked meanwhile?"
+rmdir --ignore-fail-on-non-empty "`dirname $submission_dir`"
+echo created $dir/$timestamp/$problem.$language
