@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# check-1: check the output folder of a solution for a single set
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2015-2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# usage:
+#   check-1 path/to/problem/1 path/to/out/1
+prefix="$(dirname "$(dirname "$(dirname "$0")")")"
+. "$prefix/lib/udge/core"
+
+fail() {
+	echo "$@"
+	exit 1
+}
+
+sol="$1"
+run="$2"
+verbose="$3"
+
+[ -n "$sol" ] || errxit "must provide input folder"
+[ -n "$run" ] || errxit "must provide output folder"
+
+[ -d "$sol" ] || errxit "input folder not found"
+[ -d "$run" ] || errxit "output folder not found"
+
+check-exit-code() {
+	[ "$1" = 0 ]
+}
+
+check-out() {
+	if [ -n "$verbose" ]
+	then
+		diff -rud "$1" "$2"
+	else
+		diff -q "$1" "$2" >/dev/null
+	fi
+}
+
+# checks that it is compiled
+[ -n "$verbose" ] && echo "checking if $run/exe* exists and is unique:" $run/exe*
+[ -e $run/exe* ] || fail "No - compile error"
+
+# sandboxing checks
+grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "No - reached maximum number of processes"
+grep -q "^timeout: sending signal TERM"      $run/err && fail "No - time limit exceeded"
+
+# checks the exit code
+checkexitcode=check-exit-code
+[ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code
+$checkexitcode $(cat $run/exit) || fail "No - runtime error (non-zero exit code)"
+
+# checks standard output and standard error
+check=check-out
+[ -x $sol/check-out ] && check=$sol/check-out
+$check $sol/sol $run/out || fail "No - wrong output"
+if [ -e $sol/err ]
+then
+	$check $sol/err $run/err || fail "No - wrong error output"
+fi

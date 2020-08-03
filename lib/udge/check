@@ -41,49 +41,8 @@ verbose="$3"
 [ -d "$set" ] || errxit "input folder not found"
 [ -d "$out" ] || errxit "output folder not found"
 
-check-exit-code() {
-	[ "$1" = 0 ]
-}
-
-check-out() {
-	if [ -n "$verbose" ]
-	then
-		diff -rud "$1" "$2"
-	else
-		diff -q "$1" "$2" >/dev/null
-	fi
-}
-
-# TODO: check-1 must be a standalone script so fail does not exit
-check-1() {
-	sol=$1
-	run=$2
-
-	# checks that it is compiled
-	[ -n "$verbose" ] && echo "checking if $run/exe* exists and is unique:" $run/exe*
-	[ -e $run/exe* ] || fail "No - compile error"
-
-	# sandboxing checks
-	grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "No - reached maximum number of processes"
-	grep -q "^timeout: sending signal TERM"      $run/err && fail "No - time limit exceeded"
-
-	# checks the exit code
-	checkexitcode=check-exit-code
-	[ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code
-	$checkexitcode $(cat $run/exit) || fail "No - runtime error (non-zero exit code)"
-
-	# checks standard output and standard error
-	check=check-out
-	[ -x $sol/check-out ] && check=$sol/check-out
-	$check $sol/sol $run/out || fail "No - wrong output"
-	if [ -e $sol/err ]
-	then
-		$check $sol/err $run/err || fail "No - wrong error output"
-	fi
-}
-
 total=0
-outof=`n-points "$set"`
+outof=`n-points-path "$set"`
 for idir in $set/*/
 do
 	[ -d $idir ] || idir=$set/
@@ -91,6 +50,6 @@ do
 	odir=$out/$id
 	pts=`cator1 $idir/pts`
 	[ -n "$verbose" ] && echo "Conferring $odir against $idir"
-	check-1 $idir $odir && ((total+=$pts)) || break
+	$lib/check-1 $idir $odir && ((total+=$pts)) || break
 done
 echo $total/$outof
