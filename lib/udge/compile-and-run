@@ -38,12 +38,15 @@ verbose="$4"
 [ -f "$src" ] || errxit "source file not found"
 mkdir "$dst"  || errxit "could not create destination directory"
 
+cat=true
+[ -n "$verbose" ] && cat=cat
+
 for dir in $set/*/
 do
 	[ -d $dir ] || dir=$set/
 	id=`echo $dir | sed -e "s|$set/||"`
 	[ -n "$id" ] || rmdir $dst # compile-and-run-1 creates it
-	$lib/compile-and-run-1 $dir $src $dst/$id $verbose
+	$lib/compile-and-run-1 $dir $src $dst/$id $verbose || $cat $dst/$id/log >&2
 done
 
 [ -n "$verbose" ] && find $dst
