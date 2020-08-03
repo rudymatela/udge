@@ -39,6 +39,7 @@ prefix="$(dirname "$(dirname "$0")")"
 set -e
 
 # TODO: automatically set up slots in the Makefile
+# TODO: make sure submissions in slots appear on udge-latest-submissions
 
 [ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"
 [ -d "$SLOTS" ] || errxit "the slots dir does not exist ($SLOTS)"
