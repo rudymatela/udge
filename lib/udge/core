@@ -110,10 +110,15 @@ ls-languages() {
 	done
 }
 
-# n-points <problem>
+# n-points <problem-id>
 n-points() {
+	n-points-path $PROBLEMS/$1
+}
+
+# n-points-path <path/to/problem>
+n-points-path() {
 	outof=0
-	for dir in $PROBLEMS/$1/*/; do
+	for dir in $1/*/; do
 		pts=`cator1 $dir/pts`
 		((outof+=$pts))
 	done
