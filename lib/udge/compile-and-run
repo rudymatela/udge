@@ -46,4 +46,4 @@ do
 	$lib/compile-and-run-1 $dir $src $dst/$id $verbose
 done
 
-[ -n "$verbose" ] && grep -R "" $dst
+[ -n "$verbose" ] && find $dst

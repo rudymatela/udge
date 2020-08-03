@@ -96,8 +96,6 @@ echo $? > ../exit
 
 # TODO: killall
 
-cd -
-
-[ -n "$verbose" ] && grep -R "" $dst
+cd - >/dev/null
 
 touch "$dst"

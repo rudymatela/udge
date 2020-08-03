@@ -54,11 +54,13 @@ check-out() {
 	fi
 }
 
+# TODO: check-1 must be a standalone script so fail does not exit
 check-1() {
 	sol=$1
 	run=$2
 
 	# checks that it is compiled
+	[ -n "$verbose" ] && echo "checking if $run/exe* exists and is unique:" $run/exe*
 	[ -e $run/exe* ] || fail "No - compile error"
 
 	# sandboxing checks
@@ -81,12 +83,12 @@ check-1() {
 }
 
 total=0
-outof=`n-points "$problem"`
+outof=`n-points "$set"`
 for idir in $set/*/
 do
 	[ -d $idir ] || idir=$set/
 	id=`echo $idir | sed -e "s|$set/||"`
-	odir=$out$id
+	odir=$out/$id
 	pts=`cator1 $idir/pts`
 	[ -n "$verbose" ] && echo "Conferring $odir against $idir"
 	check-1 $idir $odir && ((total+=$pts)) || break
