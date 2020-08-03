@@ -55,6 +55,8 @@ realclean: \
 fastest:
 	make test-scripts -j7
 	make test-web
+	make test-install
+	make test-dev-install
 
 test: \
   tidy \
@@ -217,8 +219,11 @@ install:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-backup                   $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-delete-user              $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-passwd                   $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-pick-and-judge           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-rank                     $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-sandbox                  $(DESTDIR)$(PREFIX)/bin
@@ -235,18 +240,30 @@ install:
 	install -m 0644 lib/udge/html              $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/cgi               $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/core              $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/jarvac            $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 lib/udge/markdown          $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 lib/udge/rank-html         $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 lib/udge/user-html         $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0755 lib/udge/compile-and-test  $(DESTDIR)$(PREFIX)/lib/udge
-	install -m 0755 -d                  $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 lib/udge/compile/c  $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 lib/udge/compile/hs $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 lib/udge/compile/py $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 -d                         $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 lib/udge/compile-as-lib/c  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 lib/udge/compile-as-lib/hs $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 lib/udge/compile-as-lib/py $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/check             $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/check-1           $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/compile-and-run   $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/compile-and-run-1 $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 -d                    $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/c    $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/py   $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/cc   $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/cs   $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/java $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/js   $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 -d                           $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/c    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/py   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/cc   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/cs   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/java $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/js   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 -d                       $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/fractions $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/icpc      $(DESTDIR)$(PREFIX)/lib/udge/score
@@ -332,7 +349,7 @@ test-install:
 	make uninstall     DESTDIR=pkg
 	find pkg -type f
 	find pkg -type f | wc -l
-	[ "`find pkg -type f | wc -l`" -eq 36 ] # udgerc, nginx conf and problems
+	[ "`find pkg -type f | wc -l`" -eq 86 ] # udgerc, nginx conf and problems
 	rm -r pkg
 
 test-dev-install:
