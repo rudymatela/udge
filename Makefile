@@ -232,6 +232,7 @@ install:
 	install -m 0755 bin/udge-backup                   $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-check                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-compile-and-run          $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-create-run               $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-delete-user              $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
@@ -297,10 +298,10 @@ install:
 	# html, slot and results need to be writable by the udge user.
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
-	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/html
-	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/trial
-	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/slot
-	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/results
+	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/html
+	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/trial
+	[ "$$EUID" -ne 0 ] || chown -R udge.udge $(DESTDIR)/var/lib/udge/slot
+	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
@@ -315,7 +316,6 @@ uninstall-and-purge: uninstall
 	mv $(DESTDIR)$(NGINX_AVAIL)/udge{,-old-$(now)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
 	userdel udge
-
 
 # Run this as your regular user before dev-install
 dev-setup:
@@ -348,6 +348,7 @@ dev-install:
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
 start-services:
+	udge-create-run
 	systemctl start fcgiwrap.socket
 	systemctl start fcgiwrap
 	systemctl start nginx
