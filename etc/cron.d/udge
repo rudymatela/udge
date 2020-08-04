@@ -3,16 +3,23 @@
 # Udge - GPLv2 - Copyright (C) 2020 Rudy Matela
 
 # picks and checks run submissions
-* * * * * udge /usr/local/bin/udge-pick
-* * * * * udge /usr/local/bin/udge-check
+* * * * * udge (sleep  0; /usr/local/bin/udge-pick)
+* * * * * udge (sleep 30; /usr/local/bin/udge-pick)
+
+* * * * * udge (sleep  0; /usr/local/bin/udge-check)
+* * * * * udge (sleep 10; /usr/local/bin/udge-check)
+* * * * * udge (sleep 20; /usr/local/bin/udge-check)
+* * * * * udge (sleep 30; /usr/local/bin/udge-check)
+* * * * * udge (sleep 40; /usr/local/bin/udge-check)
+* * * * * udge (sleep 50; /usr/local/bin/udge-check)
 
 # runs submissions
-* * * * * udge-1 /usr/local/bin/udge-compile-and-run 1
-* * * * * udge-2 /usr/local/bin/udge-compile-and-run 2
-* * * * * udge-3 /usr/local/bin/udge-compile-and-run 3
-* * * * * udge-4 /usr/local/bin/udge-compile-and-run 4
-* * * * * udge-5 /usr/local/bin/udge-compile-and-run 5
-* * * * * udge-6 /usr/local/bin/udge-compile-and-run 6
+* * * * * udge-1 (sleep  0; udge-1 /usr/local/bin/udge-compile-and-run 1)
+* * * * * udge-2 (sleep 10; udge-2 /usr/local/bin/udge-compile-and-run 2)
+* * * * * udge-3 (sleep 20; udge-3 /usr/local/bin/udge-compile-and-run 3)
+* * * * * udge-4 (sleep 30; udge-4 /usr/local/bin/udge-compile-and-run 4)
+* * * * * udge-5 (sleep 40; udge-5 /usr/local/bin/udge-compile-and-run 5)
+* * * * * udge-6 (sleep 50; udge-6 /usr/local/bin/udge-compile-and-run 6)
 
 # update htmls
 *   * * * * udge /usr/local/bin/udge-update-all-user-htmls

@@ -3,7 +3,7 @@ TODO list for Udge
 
 * make sure submissions in slots appear in the user page
 
-* improve cron job timing (offset jobs?)
+* add udge-check-then-pick to be used instead of check and pick in cron
 
 * compute and record runtime and memory
 
@@ -30,6 +30,9 @@ TODO list for Udge
 
 	1. `fopen("/run/1/junk.txt", "w")`
 	2. `fopen("/run/1/junk", "w")`
+
+* find a less hacky solution to "sleep ..." on cron.d/udge.  It works for now
+  for testing purposes.
 
 
 For later
