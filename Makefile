@@ -317,6 +317,7 @@ uninstall:
 	for file in `find bin lib cgi-bin -type f`; do \
 		rm -f $(DESTDIR)$(PREFIX)/$$file; done
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
+	rm -rf $(DESTDIR)/etc/cron.d/udge
 
 # Use with care.  This can potentially delete more than wanted.
 now=$(shell date "+%Y%m%d-%H%M%S")
