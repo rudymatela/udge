@@ -38,7 +38,7 @@ verbose="$2"
 [ -d "$RUN/$slot" ] || errxit "slot not found (run): $slot"
 
 submission="`find $SLOTS/$slot -type f`"
-[ -n "$submission" ] || finish "nothing to do"
+[ -n "$submission" ] || finish "nothing to do on slot $slot"
 lock=$RUN/$slot/lock
 mkdir "$lock" || finish "Failed to lock $lock.  Already running or run?"
 

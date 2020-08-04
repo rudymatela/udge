@@ -1,13 +1,7 @@
 TODO list for Udge
 ==================
 
-* add `udge-pick` -- use a `/var/lib/udge/slot` directory
-
-* add `udge-compile-and-run`
-
-* add `udge-check`
-
-* reimplement `udge-pick-and-judge` using the above
+* check result of `udge-pick-and-judge` most `example/` calls
 
 * on timeout, stop running (if we timeout on set 3, don't run 4, 5 and 6)
 

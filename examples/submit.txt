@@ -26,11 +26,17 @@ $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*
 $ alias anonymize='sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo'
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
+$ udge-pick-and-judge
+slot = /var/lib/udge/slot/1
+udge-pick: nothing to do (unlocking /var/lib/udge/slot/1)
+udge-compile-and-run: nothing to do on slot 1
+udge-compile-and-run: nothing to do on slot 2
+udge-compile-and-run: nothing to do on slot 3
+udge-compile-and-run: nothing to do on slot 4
+udge-compile-and-run: nothing to do on slot 5
+udge-compile-and-run: nothing to do on slot 6
+udge-check: nothing to do
 $
 $
 $ curl -s udge/submit | display
@@ -234,11 +240,7 @@ $ find $SUBMISSIONS/$user -type f | anonymize
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
 
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $ sleep 1
 $ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
@@ -250,11 +252,7 @@ $ find $SUBMISSIONS/$user -type f | anonymize
 
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ tmp=`mktemp /tmp/huge-XXXXXXXXXX`
@@ -271,11 +269,7 @@ $ udge-submit $tmp hello-world c
 udge-submit: 413
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ udge-delete-user $user -f

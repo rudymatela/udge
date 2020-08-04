@@ -222,12 +222,14 @@ install:
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-backup                   $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-check                    $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-compile-and-run          $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-delete-user              $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-passwd                   $(DESTDIR)$(PREFIX)/bin
-	install -m 0755 bin/udge-pick-and-judge           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-pick                     $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-pick-and-judge           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-rank                     $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-sandbox                  $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-submit                   $(DESTDIR)$(PREFIX)/bin

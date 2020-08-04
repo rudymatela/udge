@@ -54,11 +54,7 @@ udge-submit: 429
 udge-submit: no more than 3 submissions on the queue per user, try again in a few minutes
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (1x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (2x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (3x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (4x)
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions (5x)
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ udge-delete-user $user_s -f
