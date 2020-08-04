@@ -321,7 +321,13 @@ uninstall-and-purge: uninstall
 	mv $(DESTDIR)/etc/udgerc{,-old-$(now)}
 	mv $(DESTDIR)$(NGINX_AVAIL)/udge{,-old-$(now)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
-	mv /run/udge{,-old-$(now)}
+	mv /run/udge{,-old-$(now)} || true
+	userdel udge-1
+	userdel udge-2
+	userdel udge-3
+	userdel udge-4
+	userdel udge-5
+	userdel udge-6
 	userdel udge
 
 # Run this as your regular user before dev-install
