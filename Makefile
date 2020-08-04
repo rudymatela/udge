@@ -366,7 +366,7 @@ test-dev-install:
 	rmdir pkg || true
 
 list-missing-copyright:
-	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile README.md
+	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile README.md || true
 
 cloc:
 	cloc bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile problem/ README.md TODO.md
