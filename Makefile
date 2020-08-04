@@ -185,6 +185,7 @@ clean-submissions:
 
 clean-slots:
 	rm -rf var/slot/*/lock
+	rm -rf /run/udge/*/lock
 
 clean-results:
 	rm -rf var/results
