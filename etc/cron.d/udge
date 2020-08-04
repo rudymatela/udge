@@ -3,15 +3,12 @@
 # Udge - GPLv2 - Copyright (C) 2020 Rudy Matela
 
 # picks and checks run submissions
-* * * * * udge (sleep  0; /usr/local/bin/udge-pick)
-* * * * * udge (sleep 30; /usr/local/bin/udge-pick)
-
-* * * * * udge (sleep  0; /usr/local/bin/udge-check)
-* * * * * udge (sleep 10; /usr/local/bin/udge-check)
-* * * * * udge (sleep 20; /usr/local/bin/udge-check)
-* * * * * udge (sleep 30; /usr/local/bin/udge-check)
-* * * * * udge (sleep 40; /usr/local/bin/udge-check)
-* * * * * udge (sleep 50; /usr/local/bin/udge-check)
+* * * * * udge (sleep  0; /usr/local/bin/udge-check-and-pick)
+* * * * * udge (sleep 10; /usr/local/bin/udge-check-and-pick)
+* * * * * udge (sleep 20; /usr/local/bin/udge-check-and-pick)
+* * * * * udge (sleep 30; /usr/local/bin/udge-check-and-pick)
+* * * * * udge (sleep 40; /usr/local/bin/udge-check-and-pick)
+* * * * * udge (sleep 50; /usr/local/bin/udge-check-and-pick)
 
 # runs submissions
 * * * * * udge-1 (sleep  0; udge-1 /usr/local/bin/udge-compile-and-run 1)

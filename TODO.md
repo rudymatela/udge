@@ -3,8 +3,6 @@ TODO list for Udge
 
 * make sure submissions in slots appear in the user page
 
-* add udge-check-then-pick to be used instead of check and pick in cron
-
 * compute and record runtime and memory
 
 * configure rate limiting on nginx
