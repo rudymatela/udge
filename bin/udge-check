@@ -40,7 +40,7 @@ do
 	s="`basename $s`"
 	[ -d $SLOTS/$s ] || errxit "slot $s folder $SLOTS/$s does not exist"
 	[ -d $RUN/$s   ] || errxit "run $s folder $RUN/$s does not exist"
-	if mv $RUN/$s/lock/run $RUN/$s/lock/check 2>/dev/null  # relies on mv's atomicity
+	if [ -e $RUN/$s/lock/run ] && mkdir $RUN/$s/check  # relies on mk atomicity
 	then
 		slot=$s
 		break
@@ -49,6 +49,8 @@ done
 [ -n "$slot" ] || finish "nothing to do"
 
 # TODO: somewhere here check that no process are running for a given slot
+
+cp -r $RUN/$s/{lock/run,check}  # copy everything to check just in case
 
 submission="`find $SLOTS/$slot -type f`"
 [ -n "$submission" ] || errxit "no submission"
@@ -66,7 +68,7 @@ language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 [ -n "$problem" ]   || errxit "could not parse problem"
 [ -n "$language" ]  || errxit "could not parse language"
 
-$lib/check $PROBLEMS/$problem $RUN/$s/lock/check | tee $SLOTS/$s/lock/$user/$timestamp/result
+$lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
 mkdir -p $RESULTS/$user/$problem
 mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem
 rm -r $SLOTS/$s/lock
@@ -74,6 +76,7 @@ rm -r $SLOTS/$s/lock
 # as udge-check runs as a different user from udge-compile-and-run.
 # So we just move it to a junk folder and let compile-and-run delete it in the next run.
 mv $RUN/$s/lock $RUN/$s/junk
+rm -r $RUN/$s/check
 echo created $RESULTS/$user/$problem/$timestamp/$problem.$language
 echo created $RESULTS/$user/$problem/$timestamp/result
 

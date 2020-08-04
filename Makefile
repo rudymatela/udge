@@ -206,12 +206,14 @@ clean-test-users:
 
 install:
 	mkdir -p $(DESTDIR)/etc
+	mkdir -p $(DESTDIR)/etc/cron.d
 	mkdir -p $(DESTDIR)$(NGINX_AVAIL)
 	mkdir -p $(DESTDIR)/var/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0644 etc/udgerc $(DESTDIR)/etc/udgerc
+	install -m 0644 etc/cron.d/udge $(DESTDIR)/etc/cron.d/udge
 	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)$(NGINX_AVAIL)/udge
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
@@ -384,7 +386,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 86 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 87 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 
