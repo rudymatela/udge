@@ -23,6 +23,15 @@
 #
 # usage:
 #   lib/udge/compile-and-run-1 path/to/problem/1 path/to/problem.lang path/to/dest [-v]
+#
+# this script returns an error when:
+#
+# 1. there is a compilation error
+# 2. the running time limit is reached
+# 3. too many processes are created
+#
+# This allows us to short-circuit testing.
+# It is stopped when any of the above happens.
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 set="$1"
@@ -104,3 +113,7 @@ killall -q -9 ../$exe
 cd - >/dev/null
 
 touch "$dst"
+
+grep -q "udge-sandbox: fork: .* unavailable" $dst/err && errxit "too many processes"
+grep -q "^timeout: sending signal TERM"      $dst/err && exit 1
+true

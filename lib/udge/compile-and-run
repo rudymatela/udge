@@ -46,7 +46,7 @@ do
 	[ -d $dir ] || dir=$set/
 	id=`echo $dir | sed -e "s|$set/||"`
 	[ -n "$id" ] || rmdir $dst # compile-and-run-1 creates it
-	$lib/compile-and-run-1 $dir $src $dst/$id $verbose || $cat $dst/$id/log >&2
+	$lib/compile-and-run-1 $dir $src $dst/$id $verbose || break
 done
 
 [ -n "$verbose" ] && find $dst

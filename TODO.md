@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* on timeout, stop running (if we timeout on set 3, don't run 4, 5 and 6)
-
 * test running with multiple users
 
 * compute and record runtime and memory
