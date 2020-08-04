@@ -121,20 +121,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	You will have to re-run `udge-update-all-problem-htmls` every time you add
 	or edit a problem description so HTML files are updated.
 
-4. set the following on `udge` user's crontab with `sudo -u udge crontab -e`
-
-		* * * * * /usr/local/bin/udge-pick-and-judge
-		* * * * * /usr/local/bin/udge-update-all-user-htmls
-		*/2 * * * * /usr/local/bin/udge-update-rank-html
-		33 3 * * * /usr/local/bin/udge-backup
-
-	The above will:
-	`pick-and-judge` and `udge-update-all-user-htmls` every minute;
-	`udge-update-rank-html` every 2 minutes; and
-	`udge-backup` daily at 3:33.
-	Please adapt as needed.
-
-5. Add the following entry to `/etc/hosts`.
+4. Add the following entry to `/etc/hosts`.
 
 		127.0.0.1 udge udge.localdomain
 
@@ -143,7 +130,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	If you already have a public DNS entry pointing to your server
 		you may skip this step.
 
-6. (optional) edit the domain name on Udge's Nginx config, located usually on either:
+5. (optional) edit the domain name on Udge's Nginx config, located usually on either:
 
 	- `/etc/nginx/srv/avail/udge`; or
 	- `/etc/nginx/srv/sites-available/udge`
@@ -152,7 +139,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	the actual location will depend on your Linux distribution.
 
 
-7. (optional) start the Nginx server if you haven't done so with either:
+6. (optional) start the Nginx server if you haven't done so with either:
 
 	- `systemctl start nginx`; or
 	- `service nginx start`; or
@@ -161,11 +148,11 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	which will depend on your Linux distribution.
 
-8. enable Udge on Nginx and reload the configuration:
+7. enable Udge on Nginx and reload the configuration:
 
 		make enable-nginx-udge-site
 
-9. test that everything works
+8. test that everything works
 	by typing `udge/` (or your selected domain of steps 5 and 6)
 	in your browser's address bar.
 	Do not forget the `/` at the end, otherwise your browser may search the web
@@ -305,12 +292,9 @@ you should be able to run `make test` successfully.
 
 If you like your development environment
 to automatically judge and update pages in the background,
-you should also add the following to your regular user's crontab
-(use `crontab -e`):
-
-	* * * * * /usr/local/bin/udge-pick-and-judge
-	* * * * * /usr/local/bin/udge-update-all-user-htmls
-	*/2 * * * * /usr/local/bin/udge-update-rank-html
+you should also add the contents of `etc/cron.d/udge` to your regular user's
+crontab (use `crontab -e`).  You will have to remove references to the `udge`
+and `udge-*` but the contents should be otherwise the same.
 
 
 ### Programs and Commands

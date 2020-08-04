@@ -1,11 +1,11 @@
 TODO list for Udge
 ==================
 
-* test running with multiple users
+* make sure submissions in slots appear in the user page
+
+* improve cron job timing (offset jobs?)
 
 * compute and record runtime and memory
-
-* automatically install crontab entries
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
