@@ -41,7 +41,7 @@ www=`stat -c%U $USERS`
 [ "$www" == "`whoami`" ] || WARN "not running as the $www user, auth mail fail later"
 
 umask 0007 # dir: rwxrws---, file: rw-rw----
-mkdir -p "$user_dir"
 udge-passwd "$user"
+mkdir -p "$user_dir"
 println "$email" > "$user_dir/email"
 println "$name"  > "$user_dir/name"
