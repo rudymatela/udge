@@ -87,6 +87,7 @@ do
 done | sort -n | tail -1 >$bestmp
 mv $bestmp $RESULTS/$user/$problem/best
 echo updated $RESULTS/$user/$problem/best
+touch $RESULTS/$user
 
 echo
 echo running again...
