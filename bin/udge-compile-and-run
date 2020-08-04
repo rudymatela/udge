@@ -41,6 +41,7 @@ submission="`find $SLOTS/$slot -type f`"
 [ -n "$submission" ] || finish "nothing to do on slot $slot"
 lock=$RUN/$slot/lock
 mkdir "$lock" || finish "Failed to lock $lock.  Already running or run?"
+rm -rf $RUN/$slot/junk # cleanup junk left from the previous submission
 
 unlock-and-finish() {
 	rm -r $lock

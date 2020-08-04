@@ -5,12 +5,6 @@ TODO list for Udge
 
 * test running with multiple users
 
-* use `umask 0002` on `compile-and-run`
-  so `udge` can delete stuff from `udge-1`
-
-	- make so there is a way to recover if that is overwritten:
-	- a simple `rm -rf /run/1/*` could do the trick
-
 * compute and record runtime and memory
 
 * automatically install crontab entries
@@ -33,6 +27,11 @@ TODO list for Udge
 	- only show problems with tries
 
 * sweep "TODOs" scattered throughout the code
+
+* test leaving junk flat on `/run/1/`
+
+	1. `fopen("/run/1/junk.txt", "w")`
+	2. `fopen("/run/1/junk", "w")`
 
 
 For later
