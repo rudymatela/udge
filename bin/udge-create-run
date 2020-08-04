@@ -47,9 +47,9 @@ chown $udge.$group $RUN
 for slot in `ls-slots`
 do
 	udgeslot=udge-$slot
-	id -u $udgeslot >/dev/null 2>&1 || udgeslot=$udge
-	echo "Changing ownership of $RUN/$slot to $udgeslot.$group"
-	chown $udgeslot.$group $RUN/$slot
+	id -g $udgeslot >/dev/null 2>&1 || udgeslot=$group
+	echo "Changing ownership of $RUN/$slot to $udge.$udgeslot"
+	chown $udge.$udgeslot $RUN/$slot
 done
 
 ls -l /run/udge
