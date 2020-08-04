@@ -201,6 +201,7 @@ clean-test-users:
 	rm -rf /var/lib/udge/results/test-*-*-*
 	rm -rf /var/lib/udge/submissions/test-*-*-*
 	rm -rf /var/lib/udge/trial/test-*-*-*
+	rm -rf /var/lib/udge/slot/test-*-*-*
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
@@ -218,6 +219,13 @@ install:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/html
 	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/trial
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/1
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/2
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/3
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/4
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/5
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/6
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
@@ -286,11 +294,12 @@ install:
 	# which makes files created within it inhehit the group and allows deletion
 	# by the udge user.
 	#
-	# html, trial and results need to be writable by the udge user.
+	# html, slot and results need to be writable by the udge user.
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/html
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/trial
+	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/slot
 	[ "$$EUID" -ne 0 ] || chown udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
@@ -313,6 +322,13 @@ dev-setup:
 	install -m 0755 -d var
 	install -m 2770 -d var/users
 	install -m 2775 -d var/submissions
+	install -m 0755 -d var/slot
+	install -m 0755 -d var/slot/1
+	install -m 0755 -d var/slot/2
+	install -m 0755 -d var/slot/3
+	install -m 0755 -d var/slot/4
+	install -m 0755 -d var/slot/5
+	install -m 0755 -d var/slot/6
 	ln -rsfT problem var/problem
 
 # Run this as root after dev-setup
