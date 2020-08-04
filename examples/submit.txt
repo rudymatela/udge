@@ -240,8 +240,10 @@ $ find $SUBMISSIONS/$user -type f | anonymize
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello.c
 /var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
 
-$ udge-pick-and-judge >/dev/null 2>/dev/null
-$ sleep 1
+$ udge-pick-and-judge | grep "^./.$" | sort
+0/1
+4/6
+4/6
 $ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
 Submission successful
@@ -252,7 +254,8 @@ $ find $SUBMISSIONS/$user -type f | anonymize
 
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ udge-pick-and-judge | grep "^./.$" | sort
+6/6
 $
 $
 $ tmp=`mktemp /tmp/huge-XXXXXXXXXX`
@@ -269,7 +272,8 @@ $ udge-submit $tmp hello-world c
 udge-submit: 413
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ udge-pick-and-judge | grep "^./.$"
+0/1
 $
 $
 $ udge-delete-user $user -f
