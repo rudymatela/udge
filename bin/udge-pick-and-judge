@@ -36,9 +36,9 @@ prefix="$(dirname "$(dirname "$0")")"
 
 set -e
 
-udge-pick
+$bin/udge-pick
 for slot in `ls-slots`
 do
-	udge-compile-and-run $slot
+	$bin/udge-compile-and-run $slot
 done
-udge-check
+$bin/udge-check
