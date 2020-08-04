@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* check result of `udge-pick-and-judge` most `example/` calls
-
 * on timeout, stop running (if we timeout on set 3, don't run 4, 5 and 6)
 
 * test running with multiple users
