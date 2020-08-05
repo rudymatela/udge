@@ -44,29 +44,24 @@ submission="`find $SLOTS/$slot -type f`"
 lock=$RUN/$slot/lock
 mkdir "$lock" || finish "Failed to lock $lock.  Already running or run?"
 
-unlock-and-finish() {
-	rm -r $lock
-	finish "$@" "(unlocking $lock)"
-}
-
-unlock-and-errxit() {
-	rm -r $lock
+mkrun-and-errxit() {
+	mkdir $lock/$run
 	errxit "$@" "(unlocking $lock)"
 }
 
 echo Compiling then running $submission.
 
-[ -f "$submission" ] || unlock-and-errxit "failed sanity check"  # TODO: create a dummy "run" and purge the submission
+[ -f "$submission" ] || mkrun-and-errxit "failed sanity check"
 
 user="`     echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\1,'`"
 timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\2,'`"
 problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\3,'`"
 language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 
-[ -n "$user" ]       || unlock-and-errxit "could not parse user" # TODO: create a dummy "run" and purge the submission
-[ -n "$timestamp" ]  || unlock-and-errxit "could not parse timestamp"
-[ -n "$problem" ]    || unlock-and-errxit "could not parse problem"
-[ -n "$language" ]   || unlock-and-errxit "could not parse language"
+[ -n "$user"       ] || mkrun-and-errxit "could not parse user"
+[ -n "$timestamp"  ] || mkrun-and-errxit "could not parse timestamp"
+[ -n "$problem"    ] || mkrun-and-errxit "could not parse problem"
+[ -n "$language"   ] || mkrun-and-errxit "could not parse language"
 
 compileandrun="`realpath "$lib/compile-and-run"`"
 cd $lock
