@@ -103,12 +103,17 @@ mkdir $dst/files
 [ "$(echo $set/*.txt)" != "$set/*.txt" ] && cp $set/*.txt $dst/files
 cd $dst/files
 
+# the order here does matter:
+# timeout should be after the $sandbox command
+# otherwise process termination may not work as nicely (cf. any 0-tle.c)
 nice \
-	timeout --preserve-status -v -k1s ${time_limit}s \
 	$sandbox \
+	timeout --preserve-status -v -k1s ${time_limit}s \
 	$run ../$exe $args <"$in" >../out 2>../err
 echo $? > ../exit
-killall -q -9 ../$exe
+
+# kill ../$exe if it is still running
+killall -gq -9 ../$exe && errxit "the executable had to be killed (signal 9)"
 
 cd - >/dev/null
 
