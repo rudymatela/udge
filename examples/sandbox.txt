@@ -93,9 +93,13 @@ No - runtime error (non-zero exit code)
 $
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > examples/sandbox/sol-searcher-hello-world.c
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/addition/"    > examples/sandbox/sol-searcher-addition.c
-$ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c # TODO: should be 0/1
+$
+$ # to avoid the following two from getting points at all,
+$ # do chmod o-r /var/lib/udge/problem/{*,*/*}/sol
+$ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c
 1/1
 $ udge-judge addition    examples/sandbox/sol-searcher-addition.c # TODO: should be 0/1
 1/1
+$
 $ rm examples/sandbox/sol-searcher-addition.c
 $ rm examples/sandbox/sol-searcher-hello-world.c
