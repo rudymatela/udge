@@ -30,14 +30,9 @@ set -e
 [ -d "$SLOTS" ] || errxit "the slots dir does not exist ($SLOTS)"
 [ -d "$RUN" ]   || errxit "the run dir does not exist ($RUN)"
 
-# TODO: use basename to find the id of the slot throughout the rest of the code
-#       like here
-
 slot=
-for s in $SLOTS/*
+for s in `ls-slots`
 do
-	[ -d $s ] || errxit "there are no slots in $SLOTS"
-	s="`basename $s`"
 	[ -d $SLOTS/$s ] || errxit "slot $s folder $SLOTS/$s does not exist"
 	[ -d $RUN/$s   ] || errxit "run $s folder $RUN/$s does not exist"
 	if [ -e $RUN/$s/lock/run ] && mkdir $RUN/$s/check  # relies on mk atomicity

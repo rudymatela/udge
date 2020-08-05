@@ -38,18 +38,15 @@ prefix="$(dirname "$(dirname "$0")")"
 
 set -e
 
-# TODO: automatically set up slots in the Makefile
-# TODO: make sure submissions in slots appear on udge-latest-submissions
-
 [ -d "$SUBMISSIONS" ] || finish "nothing to do (submissions dir $SUBMISSIONS does not exist)"
 [ -d "$SLOTS" ] || errxit "the slots dir does not exist ($SLOTS)"
 slot=
-for s in $SLOTS/*
+for s in `ls-slots`
 do
-	[ -d $s ] || errxit "there are no slots in $SLOTS"
-	if mkdir $s/lock 2>/dev/null  # relies on atomicity of mkdir
+	[ -d $SLOTS/$s ] || errxit "there are no slots in $SLOTS"
+	if mkdir $SLOTS/$s/lock 2>/dev/null  # relies on atomicity of mkdir
 	then
-		slot=$s
+		slot=$SLOTS/$s
 		break
 	fi
 done
