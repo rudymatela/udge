@@ -54,4 +54,4 @@ exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
 # 4. unshare
 # 5. exe
 #
-# TODO: eventually test to decide a better default
+# TODO: eventually test to decide a better MAX_PROCESSES default
