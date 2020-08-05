@@ -9,7 +9,6 @@ NAME="Udge Online Judge"
 USERS=/var/lib/udge/users
 PROBLEMS=/var/lib/udge/problem
 SUBMISSIONS=/var/lib/udge/submissions
-TRIAL=/var/lib/udge/trial
 RESULTS=/var/lib/udge/results
 SLOTS=/var/lib/udge/slot
 PUBLIC_HTML=/var/lib/udge/html

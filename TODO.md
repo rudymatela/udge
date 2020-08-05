@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* make sure submissions in slots appear in the user page
-
 * compute and record runtime and memory
 
 * configure rate limiting on nginx

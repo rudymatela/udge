@@ -27,9 +27,9 @@
 #
 # and writes to:
 #
-#   /var/lib/udge/trial/<slot>/lock/submission/<timestamp>/<user>/<problem>.<lang>
+#   /var/lib/udge/slot/<slot>/lock/<user>/<timestamp>/<problem>.<lang>
 #
-# Pick and judge needs to be run with write permissions to the submissions
+# udge-pick needs to be run with write permissions to the submissions
 # folder, to do this, you may want to add your user (or the user for which the
 # judge will run) to the http group.
 

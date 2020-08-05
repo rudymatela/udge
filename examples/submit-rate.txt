@@ -54,10 +54,7 @@ udge-submit: 429
 udge-submit: no more than 3 submissions on the queue per user, try again in a few minutes
 $
 $
-$ udge-pick-and-judge | grep "^./.$"
-4/6
-4/6
-4/6
+$ udge-pick-and-judge | grep "^./.$" | sort -u
 4/6
 $
 $

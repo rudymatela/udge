@@ -200,7 +200,6 @@ clean-test-users:
 	rm -rf /var/lib/udge/users/test-*-*-*
 	rm -rf /var/lib/udge/results/test-*-*-*
 	rm -rf /var/lib/udge/submissions/test-*-*-*
-	rm -rf /var/lib/udge/trial/test-*-*-*
 	rm -rf /var/lib/udge/slot/test-*-*-*
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
@@ -220,7 +219,6 @@ install:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/html
 	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions
-	install -m 0755 -d $(DESTDIR)/var/lib/udge/trial
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/1
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/2
@@ -308,7 +306,6 @@ install:
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
 	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
 	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/html
-	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/trial
 	[ "$$EUID" -ne 0 ] || chown -R udge.udge $(DESTDIR)/var/lib/udge/slot
 	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/results
 
@@ -388,12 +385,9 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 87 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 86 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
-
-misc:
-	var=`mktemp -d /tmp/misc-makefile-XXXXXXXXXX`; echo $$var
 
 test-dev-install:
 	[ ! -e pkg/d ]
