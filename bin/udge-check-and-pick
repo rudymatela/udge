@@ -2,7 +2,7 @@
 #
 # udge-check-and-pick: check previous runs and pick new submissions
 #
-# Usage: udge-check-and-pick
+# Usage: udge-check-and-pick [<sleep-interval> [<sleep-interval> [...]]]
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -19,11 +19,40 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# By running this without arguments (`udge-check-and-pick`), it does:
+#
+# 1. checks ran submissions
+# 2. picks new submissions and places them on slots
+# 3. updates user HTMLs
+#
+# By running it with `udge-check-and-pick 10`:
+#
+# 1. runs `udge-check-and-pick` once
+# 2. waits 10 seconds
+# 3. runs `udge-check-and-pick` again
+#
+# By running it with `udge-check-and-pick 2 3 4`:
+#
+# 1. runs `udge-check-and-pick` once
+# 2. waits 2 seconds
+# 3. runs `udge-check-and-pick` again
+# 4. waits 3 seconds
+# 5. runs `udge-check-and-pick` again
+# 4. waits 4 seconds
+# 5. runs `udge-check-and-pick` again
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
 set -e
 
-$bin/udge-check  # check previous runs
-$bin/udge-pick   # pick new submissions
+$bin/udge-check                  # check previous runs
+$bin/udge-pick                   # pick new submissions
+$bin/udge-update-all-user-htmls  # update user HTMLs
+
+[ -n "$1" ] || exit 0
+sleep "$1"
+shift
+exec $bin/udge-check-and-pick "$@"
