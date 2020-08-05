@@ -38,9 +38,7 @@ user_dir="$USERS/$user"
 
 # check if we are running as www-data / http user
 www=`stat -c%U $USERS`
-[ "$www" == "`whoami`" ] ||
-	prompt sure "Not running as the $www user, auth mail fail later. Are you sure? "
-[ \( "$sure" == y \) -o \( "$sure" == yes \)  ] || exit 0
+[ "$www" == "`whoami`" ] || errxit "not running as the $www user, auth mail fail later"
 
 umask 0007 # dir: rwxrws---, file: rw-rw----
 mkdir -p "$user_dir"
