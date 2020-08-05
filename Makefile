@@ -108,6 +108,7 @@ test-web-noindex: \
   names.clitest \
   submit.clitest \
   submit-rate.clitest \
+  sandbox-submit.clitest \
   test-happy
 
 test-happy: \

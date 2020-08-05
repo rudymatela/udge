@@ -33,16 +33,21 @@ set -e
 
 slot="$1"
 verbose="$2"
-[ -n "$slot" ] || errxit "you must provide a slot"
+[ -n "$slot"        ] || errxit "you must provide a slot"
+[ -n "$SLOTS"       ] || errxit "SLOTS is not set"  # double-checking because of rm -rf
+[ -n "$RUN"         ] || errxit "RUN is not set"    # double-checking because of rm -rf
 [ -d "$SLOTS/$slot" ] || errxit "slot not found (src): $slot"
-[ -d "$RUN/$slot" ] || errxit "slot not found (run): $slot"
+[ -d "$RUN/$slot"   ] || errxit "slot not found (run): $slot"
 
-rm -rf $RUN/$slot/junk # cleanup any junk left from the previous submission
+# cleanup any junk left from the previous submission
+rm -rf $RUN/$slot/junk
+find $RUN/$slot -mindepth 1 -path $RUN/$slot/lock -prune -o -print0 | xargs -0 rm -rf
 
 submission="`find $SLOTS/$slot -type f`"
 [ -n "$submission" ] || finish "nothing to do on slot $slot"
 lock=$RUN/$slot/lock
 mkdir "$lock" || finish "Failed to lock $lock.  Already running or run?"
+
 
 mkrun-and-errxit() {
 	mkdir $lock/$run
