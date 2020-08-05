@@ -113,6 +113,14 @@ First make sure you have all the [dependencies] installed.  Then:
 	otherwise you will be using the default example problems.
 	This can be done at a later point.
 
+	After setting them up, make sure you run:
+
+		chmod o-r /var/lib/udge/problem/{*,*/*}/sol
+
+	The above will prevent attempted solutions
+	to read directly from solution files.
+	(cf. `examples/sandbox/sol-searcher.c`)
+
 3. generate static HTML files:
 
 		sudo -u udge udge-update-all-problem-htmls
