@@ -1,11 +1,6 @@
 TODO list for Udge
 ==================
 
-* test leaving junk flat on `/run/1/`
-
-	1. `fopen("/run/1/junk.txt", "w")`
-	2. `fopen("/run/1/junk", "w")`
-
 * compute and record runtime and memory
 
 * configure rate limiting on nginx

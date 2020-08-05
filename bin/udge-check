@@ -53,11 +53,15 @@ cp -r $RUN/$s/{lock/run,check}  # copy everything to check just in case
 
 cleanup() {
 	rm -r $SLOTS/$s/lock
+	# if a junk file already exists, move it somewhere else 1st
+	[ -e $RUN/$s/junk ] &&
+		warn "moving junk file first (possible tampering attempt)" &&
+		mv $RUN/$s/junk `mktemp -u $RUN/$s/junk.XXXXXXXXXXXXXXXXXXXX`
 	# We can't simply delete $RUN/$s/lock
 	# as udge-check runs as a different user from udge-compile-and-run.
 	# So we just move it to a junk folder and let compile-and-run delete it in the next run.
-	mv $RUN/$s/lock $RUN/$s/junk
-	rm -r $RUN/$s/check
+	mv $RUN/$s/lock $RUN/$s/junk || warn "could not move $RUN/$s/lock"
+	rm -r $RUN/$s/check || warn "could not remove $RUN/$s/check"
 }
 
 clerrxit() {
@@ -83,7 +87,8 @@ language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 
 $lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
 mkdir -p $RESULTS/$user/$problem
-mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem
+mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem ||
+	warn "submission already judged?"
 cleanup
 echo created $RESULTS/$user/$problem/$timestamp/$problem.$language
 echo created $RESULTS/$user/$problem/$timestamp/result

@@ -32,7 +32,7 @@ $ udge-submit examples/sandbox/junk.c hello-world
 Submission successful (202)
 $
 $
-$ udge-pick-and-judge | grep "^./.$"
+$ udge-pick-and-judge | grep -E "^./.$"
 0/1
 $
 $
@@ -44,4 +44,25 @@ $ find /run/udge | sort
 /run/udge/4
 /run/udge/5
 /run/udge/6
+$
+$
+$ udge-submit examples/sandbox/junk2.c addition
+Submission successful (202)
+$
+$
+$ udge-pick-and-judge | grep "^./.$"
+udge-check, warning: moving junk file first (possible tampering attempt)
+0/1
+$
+$
+$ find /run/udge | sort
+/run/udge
+/run/udge/1
+/run/udge/2
+/run/udge/3
+/run/udge/4
+/run/udge/5
+/run/udge/6
+$
+$
 $ udge-delete-user $user -f
