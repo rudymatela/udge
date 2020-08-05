@@ -27,9 +27,6 @@ TODO list for Udge
 	1. `fopen("/run/1/junk.txt", "w")`
 	2. `fopen("/run/1/junk", "w")`
 
-* find a less hacky solution to "sleep ..." on cron.d/udge.  It works for now
-  for testing purposes.
-
 
 For later
 ---------
