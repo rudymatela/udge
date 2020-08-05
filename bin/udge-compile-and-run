@@ -63,10 +63,10 @@ timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\2,'`"
 problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\3,'`"
 language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 
-[ -n "$user" ]      || unlock-and-errxit "could not parse user"  # TODO: create a dummy "run" and purge the submission
-[ -n "$timestamp" ] || unlock-and-errxit "could not parse timestamp"
-[ -n "$problem" ]   || unlock-and-errxit "could not parse problem"
-[ -n "$language" ]  || unlock-and-errxit "could not parse language"
+[ -n "$user" ]       || unlock-and-errxit "could not parse user" # TODO: create a dummy "run" and purge the submission
+[ -n "$timestamp" ]  || unlock-and-errxit "could not parse timestamp"
+[ -n "$problem" ]    || unlock-and-errxit "could not parse problem"
+[ -n "$language" ]   || unlock-and-errxit "could not parse language"
 
 compileandrun="`realpath "$lib/compile-and-run"`"
 cd $lock
