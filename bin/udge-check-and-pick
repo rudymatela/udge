@@ -40,8 +40,8 @@
 # 3. runs `udge-check-and-pick` again
 # 4. waits 3 seconds
 # 5. runs `udge-check-and-pick` again
-# 4. waits 4 seconds
-# 5. runs `udge-check-and-pick` again
+# 6. waits 4 seconds
+# 7. runs `udge-check-and-pick` again
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
