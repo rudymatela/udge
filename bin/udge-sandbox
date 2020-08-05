@@ -44,7 +44,7 @@ ulimit -x 1024 # file locks
 
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
-exec unshare -Urn -impuf env -i $chroot "$@"
+exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
 
 # In a fresh user, only 5 processes are needed, they are:
 #
