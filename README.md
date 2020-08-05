@@ -77,6 +77,7 @@ To install and run Udge, you will need:
 * fakechroot
 * util-linux --- for sandboxing with `unshare`
 * discount   --- for `markdown`
+* procmail   --- for `lockfile`
 * cronie
 * cracklib   --- for checking password strength
 * GCC's GCC  --- for C submission support
