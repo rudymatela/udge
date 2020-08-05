@@ -40,7 +40,7 @@ user_dir="$USERS/$user"
 www=`stat -c%U $USERS`
 [ "$www" == "`whoami`" ] ||
 	prompt sure "Not running as the $www user, auth mail fail later. Are you sure? "
-[ \( "$sure" == y \) -o \( "$sure" == yes \)  ] || exit 1
+[ \( "$sure" == y \) -o \( "$sure" == yes \)  ] || exit 0
 
 umask 0007 # dir: rwxrws---, file: rw-rw----
 mkdir -p "$user_dir"
