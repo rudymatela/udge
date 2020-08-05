@@ -34,6 +34,12 @@ udge-compile-and-run: nothing to do on slot 4
 udge-compile-and-run: nothing to do on slot 5
 udge-compile-and-run: nothing to do on slot 6
 udge-check: nothing to do
+udge-compile-and-run: nothing to do on slot 1
+udge-compile-and-run: nothing to do on slot 2
+udge-compile-and-run: nothing to do on slot 3
+udge-compile-and-run: nothing to do on slot 4
+udge-compile-and-run: nothing to do on slot 5
+udge-compile-and-run: nothing to do on slot 6
 $
 $
 $ ./examples/create-new-user $user u@example.com correct-horse-battery-staple
@@ -53,18 +59,6 @@ $
 $
 $ udge-pick-and-judge | grep "^./.$"
 6/6
-$
-$
-$ udge-pick-and-judge
-slot = /var/lib/udge/slot/1
-udge-pick: nothing to do (unlocking /var/lib/udge/slot/1)
-udge-compile-and-run: nothing to do on slot 1
-udge-compile-and-run: nothing to do on slot 2
-udge-compile-and-run: nothing to do on slot 3
-udge-compile-and-run: nothing to do on slot 4
-udge-compile-and-run: nothing to do on slot 5
-udge-compile-and-run: nothing to do on slot 6
-udge-check: nothing to do
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"

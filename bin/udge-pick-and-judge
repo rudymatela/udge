@@ -42,3 +42,8 @@ do
 	$bin/udge-compile-and-run $slot
 done
 $bin/udge-check
+# one last pass through compile-and-run to clear out junk files
+for slot in `ls-slots`
+do
+	$bin/udge-compile-and-run $slot
+done

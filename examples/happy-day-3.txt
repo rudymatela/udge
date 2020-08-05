@@ -34,6 +34,12 @@ udge-compile-and-run: nothing to do on slot 4
 udge-compile-and-run: nothing to do on slot 5
 udge-compile-and-run: nothing to do on slot 6
 udge-check: nothing to do
+udge-compile-and-run: nothing to do on slot 1
+udge-compile-and-run: nothing to do on slot 2
+udge-compile-and-run: nothing to do on slot 3
+udge-compile-and-run: nothing to do on slot 4
+udge-compile-and-run: nothing to do on slot 5
+udge-compile-and-run: nothing to do on slot 6
 $
 $ ./examples/create-new-user $user1 u@example.com correct-horse-
 User created
