@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* improve process clearing (do it on compile-and-run)
+
 * compute and record runtime and memory
 
 * configure rate limiting on nginx

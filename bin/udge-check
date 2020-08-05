@@ -20,8 +20,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# TODO: treat errors nicely
-
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
@@ -43,13 +41,33 @@ do
 done
 [ -n "$slot" ] || finish "nothing to do"
 
-# TODO: somewhere here check that no process are running for a given slot
+# If using an user for each slot, warn if there is still a process running.
+# This may be a false alarm caused by a new compile-and-run process checking
+# for a submission.
+slotuser="`stat -c%U $SLOTS/$s/lock`"
+[ "$slotuser" != "`whoami`" ] &&
+	pgrep -u $slotuser >/dev/null &&
+	warn "There are `pgrep -cu $slotuser` processes running for $slotuser."
 
 cp -r $RUN/$s/{lock/run,check}  # copy everything to check just in case
 
+cleanup() {
+	rm -r $SLOTS/$s/lock
+	# We can't simply delete $RUN/$s/lock
+	# as udge-check runs as a different user from udge-compile-and-run.
+	# So we just move it to a junk folder and let compile-and-run delete it in the next run.
+	mv $RUN/$s/lock $RUN/$s/junk
+	rm -r $RUN/$s/check
+}
+
+clerrxit() {
+	cleanup
+	errxit "$@"
+}
+
 submission="`find $SLOTS/$slot -type f`"
-[ -n "$submission" ] || errxit "no submission"
-[ -f "$submission" ] || errxit "submission file not found: $submission"
+[ -n "$submission" ] || clerrxit "no submission"
+[ -f "$submission" ] || clerrxit "submission file not found: $submission"
 
 echo checking $submission
 
@@ -58,20 +76,15 @@ timestamp="`echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\2,'`"
 problem="`  echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\3,'`"
 language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 
-[ -n "$user" ]      || errxit "could not parse user"
-[ -n "$timestamp" ] || errxit "could not parse timestamp"
-[ -n "$problem" ]   || errxit "could not parse problem"
-[ -n "$language" ]  || errxit "could not parse language"
+[ -n "$user" ]      || clerrxit "could not parse user"
+[ -n "$timestamp" ] || clerrxit "could not parse timestamp"
+[ -n "$problem" ]   || clerrxit "could not parse problem"
+[ -n "$language" ]  || clerrxit "could not parse language"
 
 $lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
 mkdir -p $RESULTS/$user/$problem
 mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem
-rm -r $SLOTS/$s/lock
-# We can't simply delete $RUN/$s/lock
-# as udge-check runs as a different user from udge-compile-and-run.
-# So we just move it to a junk folder and let compile-and-run delete it in the next run.
-mv $RUN/$s/lock $RUN/$s/junk
-rm -r $RUN/$s/check
+cleanup
 echo created $RESULTS/$user/$problem/$timestamp/$problem.$language
 echo created $RESULTS/$user/$problem/$timestamp/result
 
