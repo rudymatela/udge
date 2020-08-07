@@ -60,11 +60,11 @@ Submission successful (202)
 $
 $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  add.c            -   queued
-YYYY-MM-DD HH:MM:SS  add.c            -   queued
+YYYY-MM-DD HH:MM:SS  add.c            -       -     -    queued
+YYYY-MM-DD HH:MM:SS  add.c            -       -     -    queued
 $ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  hello-world.hs   -   queued
-YYYY-MM-DD HH:MM:SS  add.hs           -   queued
+YYYY-MM-DD HH:MM:SS  hello-world.hs   -       -     -    queued
+YYYY-MM-DD HH:MM:SS  add.hs           -       -     -    queued
 $
 $
 $ udge-pick-and-judge | grep "^./.$" | sort
@@ -75,11 +75,11 @@ $ udge-pick-and-judge | grep "^./.$" | sort
 $
 $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
-YYYY-MM-DD HH:MM:SS  add.c           6/6
+YYYY-MM-DD HH:MM:SS  add.c           4/6   0.00s   1MB   No - wrong output
+YYYY-MM-DD HH:MM:SS  add.c           6/6   0.00s   1MB
 $ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
-YYYY-MM-DD HH:MM:SS  add.hs          6/6
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   0.00s   3MB   No - wrong output
+YYYY-MM-DD HH:MM:SS  add.hs          6/6   0.01s   4MB
 $
 $
 $ udge-user-stats $user1
@@ -97,8 +97,8 @@ rectangle     -   0
 tee           -   0
 $
 $ udge-latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
-YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output
-YYYY-MM-DD HH:MM:SS  add.c           6/6
+YYYY-MM-DD HH:MM:SS  add.c           4/6   0.00s   1MB   No - wrong output
+YYYY-MM-DD HH:MM:SS  add.c           6/6   0.00s   1MB
 $
 $ udge-user-stats $user2
 1 problems solved
@@ -115,8 +115,8 @@ rectangle     -   0
 tee           -   0
 $
 $ udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
-YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  No - wrong output
-YYYY-MM-DD HH:MM:SS  add.hs          6/6
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   0.00s   3MB   No - wrong output
+YYYY-MM-DD HH:MM:SS  add.hs          6/6   0.01s   4MB
 $
 $
 $ udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
