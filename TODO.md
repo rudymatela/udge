@@ -3,8 +3,6 @@ TODO list for Udge
 
 * change runtime to miliseconds
 
-* use `column -t` on `udge-rank` and related scripts
-
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 

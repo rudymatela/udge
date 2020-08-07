@@ -120,8 +120,8 @@ YYYY-MM-DD HH:MM:SS  add.hs          6/6  0.01s  4MB
 $
 $
 $ udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/"
-<u2>       1  1 1 1 1
-<u1>       1  1 1 1 1
+<u2>    1  1  1  1  1
+<u1>    1  1  1  1  1
 $
 $
 $ udge-delete-user $user1 -f

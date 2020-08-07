@@ -33,14 +33,12 @@ done |
 # the multiple nk's here allow for negative numbers to be considered
 sort -r -nk 1 -nk 2 -nk 3 -nk 4 -nk 5 -nk 6 -nk 7 -nk 8 -nk 9 -nk 10 -nk 11 -nk 12 |
 sed -e 's/^\(.*\) \([^ ]*\)$/\2 \1/' |
-while read user s1 scores
+while read user scores
 do
-	[ -n "$scores" ] && scores="  $scores"
 	((i++))
-	this="$s1$scores"
-	[ "$this" = "$prev" ] || j=$i
+	[ "$scores" = "$prev" ] || j=$i
 	mkdir -p $RESULTS/$user
 	echo $j > $RESULTS/$user/rank
-	printf "%-3s  %-30s  %2s%s\n" $j. $user $s1 "$scores"
-	prev="$this"
-done
+	printf "%s %s %s\n" $j. $user "$scores"
+	prev="$scores"
+done | column -t
