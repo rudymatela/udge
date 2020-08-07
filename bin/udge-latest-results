@@ -74,7 +74,7 @@ entries() {
 
 		time="`cut -d' ' -f1 $dn/time`"
 		[ -n "$time" ] || time=-
-		[ "$time" = "-" ] || time=${time}s
+		[ "$time" = "-" ] || time=${time}ms
 
 		memory="`cut -d' ' -f2 $dn/time`"
 		[ -n "$memory" ] || memory=-

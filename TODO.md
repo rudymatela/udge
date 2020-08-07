@@ -1,7 +1,9 @@
 TODO list for Udge
 ==================
 
-* change runtime to miliseconds
+* right-align time and memory on `udge-latest-results`
+
+* allow parallel execution of `make test-web` somehow
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
