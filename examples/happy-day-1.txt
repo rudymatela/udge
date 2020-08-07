@@ -54,7 +54,7 @@ Submission successful (202)
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  add.c            -       -     -    queued
+YYYY-MM-DD HH:MM:SS  add.c  -  -  -  queued
 $
 $
 $ udge-pick-and-judge | grep "^./.$"
@@ -62,7 +62,7 @@ $ udge-pick-and-judge | grep "^./.$"
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  add.c           6/6   0.00s   1MB
+YYYY-MM-DD HH:MM:SS  add.c  6/6  0.00s  1MB
 $
 $
 $ udge-user-stats $user
@@ -79,7 +79,7 @@ hello-world   -   0
 rectangle     -   0
 tee           -   0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
-YYYY-MM-DD HH:MM:SS  add.c           6/6   0.00s   1MB
+YYYY-MM-DD HH:MM:SS  add.c  6/6  0.00s  1MB
 $
 $
 $ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/"
