@@ -78,7 +78,7 @@ $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /
 YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
 $ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g;s/[0-9]ms/?ms/"
-YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  ?ms   3MB  No - wrong output
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6  1?ms  4MB
 $
 $
@@ -115,7 +115,7 @@ rectangle     -   0
 tee           -   0
 $
 $ udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/;s/[0-9]ms/?ms/"
-YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1  ?ms   3MB  No - wrong output
+YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6  1?ms  4MB
 $
 $

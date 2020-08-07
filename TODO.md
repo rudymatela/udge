@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* right-align time and memory on `udge-latest-results`
-
-* allow parallel execution of `make test-web` somehow
-
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 
@@ -39,3 +35,8 @@ For later
 	- R
 	- Perl
 	- PHP
+
+* allow parallel execution of `make test-web` somehow
+
+	- problem: we will not be able to test that solutions get "queued",
+	           just that they are ultimately judged.

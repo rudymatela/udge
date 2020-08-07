@@ -85,4 +85,4 @@ entries() {
 		entry  "$filename"  "$result"  "$time"  "$memory"  "$reason" | sed -e "s/ *$//"
 	done
 }
-entries | column -t -s'#' | sed -e "s/ *$//"
+entries | column -t -s'#' -R 2,3,4 | sed -e "s/ *$//"
