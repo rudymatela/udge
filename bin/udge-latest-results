@@ -66,8 +66,8 @@ for filename in `list-submissions`; do entry "$filename" " -" "   queued";  done
 for filename in `list-slots`;       do entry "$filename" " -" "   judging"; done
 for filename in `list-results | $head`
 do
-	result_fn="`dirname $filename`/result"
-	result="`tail -1 $result_fn`"
+	dn="`dirname $filename`"
+	result="`tail -1 $dn/result`"
 	reason=""
 	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
 	entry  "$filename"  "$result"  "$reason"
