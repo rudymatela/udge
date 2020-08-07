@@ -82,8 +82,8 @@ $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS
 YYYY-MM-DD HH:MM:SS  add.c  6/6  0.00s  1MB
 $
 $
-$ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/"
-<user>   1  1  1  1  1
+$ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/;s/<user> */<user>  /"
+<user>  1  1  1  1  1
 $
 $
 $ udge-delete-user $user -f
