@@ -69,6 +69,6 @@ do
 	dn="`dirname $filename`"
 	result="`tail -1 $dn/result`"
 	reason=""
-	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $result_fn | head -1`"
+	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $dn/result | head -1`"
 	entry  "$filename"  "$result"  "$reason"
 done
