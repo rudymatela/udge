@@ -59,16 +59,27 @@ entry() {
 	filename="$1"
 	entry="`echo $filename | format`"
 	result="$2"
-	reason="$3"
-	printf "%-35s  %s%s\n"  "$entry"  "$result"  "$reason"
+	time="$3"
+	memory="$4"
+	reason="$5"
+	printf "%-35s  %s  %6s %5s %s\n"  "$entry"  "$result"  "$time"  "$memory"  "$reason"
 }
-for filename in `list-submissions`; do entry "$filename" " -" "   queued";  done
-for filename in `list-slots`;       do entry "$filename" " -" "   judging"; done
+for filename in `list-submissions`; do entry "$filename" " -" - - "   queued";  done
+for filename in `list-slots`;       do entry "$filename" " -" - - "   judging"; done
 for filename in `list-results | $head`
 do
 	dn="`dirname $filename`"
 	result="`tail -1 $dn/result`"
+
+	time="`cut -d' ' -f1 $dn/time`"
+	[ -n "$time" ] || time=-
+	[ "$time" = "-" ] || time=${time}s
+
+	memory="`cut -d' ' -f2 $dn/time`"
+	[ -n "$memory" ] || memory=-
+	[ "$memory" = "-" ] || memory=${memory}MB
+
 	reason=""
 	[ "`echo $result | bc`" == 1 ] || reason="  `tail -2 $dn/result | head -1`"
-	entry  "$filename"  "$result"  "$reason"
+	entry  "$filename"  "$result"  "$time"  "$memory"  "$reason" | sed -e "s/ *$//"
 done

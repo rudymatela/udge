@@ -1,7 +1,9 @@
 TODO list for Udge
 ==================
 
-* display runtime and memory on the submission list
+* change runtime to miliseconds
+
+* use `column -t` to tabulate udge-latest-results output
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
