@@ -86,6 +86,7 @@ language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 [ -n "$language" ]  || clerrxit "could not parse language"
 
 $lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
+$lib/timeavg $RUN/$s/check/run                  | tee $SLOTS/$s/lock/$user/$timestamp/time
 mkdir -p $RESULTS/$user/$problem
 mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem ||
 	warn "submission already judged?"

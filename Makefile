@@ -267,6 +267,7 @@ install:
 	install -m 0755 lib/udge/check-1           $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 lib/udge/compile-and-run   $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 lib/udge/compile-and-run-1 $(DESTDIR)$(PREFIX)/lib/udge
+	install -m 0755 lib/udge/timeavg           $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0755 -d                    $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/c    $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile

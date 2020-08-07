@@ -1,7 +1,7 @@
 TODO list for Udge
 ==================
 
-* compute and record runtime and memory
+* display runtime and memory on the submission list
 
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/

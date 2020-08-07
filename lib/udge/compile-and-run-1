@@ -109,6 +109,7 @@ cd $dst/files
 nice \
 	$sandbox \
 	timeout --preserve-status -v -k1s ${time_limit}s \
+	/usr/bin/time -f"%e %M" -o time \
 	$run ../$exe $args <"$in" >../out 2>../err
 echo $? > ../exit
 
