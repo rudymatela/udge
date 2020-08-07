@@ -91,6 +91,7 @@ cat           -   0
 hello         -   0
 hello-world   -   0
 rectangle     -   0
+tee           -   0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c           0/6  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c           4/6  No - wrong output

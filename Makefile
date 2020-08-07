@@ -93,6 +93,7 @@ test-scripts: \
   rectangle-java.clitest \
   rectangle-js.clitest \
   cat.clitest \
+  tee.clitest \
   sandbox.clitest \
   hello.clitest
 
@@ -388,7 +389,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 87 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 98 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 

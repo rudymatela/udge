@@ -24,7 +24,7 @@ You should create your own problems:
 write the problem description in markdown
 and create input and output cases
 following [Udge's Problem directory] format.
-Udge comes with six example problems illustrating this.
+Udge comes with seven example problems illustrating this.
 
 [Udge's Problem directory]: #problem-directory
 

@@ -24,8 +24,6 @@ TODO list for Udge
 For later
 ---------
 
-* `touch` problem that requires files to appear
-
 * Let users configure if they would be appear anonymized on the ranking and
   have a private user page.  (All this as a single option.)
   The private user page would be accessed on `/p/<user_sha1_base64_etc>`
