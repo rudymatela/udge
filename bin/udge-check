@@ -101,6 +101,15 @@ do
 done | sort -n | tail -1 >$bestmp
 mv $bestmp $RESULTS/$user/$problem/best
 echo updated $RESULTS/$user/$problem/best
+
+bestmp="`mktemp /tmp/udge-best-XXXXXXXXXX`"
+for file in `find $RESULTS/$user/$problem -mindepth 2 -maxdepth 2 -type f -name "*.$language"`
+do
+	tail -1 "`dirname $file`/result"
+done | sort -n | tail -1 >$bestmp
+mv $bestmp $RESULTS/$user/$problem/best.$language
+echo updated $RESULTS/$user/$problem/best.$language
+
 touch $RESULTS/$user
 
 echo
