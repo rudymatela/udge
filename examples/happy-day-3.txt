@@ -114,6 +114,15 @@ hello-world  0/1  1
 rectangle      -  0
 tee            -  0
 $
+$ udge-user-stats $user2 problem c py hs
+add          6/6  1  -  -  6/6
+addition       -  0  -  -    -
+cat            -  0  -  -    -
+hello          -  0  -  -    -
+hello-world  0/1  1  -  -  0/1
+rectangle      -  0  -  -    -
+tee            -  0  -  -    -
+$
 $ udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/;s/[0-9]ms/?ms/"
 YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6  1?ms  4MB
