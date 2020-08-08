@@ -6,12 +6,6 @@ TODO list for Udge
 
 * User page changes
 
-	- for each problem, add extra column showing the best scores for Python, C,
-	  Haskell and the last submitted language
-
-	- for each problem, add extra column showing the best scores for the last
-	  submitted languages
-
 	- problems appearing on a specific order
 
 	- problems separated by chapter/volume

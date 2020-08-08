@@ -42,13 +42,20 @@ echo "<h2>$name @ $NAME</h2>"
 
 $bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
+languages=`ls-languages-for $user | head -$NUM_LANGUAGES`
 echo "<h3>Scores by problem</h3>"
 echo '<table class="table table-hover">'
 echo '<thead>'
-echo '<tr><th>problem</th><th>score</th><th>tries</th></tr>'
+languages_header="`echo $languages | sed -e "s, ,</th><th>,g;s,^..*$,<th>&</th>,"`"
+echo "<tr><th>problem</th><th>score</th><th>tries</th>$languages_header</tr>"
 echo '</thead>'
 echo '<tbody>'
-$bin/udge-user-stats $user problem | sed -Ee 's,^([^ ]+) +([^ ]+) +([^ ]+)$,<tr><td><a href="/\1">\1</a></td><td>\2</td><td>\3</td></tr>,'
+$bin/udge-user-stats $user problem $languages |
+	sed -Ee 's,^([^ ]+) ,<tr><td><a_href="/\1">\1</a> ,' |
+	sed -Ee 's, +,</td><td>,g' |
+	sed -Ee 's,$,</td></tr>,' |
+	sed -Ee 's,_, ,'
+# +([^ ]+) +([^ ]+)$,<tr><td><a href="/\1">\1</a></td><td>\2</td><td>\3</td></tr>,'
 echo '</tbody>'
 echo '</table>'
 
