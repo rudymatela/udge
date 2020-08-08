@@ -89,8 +89,7 @@ problem-stats() {
 	for problem in `ls-problems`
 	do
 		score=`cator- "$results/$problem/best"`
-		# below, `head -n -1` removes "best" as it is not a problem
-		tries=`ls -1 $results/$problem 2>/dev/null | head -n -1 | wc -l`
+		tries=`find $results/$problem -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l`
 		printf "%-11s  %-3s  %s\n" "$problem" "$score" "$tries"
 	done
 }
