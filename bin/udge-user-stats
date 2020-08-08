@@ -2,7 +2,7 @@
 #
 # udge-user-stats: prints a given user stats
 #
-# Usage: ./bin/udge-user-stats <user>
+# Usage: ./bin/udge-user-stats <user> [action] [languages...]
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -33,7 +33,6 @@ errxit() {
 
 user="$1"
 action="$2"
-score="$3"
 
 [ -n "$user" ] || errxit "missing <user> argument"
 [ -d "$USERS/$user" ] || errxit "user not found"
