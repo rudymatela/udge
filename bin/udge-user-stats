@@ -90,8 +90,8 @@ problem-stats() {
 	do
 		score=`cator- "$results/$problem/best"`
 		tries=`find $results/$problem -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l`
-		printf "%-11s  %-3s  %s\n" "$problem" "$score" "$tries"
-	done
+		printf "%s %s %s\n" "$problem" "$score" "$tries"
+	done | column -t -R 2
 }
 
 

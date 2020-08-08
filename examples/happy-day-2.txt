@@ -86,12 +86,12 @@ $ udge-user-stats $user
 position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
 add          6/6  3
-addition      -   0
-cat           -   0
-hello         -   0
-hello-world   -   0
-rectangle     -   0
-tee           -   0
+addition       -  0
+cat            -  0
+hello          -  0
+hello-world    -  0
+rectangle      -  0
+tee            -  0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c  0/6  0ms  1MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
