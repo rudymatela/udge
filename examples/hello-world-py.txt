@@ -32,7 +32,7 @@ $ udge-judge hello-world examples/hello-world/0-tle.py
 No - time limit exceeded
 0/1
 $ udge-judge hello-world examples/hello-world/0-re.py
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $ udge-judge hello-world examples/hello-world/hello-world-2.py
 1/1

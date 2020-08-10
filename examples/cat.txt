@@ -29,5 +29,5 @@ $ udge-judge cat examples/cat/3-wrong-stderr.c
 No - wrong error output
 3/6
 $ udge-judge cat examples/cat/5-no-.c
-No - runtime error (non-zero exit code)
+No - runtime error
 5/6

@@ -12,7 +12,7 @@
  * If Udge's sandbox functionality is working correctly then:
  *
  * $ udge-judge hello-world examples/sandbox/socket.c
- * No - runtime error (non-zero exit code)
+ * No - runtime error
  * 0/1
  *
  *

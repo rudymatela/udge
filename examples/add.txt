@@ -26,10 +26,10 @@ $ udge-judge add examples/add/0-wo.c
 No - wrong output
 0/6
 $ udge-judge add examples/add/0-re.c 2>&1 | tail -2
-No - runtime error (non-zero exit code)
+No - runtime error
 0/6
 $ udge-judge add examples/add/0-re2.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/6
 $ udge-judge add examples/add/0-tle.c
 No - time limit exceeded

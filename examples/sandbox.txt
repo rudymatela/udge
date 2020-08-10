@@ -26,7 +26,7 @@ $ udge-judge hello-world examples/hello-world/hello-world.c
 1/1
 $
 $ udge-judge hello-world examples/sandbox/dns.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $
 $ cc examples/sandbox/dns.c -o $tmp
@@ -36,7 +36,7 @@ $ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not resolve hostname (-3)
 $
 $ udge-judge hello-world examples/sandbox/socket.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $
 $ cc examples/sandbox/socket.c -o $tmp
@@ -46,7 +46,7 @@ $ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not connect to 127.0.0.1:80
 $
 $ udge-judge hello-world examples/sandbox/memory.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $
 $ cc examples/sandbox/memory.c -o $tmp
@@ -85,10 +85,10 @@ No - time limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/sol.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $ udge-judge addition    examples/sandbox/sol.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
 $
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > examples/sandbox/sol-searcher-hello-world.c

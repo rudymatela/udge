@@ -65,7 +65,7 @@ grep -q "^timeout: sending signal TERM"      $run/err && fail "No - time limit e
 # checks the exit code
 checkexitcode=check-exit-code
 [ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code
-$checkexitcode $(cat $run/exit) || fail "No - runtime error (non-zero exit code)"
+$checkexitcode $(cat $run/exit) || fail "No - runtime error"
 
 # checks standard output and standard error
 check=check-out

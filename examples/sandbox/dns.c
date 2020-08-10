@@ -6,7 +6,7 @@
  *
  * If "udge-judge hello-world examples/sandbox/dns.c" returns
  *
- *     No - runtime error (non-zero exit code)
+ *     No - runtime error
  *     0/1
  *
  * it means that network sandboxing is working and

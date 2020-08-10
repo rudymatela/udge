@@ -43,7 +43,7 @@ $ udge-judge hello examples/hello/2-wo-b.c
 No - wrong output
 2/6
 $ udge-judge hello examples/hello/3-re.c
-No - runtime error (non-zero exit code)
+No - runtime error
 3/6
 $ udge-judge hello examples/hello/4-wo.c
 No - wrong output

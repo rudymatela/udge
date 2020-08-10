@@ -32,5 +32,5 @@ $ udge-judge hello-world examples/hello-world/0-tle.c
 No - time limit exceeded
 0/1
 $ udge-judge hello-world examples/hello-world/0-re.c
-No - runtime error (non-zero exit code)
+No - runtime error
 0/1
