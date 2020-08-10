@@ -4,10 +4,6 @@ TODO list for Udge
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 
-* User page changes
-
-	- only show problems with tries
-
 
 For later
 ---------
@@ -30,3 +26,5 @@ For later
 
 	- problem: we will not be able to test that solutions get "queued",
 	           just that they are ultimately judged.
+
+* On the user page, only show problems with tries (for now, keep as it is)
