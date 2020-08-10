@@ -103,6 +103,23 @@ ls-problems() {
 	find $PROBLEMS/ -mindepth 1 -maxdepth 1 -type d | sed -e "s,.*/,," | sort
 }
 
+# use | while read to parse this as chapters may have spaces
+ls-problems-by-chapter() {
+	list=$PROBLEMS/list
+	if [ -f $list ]
+	then
+		cat $list
+		# finds if there are problems not in the list
+		# then prints them:
+		for problem in `ls-problems`
+		do
+			grep -q "^$problem$" $list || echo $problem
+		done
+	else
+		ls-problems
+	fi
+}
+
 ls-languages() {
 	[ -d $lib/compile ] || errxit "could not find $lib/compile"
 	for compiler in `find $lib/compile/ -mindepth 1 -maxdepth 1 | sort`

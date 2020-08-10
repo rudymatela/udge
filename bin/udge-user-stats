@@ -92,14 +92,19 @@ overall-stats() {
 
 
 problem-stats() {
-	for problem in `ls-problems`
+	ls-problems-by-chapter |
+	while read problem
 	do
-		score=`cator- "$results/$problem/best"`
-		tries=`find $results/$problem -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l`
-		printf "%s#%s#%s" "$problem" "$score" "$tries"
-		echo `grep -l "$score" $results/$problem/best.* 2>/dev/null | sed -e "s/.*\.//"` | sed -e "s/^./#&/; s/ /, /g"
-		printf "\n"
-	done | column -s\# -t -R 2,3 | sed -e "s/ *$//"
+		if echo $problem | grep -q "^#"
+		then # chapter
+			echo -e "\n$problem" | sed -e "s/# //"
+		else # problem
+			score=`cator- "$results/$problem/best"`
+			tries=`find $results/$problem -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l`
+			printf "  %s#%s#%s" "$problem" "$score" "$tries"
+			echo `grep -l "$score" $results/$problem/best.* 2>/dev/null | sed -e "s/.*\.//"` | sed -e "s/^./#&/; s/ /, /g"
+		fi
+	done | column -s\# -LtR 2,3 | sed -e "s/ *$//"
 }
 
 

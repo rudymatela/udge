@@ -88,13 +88,13 @@ $ udge-user-stats $user1
 1 problems tried
 position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
-add          6/6  2  c
-addition       -  0
-cat            -  0
-hello          -  0
-hello-world    -  0
-rectangle      -  0
-tee            -  0
+  add          6/6  2  c
+  addition       -  0
+  cat            -  0
+  hello          -  0
+  hello-world    -  0
+  rectangle      -  0
+  tee            -  0
 $
 $ udge-latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/"
 YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
@@ -106,13 +106,13 @@ $ udge-user-stats $user2
 2 problems tried
 position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
-add          6/6  1  hs
-addition       -  0
-cat            -  0
-hello          -  0
-hello-world  0/1  1  hs
-rectangle      -  0
-tee            -  0
+  add          6/6  1  hs
+  addition       -  0
+  cat            -  0
+  hello          -  0
+  hello-world  0/1  1  hs
+  rectangle      -  0
+  tee            -  0
 $
 $ udge-latest-results $user2 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/;s/[0-9]ms/?ms/"
 YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output

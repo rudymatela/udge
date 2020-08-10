@@ -6,10 +6,6 @@ TODO list for Udge
 
 * User page changes
 
-	- problems appearing on a specific order
-
-	- problems separated by chapter/volume
-
 	- only show problems with tries
 
 
