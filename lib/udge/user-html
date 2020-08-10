@@ -63,6 +63,26 @@ colour-fractions() {
 	'
 }
 
+tmp=`mktemp "/tmp/udge-latest-results.XXXXXXXXXX"`
+$bin/udge-latest-results "$user" > "$tmp"
+if [ -s "$tmp" ]
+then
+	echo "<h3>Latest submissions</h3>"
+	echo '<table class="table table-hover">'
+	echo '<thead>'
+	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>runtime</th><th>reason</th></tr>'
+	echo '</thead>'
+	echo '<tbody>'
+	cat "$tmp" |
+		sed -Ee 's,^([^ ]+ [^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td><small>\5 \6</small></td><td><small>\7</small></td></tr>,' |
+		colour-fractions
+	echo '</tbody>'
+	echo '</table>'
+else
+	echo '<p>No submissions yet.</p>'
+fi
+rm "$tmp"
+
 echo "<h3>Scores by problem</h3>"
 echo '<table class="table table-hover">'
 echo '<thead>'
@@ -75,26 +95,6 @@ $bin/udge-user-stats $user problem |
 	colour-fractions
 echo '</tbody>'
 echo '</table>'
-
-tmp=`mktemp "/tmp/udge-latest-results.XXXXXXXXXX"`
-$bin/udge-latest-results "$user" > "$tmp"
-if [ -s "$tmp" ]
-then
-	echo "<h3>Latest submissions</h3>"
-	echo '<table class="table table-hover">'
-	echo '<thead>'
-	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>time&amp;memory</th><th>reason</th></tr>'
-	echo '</thead>'
-	echo '<tbody>'
-	cat "$tmp" |
-		sed -Ee 's,^([^ ]+ [^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5 \6</td><td>\7</td></tr>,' |
-		colour-fractions
-	echo '</tbody>'
-	echo '</table>'
-else
-	echo '<p>No submissions yet.</p>'
-fi
-rm "$tmp"
 
 html-navbar
 html-footer
