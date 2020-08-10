@@ -53,6 +53,31 @@ img {
 	margin-right: auto;
 	margin-left: auto;
 }
+/* TODO: move these into a standalone CSS file. */
+.zero {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #FAA;
+}
+.frac {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #FD8;
+}
+.one {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #AFC;
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$@</title>
