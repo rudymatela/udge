@@ -60,7 +60,7 @@ echo "<tr><th>problem</th><th>best score</th><th>tries</th><th>languages</th></t
 echo '</thead>'
 echo '<tbody>'
 $bin/udge-user-stats $user problem |
-	sed -Ee 's,^([^ ]+) +([^ ]+) +([^ ]+) +(.*)$,<tr><td><a href="/\1">\1</a></td><td>\2</td><td>\3</td><td>\4</td></tr>,' |
+	sed -Ee 's,^([^ ]+) +([^ ]+) +([^ ]+) *(.*)$,<tr><td><a href="/\1">\1</a></td><td>\2</td><td>\3</td><td>\4</td></tr>,' |
 	colour-fractions
 echo '</tbody>'
 echo '</table>'
