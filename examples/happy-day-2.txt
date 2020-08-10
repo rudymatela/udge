@@ -85,7 +85,7 @@ $ udge-user-stats $user
 1 problems tried
 position ? on the rank
 score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
-add          6/6  3
+add          6/6  3  c
 addition       -  0
 cat            -  0
 hello          -  0

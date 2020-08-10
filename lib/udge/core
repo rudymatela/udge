@@ -114,18 +114,6 @@ ls-languages() {
 	done
 }
 
-ls-languages-for() {
-	languages=$PINNED_LANGUAGES
-	for l in `$bin/udge-latest-results $1 12 | sed -e "s/.*  .*\.//;s/ .*//"`
-	do
-		echo $languages | grep -qE "(^| )$l( |$)" || languages="$languages $l"
-	done
-	for l in $languages
-	do
-		echo $l
-	done
-}
-
 ls-slots() {
 	[ -d $SLOTS ] || errxit "could not find SLOTS=$SLOTS"
 	find $SLOTS/ -mindepth 1 -maxdepth 1 -type d | sed -e "s,.*/,," | sort

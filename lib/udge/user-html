@@ -53,19 +53,14 @@ colour-fractions() {
 	'
 }
 
-languages=`ls-languages-for $user | head -$NUM_LANGUAGES`
 echo "<h3>Scores by problem</h3>"
 echo '<table class="table table-hover">'
 echo '<thead>'
-languages_header="`echo $languages | sed -e "s, ,</th><th>,g;s,^..*$,<th>&</th>,"`"
-echo "<tr><th>problem</th><th>best score</th><th>tries</th>$languages_header</tr>"
+echo "<tr><th>problem</th><th>best score</th><th>tries</th><th>languages</th></tr>"
 echo '</thead>'
 echo '<tbody>'
-$bin/udge-user-stats $user problem $languages |
-	sed -Ee 's,^([^ ]+) ,<tr><td><a_href="/\1">\1</a> ,' |
-	sed -Ee 's, +,</td><td>,g' |
-	sed -Ee 's,$,</td></tr>,' |
-	sed -Ee 's,_, ,' |
+$bin/udge-user-stats $user problem |
+	sed -Ee 's,^([^ ]+) +([^ ]+) +([^ ]+) +(.*)$,<tr><td><a href="/\1">\1</a></td><td>\2</td><td>\3</td><td>\4</td></tr>,' |
 	colour-fractions
 echo '</tbody>'
 echo '</table>'
@@ -80,7 +75,9 @@ then
 	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>time&amp;memory</th><th>reason</th></tr>'
 	echo '</thead>'
 	echo '<tbody>'
-	cat "$tmp" | sed -Ee 's,^([^ ]+ [^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5 \6</td><td>\7</td></tr>,' | colour-fractions
+	cat "$tmp" |
+		sed -Ee 's,^([^ ]+ [^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1</td><td><a href="/\2">\2</a></td><td>\3</td><td>\4</td><td>\5 \6</td><td>\7</td></tr>,' |
+		colour-fractions
 	echo '</tbody>'
 	echo '</table>'
 else

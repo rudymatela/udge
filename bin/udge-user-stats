@@ -24,19 +24,6 @@
 # To override the default $SCORE system, use the $score variable:
 #
 # score=solved udge-user-stats person
-#
-#
-# To view stats by problem as well as language, use:
-#
-# $ udge-user-stats username problem c py hs js java
-# add            -  0    -  -    -    -    -
-# addition     1/1  2    -  -  1/1  1/1    -
-# cat            -  0    -  -    -    -    -
-# hello        6/6  8  6/6  -    -    -    -
-# hello-world  1/1  5  1/1  -    -    -  1/1
-# rectangle      -  0    -  -    -    -    -
-# tee            -  0    -  -    -    -    -
-
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
@@ -109,14 +96,10 @@ problem-stats() {
 	do
 		score=`cator- "$results/$problem/best"`
 		tries=`find $results/$problem -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l`
-		printf "%s %s %s" "$problem" "$score" "$tries"
-		for language in "$@"
-		do
-			score=`cator- "$results/$problem/best.$language"`
-			printf " %s" "$score"
-		done
+		printf "%s#%s#%s" "$problem" "$score" "$tries"
+		echo `grep -l "$score" $results/$problem/best.* 2>/dev/null | sed -e "s/.*\.//"` | sed -e "s/^./#&/; s/ /, /g"
 		printf "\n"
-	done | column -t -R 2,3,4,5,6,7,8,9,10,11,12
+	done | column -s\# -t -R 2,3 | sed -e "s/ *$//"
 }
 
 

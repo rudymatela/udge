@@ -17,8 +17,4 @@ RUN=/run/udge
 SCORE=fractions
 NEW_USER=true
 
-# user page settings
-PINNED_LANGUAGES="c py hs"
-NUM_LANGUAGES=5
-
 GHCFLAGS=-dynamic # for Arch Linux
