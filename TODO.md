@@ -1,6 +1,12 @@
 TODO list for Udge
 ==================
 
+* rename `sol` files to simply `out` files to be consistent with `err`.
+
+* update the README with the new submission pileline
+
+* review the README
+
 * configure rate limiting on nginx
   https://www.nginx.com/blog/rate-limiting-nginx/
 
