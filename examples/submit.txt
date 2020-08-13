@@ -234,24 +234,9 @@ Submission successful
 Submission successful
 202
 
-$ sleep 1
-$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Fproblem=add -Flanguage=c -Fprogram=@examples/hello.c | display
-Submit your solution – Udge Online Judge
-Submit your solution
-no more than 3 submissions on the queue per user, try again in a few minutes
-429
-
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $ . /etc/udgerc
-$ find $SUBMISSIONS/$user -type f | anonymize
-/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello.c
-/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello.c
-/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
-
-$ udge-pick-and-judge | grep "^./.$" | sort
-0/1
-4/6
-4/6
-$ find $RESULTS/$user -type f | anonymize
+$ find $RESULTS/$user -mindepth 2 -type f | anonymize
 /var/lib/udge/results/<user>/hello/best
 /var/lib/udge/results/<user>/hello/best.c
 /var/lib/udge/results/<user>/hello-world/best
@@ -271,14 +256,10 @@ Submission successful
 Submission successful
 202
 
-$ find $SUBMISSIONS/$user -type f | anonymize
-/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/add.c
-
 $
 $
-$ udge-pick-and-judge | grep "^./.$" | sort
-6/6
-$ find $RESULTS/$user -type f | anonymize
+$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ find $RESULTS/$user -mindepth 2 -type f | anonymize
 /var/lib/udge/results/<user>/add/best
 /var/lib/udge/results/<user>/add/best.c
 /var/lib/udge/results/<user>/add/YYYYMMDD-HHMMSS/add.c

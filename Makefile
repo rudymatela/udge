@@ -119,14 +119,18 @@ test-web-parallel: \
   test-no-broken-links \
   new-user.clitest \
   names.clitest \
+  test-web-parseq \
   tidy
 
 # web tests that can be run sequentially (eg. w/ -j1)
 test-web-sequential: \
   new-user-toggle.clitest \
-  submit.clitest \
   submit-rate.clitest \
-  sandbox-submit.clitest \
+  sandbox-submit.clitest
+
+# web tests that work in parallel most of the time (eg. w/ -j3)
+test-web-parseq: \
+  submit.clitest \
   test-happy
 
 test-happy: \
