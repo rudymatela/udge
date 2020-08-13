@@ -52,19 +52,26 @@ realclean: \
 	clean-users \
 	clean-var
 
-fastest:
-	make test-scripts -j7
-	make test-web
-
 test: \
-  test-scripts \
-  test-web
+  test-parallel \
+  test-sequential
 
-test-scripts: \
+fastest:
+	make test-parallel -j7
+	make test-sequential
+
+# targets under this can be run in parallel (eg. w/ -j7)
+test-parallel: \
   test-makefile \
   test-no-broken-links \
   tidy \
   test-judge
+
+# targets under this should be run sequentially (eg. w/ -j1)
+test-sequential: \
+  index.clitest \
+  sandbox-fork.clitest \
+  test-web-noindex
 
 test-judge: export DEFAULT_TIME_LIMIT=2
 test-judge: \
@@ -102,12 +109,6 @@ test-judge: \
   tee.clitest \
   sandbox.clitest \
   hello.clitest
-
-# these cannot be run in parallel
-test-web: \
-  index.clitest \
-  sandbox-fork.clitest \
-  test-web-noindex
 
 test-web-noindex: \
   new-user.clitest \
