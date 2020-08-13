@@ -23,23 +23,7 @@
 $ user=test-happy1-`date "+%Y%m%d-%H%M%S"`
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions
-$ udge-pick-and-judge
-slot = /var/lib/udge/slot/1
-udge-pick: nothing to do (unlocking /var/lib/udge/slot/1)
-udge-compile-and-run: nothing to do on slot 1
-udge-compile-and-run: nothing to do on slot 2
-udge-compile-and-run: nothing to do on slot 3
-udge-compile-and-run: nothing to do on slot 4
-udge-compile-and-run: nothing to do on slot 5
-udge-compile-and-run: nothing to do on slot 6
-udge-check: nothing to do
-udge-compile-and-run: nothing to do on slot 1
-udge-compile-and-run: nothing to do on slot 2
-udge-compile-and-run: nothing to do on slot 3
-udge-compile-and-run: nothing to do on slot 4
-udge-compile-and-run: nothing to do on slot 5
-udge-compile-and-run: nothing to do on slot 6
+$ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions just in case...
 $
 $
 $ ./examples/create-new-user $user u@example.com correct-horse-battery-staple
@@ -57,15 +41,15 @@ $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g
 YYYY-MM-DD HH:MM:SS  add.c  -  -  -  queued
 $
 $
-$ udge-pick-and-judge | grep "^./.$"
-6/6
+$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
 YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
 $
 $
-$ udge-user-stats $user
+$ udge-user-stats $user | sed -e "s/position .* on the rank/position ? on the rank/"
 1 problems solved
 1 problems scored
 1 problems tried
@@ -82,7 +66,7 @@ $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS
 YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
 $
 $
-$ udge-rank | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/;s/<user> */<user>  /"
+$ udge-rank 2>/dev/null | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/;s/<user> */<user>  /"
 <user>  1  1  1  1  1
 $
 $

@@ -23,23 +23,7 @@
 $ user1=test-user1-`date "+%Y%m%d-%H%M%S"`
 $ user2=test-user2-`date "+%Y%m%d-%H%M%S"`
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions
-$ udge-pick-and-judge
-slot = /var/lib/udge/slot/1
-udge-pick: nothing to do (unlocking /var/lib/udge/slot/1)
-udge-compile-and-run: nothing to do on slot 1
-udge-compile-and-run: nothing to do on slot 2
-udge-compile-and-run: nothing to do on slot 3
-udge-compile-and-run: nothing to do on slot 4
-udge-compile-and-run: nothing to do on slot 5
-udge-compile-and-run: nothing to do on slot 6
-udge-check: nothing to do
-udge-compile-and-run: nothing to do on slot 1
-udge-compile-and-run: nothing to do on slot 2
-udge-compile-and-run: nothing to do on slot 3
-udge-compile-and-run: nothing to do on slot 4
-udge-compile-and-run: nothing to do on slot 5
-udge-compile-and-run: nothing to do on slot 6
+$ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions just in case...
 $
 $ ./examples/create-new-user $user1 u@example.com correct-horse-
 User created
@@ -59,19 +43,8 @@ $ UDGE_USERNAME=$user2 UDGE_PASSWORD=battery-staple udge-submit examples/hello-w
 Submission successful (202)
 $
 $
-$ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  add.c  -  -  -  queued
-YYYY-MM-DD HH:MM:SS  add.c  -  -  -  queued
-$ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
-YYYY-MM-DD HH:MM:SS  hello-world.hs  -  -  -  queued
-YYYY-MM-DD HH:MM:SS  add.hs          -  -  -  queued
-$
-$
-$ udge-pick-and-judge | grep "^./.$" | sort
-0/1
-4/6
-6/6
-6/6
+$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
@@ -82,7 +55,7 @@ YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6  1?ms  4MB
 $
 $
-$ udge-user-stats $user1
+$ udge-user-stats $user1 | sed -e "s/position .* on the rank/position ? on the rank/"
 1 problems solved
 1 problems scored
 1 problems tried
@@ -100,7 +73,7 @@ $ udge-latest-results $user1 | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:S
 YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
 $
-$ udge-user-stats $user2
+$ udge-user-stats $user2 | sed -e "s/position .* on the rank/position ? on the rank/"
 1 problems solved
 1 problems scored
 2 problems tried
@@ -119,7 +92,7 @@ YYYY-MM-DD HH:MM:SS  hello-world.hs  0/1   ?ms  3MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.hs          6/6  1?ms  4MB
 $
 $
-$ udge-rank | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/> */>  /"
+$ udge-rank 2>/dev/null | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user1/<u1>/;s/$user2/<u2>/;s/> */>  /"
 <u2>  1  1  1  1  1
 <u1>  1  1  1  1  1
 $
