@@ -69,7 +69,7 @@ test-parallel: \
 # targets under this should be run sequentially (eg. w/ -j1)
 test-sequential: \
   sandbox-fork.clitest \
-  test-web-noindex
+  test-web-sequential
 
 test-judge: export DEFAULT_TIME_LIMIT=2
 test-judge: \
