@@ -63,13 +63,11 @@ fastest:
 # targets under this can be run in parallel (eg. w/ -j7)
 test-parallel: \
   test-makefile \
-  test-no-broken-links \
-  tidy \
-  test-judge
+  test-judge \
+  test-web-parallel
 
 # targets under this should be run sequentially (eg. w/ -j1)
 test-sequential: \
-  index.clitest \
   sandbox-fork.clitest \
   test-web-noindex
 
@@ -110,7 +108,19 @@ test-judge: \
   sandbox.clitest \
   hello.clitest
 
-test-web-noindex: \
+# tests that use the web endpoint at udge/
+test-web: \
+  test-web-parallel \
+  test-web-sequential
+
+# web tests that can be run in parallel (eg. w/ -j7)
+test-web-parallel: \
+  tidy \
+  index.clitest \
+  test-no-broken-links
+
+# web tests that can be run sequentially (eg. w/ -j1)
+test-web-sequential: \
   new-user.clitest \
   new-user-toggle.clitest \
   names.clitest \
