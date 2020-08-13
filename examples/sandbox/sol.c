@@ -25,7 +25,7 @@
 int main()
 {
 	int c;
-	FILE *sol = fopen("sol","r");
+	FILE *sol = fopen("out","r");
 	if (!sol) {
 		printf("Could not open the solution file.\n");
 		return 1;

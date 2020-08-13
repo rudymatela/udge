@@ -25,7 +25,7 @@
 int main()
 {
 	int c;
-	FILE *sol = fopen("/var/lib/udge/problem/:problem:/sol","r");
+	FILE *sol = fopen("/var/lib/udge/problem/:problem:/out","r");
 	if (!sol) {
 		printf("Could not open the solution file.\n");
 		return 1;

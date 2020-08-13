@@ -95,7 +95,7 @@ $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/hello-world/" > exam
 $ cat examples/sandbox/sol-searcher.c | sed -e "s/:problem:/addition/"    > examples/sandbox/sol-searcher-addition.c
 $
 $ # to avoid the following two from getting points at all,
-$ # do chmod o-r /var/lib/udge/problem/{*,*/*}/sol
+$ # do chmod o-r /var/lib/udge/problem/{*,*/*}/out
 $ udge-judge hello-world examples/sandbox/sol-searcher-hello-world.c
 1/1
 $ udge-judge addition    examples/sandbox/sol-searcher-addition.c

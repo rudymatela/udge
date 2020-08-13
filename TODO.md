@@ -4,8 +4,6 @@ TODO list for Udge
 * add "pipeline.txt" to test all steps in the pipeline
   (file creation, moving and whatnot)
 
-* rename `sol` files to simply `out` files to be consistent with `err`.
-
 * update the README with the new submission pileline
 
 * update the README video

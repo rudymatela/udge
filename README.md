@@ -132,7 +132,7 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	After setting them up, make sure you run:
 
-		chmod o-r /var/lib/udge/problem/{*,*/*}/sol
+		chmod o-r /var/lib/udge/problem/{*,*/*}/out
 
 	The above will prevent attempted solutions
 	to read directly from solution files.
@@ -404,7 +404,7 @@ The problem directory contains test scripts, inputs and solutions for each of th
 Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 
 * `1/in`: test input 1
-* `1/sol`: solution for test input 1
+* `1/out`: solution for test input 1
 * `1/time-limit`: the time limit in seconds (1 if not present)
 * `2/...`: test set 2
 * `3/...`: test set 3

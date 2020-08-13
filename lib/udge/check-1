@@ -70,7 +70,7 @@ $checkexitcode $(cat $run/exit) || fail "No - runtime error"
 # checks standard output and standard error
 check=check-out
 [ -x $sol/check-out ] && check=$sol/check-out
-$check $sol/sol $run/out || fail "No - wrong output"
+$check $sol/out $run/out || fail "No - wrong output"
 if [ -e $sol/err ]
 then
 	$check $sol/err $run/err || fail "No - wrong error output"
