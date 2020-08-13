@@ -16,7 +16,6 @@ For later
 
 * Languages to support later (in no particular order):
 
-	- Lua
 	- Ruby
 	- R
 	- Perl

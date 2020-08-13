@@ -62,6 +62,7 @@ case "$src" in
 	*.cpp)  lang=cc   ;language="C++"                                ;;
 	*.hs)   lang=hs   ;language="Haskell"                            ;;
 	*.lhs)  lang=hs   ;language="Haskell"                            ;;
+	*.lua)  lang=lua  ;language="Lua"        ;run=lua                ;;
 	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
 	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
 	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;

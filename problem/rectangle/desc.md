@@ -105,6 +105,12 @@ Alternatively, you can declare the rectangle type as:
 		public int perimeter();
 	}
 
+#### Lua
+
+	rectangle = {width = ..., height = ...}
+	function area(rectangle)
+	function perimeter(rectangle)
+
 
 ### Scoring
 

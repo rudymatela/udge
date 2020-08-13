@@ -58,6 +58,7 @@ Please refer to the information for the chosen language:
 * Python definition:  `def add(x,y):`
 * C# definition:      `public static int Add(int x, int y)` inside a class `Program`
 * Java definition:    `public static int add(int x, int y)` inside a public class `Add`
+* Lua definition:     `function add(x, y)`
 
 If you are confused by the above,
 try earning a partial score first.
