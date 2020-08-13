@@ -251,6 +251,21 @@ $ udge-pick-and-judge | grep "^./.$" | sort
 0/1
 4/6
 4/6
+$ find $RESULTS/$user -type f | anonymize
+/var/lib/udge/results/<user>/hello/best
+/var/lib/udge/results/<user>/hello/best.c
+/var/lib/udge/results/<user>/hello-world/best
+/var/lib/udge/results/<user>/hello-world/best.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/time
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/hello.c
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/hello.c
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/time
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/time
+
 $ curl -XPOST udge/submit -duser=$user -dpassword=the-password -dproblem=add -dlanguage=c --data-urlencode program@examples/add/add.c | display
 Submission successful
 Submission successful
@@ -263,8 +278,26 @@ $
 $
 $ udge-pick-and-judge | grep "^./.$" | sort
 6/6
-$
-$
+$ find $RESULTS/$user -type f | anonymize
+/var/lib/udge/results/<user>/add/best
+/var/lib/udge/results/<user>/add/best.c
+/var/lib/udge/results/<user>/add/YYYYMMDD-HHMMSS/add.c
+/var/lib/udge/results/<user>/add/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/add/YYYYMMDD-HHMMSS/time
+/var/lib/udge/results/<user>/hello/best
+/var/lib/udge/results/<user>/hello/best.c
+/var/lib/udge/results/<user>/hello-world/best
+/var/lib/udge/results/<user>/hello-world/best.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/time
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/hello.c
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/hello.c
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/time
+/var/lib/udge/results/<user>/hello/YYYYMMDD-HHMMSS/time
+
 $ tmp=`mktemp /tmp/huge-XXXXXXXXXX`
 $ head -c8192 /dev/random > $tmp
 $ udge-submit $tmp hello-world c
