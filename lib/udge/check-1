@@ -67,6 +67,7 @@ check-out() {
 # sandboxing checks
 grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "No - reached maximum number of processes"
 grep -q "^timeout: sending signal TERM"      $run/err && fail "No - time limit exceeded"
+grep -q "Cannot allocate memory"             $run/err && fail "No - memory limit exceeded" # not a catch-all
 
 # checks the exit code
 checkexitcode=check-exit-code

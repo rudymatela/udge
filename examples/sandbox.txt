@@ -46,7 +46,7 @@ $ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not connect to 127.0.0.1:80
 $
 $ udge-judge hello-world examples/sandbox/memory.c
-No - runtime error
+No - memory limit exceeded
 0/1
 $
 $ cc examples/sandbox/memory.c -o $tmp
