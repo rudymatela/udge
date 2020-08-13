@@ -49,5 +49,4 @@ do
 	$lib/compile-and-run-1 $dir $src $dst/$id $verbose || break
 done
 
-[ -n "$verbose" ] && find $dst
 true
