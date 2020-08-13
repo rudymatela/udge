@@ -115,15 +115,15 @@ test-web: \
 
 # web tests that can be run in parallel (eg. w/ -j7)
 test-web-parallel: \
-  tidy \
   index.clitest \
-  test-no-broken-links
+  test-no-broken-links \
+  new-user.clitest \
+  names.clitest \
+  tidy
 
 # web tests that can be run sequentially (eg. w/ -j1)
 test-web-sequential: \
-  new-user.clitest \
   new-user-toggle.clitest \
-  names.clitest \
   submit.clitest \
   submit-rate.clitest \
   sandbox-submit.clitest \
