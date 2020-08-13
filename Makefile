@@ -65,6 +65,10 @@ test-scripts: \
   test-makefile \
   test-no-broken-links \
   tidy \
+  test-judge
+
+test-judge: export DEFAULT_TIME_LIMIT=2
+test-judge: \
   judge.clitest \
   hello-world.clitest \
   hello-world-hs.clitest \
