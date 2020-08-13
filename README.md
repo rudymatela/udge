@@ -331,9 +331,13 @@ Here's a complete list of programs provided with Udge:
 * `udge-add-user`: adds a user creating an entry on `users`.
 * `udge-judge`: judges a solution printing results to stdout
 * `udge-latest-results`: shows the latest results from a user
-* `udge-pick-and-judge`: to be called every 1 minute from cron,
-                         picks a solution at random from `submissions`,
+* `udge-pick-and-judge`: picks a solution at random from `submissions`,
                          creates a result on `results`.
+						 For debug only.
+* `udge-check-and-pick`: checks run submissions and picks new ones.
+                         To be run from cron at each minute.
+* `udge-compile-and-run <slot>`: runs a submission on a specific slot.
+								 To be run from cron at each minute.
 * `udge-rank`: computes and prints the current user rank
 * `udge-sandbox`: runs a program in a sandbox.
 	Currently sandboxing has a few limitations:
