@@ -38,11 +38,12 @@ Features:
 * simple plaintext file database, no need to setup an SQL server and database;
 * support for solutions in:
 	- C
-	- C++
 	- C#
+	- C++
 	- Haskell
 	- Java
 	- JavaScript
+	- Lua
 	- Python
 
 Udge is implemented in Bash and works on Linux systems with Nginx.
@@ -74,17 +75,32 @@ To install and run Udge, you will need:
 * Python
 * nginx
 * fcgiwrap
-* fakechroot
-* util-linux --- for sandboxing with `unshare`
-* discount   --- for `markdown`
-* procmail   --- for `lockfile`
 * cronie
-* cracklib   --- for checking password strength
-* GCC's GCC  --- for C submission support
-* GHC        --- for Haskell submission support
+* cracklib       --- for checking password strength
+* diffutils      --- for `diff` and whatnot
+* discount       --- for `markdown`
+* fakechroot     --- for sandboxing
+* procmail       --- for `lockfile`
+
+You probably already have the following installed,
+but it does not hurt to double-check:
+
+* GNU coreutils  --- for `timeout` & others
+* grep
+* psmisc         --- for `killall` and whatnot
+* time           --- for measuring runtime with `/usr/bin/time`
+* util-linux     --- for sandboxing with `unshare`, `kill`, etc.
+
+These are the optional dependencies:
+
 * clitest    --- for testing Udge itself
 * tidy       --- for testing Udge itself
-* TODO: complete this list
+* GCC's GCC  --- for C submission support
+* GHC        --- for Haskell submission support
+* Java       --- for Java submission support
+* Lua        --- for Lua submission support
+* Mono       --- for C# submission support
+* nodejs     --- for JavaScript submission support
 
 [dependencies]: #dependencies
 
