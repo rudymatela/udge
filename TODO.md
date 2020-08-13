@@ -1,6 +1,9 @@
 TODO list for Udge
 ==================
 
+* add "pipeline.txt" to test all steps in the pipeline
+  (file creation, moving and whatnot)
+
 * rename `sol` files to simply `out` files to be consistent with `err`.
 
 * update the README with the new submission pileline
@@ -33,5 +36,12 @@ For later
 
 	- problem: we will not be able to test that solutions get "queued",
 	           just that they are ultimately judged.
+
+	- the old runtimes:
+
+		test-scripts  -j7    28.23
+		test-scripts  -j1   113.28
+		test-web     (-j1)   53.69
+		fastest              81.92
 
 * On the user page, only show problems with tries (for now, keep as it is)
