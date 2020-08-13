@@ -5,6 +5,8 @@ TODO list for Udge
 
 * update the README with the new submission pileline
 
+* update the README video
+
 * review the README
 
 * configure rate limiting on nginx
