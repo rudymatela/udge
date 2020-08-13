@@ -28,7 +28,7 @@ j=0
 for user in `ls-users`
 do
 	$bin/udge-user-stats $user short "$1" ||
-	errxit "`basename $0`: problem retrieving user stats ($user)"
+	warn "`basename $0`: problem retrieving user stats ($user), deleted?"
 done |
 # the multiple nk's here allow for negative numbers to be considered
 sort -r -nk 1 -nk 2 -nk 3 -nk 4 -nk 5 -nk 6 -nk 7 -nk 8 -nk 9 -nk 10 -nk 11 -nk 12 |
