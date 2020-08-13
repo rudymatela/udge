@@ -1,6 +1,34 @@
 TODO list for Udge
 ==================
 
+* fix the following potential race condition:
+
+	$ make test-web-parallel test-happy -j7
+	...
+	#13	udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+	------------------------------------------------------------------------------------------------------
+	[FAILED #13, line 50] udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+	@@ -1,2 +1,2 @@
+	-YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
+	-YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
+	+YYYY-MM-DD HH:MM:SS  add.c  1/6  -  -  No - runtime error
+	+YYYY-MM-DD HH:MM:SS  add.c  3/6  -  -  3/6
+	------------------------------------------------------------------------------------------------------
+	make: *** [Makefile:152: happy-day-3.clitest] Error 1
+	make: *** Waiting for unfinished jobs....
+
+	The 3/6 shown above in place of the reason makes this seems that udge-check
+	is reading from an unfinished folder.  What happened in this case?
+
+	Here's further info after implementing `ferrxit`:
+
+	[FAILED #13, line 50] udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g"
+	@@ -1,2 +1,2 @@
+	 YYYY-MM-DD HH:MM:SS  add.c  4/6  0ms  1MB  No - wrong output
+	-YYYY-MM-DD HH:MM:SS  add.c  6/6  0ms  1MB
+	+YYYY-MM-DD HH:MM:SS  add.c  1/6    -    -  output folder not found
+
+
 * add "pipeline.txt" to test all steps in the pipeline
   (file creation, moving and whatnot)
 

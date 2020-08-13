@@ -31,15 +31,20 @@ fail() {
 	exit 1
 }
 
+ferrxit() {
+	echo "$@"
+	errxit "$@"
+}
+
 sol="$1"
 run="$2"
 verbose="$3"
 
-[ -n "$sol" ] || errxit "must provide input folder"
-[ -n "$run" ] || errxit "must provide output folder"
+[ -n "$sol" ] || ferrxit "must provide input folder"
+[ -n "$run" ] || ferrxit "must provide output folder"
 
-[ -d "$sol" ] || errxit "input folder not found"
-[ -d "$run" ] || errxit "output folder not found"
+[ -d "$sol" ] || ferrxit "input folder not found"
+[ -d "$run" ] || ferrxit "output folder not found"
 
 check-exit-code() {
 	[ "$1" = 0 ]
