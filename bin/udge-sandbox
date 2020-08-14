@@ -32,7 +32,7 @@ ulimit -d 524288 # K, 512M
 ulimit -f 262144 # blocks, 128M
 ulimit -i 1024 # signals
 ulimit -l 16 # K
-ulimit -m 524288 # K, 512M
+ulimit -m 1048576 # K, 1024M, 1G
 ulimit -n 32 # files
 ulimit -q 1024 # queues
 ulimit -s 8192 # K, 8M
