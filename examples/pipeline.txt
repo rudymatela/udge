@@ -1,0 +1,210 @@
+#!/usr/bin/env -S clitest -1
+#
+# Tests for the judging pipeline.
+# These should not be run in parallel with other tests.
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2020  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+$ user=test-pipeline-`date "+%Y%m%d-%H%M%S"`
+$ alias curl='curl -sw "%{http_code}\n"'
+$ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$ alias anonymize='sed -e "s/$user/<user>/;s/....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/g;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo'
+$
+$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
+$ udge-pick-and-judge
+slot = /var/lib/udge/slot/1
+udge-pick: nothing to do (unlocking /var/lib/udge/slot/1)
+udge-compile-and-run: nothing to do on slot 1
+udge-compile-and-run: nothing to do on slot 2
+udge-compile-and-run: nothing to do on slot 3
+udge-compile-and-run: nothing to do on slot 4
+udge-compile-and-run: nothing to do on slot 5
+udge-compile-and-run: nothing to do on slot 6
+udge-check: nothing to do
+udge-compile-and-run: nothing to do on slot 1
+udge-compile-and-run: nothing to do on slot 2
+udge-compile-and-run: nothing to do on slot 3
+udge-compile-and-run: nothing to do on slot 4
+udge-compile-and-run: nothing to do on slot 5
+udge-compile-and-run: nothing to do on slot 6
+$
+$ ### ### Everything is clear ### ###
+$ find /var/lib/udge/{submissions,slot} /run/udge | anonymize
+/run/udge
+/run/udge/1
+/run/udge/2
+/run/udge/3
+/run/udge/4
+/run/udge/5
+/run/udge/6
+/var/lib/udge/slot
+/var/lib/udge/slot/1
+/var/lib/udge/slot/2
+/var/lib/udge/slot/3
+/var/lib/udge/slot/4
+/var/lib/udge/slot/5
+/var/lib/udge/slot/6
+/var/lib/udge/submissions
+
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+
+$ ### ### After creating the user everything is still clear ### ###
+$ ./examples/create-new-user $user test-user@example.com the-password
+User created
+201
+$ udge-user-stats $user
+0 problems solved
+0 problems scored
+0 problems tried
+position ? on the rank
+score: 0 0 0 0 0 (=1 ≥⅔ ≥½ ≥⅓ >0)
+  add           -  0
+  addition      -  0
+  cat           -  0
+  hello         -  0
+  hello-world   -  0
+  rectangle     -  0
+  tee           -  0
+$ udge-latest-results $user | anonymize
+
+$ export UDGE_USERNAME=$user
+$ export UDGE_PASSWORD=the-password
+$
+$ ### ### After submission, the submission is queued ### ###
+$ udge-submit examples/hello-world/hello-world.c
+Submission successful (202)
+$ udge-user-stats $user
+0 problems solved
+0 problems scored
+0 problems tried
+position ? on the rank
+score: 0 0 0 0 0 (=1 ≥⅔ ≥½ ≥⅓ >0)
+  add           -  0
+  addition      -  0
+  cat           -  0
+  hello         -  0
+  hello-world   -  0
+  rectangle     -  0
+  tee           -  0
+$ udge-latest-results $user | anonymize
+YYYY-MM-DD HH:MM:SS  hello-world.c  -  -  -  queued
+
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c
+
+$ ### ### After picking, the submission is moved to the first available slot ### ###
+$ udge-pick | anonymize
+
+created /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
+language = c
+Picked '/var/lib/udge/submissions/<user>/YYYYMMDD-HHMMSS/hello-world.c' to judge.
+problem = hello-world
+slot = /var/lib/udge/slot/1
+slot = /var/lib/udge/slot/2
+timestamp = YYYYMMDD-HHMMSS
+trying again...
+udge-pick: nothing to do (unlocking /var/lib/udge/slot/2)
+user = <user>
+
+$ udge-user-stats $user
+0 problems solved
+0 problems scored
+0 problems tried
+position ? on the rank
+score: 0 0 0 0 0 (=1 ≥⅔ ≥½ ≥⅓ >0)
+  add           -  0
+  addition      -  0
+  cat           -  0
+  hello         -  0
+  hello-world   -  0
+  rectangle     -  0
+  tee           -  0
+$ udge-latest-results $user | anonymize
+YYYY-MM-DD HH:MM:SS  hello-world.c  -  -  -  judging
+
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+/var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
+
+$ ### ### After compiling and running, results are created on /run ### ###
+$ udge-compile-and-run 1 | anonymize
+Compiling then running /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c.
+Created /run/udge/1/lock/run
+
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+/run/udge/1/lock/exe
+/run/udge/1/lock/hello-world.c
+/run/udge/1/lock/run/err
+/run/udge/1/lock/run/exe
+/run/udge/1/lock/run/exit
+/run/udge/1/lock/run/log
+/run/udge/1/lock/run/out
+/run/udge/1/lock/run/time
+/var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
+
+$ ### ### After checking, results are created on results/ ### ###
+$ udge-check | anonymize
+
+0 1
+1/1
+checking /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
+created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
+created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/result
+running again...
+udge-check: nothing to do
+updated /var/lib/udge/results/<user>/hello-world/best
+updated /var/lib/udge/results/<user>/hello-world/best.c
+
+$ udge-user-stats $user
+1 problems solved
+1 problems scored
+1 problems tried
+position ? on the rank
+score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
+  add            -  0
+  addition       -  0
+  cat            -  0
+  hello          -  0
+  hello-world  1/1  1  c
+  rectangle      -  0
+  tee            -  0
+$ udge-latest-results $user | anonymize
+YYYY-MM-DD HH:MM:SS  hello-world.c  1/1  0ms  1MB
+
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+/run/udge/1/junk/exe
+/run/udge/1/junk/hello-world.c
+/run/udge/1/junk/run/err
+/run/udge/1/junk/run/exe
+/run/udge/1/junk/run/exit
+/run/udge/1/junk/run/log
+/run/udge/1/junk/run/out
+/run/udge/1/junk/run/time
+
+$ find /var/lib/udge/results/$user -type f | anonymize
+/var/lib/udge/results/<user>/hello-world/best
+/var/lib/udge/results/<user>/hello-world/best.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/result
+/var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/time
+
+$ ### ### compile-and-run clears the junk folder ### ###
+$ udge-compile-and-run 1
+udge-compile-and-run: nothing to do on slot 1
+$ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
+
+$ udge-delete-user $user -f

@@ -126,7 +126,8 @@ test-web-parallel: \
 test-web-sequential: \
   new-user-toggle.clitest \
   submit-rate.clitest \
-  sandbox-submit.clitest
+  sandbox-submit.clitest \
+  pipeline.clitest
 
 # web tests that work in parallel most of the time (eg. w/ -j3)
 test-web-parseq: \
