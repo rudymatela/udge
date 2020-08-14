@@ -42,4 +42,9 @@ For later
 		test-web     (-j1)   53.69
 		fastest              81.92
 
+	- the new runtimes
+
+		make fastest         49.79
+		make test           168.34
+
 * On the user page, only show problems with tries (for now, keep as it is)
