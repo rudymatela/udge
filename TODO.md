@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* add "pipeline.txt" to test all steps in the pipeline
-  (file creation, moving and whatnot)
-
 * update the README with the new submission pileline
 
 * update the README video
