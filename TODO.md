@@ -30,21 +30,4 @@ For later
 	- Perl
 	- PHP
 
-* allow parallel execution of `make test-web` somehow
-
-	- problem: we will not be able to test that solutions get "queued",
-	           just that they are ultimately judged.
-
-	- the old runtimes:
-
-		test-scripts  -j7    28.23
-		test-scripts  -j1   113.28
-		test-web     (-j1)   53.69
-		fastest              81.92
-
-	- the new runtimes
-
-		make fastest         49.79
-		make test           168.34
-
 * On the user page, only show problems with tries (for now, keep as it is)
