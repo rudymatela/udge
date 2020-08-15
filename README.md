@@ -26,7 +26,7 @@ and create input and output cases
 following [Udge's Problem directory] format.
 Udge comes with seven example problems illustrating this.
 
-[Udge's Problem directory]: #problem-directory
+[Udge's Problem directory]: #problem-directory-----varlibudgeproblem
 
 Features:
 
@@ -35,18 +35,20 @@ Features:
 * support for "library" solutions
   where one has to implement a specific function;
 * a rank with a few selectable formats;
-* simple plaintext file database, no need to setup an SQL server and database;
+* [a simple plaintext file database], no need to setup an SQL server and database;
 * support for solutions in:
-	- C
-	- C#
-	- C++
-	- Haskell
-	- Java
-	- JavaScript
-	- Lua
-	- Python
+	- [C]
+	- [C++]
+	- [C#]
+	- [Haskell]
+	- [Java]
+	- [JavaScript]
+	- [Lua]
+	- [Python]
 
-Udge is implemented in Bash and works on Linux systems with Nginx.
+[a simple plaintext file database]: #a-file-based-database
+
+Udge is implemented in [Bash] and works on [Linux] systems with [Nginx].
 It uses static HTML pages where possible.
 These pages are updated by minutely cron jobs.
 The only two dynamic pages are for submission and user creation.
@@ -71,36 +73,45 @@ Dependencies
 
 To install and run Udge, you will need:
 
-* Bash
-* Python
-* nginx
-* fcgiwrap
-* cronie
-* cracklib       --- for checking password strength
-* diffutils      --- for `diff` and whatnot
-* discount       --- for `markdown`
-* fakechroot     --- for sandboxing
-* procmail       --- for `lockfile`
+* [Make]
+* [Bash]
+* [Python]
+* [nginx]
+* [fcgiwrap]
+* [cronie]
+* [cracklib]   --- for checking password strength
+* [diffutils]  --- for `diff` and whatnot
+* [discount]   --- for `markdown`
+* [fakechroot] --- for sandboxing
+* [procmail]   --- for `lockfile`
 
 You probably already have the following installed,
 but it does not hurt to double-check:
 
-* GNU coreutils  --- for `timeout` & others
-* grep
-* psmisc         --- for `killall` and whatnot
-* time           --- for measuring runtime with `/usr/bin/time`
-* util-linux     --- for sandboxing with `unshare`, `kill`, etc.
+* [coreutils]  --- for `timeout` and whatnot
+* [grep]
+* [psmisc]     --- for `killall` and whatnot
+* [time]       --- for measuring runtime with `/usr/bin/time`
+* [util-linux] --- for sandboxing with `unshare`, `kill`, etc.
 
 These are the optional dependencies:
 
-* clitest    --- for testing Udge itself
-* tidy       --- for testing Udge itself
-* GCC's GCC  --- for C submission support
-* GHC        --- for Haskell submission support
-* Java       --- for Java submission support
-* Lua        --- for Lua submission support
-* Mono       --- for C# submission support
-* nodejs     --- for JavaScript submission support
+* [clitest]    --- for testing Udge itself
+* [tidy]       --- for testing Udge itself
+* [GCC]        --- for [C] and [C++] submission support
+* [GHC]        --- for [Haskell] submission support
+* [Java]       --- for [Java] submission support
+* [Lua]        --- for [Lua] submission support
+* [Mono]       --- for [C#] submission support
+* [nodejs]     --- for [JavaScript] submission support
+
+On [Ubuntu] or [Debian], you can install all dependencies with:
+
+	apt-get install bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs # TODO: verify that this really works on Ubuntu
+
+On [Arch Linux], you can install all dependencies with:
+
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs
 
 [dependencies]: #dependencies
 
@@ -108,7 +119,7 @@ These are the optional dependencies:
 Installing and Configuring
 --------------------------
 
-TODO: provide packages for Arch Linux and Ubuntu.
+TODO: provide packages for [Arch Linux] and [Ubuntu].
 
 First make sure you have all the [dependencies] installed.  Then:
 
@@ -231,15 +242,15 @@ To create a problem on Udge:
 
 			./submitted-program <in
 
-	* `sol`: the solution file.
+	* `out`: the reference output file.
 		This will be compared to the standard output of submitted solutions:
 
-			./submitted-program <in >out
-			diff -rud out sol
+			./submitted-program <in >run/out
+			diff -rud run/out out
 
 		If output matches exactly, the submission will get a score.
 
-		Make sure you `chmod o-r` the `sol` file after installing it
+		Make sure you `chmod o-r` the `out` file after installing it
 		to make sure solution programs are not able to read from it.
 
 3. Link to the newly created problem on the problem index
@@ -363,9 +374,14 @@ in plain text files:
 * `/var/lib/udge/submissions`: submissions that are still to be judged
 * `/var/lib/udge/results`:     results of judging submissions
 * `/var/lib/udge/html`:        the static HTML pages (problems and users)
+* `/var/lib/udge/slot/<slot>`: submission slot
+* `/run/udge/<slot>`:          temporary files
 
 This section describes the structure of each of these directories.
 
+Submissions first arrive on the `/submissions` folder
+then moved to one of the slots `/slot/<slot>`
+and are finally moved into the `/results` folder.
 
 #### User Directory --- `/var/lib/udge/users`
 
@@ -419,7 +435,8 @@ plainly without a subdir.
 The submissions directory contains submissions that are yet to be scored.
 
 * `cgi-bin/udge-submit` creates entries in this directory
-* `bin/udge-pick-and-judge` picks-then-deletes entries from this directory
+* `bin/udge-pick` moves entries away from this directory
+* `bin/udge-check-and-pick` moves entries away from this directory
 
 It contain files in the following format:
 
@@ -435,7 +452,8 @@ For example:
 
 The results directory contains the results of evaluated solutions.
 
-* `bin/udge-pick-and-judge` creates entries in this directory
+* `bin/udge-check` creates entries in this directory
+* `bin/udge-check-and-pick` creates entries in this directory
 * `bin/udge-update-all-user-htmls` reads from this directory
 * `bin/udge-update-user-html` reads from this directory
 
@@ -445,13 +463,69 @@ each of the submissions, like so:
 
 	results/<user>/<problem>/best
 	results/<user>/<problem>/YYYYMMDD-HHMMSS/result
+	results/<user>/<problem>/YYYYMMDD-HHMMSS/time
 	results/<user>/<problem>/YYYYMMDD-HHMMSS/<problem>.<language>
 
 For example:
 
 	results/fulano/hello/best
 	results/fulano/hello/20190101-133700/result
+	results/fulano/hello/20190101-133700/time
 	results/fulano/hello/20190101-133700/hello.py
+
+
+#### Slots --- `/var/lib/udge/slot/<slot>`
+
+The slot directories contain entries that are ready to be run.
+
+* `bin/udge-pick` moves entries into this directory
+* `bin/udge-check` moves entries away from this directory
+* `bin/udge-check-and-pick` moves entries away and into this directory
+
+It contains files in the following format:
+
+	slot/<slot>/1/<user>/YYYYMMDD-HHMMDD/<problem>.<language>
+
+For example:
+
+	slot/1/lock/johndoe/20200224-202249/add.c
+	slot/2/lock/janeroe/20200224-001234/hello.hs
+
+There can be only one submission per slot
+and submissions in each slot should be run in different users.
+By default there are six slots named `1`, `2`, `3`, `4`, `5` and `6`.
+The users for each of these slots are:
+`udge-1`, `udge-2`, `udge-3`, `udge-4`, `udge-5` and `udge-6`.
+
+The `lock` folder acts as a lock,
+while it exists `udge-pick` will never place a submission in this slot.
+
+#### Run folders --- `/run/udge/<slot>`
+
+For each slot, there also exist a folder on `/run/udge`
+in the following format:
+
+	/run/udge/<slot>/lock/run-/...(see below)...
+	/run/udge/<slot>/lock/run/exe
+	/run/udge/<slot>/lock/run/<set>/exe
+	/run/udge/<slot>/lock/run/<set>/log
+	/run/udge/<slot>/lock/run/<set>/out
+	/run/udge/<slot>/lock/run/<set>/err
+	/run/udge/<slot>/lock/run/<set>/exit
+	/run/udge/<slot>/lock/run/<set>/time
+	/run/udge/<slot>/lock/run/<set>/files/...
+	/run/udge/<slot>/check/run/...
+
+* `udge-compile-and-test <slot>` tries to acquire the `lock` folder,
+  if it can,
+  it will create the `run-` folder with the above format.
+  Once it is done `run-` is moved into `run`.
+* `udge-check` tries to acquire the `check` folder,
+  it if can,
+  it will copy `lock/run` into `check/run` then
+  it will check its contents producing a score.
+  After creating the `result` and `time` files,
+  it will move the submission from `slot` into `results`.
 
 
 ### Test & Examples directory
@@ -467,3 +541,41 @@ under `examples/<problem>`:
 * `examples/hello/hello.c`:  example solution to `hello` in C      -- 6/6;
 * `examples/add/add.py`:     example solution to `add`   in Python -- 6/6;
 * `examples/add/4-octals.c`: example solution to `add`   in C      -- 4/6 -- wrong output.
+
+
+
+[Make]:       https://www.gnu.org/software/make/
+[Bash]:       https://www.gnu.org/software/bash/
+[nginx]:      https://nginx.org/
+[fcgiwrap]:   https://www.nginx.com/resources/wiki/start/topics/examples/fcgiwrap/
+[cronie]:     https://github.com/cronie-crond/cronie
+[cracklib]:   https://github.com/cracklib/cracklib
+[diffutils]:  https://www.gnu.org/software/diffutils/
+[discount]:   https://www.pell.portland.or.us/~orc/Code/discount/
+[fakechroot]: https://github.com/dex4er/fakechroot
+[procmail]:   https://www.procmail.org/
+[coreutils]:  https://www.gnu.org/software/coreutils/
+[grep]:       https://www.gnu.org/software/grep/
+[psmisc]:     https://gitlab.com/psmisc/psmisc
+[time]:       https://www.gnu.org/software/time/
+[util-linux]: https://github.com/karelzak/util-linux
+[clitest]:    https://github.com/aureliojargas/clitest
+[tidy]:       https://www.html-tidy.org/
+[GCC]:        https://gcc.gnu.org/
+[GHC]:        https://www.haskell.org/ghc/
+[Mono]:       https://www.mono-project.com/
+[nodejs]:     https://nodejs.org/
+
+[C]:          https://en.wikipedia.org/wiki/The_C_Programming_Language
+[C++]:        https://en.wikipedia.org/wiki/The_C++_Programming_Language
+[C#]:         http://csharp.net/
+[Haskell]:    https://haskell.org/
+[Java]:       https://www.java.com/
+[JavaScript]: https://en.wikipedia.org/wiki/JavaScript
+[Lua]:        https://www.lua.org/
+[Python]:     https://www.python.org/
+
+[Linux]:      https://kernel.org/
+[Arch Linux]: https://archlinux.org/
+[Debian]:     https://www.debian.org/
+[Ubuntu]:     https://ubuntu.com/
