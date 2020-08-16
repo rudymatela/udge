@@ -67,6 +67,7 @@ case "$src" in
 	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
 	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;
 	*.js)   lang=js   ;language="JavaScript" ;run=node     ;ext=.js  ;;
+	*.rb)   lang=rb   ;language="Ruby"       ;what="parse"           ;;
 	*)      errxit "unknown/unsupported file format or language"     ;;
 esac
 

@@ -117,6 +117,20 @@ Alternatively, you can declare the rectangle type as:
 	function area(rectangle)
 	function perimeter(rectangle)
 
+#### Ruby
+
+	class Rectangle
+	  attr_reader :width
+	  attr_reader :height
+
+	  def initialize(width, height)
+	    @width = width
+	    @height = height
+	  end
+
+	  def area
+	  def perimeter
+	end
 
 ### Scoring
 

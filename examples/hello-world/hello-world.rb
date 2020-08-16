@@ -1,9 +1,11 @@
-# main.py: main file for an "add" solution
+#!/usr/bin/env ruby
 #
-# This is appended to the submitted Python program and tests the add function.
+# examples/hello-world/hello-world.rb: example correct solution to "hello-world"
 #
-# The submitted file processes the standard input and this processes the
-# "in.txt" file.
+# This is an incorrect solution to the "hello-world" problem.
+# It should get a full 1/1 score.
+#
+# This file is part of Udge.
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -20,10 +22,5 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-# standard input is already processed
-# as the submitted programmed is run when imported
-with open("in.txt") as filein:
-  for line in filein:
-    x,y = [int(x) for x in line.split()]
-    print(add(x,y))
+#!/usr/bin/env python
+puts "Hello, World!"

@@ -1,6 +1,6 @@
-# main.py: main file for an "add" solution
+# main.rb: main file for an "add" solution
 #
-# This is appended to the submitted Python program and tests the add function.
+# This is appended to the submitted Ruby program and tests the add function.
 #
 # The submitted file processes the standard input and this processes the
 # "in.txt" file.
@@ -23,7 +23,7 @@
 
 # standard input is already processed
 # as the submitted programmed is run when imported
-with open("in.txt") as filein:
-  for line in filein:
-    x,y = [int(x) for x in line.split()]
-    print(add(x,y))
+File.foreach("in.txt") do |line|
+  x, y = line.split.map { |s| s.to_i }
+  puts add(x,y)
+end

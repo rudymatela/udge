@@ -1,9 +1,11 @@
-# main.py: main file for an "add" solution
+#!/usr/bin/env ruby
 #
-# This is appended to the submitted Python program and tests the add function.
+# examples/rectangle/rectangle.rb: solution to the "rectangle" example problem
 #
-# The submitted file processes the standard input and this processes the
-# "in.txt" file.
+# This program is an example solution to the "rectangle" example problem
+# that gets a full 3/3 score.
+#
+# This file is part of Udge.
 #
 #
 # Copyright (C) 2020  Rudy Matela
@@ -21,9 +23,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# standard input is already processed
-# as the submitted programmed is run when imported
-with open("in.txt") as filein:
-  for line in filein:
-    x,y = [int(x) for x in line.split()]
-    print(add(x,y))
+class Rectangle
+  attr_reader :width
+  attr_reader :height
+
+  def initialize(width, height)
+    @width = width
+    @height = height
+  end
+
+  def area
+    height * width
+  end
+
+  def perimeter
+    2 * (height + width)
+  end
+end
+
+STDIN.each do |line|
+  w, h = line.split.map { |s| s.to_i }
+  rectangle = Rectangle.new(w,h);
+  puts "#{rectangle.width}x#{rectangle.height} rectangle, area = #{rectangle.area}, perimeter = #{rectangle.perimeter}"
+end

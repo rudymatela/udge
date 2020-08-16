@@ -18,7 +18,6 @@ For later
 
 * Languages to support later (in no particular order):
 
-	- Ruby
 	- R
 	- Perl
 	- PHP
