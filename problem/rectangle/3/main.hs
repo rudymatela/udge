@@ -1,4 +1,4 @@
--- main.c: main file for an "rectangle" solution
+-- main.hs: main file for an "rectangle" solution
 --
 -- This imports the add function from submission file as a Main module
 --

@@ -1,4 +1,4 @@
-// main.java: main file for an "rectangle" solution
+// main.js: main file for an "rectangle" solution
 //
 // It processes values from standard input then from the "in.txt" file.
 // This is appended to the submitted JavaScript program and tests the add function.
