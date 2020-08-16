@@ -45,6 +45,7 @@ Features:
 	- [JavaScript]
 	- [Lua]
 	- [Python]
+	- [Ruby]
 
 [a simple plaintext file database]: #a-file-based-database
 
@@ -104,14 +105,15 @@ These are the optional dependencies:
 * [Lua]        --- for [Lua] submission support
 * [Mono]       --- for [C#] submission support
 * [nodejs]     --- for [JavaScript] submission support
+* [Ruby]       --- for [Ruby] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs # TODO: verify that this really works on Ubuntu
+	apt-get install bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs ruby # TODO: verify that this really works on Ubuntu
 
 On [Arch Linux], you can install all dependencies with:
 
-	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs ruby
 
 [dependencies]: #dependencies
 
@@ -574,6 +576,7 @@ under `examples/<problem>`:
 [JavaScript]: https://en.wikipedia.org/wiki/JavaScript
 [Lua]:        https://www.lua.org/
 [Python]:     https://www.python.org/
+[Ruby]:       https://www.ruby-lang.org/
 
 [Linux]:      https://kernel.org/
 [Arch Linux]: https://archlinux.org/
