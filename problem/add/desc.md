@@ -53,12 +53,14 @@ your program should be implemented using an `add` function
 that receives two integers as arguments and returns an integer.
 Please refer to the information for the chosen language:
 
-* C prototype:        `int add(int x, int y);`
-* Haskell type:       `add :: Int -> Int -> Int`
-* Python definition:  `def add(x,y):`
-* C# definition:      `public static int Add(int x, int y)` inside a class `Program`
-* Java definition:    `public static int add(int x, int y)` inside a public class `Add`
-* Lua definition:     `function add(x, y)`
+* C prototype:           `int add(int x, int y);`
+* Python definition:     `def add(x,y):`
+* Haskell type:          `add :: Int -> Int -> Int`
+* C++ prototype:         `int add(int x, int y);`
+* C# definition:         `public static int Add(int x, int y)` inside a class `Program`
+* Java definition:       `public static int add(int x, int y)` inside a public class `Add`
+* JavaScript definition: `function add(x, y)`
+* Lua definition:        `function add(x, y)`
 
 If you are confused by the above,
 try earning a partial score first.

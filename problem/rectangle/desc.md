@@ -58,18 +58,6 @@ Please refer to the information for your chosen language.
 	int area(struct rectangle rectangle);
 	int perimeter(struct rectangle rectangle);
 
-#### Haskell
-
-	data Rectangle = Rectangle { width :: Int
-	                           , height :: Int
-	                           }
-	area :: Rectangle -> Int
-	perimeter :: Rectangle -> Int
-
-Alternatively, you can declare the rectangle type as:
-
-	data Rectangle = Rectangle Int Int
-
 #### Python
 
 	class Rectangle:
@@ -83,7 +71,19 @@ Alternatively, you can declare the rectangle type as:
 		def perimeter(self):
 			...
 
-#### C#
+#### Haskell
+
+	data Rectangle = Rectangle { width :: Int
+	                           , height :: Int
+	                           }
+	area :: Rectangle -> Int
+	perimeter :: Rectangle -> Int
+
+Alternatively, you can declare the rectangle type as:
+
+	data Rectangle = Rectangle Int Int
+
+#### C♯
 
 	class Rectangle
 	{
@@ -104,6 +104,12 @@ Alternatively, you can declare the rectangle type as:
 		public int area();
 		public int perimeter();
 	}
+
+#### JavaScript
+
+	rectangle = {width: ..., height: ...}
+	function area(rectangle)
+	function perimeter(rectangle)
 
 #### Lua
 
