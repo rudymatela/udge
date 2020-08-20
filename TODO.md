@@ -1,6 +1,14 @@
 TODO list for Udge
 ==================
 
+* remove double-slashes from "-v" and error output:
+
+	+diff: /var/lib/udge/problem/<problem>//out: No such file or directory
+	+No - wrong output
+	+0/1
+
+  i.e.: `ls-problems` should avoid producing output with `/`
+
 * update the README video
 
 * configure rate limiting on nginx
