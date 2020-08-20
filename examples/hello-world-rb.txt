@@ -25,6 +25,6 @@ $ udge-judge hello-world examples/hello-world/hello-world.rb
 $ udge-judge hello-world examples/hello-world/0-wo.rb
 No - wrong output
 0/1
-$ udge-judge hello-world examples/hello-world/0-ce.rb
+$ udge-judge hello-world examples/hello-world/0-ce.rb 2>/dev/null
 No - compile error
 0/1

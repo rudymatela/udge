@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 set -e
-cc $CFLAGS -c "$1" -o lib.o
+cc -lm $CFLAGS -c "$1" -o lib.o
 objcopy --redefine-sym main=oldmain lib.o
-cc "$3" lib.o -o "$2"
+cc -lm "$3" lib.o -o "$2"
 rm lib.o

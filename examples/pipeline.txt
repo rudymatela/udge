@@ -157,9 +157,9 @@ $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
 
 $ ### ### After checking, results are created on results/ ### ###
-$ udge-check | anonymize
+$ udge-check 2>/dev/null | sed -e 's/^0 [0-2]$/0 ?/' | anonymize
 
-0 1
+0 ?
 1/1
 checking /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
 created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
@@ -182,8 +182,8 @@ score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
   hello-world  1/1  1  c
   rectangle      -  0
   tee            -  0
-$ udge-latest-results $user | anonymize
-YYYY-MM-DD HH:MM:SS  hello-world.c  1/1  0ms  1MB
+$ udge-latest-results $user | sed -e 's/[0-2]MB/?MB/' | anonymize
+YYYY-MM-DD HH:MM:SS  hello-world.c  1/1  0ms  ?MB
 
 $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 /run/udge/1/junk/exe

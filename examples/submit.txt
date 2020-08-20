@@ -278,7 +278,7 @@ $ udge-submit $tmp hello-world c
 udge-submit: 413
 $
 $
-$ udge-pick-and-judge | grep "^./.$"
+$ udge-pick-and-judge 2>/dev/null | grep "^./.$"
 0/1
 $
 $

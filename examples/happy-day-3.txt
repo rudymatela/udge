@@ -44,12 +44,13 @@ Submission successful (202)
 $
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null
+$ sleep 0.2
 $ udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
-$ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/[0-9]ms/?ms/"
-YYYY-MM-DD HH:MM:SS  add.c  4/6  ?ms  1MB  No - wrong output
-YYYY-MM-DD HH:MM:SS  add.c  6/6  ?ms  1MB
+$ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/[0-9]ms/?ms/;s/[0-9]MB/?MB/"
+YYYY-MM-DD HH:MM:SS  add.c  4/6  ?ms  ?MB  No - wrong output
+YYYY-MM-DD HH:MM:SS  add.c  6/6  ?ms  ?MB
 $ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/[0-9]ms/?ms/;s/[0-9]MB/?MB/"
 YYYY-MM-DD HH:MM:SS  hello-world.lua  0/1  ?ms  ?MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.lua          6/6  ?ms  ?MB

@@ -60,9 +60,14 @@ check-out() {
 	fi
 }
 
+compile-error() {
+	cat $run/log >&2
+	fail "No - compile error"
+}
+
 # checks that it is compiled
 [ -n "$verbose" ] && echo "checking if $run/exe* exists and is unique:" $run/exe*
-[ -e $run/exe* ] || fail "No - compile error"
+[ -e $run/exe* ] || compile-error
 
 # sandboxing checks
 grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "No - reached maximum number of processes"
@@ -77,8 +82,8 @@ $checkexitcode $(cat $run/exit) || fail "No - runtime error"
 # checks standard output and standard error
 check=check-out
 [ -x $sol/check-out ] && check=$sol/check-out
-$check $sol/out $run/out || fail "No - wrong output"
+$check $sol/out $run/out $verbose || fail "No - wrong output"
 if [ -e $sol/err ]
 then
-	$check $sol/err $run/err || fail "No - wrong error output"
+	$check $sol/err $run/err $verbose || fail "No - wrong error output"
 fi
