@@ -138,3 +138,8 @@ Alternatively, you can declare the rectangle type as:
 * 2/3: works for other test cases
 * 3/3: implements the `area` and `perimeter` functions
        over the required `rectangle` type
+
+
+Copyright © 2020 Rudy Matela
+This text is available under the CC BY-SA 4.0 license
+or (at your option) the GFDL 1.3 license
