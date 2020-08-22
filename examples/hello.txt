@@ -51,3 +51,7 @@ No - wrong output
 $ udge-judge hello examples/hello/5-wo.c
 No - wrong output
 5/6
+$ udge-judge hello examples/hello/hello.py
+6/6
+$ udge-judge hello examples/hello/hello.hs
+6/6
