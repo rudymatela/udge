@@ -2,7 +2,7 @@
 #
 # examples/hello-world/hello-world.py: example correct solution to "hello-world"
 #
-# This is an incorrect solution to the "hello-world" problem.
+# This is a correct solution to the "hello-world" problem.
 # It should get a full 1/1 score.
 #
 # This file is part of Udge.
@@ -22,5 +22,4 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#!/usr/bin/env python
 print("Hello, World!")
