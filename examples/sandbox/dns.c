@@ -42,12 +42,12 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-int main()
+int main(int argc, char *argv[])
 {
 	struct addrinfo *addrinfo, *a;
 	int error;
 	char hostname[NI_MAXHOST];
-	error = getaddrinfo("example.com", NULL, NULL, &addrinfo);
+	error = getaddrinfo(argv[1]?argv[1]:"example.com", NULL, NULL, &addrinfo);
 	if (error) {
 		fprintf(stderr, "could not resolve hostname (%i)\n", error);
 		exit(1);
