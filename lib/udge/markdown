@@ -41,6 +41,7 @@ marky() {
 	sed -e 's|^{#\([a-z0-9-]*\)}$|<a name="\1"></a>|'
 }
 
+[ "$page_title" == "$NAME" ] || page_title="$page_title - $NAME"
 html-header $page_title
 html-navbar $index
 if grep -q "$copyright" "$@"

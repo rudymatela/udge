@@ -31,7 +31,7 @@ Problem Index
 200
 
 $ curl -s udge/hello | display
-hello - Hello, World!
+hello - Hello, World! - Udge Online Judge
 hello - Hello, World!
 Input and output
 Scoring
@@ -39,7 +39,7 @@ Hints
 200
 
 $ curl -s udge/this-page-does-not-exist | display
-404 Not Found
+404 Not Found - Udge Online Judge
 Udge Online Judge
 404 Not Found
 404
