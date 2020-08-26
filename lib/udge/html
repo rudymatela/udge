@@ -31,11 +31,11 @@ cat <<HTML
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 HTML
 [ -n "$page_author" ] && echo "<meta name=\"author\" content=\"$page_author\">"
 cat <<HTML
-<link rel="stylesheet" href="/bootstrap.css"/>
+<link rel="stylesheet" href="/bootstrap.css">
 <style>
 body {
 	color:            #111;
