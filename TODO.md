@@ -1,6 +1,8 @@
 TODO list for Udge
 ==================
 
+* remove self-closing `<tags />`
+
 * remove double-slashes from "-v" and error output:
 
 	+diff: /var/lib/udge/problem/<problem>//out: No such file or directory

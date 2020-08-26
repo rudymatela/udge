@@ -31,6 +31,7 @@ copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
 page_title="`head -1 "$1"`"
 echo "$page_title" | grep -q "^##" &&
 	page_title=`cat "$1" | grep '^# ' | head -1 | sed -e 's/^# //'`
+page_author="`cat "$1" | grep Copyright | head -1 | sed -e "s/Copyright .*[0-9][0-9][0-9][0-9] //"`"
 
 class() {
 	sed -e 's/^|/\&nbsp; | \&nbsp;/' |
