@@ -38,16 +38,17 @@ verbose="$3"
 [ -n "$set" ] || errxit "must provide input folder"
 [ -n "$out" ] || errxit "must provide output folder"
 
-[ -d "$set" ] || errxit "input folder not found"
-[ -d "$out" ] || errxit "output folder not found"
+[ -d "$set" ] || errxit "input folder not found: '$set'"
+[ -d "$out" ] || errxit "output folder not found: '$out'"
 
 total=0
 outof=`n-points-path "$set"`
 for idir in $set/*/
 do
-	[ -d $idir ] || idir=$set/
-	id=`echo $idir | sed -e "s|$set/||"`
-	odir=$out/$id
+	idir="${idir%/}" # remove trailing /
+	[ -d "$idir" ] || idir="$set"
+	id=`echo $idir | sed -e "s|$set||"`
+	odir=$out$id
 	pts=`cator1 $idir/pts`
 	[ -n "$verbose" ] && echo "Conferring $odir against $idir"
 	$lib/check-1 $idir $odir $verbose && ((total+=$pts)) || break

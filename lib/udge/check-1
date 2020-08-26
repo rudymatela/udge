@@ -44,8 +44,8 @@ verbose="$3"
 [ -n "$sol" ] || ferrxit "must provide input folder"
 [ -n "$run" ] || ferrxit "must provide output folder"
 
-[ -d "$sol" ] || ferrxit "input folder not found"
-[ -d "$run" ] || ferrxit "output folder not found"
+[ -d "$sol" ] || ferrxit "input folder not found: '$sol'"
+[ -d "$run" ] || ferrxit "output folder not found: '$run'"
 
 check-exit-code() {
 	[ "$1" = 0 ]
