@@ -28,16 +28,16 @@
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=2048 # just for now...
 
 ulimit -c 262144 # blocks, 128M
-ulimit -d 524288 # K, 512M
+ulimit -d 1048576 # K, 1024M, 1G
 ulimit -f 262144 # blocks, 128M
 ulimit -i 1024 # signals
-ulimit -l 16 # K
-ulimit -m 1048576 # K, 1024M, 1G
-ulimit -n 32 # files
+ulimit -l 32 # K
+ulimit -m 2097152 # K, 2048M, 2G
+ulimit -n 128 # files
 ulimit -q 1024 # queues
 ulimit -s 8192 # K, 8M
 ulimit -u $MAX_PROCESSES # processes
-ulimit -v 2097152 # K, 2G
+ulimit -v 4194304 # K, 4096M, 2G
 ulimit -x 1024 # file locks
 # use `ulimit -a` for a list
 # use `ulimit -h` for a complete list
