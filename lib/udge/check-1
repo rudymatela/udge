@@ -61,12 +61,12 @@ check-out() {
 }
 
 compile-error() {
+	[ -n "$verbose" ] && echo "$run/exe* does not exist or is not unique:" $run/exe* >&2
 	cat $run/log >&2
 	fail "No - compile error"
 }
 
 # checks that it is compiled
-[ -n "$verbose" ] && echo "checking if $run/exe* exists and is unique:" $run/exe*
 [ -e $run/exe* ] || compile-error
 
 # sandboxing checks

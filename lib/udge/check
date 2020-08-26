@@ -50,7 +50,7 @@ do
 	id=`echo $idir | sed -e "s|$set||"`
 	odir=$out$id
 	pts=`cator1 $idir/pts`
-	[ -n "$verbose" ] && echo "Conferring $odir against $idir"
+	[ -n "$verbose" ] && echo "Checking $odir against $idir"
 	$lib/check-1 $idir $odir $verbose && ((total+=$pts)) || break
 done
 echo $total/$outof
