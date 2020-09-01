@@ -22,10 +22,6 @@
 
 . /etc/udgerc
 
-[ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?"
-bin=$prefix/bin
-lib=$prefix/lib/udge
-
 # a sanity check for user and problem names
 SANE='^[a-z_][a-z0-9_-]*$'
 
@@ -49,6 +45,16 @@ verrxit() {
 	[ -n "$verbose" ] && echo "`basename "$0"`, error: $@" >&2
 	exit 1
 }
+
+guess-prefix() {
+	[ -d "/usr/lib/udge" ]       && prefix=/usr
+	[ -d "/usr/local/lib/udge" ] && prefix=/usr/local
+}
+
+[ -n "$prefix" ] || guess-prefix
+[ -d "$prefix" ] || errxit "prefix directory ($prefix) does not exist, broken Udge installation?"
+bin=$prefix/bin
+lib=$prefix/lib/udge
 
 warn() {
 	echo "`basename "$0"`, warning: $@" >&2
