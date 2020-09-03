@@ -53,5 +53,3 @@ exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
 # 3. udge-sandbox
 # 4. unshare
 # 5. exe
-#
-# TODO: eventually test to decide a better MAX_PROCESSES default
