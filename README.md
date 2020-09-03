@@ -79,7 +79,7 @@ To install and run Udge, you will need:
 * [Python]
 * [nginx]
 * [fcgiwrap]
-* [cronie]
+* [cronie] or any other [cron]
 * [cracklib]   --- for checking password strength
 * [diffutils]  --- for `diff` and whatnot
 * [discount]   --- for `markdown`
@@ -109,11 +109,11 @@ These are the optional dependencies:
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs ruby # TODO: verify that this really works on Ubuntu
+	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby
 
-On [Arch Linux], you can install all dependencies with:
+On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail clitest tidy gcc ghc java lua mono nodejs ruby
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby
 
 [dependencies]: #dependencies
 
@@ -551,6 +551,7 @@ under `examples/<problem>`:
 [nginx]:      https://nginx.org/
 [fcgiwrap]:   https://www.nginx.com/resources/wiki/start/topics/examples/fcgiwrap/
 [cronie]:     https://github.com/cronie-crond/cronie
+[cron]:       https://en.wikipedia.org/wiki/Cron
 [cracklib]:   https://github.com/cracklib/cracklib
 [diffutils]:  https://www.gnu.org/software/diffutils/
 [discount]:   https://www.pell.portland.or.us/~orc/Code/discount/
