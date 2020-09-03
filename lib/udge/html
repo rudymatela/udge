@@ -20,10 +20,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-install-bootstrap() {
+install-csss() {
 	mkdir -p "$PUBLIC_HTML"
+
 	dst="$PUBLIC_HTML/bootstrap.css"
 	[ -e "$dst" ] || cp "$lib/bootstrap.css" "$dst"
+
+	dst="$PUBLIC_HTML/udge.css"
+	[ -e "$dst" ] || cp "$lib/udge.css" "$dst"
 }
 
 html-header() {
@@ -36,52 +40,7 @@ HTML
 [ -n "$page_author" ] && echo "<meta name=\"author\" content=\"$page_author\">"
 cat <<HTML
 <link rel="stylesheet" href="/bootstrap.css">
-<style>
-body {
-	color:            #111;
-	background-color: #fff;
-}
-code, pre {
-	color:            #000;
-	background-color: #eee;
-}
-a {
-	color: #15A; // #16C
-}
-a:focus, a:hover {
-	color: #048;
-}
-img {
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-}
-/* TODO: move these into a standalone CSS file. */
-.zero {
-	display: inline-block;
-	padding: 3px 7px;
-	border-radius: 10px;
-	line-height: 1;
-	color: #000;
-	background-color: #FAA;
-}
-.frac {
-	display: inline-block;
-	padding: 3px 7px;
-	border-radius: 10px;
-	line-height: 1;
-	color: #000;
-	background-color: #FD8;
-}
-.one {
-	display: inline-block;
-	padding: 3px 7px;
-	border-radius: 10px;
-	line-height: 1;
-	color: #000;
-	background-color: #AFC;
-}
-</style>
+<link rel="stylesheet" href="/udge.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$@</title>
 </head>

@@ -32,7 +32,7 @@ mkdir -p "$PUBLIC_HTML/u"
 
 set -e
 
-install-bootstrap
+install-csss
 
 doit() {
 	tmpfile="$user_html.html"

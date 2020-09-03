@@ -1,0 +1,64 @@
+/*
+ * lib/udge/udge.css: CSS file for Udge
+ *
+ * This file is part of Udge.
+ * 
+ *
+ * Copyright (C) 2020  Rudy Matela
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+body {
+	color:            #111;
+	background-color: #fff;
+}
+code, pre {
+	color:            #000;
+	background-color: #eee;
+}
+a {
+	color: #15A; // #16C
+}
+a:focus, a:hover {
+	color: #048;
+}
+img {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.zero {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #FAA;
+}
+.frac {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #FD8;
+}
+.one {
+	display: inline-block;
+	padding: 3px 7px;
+	border-radius: 10px;
+	line-height: 1;
+	color: #000;
+	background-color: #AFC;
+}

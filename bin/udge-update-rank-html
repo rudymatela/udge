@@ -26,7 +26,7 @@ prefix="$(dirname "$(dirname "$0")")"
 
 set -e
 
-install-bootstrap
+install-csss
 dst="$PUBLIC_HTML/rank.html"
 tmpfile="$dst.html"
 lockfile -r0 "$tmpfile" || errxit "instance still running?  if not, delete '$tmpfile' and try again"
