@@ -62,3 +62,16 @@ img {
 	color: #000;
 	background-color: #AFC;
 }
+div.twocolumns div.left {
+	float: left;
+	width: 48%;
+}
+div.twocolumns div.right {
+	float: right;
+	width: 48%;
+}
+div.twocolumns:after {
+	content: "";
+	display: table;
+	clear: both;
+}

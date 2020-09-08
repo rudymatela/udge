@@ -42,12 +42,18 @@ marky() {
 	sed -e 's|^{#\([a-z0-9-]*\)}$|<a name="\1"></a>|'
 }
 
+multicolumn() {
+	sed -e 's,^<p>%%(%%</p>$,<div class="twocolumns"><div class="left">,' |
+	sed -e 's,^<p>%%|%%</p>$,</div><div class="right">,' |
+	sed -e 's,^<p>%%)%%</p>$,</div></div>,'
+}
+
 [ "$page_title" == "$NAME" ] || page_title="$page_title - $NAME"
 html-header $page_title
 html-navbar $index
 if grep -q "$copyright" "$@"
 then
-	grep -B10000 "$copyright" "$@" | head -n -1 | marky | markdown | class
+	grep -B10000 "$copyright" "$@" | head -n -1 | marky | markdown | class | multicolumn
 	html-navbar $index
 	echo '<p style="text-align:right;font-size:smaller">'
 	# This automatically links a few license types
@@ -58,7 +64,7 @@ then
 		sed -e "s/$/<br>/"
 	echo '</p>'
 else
-	cat "$@" | marky | markdown | class
+	cat "$@" | marky | markdown | class | multicolumn
 	html-navbar $index
 fi
 html-footer
