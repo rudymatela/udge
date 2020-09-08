@@ -24,10 +24,11 @@ install-csss() {
 	mkdir -p "$PUBLIC_HTML"
 
 	dst="$PUBLIC_HTML/bootstrap.css"
-	[ -e "$dst" ] || cp "$lib/bootstrap.css" "$dst"
+	[ -e "$dst" ] || cp -v "$lib/bootstrap.css" "$dst"
 
 	dst="$PUBLIC_HTML/udge.css"
-	[ -e "$dst" ] || cp "$lib/udge.css" "$dst"
+	[ -e "$dst" ]                  || cp -v "$lib/udge.css" "$dst"
+	[ "$dst" -nt "$lib/udge.css" ] || cp -v "$lib/udge.css" "$dst"
 }
 
 html-header() {
