@@ -34,6 +34,7 @@ echo "$page_title" | grep -q "^##" &&
 page_author="`cat "$1" | grep Copyright | head -1 | sed -e "s/Copyright .*[0-9][0-9][0-9][0-9] //"`"
 
 class() {
+	sed -e 's|^<h\(.\)>\(.*[^ ]\)  *#\(.*\)</h.>$|<h\1 id="\3">\2</h\1>|' |
 	sed -e 's/^|/\&nbsp; | \&nbsp;/' |
 	sed -e 's/<table>/<table class="table table-hover">/'
 }
