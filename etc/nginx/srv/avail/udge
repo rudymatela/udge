@@ -12,6 +12,15 @@ server {
 
 	root /var/lib/udge/html;
 
+	# Remove trailing slashes from URLs with 301 Moved Permanently.
+	rewrite ^/(.*)/$ /$1 permanent;
+
+	# Remove double slashes from URLs with 301 Moved Permanently.
+	if ($request_uri ~ "//") {
+		return 301 $uri;
+	}
+
+
 	location / {
 		index index.html;
 		try_files $uri $uri/index.html $uri.html =404;
