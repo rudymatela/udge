@@ -161,7 +161,7 @@ First make sure you have all the [dependencies] installed.  Then:
 
 4. Add the following entry to `/etc/hosts`.
 
-		127.0.0.1 udge udge.localdomain
+		127.0.0.1 udge udge.example.com
 
 	If you have another domain name you would like to use,
 		replace it here instead.
