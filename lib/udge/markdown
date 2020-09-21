@@ -44,6 +44,8 @@ marky() {
 }
 
 multicolumn() {
+	sed -e 's|<p>%%\([a-z]*\){%%</p>|<div class="panel panel-default \1"><div class="panel-body">|' |
+	sed -e 's|<p>%%}[a-z]*%%</p>|</div></div>|' |
 	sed -e 's,^<p>%%(%%</p>$,<div class="twocolumns"><div class="left">,' |
 	sed -e 's,^<p>%%|%%</p>$,</div><div class="right">,' |
 	sed -e 's,^<p>%%)%%</p>$,</div></div>,'
