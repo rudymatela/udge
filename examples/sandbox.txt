@@ -30,8 +30,8 @@ No - runtime error
 0/1
 $
 $ cc examples/sandbox/dns.c -o $tmp
-$ $tmp | grep example.com | sort -u
-hostname: example.com
+$ $tmp | grep hostname: | sed -e "s/hostname:.*/hostname:/" | sort -u
+hostname:
 $ MAX_PROCESSES=2048 udge-sandbox $tmp
 could not resolve hostname (-3)
 $
