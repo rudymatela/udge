@@ -38,6 +38,9 @@ NGINX_ENABLED = $(shell \
 	true)
 TIDY          = tidy -qe --show-filename yes
 
+# Sets the number of jobs to the the number of processors minus one.
+NJOBS := $(shell grep ^processor /proc/cpuinfo | head -n -1 | wc -l | sed 's/^0$$/1/')
+
 .PHONY: all
 all:
 
@@ -57,7 +60,7 @@ test: \
   test-sequential
 
 fastest:
-	make test-parallel -j7
+	make test-parallel -j$(NJOBS)
 	make test-sequential
 
 # targets under this can be run in parallel (eg. w/ -j7)
