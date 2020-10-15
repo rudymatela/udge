@@ -84,11 +84,11 @@ then
 	echo "<h3>Latest submissions</h3>"
 	echo '<table class="table table-hover">'
 	echo '<thead>'
-	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th>score</th><th>runtime</th><th>reason</th></tr>'
+	echo '<tr><th>timestamp (UTC)</th><th>problem</th><th>language</th><th class="c">score</th><th class="r">runtime</th><th class="r">reason</th></tr>'
 	echo '</thead>'
 	echo '<tbody>'
 	cat "$tmp" |
-		sed -Ee 's,^([^ ]+) ([^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1\&nbsp;\2</td><td><a href="/\3">\3</a></td><td>\4</td><td>\5</td><td>\6 \7</td><td>\8</td></tr>,' |
+		sed -Ee 's,^([^ ]+) ([^ ]+)  ([^ ]+)\.([^ ]+)  [ ]*([^ ]+)[ ]*([^ ]+)[ ]*([^ ]+)(.*)$,<tr><td>\1\&nbsp;\2</td><td><a href="/\3">\3</a></td><td>\4</td><td class="c">\5</td><td class="r">\6 \7</td><td class="r">\8</td></tr>,' |
 		colour-fractions
 	echo '</tbody>'
 	echo '</table>'
@@ -100,11 +100,11 @@ rm "$tmp"
 echo "<h3>Scores by problem</h3>"
 echo '<table class="table table-hover">'
 echo '<thead>'
-echo "<tr><th>problem</th><th>best score</th><th>tries</th><th>languages</th></tr>"
+echo '<tr><th class="r">problem</th><th class="c">best score</th><th class="r">tries</th><th class="r">languages</th></tr>'
 echo '</thead>'
 echo '<tbody>'
 $bin/udge-user-stats $user problem |
-	sed -Ee 's,^  ([^ ]+) +([^ ]+) +([^ ]+) *(.*)$,<tr><td>\&nbsp; \&nbsp; <a href="/\1">\1</a></td><td>\2</td><td>\3</td><td>\4</td></tr>,' |
+	sed -Ee 's,^  ([^ ]+) +([^ ]+) +([^ ]+) *(.*)$,<tr><td class="r">\&nbsp; \&nbsp; <a href="/\1">\1</a></td><td class="c">\2</td><td class="r">\3</td><td class="r">\4</td></tr>,' |
 	sed -Ee 's,^[^<].*$,<tr style="background-color: #f8f8f8"><td>&</td><td></td><td></td><td></td></tr>,' |
 	colour-fractions
 echo '</tbody>'

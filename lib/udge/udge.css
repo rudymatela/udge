@@ -75,3 +75,9 @@ div.twocolumns:after {
 	display: table;
 	clear: both;
 }
+th.c, td.c {
+	text-align: center;
+}
+th.r, td.r {
+	text-align: right;
+}
