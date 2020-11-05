@@ -23,7 +23,7 @@
 #
 # Set the CHROOT variable to run this program under a different root.
 #
-# CHROOT=. 
+# CHROOT=.
 
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=2048 # just for now...
 
