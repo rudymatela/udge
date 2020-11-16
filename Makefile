@@ -453,6 +453,10 @@ check-install-find:
 	rm install{able,ed}-files.txt
 
 show-vars:
-	@echo "PREFIX        = $(PREFIX)"
-	@echo "HTTPD_USER    = $(HTTPD_USER)"
-	@echo "TIDY          = $(TIDY)"
+	@echo  'PREFIX     ='  $(PREFIX)
+	@echo  'DESTDIR    ='  $(DESTDIR)
+	@echo  'HTTPD_USER ='  $(HTTPD_USER)
+	@echo  'NJOBS      ='  $(NJOBS)
+	@echo  'TIDY       ='  $(TIDY)
+	@echo  '`nologin`  ='  `which nologin`
+	@echo  '`id -u`    ='  `id -u`
