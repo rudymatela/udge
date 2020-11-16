@@ -20,11 +20,12 @@
 # This Makefile uses GNU make extensions.
 
 PREFIX        = /usr/local
-# HTTPD_USER is guessed to be www-data, http, nginx, www or root in that order.
+# HTTPD_USER is guessed to be www-data, http, nginx, www, httpd or root in that order.
 HTTPD_USER    = $(shell id -u www-data -n 2>/dev/null || \
                         id -u http     -n 2>/dev/null || \
                         id -u nginx    -n 2>/dev/null || \
                         id -u www      -n 2>/dev/null || \
+                        id -u httpd    -n 2>/dev/null || \
                         id -u root     -n 2>/dev/null)
 TIDY          = tidy -qe --show-filename yes
 
