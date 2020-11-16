@@ -129,10 +129,9 @@ First make sure you have all the [dependencies] installed.  Then:
 
 		$ sudo make install
 
-	Depending on your Linux distribution, you may need to set `HTTPD_USER`,
-	`NGINX_AVAIL` and `NGINX_ENABLED`:
+	Depending on your Linux distribution, you may need to set `HTTPD_USER`:
 
-		$ sudo make install HTTPD_USER=<user> NGINX_AVAIL=<path> NXING_ENABLED=<path>
+		$ sudo make install HTTPD_USER=<user>
 
 	The Makefile should be able to figure these automatically on Arch Linux
 	(tested) and on Debian/Ubuntu variants (untested).

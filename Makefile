@@ -26,16 +26,6 @@ HTTPD_USER    = $(shell id -u www-data -n 2>/dev/null || \
                         id -u nginx    -n 2>/dev/null || \
                         id -u www      -n 2>/dev/null || \
                         id -u root     -n 2>/dev/null)
-# NGINX_AVAIL is guessed to be sites-available and srv/avail in that order.
-NGINX_AVAIL   = $(shell \
-	[ -d /etc/nginx/sites-available ] && echo /etc/nginx/sites-available || \
-	[ -d /etc/nginx/srv/avail ]       && echo /etc/nginx/srv/avail       || \
-	echo /etc/udge-nginx-example)
-# NGINX_ENABLED is guessed to be sites-enabled and srv/enabled in that order.
-NGINX_ENABLED = $(shell \
-	[ -d /etc/nginx/sites-enabled ]   && echo /etc/nginx/sites-enabled || \
-	[ -d /etc/nginx/srv/enabled ]     && echo /etc/nginx/srv/enabled   || \
-	true)
 TIDY          = tidy -qe --show-filename yes
 
 # Sets the number of jobs to the the number of processors minus one.
@@ -237,7 +227,7 @@ install:
 	mkdir -p $(DESTDIR)/etc
 	mkdir -p $(DESTDIR)/etc/cron.d
 	mkdir -p $(DESTDIR)/etc/tmpfiles.d
-	mkdir -p $(DESTDIR)$(NGINX_AVAIL)
+	mkdir -p $(DESTDIR)/etc/nginx/sites-available
 	mkdir -p $(DESTDIR)/var/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
@@ -245,7 +235,7 @@ install:
 	install -m 0644 etc/udgerc $(DESTDIR)/etc/udgerc
 	install -m 0644 etc/cron.d/udge $(DESTDIR)/etc/cron.d/udge
 	install -m 0644 etc/tmpfiles.d/udge.conf $(DESTDIR)/etc/tmpfiles.d
-	install -m 0644 etc/nginx/srv/avail/udge $(DESTDIR)$(NGINX_AVAIL)/udge
+	install -m 0644 etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
@@ -358,7 +348,7 @@ uninstall:
 now=$(shell date "+%Y%m%d-%H%M%S")
 uninstall-and-purge: uninstall
 	mv $(DESTDIR)/etc/udgerc{,-old-$(now)}
-	mv $(DESTDIR)$(NGINX_AVAIL)/udge{,-old-$(now)}
+	mv $(DESTDIR)/etc/nginx/sites-available/udge{,-old-$(now)}
 	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
 	mv /run/udge{,-old-$(now)} || true
 	userdel udge-1
@@ -385,13 +375,13 @@ dev-setup:
 
 # Run this as root after dev-setup
 dev-install:
-	mkdir -p                         $(DESTDIR)/etc
-	mkdir -p                         $(DESTDIR)$(NGINX_AVAIL)
-	mkdir -p                         $(DESTDIR)/var/lib
-	ln -sfT `pwd`/etc/udgerc         $(DESTDIR)/etc/udgerc
-	ln -sfT `pwd`$(NGINX_AVAIL)/udge $(DESTDIR)$(NGINX_AVAIL)/udge
+	mkdir -p                 $(DESTDIR)/etc
+	mkdir -p                 $(DESTDIR)/etc/nginx/sites-available
+	mkdir -p                 $(DESTDIR)/var/lib
+	ln -sfT `pwd`/etc/udgerc $(DESTDIR)/etc/udgerc
+	ln -sfT `pwd`/etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
 	mkdir -p var
-	ln -sfT `pwd`/var                $(DESTDIR)/var/lib/udge
+	ln -sfT `pwd`/var        $(DESTDIR)/var/lib/udge
 	for dir in `find bin lib cgi-bin -type d`; do \
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
@@ -411,8 +401,7 @@ stop-services:
 	systemctl stop fcgiwrap
 
 enable-nginx-udge-site:
-	[ -n "$(NGINX_ENABLED)" ]
-	ln -rs $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
+	ln -rsf /etc/nginx/sites-{available,enabled}/udge
 	systemctl reload nginx
 
 
@@ -449,8 +438,8 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
-	[ -z "$(NGINX_ENABLED)" ] || \
-	diff -rud $(NGINX_AVAIL)/udge $(NGINX_ENABLED)/udge
+	[ \! -e "/etc/nginx/sites-enabled" ] || \
+	diff -rud /etc/nginx/sites-{available,enabled}/udge
 	[ -d $(DESTDIR)/var/lib/udge ]
 
 check-install-find:
@@ -466,6 +455,4 @@ check-install-find:
 show-vars:
 	@echo "PREFIX        = $(PREFIX)"
 	@echo "HTTPD_USER    = $(HTTPD_USER)"
-	@echo "NGINX_AVAIL   = $(NGINX_AVAIL)"
-	@echo "NGINX_ENABLED = $(NGINX_ENABLED)"
 	@echo "TIDY          = $(TIDY)"
