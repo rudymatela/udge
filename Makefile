@@ -456,10 +456,11 @@ check-install-find:
 show-vars:
 	@[ "`id -u`" -ne 0 ] || echo 'Running as root'
 	@[ "`id -u`" -eq 0 ] || echo 'Running as non-root user'
-	@echo  'PREFIX     ='  $(PREFIX)
-	@echo  'DESTDIR    ='  $(DESTDIR)
-	@echo  'HTTPD_USER ='  $(HTTPD_USER)
-	@echo  'NJOBS      ='  $(NJOBS)
-	@echo  'TIDY       ='  $(TIDY)
-	@echo  '`nologin`  ='  `which nologin`
-	@echo  '`id -u`    ='  `id -u`
+	@echo  'PREFIX      ='  $(PREFIX)
+	@echo  'DESTDIR     ='  $(DESTDIR)
+	@echo  'HTTPD_USER  ='  $(HTTPD_USER)
+	@echo  'NJOBS       ='  $(NJOBS)
+	@echo  'TIDY        ='  $(TIDY)
+	@echo  '`nologin`   ='  `which nologin`
+	@echo  '`id -u`     ='  `id -u`
+	@echo  'backetcomma ='  bracket{comma,notation}bracket
