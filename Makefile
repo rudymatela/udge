@@ -348,10 +348,10 @@ uninstall:
 # Use with care.  This can potentially delete more than wanted.
 now=$(shell date "+%Y%m%d-%H%M%S")
 uninstall-and-purge: uninstall
-	mv $(DESTDIR)/etc/udgerc{,-old-$(now)}
-	mv $(DESTDIR)/etc/nginx/sites-available/udge{,-old-$(now)}
-	mv $(DESTDIR)/var/lib/udge{,-old-$(now)}
-	mv /run/udge{,-old-$(now)} || true
+	mv $(DESTDIR)/etc/udgerc                     $(DESTDIR)/etc/udgerc-old-$(now)
+	mv $(DESTDIR)/etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge-old-$(now)
+	mv $(DESTDIR)/var/lib/udge                   $(DESTDIR)/var/lib/udge-old-$(now)
+	mv /run/udge /run/udge-old-$(now) || true
 	userdel udge-1
 	userdel udge-2
 	userdel udge-3
