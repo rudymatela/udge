@@ -314,13 +314,13 @@ install:
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
-	[ "$$EUID" -ne 0 ] || id -u udge   >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	[ "$$EUID" -ne 0 ] || id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-1
-	[ "$$EUID" -ne 0 ] || id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-2
-	[ "$$EUID" -ne 0 ] || id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-3
-	[ "$$EUID" -ne 0 ] || id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-4
-	[ "$$EUID" -ne 0 ] || id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-5
-	[ "$$EUID" -ne 0 ] || id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-6
+	[ "`id -u`" -ne 0 ] || id -u udge   >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
+	[ "`id -u`" -ne 0 ] || id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-1
+	[ "`id -u`" -ne 0 ] || id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-2
+	[ "`id -u`" -ne 0 ] || id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-3
+	[ "`id -u`" -ne 0 ] || id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-4
+	[ "`id -u`" -ne 0 ] || id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-5
+	[ "`id -u`" -ne 0 ] || id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
@@ -332,11 +332,11 @@ install:
 	# by the udge user.
 	#
 	# html, slot and results need to be writable by the udge user.
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
-	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/html
-	[ "$$EUID" -ne 0 ] || chown -R udge.udge $(DESTDIR)/var/lib/udge/slot
-	[ "$$EUID" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/results
+	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
+	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
+	[ "`id -u`" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/html
+	[ "`id -u`" -ne 0 ] || chown -R udge.udge $(DESTDIR)/var/lib/udge/slot
+	[ "`id -u`" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
@@ -387,8 +387,8 @@ dev-install:
 		mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in `find bin lib cgi-bin -type f`; do \
 		ln -sf `pwd`/$$file $(DESTDIR)$(PREFIX)/$$file; done
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
-	[ "$$EUID" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
+	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/users
+	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER) $(DESTDIR)/var/lib/udge/submissions
 
 start-services:
 	udge-create-run
@@ -454,6 +454,8 @@ check-install-find:
 	rm install{able,ed}-files.txt
 
 show-vars:
+	@[ "`id -u`" -ne 0 ] || echo 'Running as root'
+	@[ "`id -u`" -eq 0 ] || echo 'Running as non-root user'
 	@echo  'PREFIX     ='  $(PREFIX)
 	@echo  'DESTDIR    ='  $(DESTDIR)
 	@echo  'HTTPD_USER ='  $(HTTPD_USER)
