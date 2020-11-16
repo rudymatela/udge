@@ -402,7 +402,7 @@ stop-services:
 	systemctl stop fcgiwrap
 
 enable-nginx-udge-site:
-	ln -rsf /etc/nginx/sites-{available,enabled}/udge
+	ln -rsf /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
 	systemctl reload nginx
 
 
@@ -440,7 +440,7 @@ check-install-test:
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
 	[ \! -e "/etc/nginx/sites-enabled" ] || \
-	diff -rud /etc/nginx/sites-{available,enabled}/udge
+	diff -rud /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
 	[ -d $(DESTDIR)/var/lib/udge ]
 
 check-install-find:
@@ -450,8 +450,8 @@ check-install-find:
 	| sort > installed-files.txt
 	find lib bin cgi-bin etc problem -type f \
 	| sort > installable-files.txt
-	diff -rud install{able,ed}-files.txt
-	rm install{able,ed}-files.txt
+	diff -rud installable-files.txt installed-files.txt
+	rm installable-files.txt installed-files.txt
 
 show-vars:
 	@[ "`id -u`" -ne 0 ] || echo 'Running as root'
