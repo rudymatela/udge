@@ -314,13 +314,13 @@ install:
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
-	[ "`id -u`" -ne 0 ] || id -u udge   >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s/usr/bin/nologin udge
-	[ "`id -u`" -ne 0 ] || id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-1
-	[ "`id -u`" -ne 0 ] || id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-2
-	[ "`id -u`" -ne 0 ] || id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-3
-	[ "`id -u`" -ne 0 ] || id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-4
-	[ "`id -u`" -ne 0 ] || id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-5
-	[ "`id -u`" -ne 0 ] || id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge -s/usr/bin/nologin udge-6
+	[ "`id -u`" -ne 0 ] || id -u udge   >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s`which nologin` udge
+	[ "`id -u`" -ne 0 ] || id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-1
+	[ "`id -u`" -ne 0 ] || id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-2
+	[ "`id -u`" -ne 0 ] || id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-3
+	[ "`id -u`" -ne 0 ] || id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-4
+	[ "`id -u`" -ne 0 ] || id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-5
+	[ "`id -u`" -ne 0 ] || id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
