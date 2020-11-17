@@ -134,7 +134,7 @@ First make sure you have all the [dependencies] installed.  Then:
 		$ sudo make install HTTPD_USER=<user>
 
 	The Makefile should be able to figure these automatically on Arch Linux
-	(tested) and on Debian/Ubuntu variants (untested).
+	(tested) and on Debian/Ubuntu variants (tested).
 
 2. (optional)
 	add your problems to `/var/lib/udge/problem`
@@ -167,13 +167,8 @@ First make sure you have all the [dependencies] installed.  Then:
 	If you already have a public DNS entry pointing to your server
 		you may skip this step.
 
-5. (optional) edit the domain name on Udge's Nginx config, located usually on either:
-
-	- `/etc/nginx/srv/avail/udge`; or
-	- `/etc/nginx/srv/sites-available/udge`
-	- ...
-
-	the actual location will depend on your Linux distribution.
+5. (optional) edit the domain name on Udge's Nginx config
+	located on `/etc/nginx/sites-available/udge`.
 
 
 6. (optional) start the Nginx server if you haven't done so with either:
