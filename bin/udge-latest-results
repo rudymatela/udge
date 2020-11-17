@@ -88,4 +88,7 @@ entries() {
 		entry  "$filename"  "$result"  "$time"  "$memory"  "$reason" | sed -e "s/ *$//"
 	done
 }
-entries | column -t -s'#' -R 2,3,4 | sed -e "s/ *$//"
+column="column -t -s'#' -R 2,3,4"
+# Column provided by Ubuntu/Debian does not support -L or -R, check and avoid
+column -L </dev/null || column="column -t -s'#'" # Ubuntu/Debian hack
+entries | $column | sed -e "s/ *$//"
