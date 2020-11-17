@@ -28,6 +28,7 @@ HTTPD_USER = $(shell id -u www-data -n 2>/dev/null || \
                      id -u httpd    -n 2>/dev/null || \
                      id -u root     -n 2>/dev/null)
 TIDY       = tidy -qe --show-filename yes
+USERADD    = useradd -r -s$(shell which nologin)
 
 # Sets the number of jobs to the the number of processors minus one.
 NJOBS := $(shell grep ^processor /proc/cpuinfo | head -n -1 | wc -l | sed 's/^0$$/1/')
@@ -317,13 +318,13 @@ install:
 	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
 
 setup-users:
-	useradd -r -u360 -d/var/lib/udge -s`which nologin` udge   || useradd -r -d/var/lib/udge -s`which nologin` udge
-	useradd -r -u361 -d/run/udge     -s`which nologin` udge-1 || useradd -r -d/run/udge     -s`which nologin` udge-1
-	useradd -r -u362 -d/run/udge     -s`which nologin` udge-2 || useradd -r -d/run/udge     -s`which nologin` udge-2
-	useradd -r -u363 -d/run/udge     -s`which nologin` udge-3 || useradd -r -d/run/udge     -s`which nologin` udge-3
-	useradd -r -u364 -d/run/udge     -s`which nologin` udge-4 || useradd -r -d/run/udge     -s`which nologin` udge-4
-	useradd -r -u365 -d/run/udge     -s`which nologin` udge-5 || useradd -r -d/run/udge     -s`which nologin` udge-5
-	useradd -r -u366 -d/run/udge     -s`which nologin` udge-6 || useradd -r -d/run/udge     -s`which nologin` udge-6
+	$(USERADD) -d/var/lib/udge -u360 udge || $(USERADD) -d/var/lib/udge udge
+	$(USERADD) -d/run/udge -u361 udge-1   || $(USERADD) -d/run/udge udge-1
+	$(USERADD) -d/run/udge -u362 udge-2   || $(USERADD) -d/run/udge udge-2
+	$(USERADD) -d/run/udge -u363 udge-3   || $(USERADD) -d/run/udge udge-3
+	$(USERADD) -d/run/udge -u364 udge-4   || $(USERADD) -d/run/udge udge-4
+	$(USERADD) -d/run/udge -u365 udge-5   || $(USERADD) -d/run/udge udge-5
+	$(USERADD) -d/run/udge -u366 udge-6   || $(USERADD) -d/run/udge udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
@@ -468,6 +469,6 @@ show-vars:
 	@echo  'HTTPD_USER ='  $(HTTPD_USER)
 	@echo  'NJOBS      ='  $(NJOBS)
 	@echo  'TIDY       ='  $(TIDY)
-	@echo  '`nologin`  ='  `which nologin`
+	@echo  'USERADD    ='  $(USERADD)
 	@echo  '`id -u`    ='  `id -u`
 	@echo  'the{bracket,comma}notation ='  the{bracket,comma}notation
