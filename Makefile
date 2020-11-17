@@ -317,13 +317,13 @@ install:
 	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
 
 setup-users:
-	useradd -r -d/var/lib/udge -s`which nologin` udge
-	useradd -r -d/run/udge     -s`which nologin` udge-1
-	useradd -r -d/run/udge     -s`which nologin` udge-2
-	useradd -r -d/run/udge     -s`which nologin` udge-3
-	useradd -r -d/run/udge     -s`which nologin` udge-4
-	useradd -r -d/run/udge     -s`which nologin` udge-5
-	useradd -r -d/run/udge     -s`which nologin` udge-6
+	useradd -r -u360 -d/var/lib/udge -s`which nologin` udge   || useradd -r -d/var/lib/udge -s`which nologin` udge
+	useradd -r -u361 -d/run/udge     -s`which nologin` udge-1 || useradd -r -d/run/udge     -s`which nologin` udge-1
+	useradd -r -u362 -d/run/udge     -s`which nologin` udge-2 || useradd -r -d/run/udge     -s`which nologin` udge-2
+	useradd -r -u363 -d/run/udge     -s`which nologin` udge-3 || useradd -r -d/run/udge     -s`which nologin` udge-3
+	useradd -r -u364 -d/run/udge     -s`which nologin` udge-4 || useradd -r -d/run/udge     -s`which nologin` udge-4
+	useradd -r -u365 -d/run/udge     -s`which nologin` udge-5 || useradd -r -d/run/udge     -s`which nologin` udge-5
+	useradd -r -u366 -d/run/udge     -s`which nologin` udge-6 || useradd -r -d/run/udge     -s`which nologin` udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
