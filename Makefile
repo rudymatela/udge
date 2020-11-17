@@ -314,13 +314,16 @@ install:
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
-	[ "`id -u`" -ne 0 ] || id -u udge   >/dev/null 2>&1 || useradd -r -d/var/lib/udge -s`which nologin` udge
-	[ "`id -u`" -ne 0 ] || id -u udge-1 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-1
-	[ "`id -u`" -ne 0 ] || id -u udge-2 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-2
-	[ "`id -u`" -ne 0 ] || id -u udge-3 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-3
-	[ "`id -u`" -ne 0 ] || id -u udge-4 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-4
-	[ "`id -u`" -ne 0 ] || id -u udge-5 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-5
-	[ "`id -u`" -ne 0 ] || id -u udge-6 >/dev/null 2>&1 || useradd -r -d/run/udge -s`which nologin` udge-6
+	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
+
+setup-users:
+	useradd -r -d/var/lib/udge -s`which nologin` udge
+	useradd -r -d/run/udge     -s`which nologin` udge-1
+	useradd -r -d/run/udge     -s`which nologin` udge-2
+	useradd -r -d/run/udge     -s`which nologin` udge-3
+	useradd -r -d/run/udge     -s`which nologin` udge-4
+	useradd -r -d/run/udge     -s`which nologin` udge-5
+	useradd -r -d/run/udge     -s`which nologin` udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
@@ -332,11 +335,11 @@ install:
 	# by the udge user.
 	#
 	# html, slot and results need to be writable by the udge user.
-	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
-	[ "`id -u`" -ne 0 ] || chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
-	[ "`id -u`" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/html
-	[ "`id -u`" -ne 0 ] || chown -R udge.udge $(DESTDIR)/var/lib/udge/slot
-	[ "`id -u`" -ne 0 ] || chown    udge.udge $(DESTDIR)/var/lib/udge/results
+	chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
+	chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
+	chown          udge.udge $(DESTDIR)/var/lib/udge/html
+	chown -R       udge.udge $(DESTDIR)/var/lib/udge/slot
+	chown          udge.udge $(DESTDIR)/var/lib/udge/results
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
