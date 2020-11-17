@@ -94,7 +94,7 @@ overall-stats() {
 problem-stats() {
 	column="column -s\# -LtR 2,3"
 	# Column provided by Ubuntu/Debian does not support -L or -R, check and avoid
-	column -L </dev/null || column="column -s\# -t" # Ubuntu/Debian hack
+	column -L </dev/null 2>/dev/null || column="column -s\# -t" # Ubuntu/Debian hack
 	ls-problems-by-chapter |
 	while read problem
 	do

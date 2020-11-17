@@ -90,5 +90,5 @@ entries() {
 }
 column="column -t -s'#' -R 2,3,4"
 # Column provided by Ubuntu/Debian does not support -L or -R, check and avoid
-column -L </dev/null || column="column -t -s'#'" # Ubuntu/Debian hack
+column -L </dev/null 2>/dev/null || column="column -t -s'#'" # Ubuntu/Debian hack
 entries | $column | sed -e "s/ *$//"
