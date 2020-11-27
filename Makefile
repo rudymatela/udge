@@ -50,12 +50,12 @@ realclean: \
 test: \
   test-parallel \
   test-sequential
-
 fastest:
 	make test-parallel -j$(NJOBS)
 	make test-sequential
 
 # targets under this can be run in parallel (eg. w/ -j7)
+# Use MAX_PROCESSES=2048 in udgerc for this
 test-parallel: \
   test-makefile \
   test-judge \
