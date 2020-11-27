@@ -1,6 +1,21 @@
 TODO list for Udge
 ==================
 
+* install without overwriting "live" folders
+
+* install robots.txt somehow
+
+* make users folder permissions less restrictive
+  (we just need to forbid reading the email, password and salt files)
+  the rest is publicly available information
+
+* make `best` file permissions less restrictive
+  as this is public information
+
+* default to Python 3, but see https://legacy.python.org/dev/peps/pep-0394/
+	note that on Ubuntu `/usr/bin/python` points to python2.
+	Let submitters use python2 explicitly if they want
+
 * update the README video
 
 * configure rate limiting on nginx
