@@ -18,3 +18,4 @@ SCORE=fractions
 NEW_USER=true
 
 GHCFLAGS=-dynamic # for Arch Linux
+MAX_PROCESSES=512

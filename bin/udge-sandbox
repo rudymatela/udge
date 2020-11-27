@@ -24,8 +24,10 @@
 # Set the CHROOT variable to run this program under a different root.
 #
 # CHROOT=.
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
 
-[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=2048 # just for now...
+[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512
 
 ulimit -c 262144 # blocks, 128M
 ulimit -d 1048576 # K, 1024M, 1G
@@ -53,3 +55,6 @@ exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
 # 3. udge-sandbox
 # 4. unshare
 # 5. exe
+#
+# The exe may be "more" processes depending on the language being used
+# (e.g.: Java).
