@@ -238,7 +238,7 @@ install-etc:
 install-var:
 	mkdir -p           $(DESTDIR)/var/lib
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
-	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
+	install -m 2775 -d $(DESTDIR)/var/lib/udge/users
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/html
 	install -m 2775 -d $(DESTDIR)/var/lib/udge/submissions

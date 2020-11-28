@@ -40,7 +40,7 @@ user_dir="$USERS/$user"
 www=`stat -c%U $USERS`
 [ "$www" == "`whoami`" ] || errxit "not running as the $www user, auth mail fail later"
 
-umask 0007 # dir: rwxrws---, file: rw-rw----
+umask 0002 # dir: rwxrwsr-x, file: rw-rw-r--
 mkdir -p "$user_dir"
 udge-passwd "$user"
 println "$email" > "$user_dir/email"

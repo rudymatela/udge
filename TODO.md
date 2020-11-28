@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* make users folder permissions less restrictive
-  (we just need to forbid reading the email, password and salt files)
-  the rest is publicly available information
-
 * make `best` file permissions less restrictive
   as this is public information
 
