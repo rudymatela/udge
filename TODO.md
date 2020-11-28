@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* install without overwriting "live" folders
-
 * install robots.txt somehow
 
 * make users folder permissions less restrictive
