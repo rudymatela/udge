@@ -56,18 +56,18 @@ rmerrxit() {
 
 java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
-	*.c)    lang=c                            ;;
-	*.cc)   lang=cc                           ;;
-	*.cpp)  lang=cc                           ;;
-	*.hs)   lang=hs                           ;;
-	*.lhs)  lang=hs                           ;;
-	*.lua)  lang=lua  ;run=lua                ;;
-	*.py)   lang=py                           ;;
-	*.cs)   lang=cs   ;run=mono     ;ext=.exe ;;
-	*.java) lang=java ;run="$java"  ;ext=.jar ;;
-	*.js)   lang=js   ;run=node     ;ext=.js  ;;
-	*.rb)   lang=rb                           ;;
-	*)      errxit "unknown/unsupported file format or language"     ;;
+	*.c)    lang=c                           ;;
+	*.cc)   lang=cc                          ;;
+	*.cpp)  lang=cc                          ;;
+	*.hs)   lang=hs                          ;;
+	*.lhs)  lang=hs                          ;;
+	*.lua)  lang=lua  ;run=lua               ;;
+	*.py)   lang=py                          ;;
+	*.cs)   lang=cs   ;run=mono    ;ext=.exe ;;
+	*.java) lang=java ;run="$java" ;ext=.jar ;;
+	*.js)   lang=js   ;run=node    ;ext=.js  ;;
+	*.rb)   lang=rb                          ;;
+	*) errxit "unknown/unsupported file format or language" ;;
 esac
 
 [ -n "$verbose" ] && echo Compiling solution $src for $set in $lang.
