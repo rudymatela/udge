@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# udge-check: creates a backup Udge's "var" on the current directory
+# udge-check: checks previous runs
 #
 # Usage: udge-check
 #
