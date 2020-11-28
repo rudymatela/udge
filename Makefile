@@ -226,22 +226,25 @@ clean-test-users:
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
-	make install-bins
+	make install-etc
+	make install-bin
 	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
 
-install-bins:
+install-etc:
 	mkdir -p $(DESTDIR)/etc
 	mkdir -p $(DESTDIR)/etc/cron.d
 	mkdir -p $(DESTDIR)/etc/tmpfiles.d
 	mkdir -p $(DESTDIR)/etc/nginx/sites-available
+	install -m 0644 etc/udgerc                     $(DESTDIR)/etc/udgerc
+	install -m 0644 etc/cron.d/udge                $(DESTDIR)/etc/cron.d/udge
+	install -m 0644 etc/tmpfiles.d/udge.conf       $(DESTDIR)/etc/tmpfiles.d
+	install -m 0644 etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
+
+install-bin:
 	mkdir -p $(DESTDIR)/var/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	mkdir -p $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 0644 etc/udgerc $(DESTDIR)/etc/udgerc
-	install -m 0644 etc/cron.d/udge $(DESTDIR)/etc/cron.d/udge
-	install -m 0644 etc/tmpfiles.d/udge.conf $(DESTDIR)/etc/tmpfiles.d
-	install -m 0644 etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
