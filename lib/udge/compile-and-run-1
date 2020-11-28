@@ -54,7 +54,6 @@ rmerrxit() {
 	errxit $msg
 }
 
-what=compile
 java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
 	*.c)    lang=c                            ;;
@@ -63,11 +62,11 @@ case "$src" in
 	*.hs)   lang=hs                           ;;
 	*.lhs)  lang=hs                           ;;
 	*.lua)  lang=lua  ;run=lua                ;;
-	*.py)   lang=py   ;what="parse"           ;;
+	*.py)   lang=py                           ;;
 	*.cs)   lang=cs   ;run=mono     ;ext=.exe ;;
 	*.java) lang=java ;run="$java"  ;ext=.jar ;;
 	*.js)   lang=js   ;run=node     ;ext=.js  ;;
-	*.rb)   lang=rb   ;what="parse"           ;;
+	*.rb)   lang=rb                           ;;
 	*)      errxit "unknown/unsupported file format or language"     ;;
 esac
 
