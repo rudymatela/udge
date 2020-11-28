@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* install robots.txt somehow
-
 * make users folder permissions less restrictive
   (we just need to forbid reading the email, password and salt files)
   the rest is publicly available information

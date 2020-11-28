@@ -55,7 +55,7 @@ for problem in `ls-problems`
 do
 	what=markdown- update $problem/desc.md $problem.html
 done
-for asset in $PROBLEMS/*.{svg,png}
+for asset in $PROBLEMS/*.{svg,png,txt}
 do
 	[ -e "$asset" ] || continue
 	name=`basename $asset`
