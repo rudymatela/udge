@@ -57,21 +57,21 @@ rmerrxit() {
 what=compile
 java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
 case "$src" in
-	*.c)    lang=c    ;language="C"                                  ;;
-	*.cc)   lang=cc   ;language="C++"                                ;;
-	*.cpp)  lang=cc   ;language="C++"                                ;;
-	*.hs)   lang=hs   ;language="Haskell"                            ;;
-	*.lhs)  lang=hs   ;language="Haskell"                            ;;
-	*.lua)  lang=lua  ;language="Lua"        ;run=lua                ;;
-	*.py)   lang=py   ;language="Python"     ;what="parse"           ;;
-	*.cs)   lang=cs   ;language="C#"         ;run=mono     ;ext=.exe ;;
-	*.java) lang=java ;language="Java"       ;run="$java"  ;ext=.jar ;;
-	*.js)   lang=js   ;language="JavaScript" ;run=node     ;ext=.js  ;;
-	*.rb)   lang=rb   ;language="Ruby"       ;what="parse"           ;;
+	*.c)    lang=c                            ;;
+	*.cc)   lang=cc                           ;;
+	*.cpp)  lang=cc                           ;;
+	*.hs)   lang=hs                           ;;
+	*.lhs)  lang=hs                           ;;
+	*.lua)  lang=lua  ;run=lua                ;;
+	*.py)   lang=py   ;what="parse"           ;;
+	*.cs)   lang=cs   ;run=mono     ;ext=.exe ;;
+	*.java) lang=java ;run="$java"  ;ext=.jar ;;
+	*.js)   lang=js   ;run=node     ;ext=.js  ;;
+	*.rb)   lang=rb   ;what="parse"           ;;
 	*)      errxit "unknown/unsupported file format or language"     ;;
 esac
 
-[ -n "$verbose" ] && echo Compiling solution $src for $set in $language.
+[ -n "$verbose" ] && echo Compiling solution $src for $set in $lang.
 
 cp $src .
 src=`basename $src`
@@ -90,7 +90,7 @@ touch $dst/log
 
 [ -n "$verbose" ] && cat $dst/log
 
-[ -n "$verbose" ] && echo Running solution $src for $set in $language.
+[ -n "$verbose" ] && echo Running solution $src for $set in $lang.
 
 in=$set/in
 [ -f "$in" ] || in=/dev/null
