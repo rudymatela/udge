@@ -226,8 +226,9 @@ clean-test-users:
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
-	make install-etc
 	make install-bin
+	make install-etc
+	make install-var
 	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
 
 install-etc:
@@ -240,11 +241,8 @@ install-etc:
 	install -m 0644 etc/tmpfiles.d/udge.conf       $(DESTDIR)/etc/tmpfiles.d
 	install -m 0644 etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
 
-install-bin:
+install-var:
 	mkdir -p $(DESTDIR)/var/lib
-	mkdir -p $(DESTDIR)$(PREFIX)/lib
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	mkdir -p $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
@@ -258,6 +256,12 @@ install-bin:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/5
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/6
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
+	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
+
+install-bin:
+	mkdir -p $(DESTDIR)$(PREFIX)/lib
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	mkdir -p $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 bin/cgi-create-data-files         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-add-user                 $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-backup                   $(DESTDIR)$(PREFIX)/bin
@@ -321,7 +325,6 @@ install-bin:
 	install -m 0755 lib/udge/score/icpc      $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
-	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
 
 setup-users:
 	$(USERADD) -d/var/lib/udge -u360 udge || $(USERADD) -d/var/lib/udge udge
