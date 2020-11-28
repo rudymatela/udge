@@ -226,6 +226,10 @@ clean-test-users:
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
 
 install:
+	make install-bins
+	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
+
+install-bins:
 	mkdir -p $(DESTDIR)/etc
 	mkdir -p $(DESTDIR)/etc/cron.d
 	mkdir -p $(DESTDIR)/etc/tmpfiles.d
@@ -315,7 +319,6 @@ install:
 	install -m 0755 lib/udge/score/solved    $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
-	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
 
 setup-users:
 	$(USERADD) -d/var/lib/udge -u360 udge || $(USERADD) -d/var/lib/udge udge
