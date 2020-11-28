@@ -30,6 +30,10 @@
 # Pick and judge needs to be run with write permissions to the submissions
 # folder, to do this, you may want to add your user (or the user for which the
 # judge will run) to the http group.
+#
+# This script only works when Udge is set up with a single user.
+# It is intended to be used in development environments and not on actual
+# production deployments.  Please use etc/cron.d/udge instead.
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"

@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* make `best` file permissions less restrictive
-  as this is public information
-
 * default to Python 3, but see https://legacy.python.org/dev/peps/pep-0394/
 	note that on Ubuntu `/usr/bin/python` points to python2.
 	Let submitters use python2 explicitly if they want
