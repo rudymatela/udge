@@ -242,7 +242,7 @@ install-etc:
 	install -m 0644 etc/nginx/sites-available/udge $(DESTDIR)/etc/nginx/sites-available/udge
 
 install-var:
-	mkdir -p $(DESTDIR)/var/lib
+	mkdir -p           $(DESTDIR)/var/lib
 	install -m 0755 -d $(DESTDIR)/var/lib/udge
 	install -m 2770 -d $(DESTDIR)/var/lib/udge/users
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/problem
@@ -256,7 +256,7 @@ install-var:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/5
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/6
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
-	cp -r problem/* $(DESTDIR)/var/lib/udge/problem
+	cp -r problem/*    $(DESTDIR)/var/lib/udge/problem
 
 install-bin:
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
