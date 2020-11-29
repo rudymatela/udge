@@ -136,7 +136,14 @@ First make sure you have all the [dependencies] installed.  Then:
 	The Makefile should be able to figure these automatically on Arch Linux
 	(tested) and on Debian/Ubuntu variants (tested).
 
-2. (optional)
+2. (for Ubuntu/Debian variants)
+	if you are running Ubuntu or another system
+	that has `/run` mounted as a filesystem with noexec restrictions,
+	add the following to `/etc/fstab`:
+
+		tmpfs /run/udge tmpfs rw,nosuid,nodev,relatime,size=48944k,mode=755,uid=udge,gid=udge 0 0
+
+3. (optional)
 	add your problems to `/var/lib/udge/problem`
 	and update `index.md` accordingly
 	otherwise you will be using the default example problems.
@@ -150,7 +157,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	to read directly from solution files.
 	(cf. `examples/sandbox/sol-searcher.c`)
 
-3. generate static HTML files:
+4. generate static HTML files:
 
 		sudo -u udge udge-update-all-problem-htmls
 		sudo -u udge udge-update-rank-html
@@ -158,7 +165,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	You will have to re-run `udge-update-all-problem-htmls` every time you add
 	or edit a problem description so HTML files are updated.
 
-4. Add the following entry to `/etc/hosts`.
+5. Add the following entry to `/etc/hosts`.
 
 		127.0.0.1 udge udge.example.com
 
@@ -167,11 +174,11 @@ First make sure you have all the [dependencies] installed.  Then:
 	If you already have a public DNS entry pointing to your server
 		you may skip this step.
 
-5. (optional) edit the domain name on Udge's Nginx config
+6. (optional) edit the domain name on Udge's Nginx config
 	located on `/etc/nginx/sites-available/udge`.
 
 
-6. (optional) start the Nginx server if you haven't done so with either:
+7. (optional) start the Nginx server if you haven't done so with either:
 
 	- `systemctl start nginx`; or
 	- `service nginx start`; or
@@ -180,11 +187,11 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	which will depend on your Linux distribution.
 
-7. enable Udge on Nginx and reload the configuration:
+8. enable Udge on Nginx and reload the configuration:
 
 		make enable-nginx-udge-site
 
-8. test that everything works
+9. test that everything works
 	by typing `udge/` (or your selected domain of steps 5 and 6)
 	in your browser's address bar.
 	Do not forget the `/` at the end, otherwise your browser may search the web
