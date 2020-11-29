@@ -34,3 +34,13 @@ No - time limit exceeded
 $ udge-judge hello-world examples/hello-world/0-re.py
 No - runtime error
 0/1
+$ udge-judge hello-world examples/hello-world/1-py33.py
+1/1
+$ udge-judge hello-world examples/hello-world/1-py22.py
+1/1
+$ udge-judge hello-world examples/hello-world/0-py32.py 2>/dev/null
+No - compile error
+0/1
+$ udge-judge hello-world examples/hello-world/0-py23.py 2>/dev/null
+No - compile error
+0/1
