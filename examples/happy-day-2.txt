@@ -75,7 +75,7 @@ YYYY-MM-DD HH:MM:SS  add.c  4/6  ?ms  ?MB  No - wrong output
 YYYY-MM-DD HH:MM:SS  add.c  6/6  ?ms  ?MB
 $
 $
-$ udge-rank 2>/dev/null | grep $user | sed -e "s/^[^.]*[.] *//" | sed -e "s/$user/<user>/;s/<user> */<user>  /"
+$ udge-rank 2>/dev/null | grep $user | sed -e "s/^[^.]*[.] *//;s/$user/<user>/;s/  */  /g"
 <user>  1  1  1  1  1
 $
 $
