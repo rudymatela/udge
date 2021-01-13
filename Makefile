@@ -372,7 +372,10 @@ purge-users:
 uninstall-and-purge: uninstall purge-configs purge-users
 
 # Run this as your regular user before dev-install
+# this task will fail after permissions are correctly setup
+# but at least var/problem will be relinked correctly.
 dev-setup:
+	ln -rsfT problem var/problem
 	install -m 0755 -d var
 	install -m 2770 -d var/users
 	install -m 2775 -d var/submissions
@@ -383,7 +386,6 @@ dev-setup:
 	install -m 0755 -d var/slot/4
 	install -m 0755 -d var/slot/5
 	install -m 0755 -d var/slot/6
-	ln -rsfT problem var/problem
 
 # Run this as root after dev-setup
 dev-install:
