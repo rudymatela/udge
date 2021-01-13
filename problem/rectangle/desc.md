@@ -1,5 +1,5 @@
-rectangle - Rectangle
----------------------
+rectangle -- Rectangle
+----------------------
 
 Write a program that reads a pair of numbers
 representing the width and height of a rectangle

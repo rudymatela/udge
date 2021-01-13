@@ -30,7 +30,8 @@ copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
 
 page_title="`head -1 "$1"`"
 echo "$page_title" | grep -q "^##" &&
-	page_title=`cat "$1" | grep '^# ' | head -1 | sed -e 's/^# //'`
+	page_title="`cat "$1" | grep '^# ' | head -1 | sed -e 's/^# //'`"
+page_title="`echo $page_title | sed -e "s/---/—/g;s/--/–/g"`"
 page_author="`cat "$1" | grep Copyright | head -1 | sed -e "s/Copyright .*[0-9][0-9][0-9][0-9] //"`"
 
 class() {
@@ -52,8 +53,8 @@ multicolumn() {
 	sed -e 's,^<p>%%)%%</p>$,</div></div>,'
 }
 
-[ "$page_title" == "$NAME" ] || page_title="$page_title - $NAME"
-html-header $page_title
+[ "$page_title" == "$NAME" ] || page_title="$page_title – $NAME"
+html-header "$page_title"
 html-navbar $index
 if grep -q "$copyright" "$@"
 then

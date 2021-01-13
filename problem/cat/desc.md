@@ -1,5 +1,5 @@
-cat - concatenate files on stdout
----------------------------------
+cat -- concatenate files on stdout
+----------------------------------
 
 Write a program concatenates files and prints them on standard output.
 Your program should be a feature-limited clone of POSIX's [`cat`].

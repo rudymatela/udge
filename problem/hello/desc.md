@@ -1,5 +1,5 @@
-hello - Hello, World!
----------------------
+hello -- Hello, World!
+----------------------
 
 Write a program that prints "Hello, World!" on the standard output device.
 Normally, the output device is the screen of a command line session:

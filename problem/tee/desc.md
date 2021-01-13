@@ -1,5 +1,5 @@
-tee - read stdin and write to stdout and files
-----------------------------------------------
+tee -- read stdin and write to stdout and files
+-----------------------------------------------
 
 Write a program that reads from standard input and
 and replicates it on standard output and a file.

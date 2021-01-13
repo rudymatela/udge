@@ -1,5 +1,5 @@
-add - Addition
---------------
+add -- Addition
+---------------
 
 Write a program that
 	reads several pairs of numbers and,
