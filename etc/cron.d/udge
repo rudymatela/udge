@@ -1,6 +1,6 @@
 # /etc/cron.d/udge
 #
-# Udge - GPLv2 - Copyright (C) 2020 Rudy Matela
+# Udge - GPLv2 - Copyright (C) 2020-2021  Rudy Matela
 
 # Check run submissions, pick new ones, update user HTMLs.
 * * * * * udge /usr/local/bin/udge-check-and-pick 15 15 2>&1 | logger -t udge

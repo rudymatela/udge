@@ -16,7 +16,7 @@ These are Udge's example problems:
 Add your problems on `/var/lib/udge/problem` and
 replace `/var/lib/udge/problem/index.md` with your own problem index.
 
-Copyright (C) 2020  Rudy Matela
+Copyright (C) 2020-2021  Rudy Matela
 Udge is free/libre software.
 It is available under the GPLv2 license
 unless otherwise stated in specific files.
