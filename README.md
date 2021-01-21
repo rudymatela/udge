@@ -425,6 +425,8 @@ Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 * `1/in`: test input 1
 * `1/out`: reference output 1
 * `1/af`: (optional) files to be present in the working directory after the run
+* `1/bf`: (optional) files to be present in the working directory before the run
+* `1/*.txt`: (optional) additional files to the `bf` folder
 * `1/time-limit`: (optional) the time limit in seconds (1 if not present)
 * `1/check-out`: (optional) script to check the output file
 * `1/check-exit-code`: (optional) script to check the exit code
