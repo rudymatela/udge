@@ -102,6 +102,7 @@ sandbox=`realpath $bin/udge-sandbox`
 
 mkdir $dst/files
 [ "$(echo $set/*.txt)" != "$set/*.txt" ] && cp $set/*.txt $dst/files
+[ "$(echo $set/bf/*)"  != "$set/bf/*"  ] && cp $set/bf/*  $dst/files
 cd $dst/files
 
 # the order here does matter:
