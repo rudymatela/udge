@@ -87,3 +87,7 @@ if [ -e $sol/err ]
 then
 	$check $sol/err $run/err $verbose || fail "No - wrong error output"
 fi
+if [ -e $sol/af ]
+then
+	$check $sol/af $run/files $verbose || fail "No - wrong output files"
+fi

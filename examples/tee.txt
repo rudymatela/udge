@@ -22,6 +22,9 @@
 
 $ udge-judge tee examples/tee/tee.c
 3/3
-$ udge-judge tee examples/tee/0-wa.c
+$ udge-judge tee examples/tee/0-only-log.c
 No - wrong output
+0/3
+$ udge-judge tee examples/tee/0-only-out.c
+No - wrong output files
 0/3

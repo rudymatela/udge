@@ -1,5 +1,5 @@
 /*
- * examples/tee/0-wa.c: example solution to the "tee" example problem
+ * examples/tee/0-only-out.c: example solution to the "tee" example problem
  *
  * This program is an example incorrect solution to the "tee" example problem.
  * It should get a score of 0/3.
