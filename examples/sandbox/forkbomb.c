@@ -5,7 +5,7 @@
  * If Udge's sandbox functionality is working correctly then:
  *
  * $ udge-judge hello-world examples/sandbox/forkbomb.c
- * No - time limit exceeded
+ * time limit exceeded
  * 0/1
  *
  * WARNING: DO NOT RUN THIS UNSANDBOXED OR YOUR WILL FREEZE YOUR SYSTEM

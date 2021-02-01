@@ -6,7 +6,7 @@
  *
  * If "udge-judge hello-world examples/sandbox/dns.c" returns
  *
- *     No - runtime error
+ *     runtime error
  *     0/1
  *
  * it means that network sandboxing is working and
@@ -14,7 +14,7 @@
  *
  * Now, if it returns:
  *
- *     No - wrong answer
+ *     incorrect output
  *     0/1
  *
  * then it means the network sandboxing is not working

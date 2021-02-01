@@ -5,7 +5,7 @@
  * If Udge's sandbox functionality is working correctly then:
  *
  * $ udge-judge hello-world examples/sandbox/memory.c
- * No - runtime error
+ * runtime error
  * 0/1
  *
  *

@@ -27,13 +27,13 @@
 # 6/6
 #
 # $ udge-judge hello hello.c
-# No - wrong output
+# incorrect output
 # 3/6
 #
 # $ udge-judge hello hello.c -v
 # diff information
 # etc etc
-# No - wrong output
+# incorrect output
 # 2/6
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"

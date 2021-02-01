@@ -5,7 +5,7 @@
  * If Udge's sandbox functionality is working correctly then:
  *
  * $ udge-judge hello-world examples/sandbox/fork4096.c
- * No - time limit exceeded
+ * time limit exceeded
  * 0/1
  *
  *
