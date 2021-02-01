@@ -25,5 +25,5 @@ $ udge-judge add examples/add/add.hs 2>/dev/null | tail -1
 $ udge-judge add examples/add/add-module.hs 2>/dev/null | tail -1
 6/6
 $ udge-judge add examples/add/5-no-function.hs 2>/dev/null | tail -2
-No - compile error
+compile error
 5/6

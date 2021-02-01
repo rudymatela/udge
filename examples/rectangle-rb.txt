@@ -23,8 +23,8 @@
 $ udge-judge rectangle examples/rectangle/rectangle.rb
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-no-functions.rb
-No - runtime error
+runtime error
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.rb
-No - wrong output
+incorrect output
 0/3

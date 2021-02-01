@@ -23,8 +23,8 @@
 $ udge-judge rectangle examples/rectangle/rectangle.py
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-no-functions.py
-No - runtime error
+runtime error
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.py
-No - wrong output
+incorrect output
 0/3

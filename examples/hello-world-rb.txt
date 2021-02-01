@@ -23,8 +23,8 @@
 $ udge-judge hello-world examples/hello-world/hello-world.rb
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.rb
-No - wrong output
+incorrect output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.rb 2>/dev/null
-No - compile error
+compile error
 0/1

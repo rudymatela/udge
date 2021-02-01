@@ -23,5 +23,5 @@
 $ udge-judge add examples/add/add.py
 6/6
 $ udge-judge add examples/add/5-no-function.py 2>/dev/null
-No - runtime error
+runtime error
 5/6

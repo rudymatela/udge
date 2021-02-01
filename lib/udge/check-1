@@ -63,31 +63,31 @@ check-out() {
 compile-error() {
 	[ -n "$verbose" ] && echo "$run/exe* does not exist or is not unique:" $run/exe* >&2
 	cat $run/log >&2
-	fail "No - compile error"
+	fail "compile error"
 }
 
 # checks that it is compiled
 [ -e $run/exe* ] || compile-error
 
 # sandboxing checks
-grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "No - reached maximum number of processes"
-grep -q "^timeout: sending signal TERM"      $run/err && fail "No - time limit exceeded"
-grep -q "Cannot allocate memory"             $run/err && fail "No - memory limit exceeded" # not a catch-all
+grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "reached maximum number of processes"
+grep -q "^timeout: sending signal TERM"      $run/err && fail "time limit exceeded"
+grep -q "Cannot allocate memory"             $run/err && fail "memory limit exceeded" # not a catch-all
 
 # checks the exit code
 checkexitcode=check-exit-code
 [ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code
-$checkexitcode $(cat $run/exit) || fail "No - runtime error"
+$checkexitcode $(cat $run/exit) || fail "runtime error"
 
 # checks standard output and standard error
 check=check-out
 [ -x $sol/check-out ] && check=$sol/check-out
-$check $sol/out $run/out $verbose || fail "No - wrong output"
+$check $sol/out $run/out $verbose || fail "incorrect output"
 if [ -e $sol/err ]
 then
-	$check $sol/err $run/err $verbose || fail "No - wrong error output"
+	$check $sol/err $run/err $verbose || fail "incorrect error output"
 fi
 if [ -e $sol/af ]
 then
-	$check $sol/af $run/files $verbose || fail "No - wrong output files"
+	$check $sol/af $run/files $verbose || fail "incorrect output files"
 fi

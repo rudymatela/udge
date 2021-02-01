@@ -25,7 +25,7 @@ $ udge-judge hello examples/hello/hello.c
 $ udge-judge hello-world examples/hello-world/hello-world.c
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.c
-No - wrong output
+incorrect output
 0/1
 $ udge-judge hello path/to/file-not-found.c
 udge-judge, error: source file not found

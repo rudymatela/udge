@@ -23,5 +23,5 @@
 $ udge-judge add examples/add/add.js
 6/6
 $ udge-judge add examples/add/5-no-function.js 2>/dev/null
-No - runtime error
+runtime error
 5/6

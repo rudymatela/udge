@@ -23,35 +23,35 @@
 $ udge-judge add examples/add/add.c
 6/6
 $ udge-judge add examples/add/0-wo.c
-No - wrong output
+incorrect output
 0/6
 $ udge-judge add examples/add/0-re.c 2>&1 | tail -2
-No - runtime error
+runtime error
 0/6
 $ udge-judge add examples/add/0-re2.c
-No - runtime error
+runtime error
 0/6
 $ udge-judge add examples/add/0-tle.c
-No - time limit exceeded
+time limit exceeded
 0/6
 $ udge-judge add examples/add/0-ce.c 2>&1 | tail -2
-No - compile error
+compile error
 0/6
 $ udge-judge add examples/add/1-egio-a.c
-No - wrong output
+incorrect output
 1/6
 $ udge-judge add examples/add/1-egio-b.c
-No - wrong output
+incorrect output
 1/6
 $ udge-judge add examples/add/0-egio.c
-No - wrong output
+incorrect output
 0/6
 $ udge-judge add examples/add/2-egio.c
-No - wrong output
+incorrect output
 2/6
 $ udge-judge add examples/add/4-octals.c
-No - wrong output
+incorrect output
 4/6
 $ udge-judge add examples/add/5-no-function.c 2>&1 | tail -2
-No - compile error
+compile error
 5/6

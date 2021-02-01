@@ -23,14 +23,14 @@
 $ udge-judge addition examples/addition/addition.c
 1/1
 $ udge-judge addition examples/addition/0-wo.c
-No - wrong output
+incorrect output
 0/1
 $ udge-judge addition examples/addition/0-ce.c 2>/dev/null
-No - compile error
+compile error
 0/1
 $ udge-judge addition examples/addition/0-tle.c
-No - time limit exceeded
+time limit exceeded
 0/1
 $ udge-judge addition examples/addition/0-re.c
-No - runtime error
+runtime error
 0/1

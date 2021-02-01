@@ -23,8 +23,8 @@
 $ udge-judge rectangle examples/rectangle/rectangle.cc
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-classless.cc 2>/dev/null
-No - compile error
+compile error
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.cc
-No - wrong output
+incorrect output
 0/3

@@ -23,5 +23,5 @@
 $ udge-judge hello-world examples/hello-world/hello-world.py
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.py
-No - wrong output
+incorrect output
 0/1

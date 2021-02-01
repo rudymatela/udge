@@ -23,16 +23,16 @@
 $ udge-judge hello-world examples/hello-world/hello-world.hs 2>/dev/null | tail -1
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.hs 2>/dev/null | tail -2
-No - wrong output
+incorrect output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.hs 2>/dev/null | tail -2
-No - compile error
+compile error
 0/1
 $ udge-judge hello-world examples/hello-world/0-tle.hs 2>/dev/null | tail -2
-No - time limit exceeded
+time limit exceeded
 0/1
 $ udge-judge hello-world examples/hello-world/0-re.hs 2>/dev/null | tail -2
-No - runtime error
+runtime error
 0/1
 $ udge-judge hello-world examples/hello-world/hello-world.lhs 2>/dev/null | tail -1
 1/1

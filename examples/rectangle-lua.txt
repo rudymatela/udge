@@ -23,8 +23,8 @@
 $ udge-judge rectangle examples/rectangle/rectangle.lua
 3/3
 $ udge-judge rectangle examples/rectangle/rectangle-no-functions.lua
-No - runtime error
+runtime error
 2/3
 $ udge-judge rectangle examples/hello-world/hello-world.lua
-No - wrong output
+incorrect output
 0/3

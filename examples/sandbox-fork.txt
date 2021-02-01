@@ -23,7 +23,7 @@
 $ tmp=`mktemp /tmp/udge-test-sandbox-fork-exe-XXXXXXXXXX`
 $
 $ udge-judge hello-world examples/sandbox/forkbomb.c
-No - time limit exceeded
+time limit exceeded
 0/1
 $
 $ cc examples/sandbox/fork4096.c -o $tmp

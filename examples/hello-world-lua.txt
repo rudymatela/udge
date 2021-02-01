@@ -23,8 +23,8 @@
 $ udge-judge hello-world examples/hello-world/hello-world.lua
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.lua
-No - wrong output
+incorrect output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.lua 2>/dev/null
-No - compile error
+compile error
 0/1

@@ -23,5 +23,5 @@
 $ udge-judge add examples/add/add.cs 2>/dev/null | tail -1
 6/6
 $ udge-judge add examples/add/5-no-function.cs 2>/dev/null | tail -2
-No - compile error
+compile error
 5/6

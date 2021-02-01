@@ -23,24 +23,24 @@
 $ udge-judge hello-world examples/hello-world/hello-world.py
 1/1
 $ udge-judge hello-world examples/hello-world/0-wo.py
-No - wrong output
+incorrect output
 0/1
 $ udge-judge hello-world examples/hello-world/0-ce.py 2>/dev/null
-No - compile error
+compile error
 0/1
 $ udge-judge hello-world examples/hello-world/0-tle.py
-No - time limit exceeded
+time limit exceeded
 0/1
 $ udge-judge hello-world examples/hello-world/0-re.py
-No - runtime error
+runtime error
 0/1
 $ udge-judge hello-world examples/hello-world/1-py33.py
 1/1
 $ udge-judge hello-world examples/hello-world/1-py22.py
 1/1
 $ udge-judge hello-world examples/hello-world/0-py32.py 2>/dev/null
-No - compile error
+compile error
 0/1
 $ udge-judge hello-world examples/hello-world/0-py23.py 2>/dev/null
-No - compile error
+compile error
 0/1

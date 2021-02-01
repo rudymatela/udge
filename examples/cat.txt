@@ -23,11 +23,11 @@
 $ udge-judge cat examples/cat/cat.c
 6/6
 $ udge-judge cat examples/hello/hello.c
-No - wrong output
+incorrect output
 0/6
 $ udge-judge cat examples/cat/3-wrong-stderr.c
-No - wrong error output
+incorrect error output
 3/6
 $ udge-judge cat examples/cat/5-no-.c
-No - runtime error
+runtime error
 5/6
