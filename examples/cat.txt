@@ -28,6 +28,9 @@ incorrect output
 $ udge-judge cat examples/cat/3-wrong-stderr.c
 incorrect error output
 3/6
+$ udge-judge cat examples/cat/3-incorrect-exit-code.c
+incorrect exit code
+3/6
 $ udge-judge cat examples/cat/5-no-.c
 runtime error
 5/6

@@ -75,9 +75,9 @@ grep -q "^timeout: sending signal TERM"      $run/err && fail "time limit exceed
 grep -q "Cannot allocate memory"             $run/err && fail "memory limit exceeded" # not a catch-all
 
 # checks the exit code
-checkexitcode=check-exit-code
-[ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code
-$checkexitcode $(cat $run/exit) || fail "runtime error"
+checkexitcode=check-exit-code message="runtime error"
+[ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code message="incorrect exit code"
+$checkexitcode $(cat $run/exit) || fail "$message"
 
 # checks standard output and standard error
 check=check-out
