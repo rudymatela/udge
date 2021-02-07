@@ -27,4 +27,4 @@ prefix="$(dirname "$(dirname "$0")")"
 
 now=`date "+%Y%m%d-%H%M%S"`
 
-tar -czvf udge-$now.tar.gz /var/lib/udge/*
+tar -czvhf udge-$now.tar.gz /var/lib/udge/{html,problem,results,slot,submissions,users}
