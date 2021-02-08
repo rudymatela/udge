@@ -250,6 +250,7 @@ install-var:
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/5
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/slot/6
 	install -m 0755 -d $(DESTDIR)/var/lib/udge/results
+	install -m 0755 -d $(DESTDIR)/var/lib/udge/backups
 	cp -r problem/*    $(DESTDIR)/var/lib/udge/problem
 
 install-bin:
@@ -344,6 +345,7 @@ setup-users:
 	chown          udge.udge $(DESTDIR)/var/lib/udge/html
 	chown -R       udge.udge $(DESTDIR)/var/lib/udge/slot
 	chown          udge.udge $(DESTDIR)/var/lib/udge/results
+	chown          udge.udge $(DESTDIR)/var/lib/udge/backups
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
@@ -386,6 +388,7 @@ dev-setup:
 	install -m 0755 -d var/slot/4
 	install -m 0755 -d var/slot/5
 	install -m 0755 -d var/slot/6
+	install -m 0755 -d var/backups
 
 # Run this as root after dev-setup
 dev-install:

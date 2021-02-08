@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# udge-backup: creates a backup Udge's "var" on the current directory
+# udge-backup: creates a backup Udge's "var" on the backup folder
 #
 # Usage: udge-backup
 #
@@ -26,5 +26,15 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
 now=`date "+%Y%m%d-%H%M%S"`
+dst="$BACKUPS/udge-$now.tar.gz"
 
-tar -czvhf udge-$now.tar.gz /var/lib/udge/{html,problem,results,slot,submissions,users}
+# file: -rw-r-----
+umask 0027 || errxit "could not set umask"
+
+tar -czhf "$dst" \
+	-P --transform 's|/var/lib/||' \
+	/var/lib/udge/{html,problem,results,slot,submissions,users} \
+	|| errxit "could not create backup"
+
+echo "Created backup at '$dst'"
+ls -lh "$dst"

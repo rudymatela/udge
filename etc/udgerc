@@ -12,6 +12,7 @@ SUBMISSIONS=/var/lib/udge/submissions
 RESULTS=/var/lib/udge/results
 SLOTS=/var/lib/udge/slot
 PUBLIC_HTML=/var/lib/udge/html
+BACKUPS=/var/lib/udge/backups
 RUN=/run/udge
 
 SCORE=fractions
