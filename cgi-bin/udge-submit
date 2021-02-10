@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# cgi-bin/submit: solution submission page
+# cgi-bin/udge-submit: solution submission page
 #
 #
 # Copyright (C) 2020-2021  Rudy Matela
@@ -165,7 +165,7 @@ post() {
 		exit
 	fi
 
-	timestamp=`date -u "+%Y%m%d-%H%M%S"`
+	timestamp=`date -u +%Y%m%d-%H%M%S`
 	submissions="$SUBMISSIONS/$user_value"
 	destdir="$submissions/$timestamp"
 	# If a submission leaves the submission folder and we get another in the
