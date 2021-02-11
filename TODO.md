@@ -3,11 +3,6 @@ TODO list for Udge
 
 * install README and diagrams somewhere in the system
 
-* fix ownership of `YYYYMMDD-HHMMDD` folders and `problem.lang` files
-  in the `results/` folder.
-  They should be owned by `udge.udge` instead of `www-data.udge`.
-  Recreate instead of moving?
-
 * add `udge-rejudge` script
 
 * remove the requirement of setting most options on udgerc

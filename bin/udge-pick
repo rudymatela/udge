@@ -89,8 +89,16 @@ echo "language = $language"
 submission_dir="`dirname $submission`"
 dir="$slot/lock/$user"
 mkdir $dir
-mv $submission_dir $dir ||  # relies on mv's atomicity
-	unlock-and-finish "'$submission' is now gone!  Was picked meanwhile?"
+# There is no point in using mv here for atomicity as /run is usually mounted
+# in adifferent file system which causes mv not to be atomic.  Also, cp is
+# needed to "reset" the owner of the file from the nginx user (www-data/http)
+# to the udge user.
+cp $submission_dir $dir || unlock-and-errxit "could not place submission on slot $dir"
+# There is a slight risk here that another instance of udge-pick may place the
+# same submission in a different slot due to it existing in two places
+# momentarily.  This should not cause issues, as when a submission is already
+# judged, Udge keeps the result folder as is and deletes the submission.
+rm -r $submission_dir
 rmdir --ignore-fail-on-non-empty "`dirname $submission_dir`"
 echo created $dir/$timestamp/$problem.$language
 
