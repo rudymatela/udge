@@ -175,6 +175,13 @@ sane-email() {
 	print "$1" | grep -qE "$SANE_EMAIL"
 }
 
+# sane timestamp in YYYYMMDD-HHMMDD format
+#
+# NOTE: This fails after the year 9999.
+sane-timestamp() {
+	print "$1" | grep -q "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]"
+}
+
 finish-() {
 	echo "$@"
 	exit 0

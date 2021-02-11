@@ -181,16 +181,9 @@ post() {
 		rm -r $tmpdata
 		exit
 	fi
-	destfile="$destdir/$problem_value.$language_value"
-	umask 0002 # allows for members of the udge group to write (or remove)
-	mkdir -p $destdir
-	cp --no-preserve=all "$tmpdata/program/value" "$destfile"
 
-	logprefix="udge-submit @ $now by $user_value - $problem_value.$language_value"
-	echo "$logprefix: submission successful" >&2
-	echo "$logprefix: $destfile" >&2
-	cat -v $destfile | sed -e "s|^|$logprefix: |" >&2
-	echo "$logprefix: EOF" >&2
+	$bin/udge-create-submission "$user_value" "$tmpdata/program/value" "$timestamp" "$problem_value" "$language_value" >&2 ||
+		errxit "internal server error, could not create submission"
 
 	status-202-accepted
 	success

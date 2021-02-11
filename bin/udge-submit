@@ -19,6 +19,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# This program is not to be confused with udge-create-submission,
+# which actually creates a submission in the submission folder.
+# This one calls the web interface and can be run from
+# a different machine to where udge is running.
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
