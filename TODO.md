@@ -1,6 +1,10 @@
 TODO list for Udge
 ==================
 
+* add diagram of how Udge works
+
+* test that all programs are described in the README
+
 * fix ownership of `YYYYMMDD-HHMMDD` folders and `problem.lang` files
   in the `results/` folder.
   They should be owned by `udge.udge` instead of `www-data.udge`.
