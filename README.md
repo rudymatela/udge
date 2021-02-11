@@ -382,6 +382,8 @@ in plain text files:
 
 This section describes the structure of each of these directories.
 
+![Udge diagram](doc/udge-diagram.svg)
+
 Submissions first arrive on the `/submissions` folder
 then moved to one of the slots `/slot/<slot>`
 and are finally moved into the `/results` folder.

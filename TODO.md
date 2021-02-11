@@ -5,6 +5,10 @@ TODO list for Udge
 
 * test that all programs are described in the README
 
+* on `dia2svg` also "pop'y" license to metadata fields.
+
+* install README and diagrams somewhere in the system
+
 * fix ownership of `YYYYMMDD-HHMMDD` folders and `problem.lang` files
   in the `results/` folder.
   They should be owned by `udge.udge` instead of `www-data.udge`.

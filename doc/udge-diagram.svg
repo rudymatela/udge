@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="215mm" height="125mm" viewBox="-1 -1 842 482" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Copyright (C) 2020-2021 Rudy Matela -->
+  <title>How Udge works</title>
+  <desc>How Udge works.  Copyright (C) 2020-2021 Rudy Matela</desc>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="540.482" y1="286.538" x2="573.467" y2="277.742"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="566.174,284.862 574.548,277.454 563.597,275.199 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="40" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="40" width="100" height="40"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="0" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="0" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="24.4313">
+    <tspan x="300" y="24.4313">*udge-add-user*</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="56.4312">
+    <tspan x="490" y="56.4312">/var/lib/udge</tspan>
+    <tspan x="490" y="72.4312">/users/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="80" y="0" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="80" y="0" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="140" y="16.4312">
+    <tspan x="140" y="16.4312">cgi-bin/</tspan>
+    <tspan x="140" y="32.4312">*udge-new-user*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="200.488" y1="20" x2="233.276" y2="20"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="224.394,25 234.394,20 224.394,15 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="32.7368" x2="433.406" y2="48.0854"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="423.684,51.1484 434.5,48.3157 425.744,41.3629 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="120" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="120" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="136.431">
+    <tspan x="490" y="136.431">/var/lib/udge</tspan>
+    <tspan x="490" y="152.431">/submissions/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="80" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="80" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="104.431">
+    <tspan x="300" y="104.431">*udge-submit*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-dasharray: 10; stroke: #004422" x1="439.508" y1="70.6299" x2="366.602" y2="85.9785"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="374.264,79.256 365.508,86.2088 376.324,89.0415 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="112.737" x2="433.406" y2="128.085"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="423.684,131.148 434.5,128.316 425.744,121.363 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="200" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="200" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="216.431">
+    <tspan x="490" y="216.431">/run/udge</tspan>
+    <tspan x="490" y="232.431">/slot/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="280" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="280" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="296.431">
+    <tspan x="490" y="296.431">/var/lib/udge</tspan>
+    <tspan x="490" y="312.431">/results/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="360" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="360" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="376.431">
+    <tspan x="490" y="376.431">/var/lib/udge</tspan>
+    <tspan x="490" y="392.431">/html/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="80" y="80" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="80" y="80" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="140" y="96.4312">
+    <tspan x="140" y="96.4312">cgi-bin/</tspan>
+    <tspan x="140" y="112.431">*udge-submit*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="200.488" y1="100" x2="233.276" y2="100"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="224.394,105 234.394,100 224.394,95 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="0" y="40" width="40" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x="0" y="40" width="40" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="20" y="64.4312">
+    <tspan x="20" y="64.4312">user</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="40.4492" y1="53.1836" x2="73.5786" y2="42.1405"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="66.7335,49.6926 74.6392,41.7869 63.5713,40.2058 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="40.4492" y1="66.8164" x2="73.5786" y2="77.8595"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="63.5713,79.7942 74.6392,78.2131 66.7335,70.3074 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="0" y="200" width="40" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x="0" y="200" width="40" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="20" y="224.431">
+    <tspan x="20" y="224.431">cron</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="160" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="160" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="184.431">
+    <tspan x="300" y="184.431">*udge-pick*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="439.508" y1="150.63" x2="366.602" y2="165.978"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="374.264,159.256 365.508,166.209 376.324,169.041 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="192.737" x2="433.406" y2="208.085"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="423.684,211.148 434.5,208.316 425.744,201.363 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="240" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="240" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="264.431">
+    <tspan x="300" y="264.431">*udge-check*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="439.508" y1="230.63" x2="366.602" y2="245.978"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="374.264,239.256 365.508,246.209 376.324,249.041 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="272.737" x2="433.406" y2="288.085"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="423.684,291.148 434.5,288.316 425.744,281.363 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="440" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="440" y="440" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="490" y="456.431">
+    <tspan x="490" y="456.431">/var/lib/udge</tspan>
+    <tspan x="490" y="472.431">/problem/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="580" y="240" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="580" y="240" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="640" y="264.431">
+    <tspan x="640" y="264.431">*udge-backup*</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="740" y="240" width="100" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" x="740" y="240" width="100" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="790" y="256.431">
+    <tspan x="790" y="256.431">/var/lib/udge</tspan>
+    <tspan x="790" y="272.431">/backups/</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="700.507" y1="260" x2="733.282" y2="260"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="724.4,265 734.4,260 724.4,255 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="320" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="320" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="336.431">
+    <tspan x="300" y="336.431">*udge-update-</tspan>
+    <tspan x="300" y="352.431">all-user-htmls*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="439.501" y1="310.632" x2="366.602" y2="325.979"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="374.264,319.257 365.508,326.21 376.324,329.042 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="352.737" x2="433.406" y2="368.085"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="423.684,371.148 434.5,368.316 425.744,361.363 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="400" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="240" y="400" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="300" y="416.431">
+    <tspan x="300" y="416.431">udge-update-all</tspan>
+    <tspan x="300" y="432.431">-problem-htmls*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="439.508" y1="449.37" x2="366.602" y2="434.022"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="376.324,430.959 365.508,433.791 374.264,440.744 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="360.5" y1="407.263" x2="433.406" y2="391.915"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="425.744,398.637 434.5,391.684 423.684,388.852 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="0" y="400" width="60" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x="0" y="400" width="60" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="30" y="424.431">
+    <tspan x="30" y="424.431">admin</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="60.4953" y1="420" x2="233.317" y2="420"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="224.435,425 234.435,420 224.435,415 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="80" y="200" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="80" y="200" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="140" y="216.431">
+    <tspan x="140" y="216.431">*udge-check-</tspan>
+    <tspan x="140" y="232.431">-and-pick*</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="200.488" y1="204.878" x2="233.462" y2="196.635"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="226.058,203.639 234.546,196.363 223.632,193.938 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="200.488" y1="235.122" x2="233.462" y2="243.365"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="223.632,246.062 234.546,243.637 226.058,236.361 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="40.4492" y1="220" x2="73.2586" y2="220"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="64.3766,225 74.3766,220 64.3766,215 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="80" y="320" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="80" y="320" width="120" height="40"/>
+  </g>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="140" y="336.431">
+    <tspan x="140" y="336.431">*udge-update-</tspan>
+    <tspan x="140" y="352.431">-rank-html*</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 439.504 300 C 389.504,300 264.275,298.575 206.396,317.868"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="213.241,310.316 205.335,318.222 216.403,319.803 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 200.48 360.16 C 260.48,380.16 385.504,380 433.268,380"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="424.386,385 434.386,380 424.386,375 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 540.491 460 C 590.491,460 640,304.02 640,286.256"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="645,295.138 640,285.138 635,295.138 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 540.486 380 C 590.486,380 607.966,324.069 626.966,286.069"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="627.466,296.249 627.466,285.069 618.521,291.777 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 540.486 140 C 590.486,140 607.966,195.931 626.966,233.931"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="618.521,228.223 627.466,234.931 627.466,223.751 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 540.491 60 C 590.491,60 640,215.98 640,233.744"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="635,224.862 640,234.862 645,224.862 "/>
+  </g>
+  <text font-size="4.51556" style="fill: #f8f8f8;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="300" y="215.919">
+    <tspan x="300" y="215.919">title: How Udge works</tspan>
+    <tspan x="300" y="221.563">Copyright (C) 2020-2021 Rudy Matela</tspan>
+    <tspan x="300" y="227.208">Available under the GPLv2 license.</tspan>
+  </text>
+</svg>

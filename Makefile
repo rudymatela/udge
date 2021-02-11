@@ -154,12 +154,12 @@ test-makefile-coverage:
 %.clitest: examples/%.txt
 	PATH="./bin:$$PATH" clitest -1 $<
 
-html: readme todo
+html: readme todo diagram
 	./bin/udge-update-all-problem-htmls
 	./bin/udge-update-all-user-htmls
 	./bin/udge-update-rank-html
 
-html-force: readme todo
+html-force: readme todo diagram
 	./bin/udge-update-all-problem-htmls force
 	./bin/udge-update-all-user-htmls force
 	./bin/udge-update-rank-html
@@ -176,11 +176,18 @@ readme: var/html/README.html
 .PHONY: todo
 todo: var/html/TODO.html
 
+.PHONY: diagram
+diagram: var/html/doc/udge-diagram.svg
+
 var/html/README.html: README.md
 	./lib/udge/markdown $< > $@
 
 var/html/TODO.html: TODO.md
 	./lib/udge/markdown $< > $@
+
+var/html/doc/udge-diagram.svg: doc/udge-diagram.svg
+	mkdir -p var/html/doc
+	cp doc/udge-diagram.svg var/html/doc/udge-diagram.svg
 
 tidy: \
 	udge.tidy \
@@ -481,3 +488,9 @@ show-vars:
 	@echo  'USERADD    ='  $(USERADD)
 	@echo  '`id -u`    ='  `id -u`
 	@echo  'the{bracket,comma}notation ='  the{bracket,comma}notation
+
+
+# implicit rules
+
+%.svg: %.dia
+	./doc/dia2svg $< $@

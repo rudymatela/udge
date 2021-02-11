@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# dia2svg: converts a Dia file to an SVG file.
+#
+# usage: dia2svg diagram.dia diagram.svg
+#
+#
+# Copyright (C) 2020-2021  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# This script does:
+#
+# 1. use Dia itself to export the svg file:
+#
+#        dia -e diagram.svg -t svg diagram.dia
+#
+# 2. halves the nominal size of the output SVG file
+#
+# 3. pop/copies the watermarked metadata into the actual SVG metadata
+#
+#
+# This is a quick-and-dirty script.
+# It does not work in all cases, use with care.
+# Always check the output file to see if it is not garbled.
+
+errxit() {
+	echo "$0: $@" >&2
+	exit 1
+}
+
+halve-svg() {
+	w=`cat "$1" | grep "<svg.*>" | sed -e 's/.*width="//;s/".*//'`
+	h=`cat "$1" | grep "<svg.*>" | sed -e 's/.*height="//;s/".*//'`
+
+	w=`echo $w | sed -e 's/cm/0mm/'`
+	h=`echo $h | sed -e 's/cm/0mm/'`
+
+	w=`echo $w | sed -e 's/mm//'`
+	h=`echo $h | sed -e 's/mm//'`
+
+	((w = $w / 2))
+	((h = $h / 2))
+
+	sed -e "s/\(<svg.*width=\"\)[^\"]*\(\".*height=\"\)[^\"]*\(\".*>\)/\1${w}mm\2${h}mm\3/" -i "$1"
+}
+
+popy-svg-metadata() {
+	title="`cat "$1" | grep ">title:" | sed -e "s|.*>title: ||;s|</.*||"`"
+	copyright="`cat "$1" | grep ">Copyright " | sed -e "s|.*>Copyright |Copyright |;s|</.*||"`"
+	[ -n "$title"     ] && sed -e "s|<svg .*|&\n  <title>$title</title>\n  <desc>$title.  $copyright</desc>|" -i "$1"
+	[ -n "$copyright" ] && sed -e "s|<svg .*|&\n  <!-- $copyright -->|" -i "$1"
+	true
+}
+
+in="$1"
+out="$2"
+
+[ -n "$in"  ] || errxit "must provide input dia file"
+[ -n "$out" ] || errxit "must provide output file"
+[ -f "$in"  ] || errxit "file not found '$in'"
+
+dia -e "$out" -t svg "$in" || errxit "could not export SVG from Dia"
+halve-svg "$out"           || errxit "could not halve SVG"
+popy-svg-metadata "$out"   || errxit "could not pop'y SVG metadata"
