@@ -93,7 +93,7 @@ mkdir $dir
 # in adifferent file system which causes mv not to be atomic.  Also, cp is
 # needed to "reset" the owner of the file from the nginx user (www-data/http)
 # to the udge user.
-cp $submission_dir $dir || unlock-and-errxit "could not place submission on slot $dir"
+cp -r $submission_dir $dir || unlock-and-errxit "could not place submission on slot $dir"
 # There is a slight risk here that another instance of udge-pick may place the
 # same submission in a different slot due to it existing in two places
 # momentarily.  This should not cause issues, as when a submission is already
