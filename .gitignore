@@ -5,3 +5,4 @@ pkg
 install*-files.txt
 var
 examples/sandbox/sol-searcher-*.c
+README.html
