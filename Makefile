@@ -228,9 +228,19 @@ clean-test-users:
 
 install:
 	make install-bin
+	make install-doc
 	make install-etc
 	make install-var
 	[ "`id -u`" -ne 0 ] || id -u udge >/dev/null 2>&1 || make setup-users
+
+install-doc:
+	mkdir -p                             $(DESTDIR)$(PREFIX)/share/doc/udge
+	install -m 0644 README.md            $(DESTDIR)$(PREFIX)/share/doc/udge
+	mkdir -p                             $(DESTDIR)$(PREFIX)/share/doc/udge/doc
+	install -m 0644 doc/udge-diagram.svg $(DESTDIR)$(PREFIX)/share/doc/udge/doc
+	mkdir -p                             $(DESTDIR)$(PREFIX)/share/licenses/udge
+	install -m 0644 LICENSE              $(DESTDIR)$(PREFIX)/share/licenses/udge
+	install -m 0644 COPYING              $(DESTDIR)$(PREFIX)/share/licenses/udge
 
 install-etc:
 	mkdir -p $(DESTDIR)/etc
@@ -438,7 +448,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 106 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 110 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 
@@ -479,9 +489,9 @@ check-install-test:
 check-install-find:
 	echo $(DESTDIR) $(PREFIX)
 	find pkg -type f \
-	| sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,/var/lib/udge,,;s,^/,," \
+	| sed -e "s,$(DESTDIR),,;s,$(PREFIX),,;s,/var/lib/udge,,;s,share/[^/]*/udge/,,;s,^/,," \
 	| sort > installed-files.txt
-	find lib bin cgi-bin etc problem -type f \
+	find lib bin cgi-bin etc problem README.md doc/udge-diagram.svg LICENSE COPYING -type f \
 	| sort > installable-files.txt
 	diff -rud installable-files.txt installed-files.txt
 	rm installable-files.txt installed-files.txt
