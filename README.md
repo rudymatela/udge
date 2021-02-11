@@ -365,6 +365,15 @@ Here's a complete list of programs provided with Udge:
 * `udge-update-rank-html`: updates the rank HTML file
 * `udge-update-user-html`: updates a single user HTML file
 * `udge-user-stats`: prints the stats for a given user
+* `udge-delete-user`: deletes a user
+* `udge-passwd`: changes the password of a user
+* `udge-rejudge`: queues a result to be rejudged
+* `udge-create-submission`: creates a submission in `submissions`.
+* `udge-create-run`: creates the `/run/udge` hierarchy.
+					 You should actually use `etc/tmpfiles.d/udge.conf`
+					 on real installations.
+* `udge-backup`: saves a backup of `/var/lib/udge/...`
+                 on `/var/lib/udge/backups`.
 
 
 ### A file-based Database
