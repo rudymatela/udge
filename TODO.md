@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* on `dia2svg` also "pop'y" license to metadata fields.
-
 * install README and diagrams somewhere in the system
 
 * fix ownership of `YYYYMMDD-HHMMDD` folders and `problem.lang` files
