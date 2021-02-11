@@ -3,8 +3,6 @@ TODO list for Udge
 
 * install README and diagrams somewhere in the system
 
-* add `udge-rejudge` script
-
 * remove the requirement of setting most options on udgerc
 
 * update the README video

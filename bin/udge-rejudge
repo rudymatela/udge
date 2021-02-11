@@ -1,0 +1,61 @@
+#!/bin/bash
+#
+# udge-rejudge: schedules a submission to be rejudged
+#
+# Usage: udge-rejudge /var/lib/udge/results/<user>/<problem>/<timestamp>/<problem>.<lang>
+#
+#
+# Copyright (C) 2020-2021  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# This script is descructive,
+# please make a backup of the results folder before running this.
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+
+path="$1"
+dirname="`dirname $path`"
+
+[ -n "$path" ] || errxit "missing filename argument"
+[ -f "$path" ] || errxit "file not found '$path'"
+
+realpath="`realpath "$1"`"
+
+get() {
+	echo "$realpath" |
+	sed -e 's,^.*/results/\(.*\)/\(.*\)/\(.*\)/\(.*\)\.\(.*\)$,OK \'"$1"',' |
+	grep ^OK |
+	sed -e 's/OK //'
+}
+
+language="` get 5`"
+problem="`  get 4`"
+timestamp="`get 3`"
+problem2="` get 2`"
+user="`     get 1`"
+
+[ -n "$language"  ] || errxit "could not parse, not a result?  (language)"
+[ -n "$problem"   ] || errxit "could not parse, not a result?  (problem)"
+[ -n "$timestamp" ] || errxit "could not parse, not a result?  (timestamp)"
+[ -n "$problem2"  ] || errxit "could not parse, not a result?  (problem)"
+[ -n "$user"      ] || errxit "could not parse, not a result?  (user)"
+[ "$problem" == "$problem2" ] || errxit "directory does not match filename (problem)"
+
+$bin/udge-create-submission "$user" "$path" "$timestamp" "$problem" "$language" &&
+diff -q "$path" "$SUBMISSIONS/$user/$timestamp/$problem.$language" &&
+echo removing $dirname &&
+rm -r $dirname
