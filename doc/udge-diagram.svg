@@ -366,24 +366,30 @@
     <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 89.7568 280.486 C 49.7568,360.486 135.703,458.568 193.582,477.861"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="183.574,479.795 194.642,478.214 186.737,470.308 "/>
   </g>
-  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="58.5858" y="291.628">
-    <tspan x="58.5858" y="291.628">/1m</tspan>
-    <tspan x="58.5858" y="299.629"></tspan>
-    <tspan x="58.5858" y="307.63"></tspan>
-    <tspan x="58.5858" y="315.631"></tspan>
+  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="58.5858" y="287.628">
+    <tspan x="58.5858" y="287.628">/1min</tspan>
+    <tspan x="58.5858" y="295.629"></tspan>
+    <tspan x="58.5858" y="303.63"></tspan>
+    <tspan x="58.5858" y="311.631"></tspan>
+    <tspan x="58.5858" y="319.632"></tspan>
   </text>
-  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="59.1056" y="404.426">
+  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="59.1056" y="396.425">
+    <tspan x="59.1056" y="396.425"></tspan>
     <tspan x="59.1056" y="404.426"></tspan>
     <tspan x="59.1056" y="412.427"></tspan>
     <tspan x="59.1056" y="420.428"></tspan>
     <tspan x="59.1056" y="428.429"></tspan>
-    <tspan x="59.1056" y="436.43">/2m</tspan>
+    <tspan x="59.1056" y="436.43"></tspan>
+    <tspan x="59.1056" y="444.431">/2min</tspan>
   </text>
-  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="569.544" y="254.098">
-    <tspan x="569.544" y="254.098"></tspan>
-    <tspan x="569.544" y="262.099"></tspan>
-    <tspan x="569.544" y="270.1"></tspan>
-    <tspan x="569.544" y="278.101"></tspan>
-    <tspan x="569.544" y="286.102">/1d</tspan>
+  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="569.544" y="242.096">
+    <tspan x="569.544" y="242.096"></tspan>
+    <tspan x="569.544" y="250.097"></tspan>
+    <tspan x="569.544" y="258.098"></tspan>
+    <tspan x="569.544" y="266.099"></tspan>
+    <tspan x="569.544" y="274.1"></tspan>
+    <tspan x="569.544" y="282.101"></tspan>
+    <tspan x="569.544" y="290.102"></tspan>
+    <tspan x="569.544" y="298.103">/1d</tspan>
   </text>
 </svg>
