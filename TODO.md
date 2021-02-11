@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* add diagram of how Udge works
-
-* test that all programs are described in the README
-
 * on `dia2svg` also "pop'y" license to metadata fields.
 
 * install README and diagrams somewhere in the system

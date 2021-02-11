@@ -448,8 +448,16 @@ test-dev-install:
 	rm -r pkg/d
 	rmdir pkg || true
 
+# lists files missing copyright notices
 list-missing-copyright:
-	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE problem/*/desc.md problem/*/*/check-* problem/*/*/*.{c,py,hs,cc,cs,java,js,lua,rb} Makefile README.md || true
+	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE problem/*/desc.md problem/*/*/check-* problem/*/*/*.{c,py,hs,cc,cs,java,js,lua,rb} doc Makefile README.md || true
+
+# lists programs whose description is missing from the README.md file
+list-missing-description:
+	@for program in `/usr/bin/ls -1 bin | grep ^udge-`; \
+	do \
+		grep -q '^\* `'$$program'.*`: ' README.md || echo $$program; \
+	done
 
 cloc:
 	cloc bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile problem/ README.md TODO.md
