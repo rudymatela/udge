@@ -79,7 +79,7 @@ Successfully registered a submission <br>
 for <strong>$problem_value</strong></strong> <br>
 in <strong>$language_value</strong> <br>
 by <strong>$user_value</strong> <br>
-at $timestamp
+at `human-timestamp $timestamp`
 (UTC).
 </p>
 
@@ -95,8 +95,6 @@ HTML
 
 
 post() {
-	now=`date "+%Y-%m-%d %H:%M:%S"`
-
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	$bin/cgi-create-data-files $tmpdata || errxit "problem while creating cgi-data-files"
 
