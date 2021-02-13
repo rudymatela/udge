@@ -20,4 +20,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 set -e
-cc -lm $CFLAGS "$1" -o "$2"
+cc $CFLAGS "$1" -o "$2" -lm
+
+# NOTE: in some systems, -lm must be provided _last_ otherwise
+# compilation will not work.  See:
+#
+#     $ cat square.c
+#     #include <stdio.h>
+#     #include <math.h>
+#     int main()
+#     {
+#         double d;
+#         scanf("%lf", &d);
+#         printf("%.1lf\n", pow(d,2));
+#         return 0;
+#     }
+#     $ cc -lm square.c -o square
+#     /usr/bin/ld: /tmp/ccPlY9eV.o: in function `main':
+#     square.c:(.text+0x49): undefined reference to `pow'
+#     collect2: error: ld returned 1 exit status
+#     $ cc square.c -o square -lm
+#     $ ./square
+#     4
+#     16.0
+#
+# (cf. `https://stackoverflow.com/questions/12644922/`)
+#
+# With GCC 9.3 on Ubuntu 20.04 the -lm flag must be provided last.
+# With GCC 10.2 on Arch Linux 2021-02-13 the -lm flag can be provided anywhere.
