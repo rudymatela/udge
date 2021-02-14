@@ -25,7 +25,7 @@ set -e
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
-now=`date "+%Y%m%d-%H%M%S"`
+now=`date -u "+%Y%m%d-%H%M%S"`
 dst="$BACKUPS/udge-$now.tar.gz"
 
 # file: -rw-r-----
