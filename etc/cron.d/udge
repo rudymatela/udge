@@ -3,18 +3,18 @@
 # Udge - GPLv2 - Copyright (C) 2020-2021  Rudy Matela
 
 # Check run submissions, pick new ones, update user HTMLs.
-* * * * * udge /usr/local/bin/udge-check-and-pick 15 15 2>&1 | logger -t udge
+* * * * * udge nice -n9 /usr/local/bin/udge-check-and-pick 15 15 2>&1 | logger -t udge
 
 # Run submissions.
-* * * * * udge-1 /usr/local/bin/udge-compile-and-run 1 2>&1 | logger -t udge
-* * * * * udge-2 /usr/local/bin/udge-compile-and-run 2 2>&1 | logger -t udge
-* * * * * udge-3 /usr/local/bin/udge-compile-and-run 3 2>&1 | logger -t udge
-* * * * * udge-4 /usr/local/bin/udge-compile-and-run 4 2>&1 | logger -t udge
-* * * * * udge-5 /usr/local/bin/udge-compile-and-run 5 2>&1 | logger -t udge
-* * * * * udge-6 /usr/local/bin/udge-compile-and-run 6 2>&1 | logger -t udge
+* * * * * udge-1 nice -n5 /usr/local/bin/udge-compile-and-run 1 2>&1 | logger -t udge
+* * * * * udge-2 nice -n5 /usr/local/bin/udge-compile-and-run 2 2>&1 | logger -t udge
+* * * * * udge-3 nice -n5 /usr/local/bin/udge-compile-and-run 3 2>&1 | logger -t udge
+* * * * * udge-4 nice -n5 /usr/local/bin/udge-compile-and-run 4 2>&1 | logger -t udge
+* * * * * udge-5 nice -n5 /usr/local/bin/udge-compile-and-run 5 2>&1 | logger -t udge
+* * * * * udge-6 nice -n5 /usr/local/bin/udge-compile-and-run 6 2>&1 | logger -t udge
 
 # Update the rank HTML.
-*/2 * * * * udge /usr/local/bin/udge-update-rank-html 2>&1 | logger -t udge
+*/2 * * * * udge nice /usr/local/bin/udge-update-rank-html 2>&1 | logger -t udge
 
 # Make a backup every day at 3:33.
-33 3 * * * udge /usr/local/bin/udge-backup 2>&1 | logger -t udge
+33 3 * * * udge nice /usr/local/bin/udge-backup 2>&1 | logger -t udge

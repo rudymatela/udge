@@ -26,8 +26,8 @@ $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*
 $ alias anonymize='sed -e "s/$user/<user>/;s/[0-9][0-9-]*-[0-9-]*/YYYYMMDD-HHMMSS/g" | sort; echo'
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
-$ udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
+$ nice -n5 udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
+$ nice -n5 udge-pick-and-judge >/dev/null 2>/dev/null || true # try to clear submissions
 $
 $
 $ curl -s udge/submit | display
@@ -219,7 +219,7 @@ Submission successful
 Submission successful
 202
 
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ nice -n5 udge-pick-and-judge >/dev/null 2>/dev/null
 $ . /etc/udgerc
 $ find $RESULTS/$user -mindepth 2 -type f | anonymize
 /var/lib/udge/results/<user>/hello/best
@@ -243,7 +243,7 @@ Submission successful
 
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ nice -n5 udge-pick-and-judge >/dev/null 2>/dev/null
 $ find $RESULTS/$user -mindepth 2 -type f | anonymize
 /var/lib/udge/results/<user>/add/best
 /var/lib/udge/results/<user>/add/best.c
@@ -278,7 +278,7 @@ $ udge-submit $tmp hello-world c
 udge-submit: 413
 $
 $
-$ udge-pick-and-judge 2>/dev/null | grep "^./.$"
+$ nice -n5 udge-pick-and-judge 2>/dev/null | grep "^./.$"
 0/1
 $
 $
