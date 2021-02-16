@@ -155,15 +155,17 @@ html-form-select() {
 sane-file() {
 	[ -s "$1" ] &&                  # is not empty
 	[ `cat "$1" | wc -l` -le 1 ] && # has at most one line break
-	grep -q "$SANE" "$1"            # is sane
+	LANG=C grep -q "$SANE" "$1"     # is sane
+	# above, LANG=C is needed so [a-z] does not match characters like "ąęíóü"
 }
 
 # is this email sane?
 # usage: sane-email-file filename
 sane-email-file() {
-	[ -s "$1" ] &&                    # is not empty
-	[ "`cat "$1" | wc -l`" -le 1 ] && # has at most one line break
-	grep -qE "$SANE_EMAIL" "$1"       # is sane
+	[ -s "$1" ] &&                     # is not empty
+	[ "`cat "$1" | wc -l`" -le 1 ] &&  # has at most one line break
+	LANG=C grep -qE "$SANE_EMAIL" "$1" # is sane
+	# above, LANG=C is needed so [a-z] does not match characters like "ąęíóü"
 }
 
 # usage: check-user username password_file

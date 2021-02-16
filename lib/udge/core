@@ -29,6 +29,8 @@ SANE='^[a-z_][a-z0-9_-]*$'
 # not a full RFC compliant verification, but does the job.
 SANE_EMAIL='^[a-z0-9][a-z0-9._%+-]*@[a-z0-9.-]+\.[a-z0-9.-]+$'
 
+# use LANC=C to avoid matching "ąęíóü" with the above REGEXes
+
 errxit() {
 	# We use >&2 here instead of /dev/stderr.
 	#
@@ -166,13 +168,15 @@ n-points-path() {
 # checks if the given argument is a sane user/problem name
 # usage: sane blah123
 sane() {
-	print "$1" | grep -q "$SANE"
+	print "$1" | LANG=C grep -q "$SANE"
+	# above, LANG=C is needed so [a-z] does not match characters like "ąęíóü"
 }
 
 # checks if the given argument is a sane email
 # usage: sane user@example.com
 sane-email() {
-	print "$1" | grep -qE "$SANE_EMAIL"
+	print "$1" | LANG=C grep -qE "$SANE_EMAIL"
+	# above, LANG=C is needed so [a-z] does not match characters like "ąęíóü"
 }
 
 # sane timestamp in YYYYMMDD-HHMMDD format

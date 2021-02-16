@@ -156,6 +156,12 @@ New user
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 422
 
+$ curl -XPOST udge/new-user -Fuser=úśęŕ -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user – Udge Online Judge
+New user
+invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+422
+
 $ curl -XPOST udge/new-user -Fuser=o234567890123456789 -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user – Udge Online Judge
 New user
@@ -163,6 +169,13 @@ username must have at most 18 characters
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=notanemail -Femail-confirmation=notanemail -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user – Udge Online Judge
+New user
+invalid or unsupported email address
+invalid or unsupported email address
+422
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=ú@ęxąḿpłé.çóm -Femail-confirmation=ú@ęxąḿpłé.çóm -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user – Udge Online Judge
 New user
 invalid or unsupported email address
