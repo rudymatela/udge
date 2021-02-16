@@ -156,6 +156,12 @@ New user
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
 422
 
+$ curl -XPOST udge/new-user -Fuser=bin/../bin/ls -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user – Udge Online Judge
+New user
+invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+422
+
 $ curl -XPOST udge/new-user -Fuser=úśęŕ -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user – Udge Online Judge
 New user
@@ -231,6 +237,44 @@ New user – Udge Online Judge
 New user
 it is too simplistic/systematic
 it is too simplistic/systematic
+422
+
+$ curl -XPOST udge/new-user -Fuser=u3c | display
+New user – Udge Online Judge
+New user
+username must have at least 4 characters
+email is missing
+email is missing
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=u3c4 | display
+New user – Udge Online Judge
+New user
+email is missing
+email is missing
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=user30chars2345678901234567890 | display
+New user – Udge Online Judge
+New user
+email is missing
+email is missing
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=user31chars23456789012345678901 | display
+New user – Udge Online Judge
+New user
+username must have at most 30 characters
+email is missing
+email is missing
+password is missing
+password is missing
 422
 
 $ . /etc/udgerc
