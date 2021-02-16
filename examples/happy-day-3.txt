@@ -20,8 +20,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ user1=test-user1-`date "+%Y%m%d-%H%M%S"`
-$ user2=test-user2-`date "+%Y%m%d-%H%M%S"`
+$ user1=h31`date "+%Y%m%d-%H%M%S"`
+$ user2=h32`date "+%Y%m%d-%H%M%S"`
 $
 $ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions just in case...
 $

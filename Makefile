@@ -219,17 +219,13 @@ clean-users:
 clean-var:
 	rm -rf var
 
+# NOTE: will delete users called "radioactive-falcon" or "algorithmic-monkey"
 clean-test-users:
-	rm -rf /var/lib/udge/users/test-*-*-*
-	rm -rf /var/lib/udge/results/test-*-*-*
-	rm -rf /var/lib/udge/submissions/test-*-*-*
-	rm -rf /var/lib/udge/slot/test-*-*-*
-	rm -rf /var/lib/udge/html/u/test-*-*-*.html
-	rm -rf /var/lib/udge/users/tu-*-*
-	rm -rf /var/lib/udge/results/tu-*-*
-	rm -rf /var/lib/udge/submissions/tu-*-*
-	rm -rf /var/lib/udge/slot/tu-*-*
-	rm -rf /var/lib/udge/html/u/tu-*-*.html
+	rm -rf /var/lib/udge/users/???????????-??????
+	rm -rf /var/lib/udge/results/???????????-??????
+	rm -rf /var/lib/udge/submissions/???????????-??????
+	rm -rf /var/lib/udge/slot/???????????-??????
+	rm -rf /var/lib/udge/html/u/???????????-??????.html
 
 install:
 	make install-bin

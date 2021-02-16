@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ user=test-sandbox-`date "+%Y%m%d-%H%M%S"`
+$ user=snd`date "+%Y%m%d-%H%M%S"`
 $
 $ export UDGE_PASSWORD=a-good-password
 $ export UDGE_USERNAME=$user

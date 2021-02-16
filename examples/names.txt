@@ -31,25 +31,25 @@
 # instead of "Maria".
 
 $ now=`date "+%Y%m%d-%H%M%S"`
-$ johndoe=test-johndoe-$now
-$ janeroe=test-janeroe-$now
-$ arf=test-ar-f-$now
-$ dem=test-de-m-$now
-$ gef=test-ge-f-$now
-$ grf=test-gr-f-$now
-$ inf=test-in-f-$now
-$ jaf=test-ja-f-$now
-$ krf=test-kr-f-$now
-$ plf=test-pl-f-$now
-$ plm=test-pl-m-$now
-$ ptf=test-pt-f-$now
-$ ptm=test-pt-m-$now
-$ ruf=test-ru-f-$now
-$ rum=test-ru-m-$now
-$ spf=test-sp-f-$now
-$ zhf=test-zh-f-$now
-$ zz1=test-zz-1-$now
-$ zz2=test-zz-2-$now
+$ janeroe=roe$now
+$ johndoe=doe$now
+$ arf=arf$now
+$ dem=dem$now
+$ gef=gef$now
+$ grf=grf$now
+$ inf=inf$now
+$ jaf=jaf$now
+$ krf=krf$now
+$ plf=plf$now
+$ plm=plm$now
+$ ptf=ptf$now
+$ ptm=ptm$now
+$ ruf=ruf$now
+$ rum=rum$now
+$ spf=spf$now
+$ zhf=zhf$now
+$ zz1=zz1$now
+$ zz2=zz2$now
 $
 $ umask 0022
 $
@@ -61,7 +61,7 @@ $ ./examples/create-new-user $janeroe janeroe@example.org correct-horse "Jane Ro
 User created
 201
 $ curl udge/u/$janeroe | display
-test-janeroe-YYYYMMDD-HHMMSS @ Udge Online Judge
+roeYYYYMMDD-HHMMSS @ Udge Online Judge
 Jane Roe @ Udge Online Judge
 Scores by problem
 200
@@ -70,7 +70,7 @@ $ ./examples/create-new-user $johndoe johndoe@example.com battery-staple "John D
 User created
 201
 $ curl udge/u/$johndoe | display
-test-johndoe-YYYYMMDD-HHMMSS @ Udge Online Judge
+doeYYYYMMDD-HHMMSS @ Udge Online Judge
 John Doe @ Udge Online Judge
 Scores by problem
 200
@@ -79,7 +79,7 @@ $ ./examples/create-new-user $arf maryam-sarah@example.org the-321-password "م�
 User created
 201
 $ curl udge/u/$arf | display
-test-ar-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+arfYYYYMMDD-HHMMSS @ Udge Online Judge
 مريم سارة @ Udge Online Judge
 Scores by problem
 200
@@ -88,7 +88,7 @@ $ ./examples/create-new-user $zhf ai@example.org the-321-password "王李爱"
 User created
 201
 $ curl udge/u/$zhf | display
-test-zh-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+zhfYYYYMMDD-HHMMSS @ Udge Online Judge
 王李爱 @ Udge Online Judge
 Scores by problem
 200
@@ -97,7 +97,7 @@ $ ./examples/create-new-user $dem zuzanna@example.org richtige-heftklammer-für-
 User created
 201
 $ curl udge/u/$dem | display
-test-de-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+demYYYYMMDD-HHMMSS @ Udge Online Judge
 Ben Müller Gößmann @ Udge Online Judge
 Scores by problem
 200
@@ -106,7 +106,7 @@ $ ./examples/create-new-user $gef mariami.beridze@example.org the-password "მ�
 User created
 201
 $ curl udge/u/$gef | display
-test-ge-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+gefYYYYMMDD-HHMMSS @ Udge Online Judge
 მარიამი ბერიძე @ Udge Online Judge
 Scores by problem
 200
@@ -115,7 +115,7 @@ $ ./examples/create-new-user $grf maria.samaras@example.org the-password "Μαρ
 User created
 201
 $ curl udge/u/$grf | display
-test-gr-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+grfYYYYMMDD-HHMMSS @ Udge Online Judge
 Μαρία Σαμαράς @ Udge Online Judge
 Scores by problem
 200
@@ -124,7 +124,7 @@ $ ./examples/create-new-user $inf aadya@example.org the-123-password आध्�
 User created
 201
 $ curl udge/u/$inf | display
-test-in-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+infYYYYMMDD-HHMMSS @ Udge Online Judge
 आध्या @ Udge Online Judge
 Scores by problem
 200
@@ -133,7 +133,7 @@ $ ./examples/create-new-user $jaf sakura@example.org the-123-password "佐藤さ
 User created
 201
 $ curl udge/u/$jaf | display
-test-ja-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+jafYYYYMMDD-HHMMSS @ Udge Online Judge
 佐藤さくら @ Udge Online Judge
 Scores by problem
 200
@@ -142,7 +142,7 @@ $ ./examples/create-new-user $krf seo-yeon.kim@example.org the-123-password "김
 User created
 201
 $ curl udge/u/$krf | display
-test-kr-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+krfYYYYMMDD-HHMMSS @ Udge Online Judge
 김서연 @ Udge Online Judge
 Scores by problem
 200
@@ -151,7 +151,7 @@ $ ./examples/create-new-user $plf zuzanna@example.org poprawny-koń-bateria-zszy
 User created
 201
 $ curl udge/u/$plf | display
-test-pl-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+plfYYYYMMDD-HHMMSS @ Udge Online Judge
 Zuzanna Wiśniewski @ Udge Online Judge
 Scores by problem
 200
@@ -160,7 +160,7 @@ $ ./examples/create-new-user $plm grzegorz@example.com "Chrząszczyżewoszyce, p
 User created
 201
 $ curl udge/u/$plm | display
-test-pl-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+plmYYYYMMDD-HHMMSS @ Udge Online Judge
 Grzegorz Brzęczyszczykiewicz @ Udge Online Judge
 Scores by problem
 200
@@ -169,7 +169,7 @@ $ ./examples/create-new-user $ptf maria.ines@example.org cavalo-correcto "Inês 
 User created
 201
 $ curl udge/u/$ptf | display
-test-pt-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+ptfYYYYMMDD-HHMMSS @ Udge Online Judge
 Inês Gonçalves Araújo @ Udge Online Judge
 Scores by problem
 200
@@ -178,7 +178,7 @@ $ ./examples/create-new-user $ptm joao-tomas@example.org bateria-grampeador "Jo�
 User created
 201
 $ curl udge/u/$ptm | display
-test-pt-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+ptmYYYYMMDD-HHMMSS @ Udge Online Judge
 João Tomás Simões Lourenço @ Udge Online Judge
 Scores by problem
 200
@@ -187,7 +187,7 @@ $ ./examples/create-new-user $ruf ssmirnova@example.com some-password "Софи�
 User created
 201
 $ curl udge/u/$ruf | display
-test-ru-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+rufYYYYMMDD-HHMMSS @ Udge Online Judge
 София Ивано́ва @ Udge Online Judge
 Scores by problem
 200
@@ -196,7 +196,7 @@ $ ./examples/create-new-user $rum asmirnov@example.com some-password "Алекс
 User created
 201
 $ curl udge/u/$rum | display
-test-ru-m-YYYYMMDD-HHMMSS @ Udge Online Judge
+rumYYYYMMDD-HHMMSS @ Udge Online Judge
 Александр Смирно́в @ Udge Online Judge
 Scores by problem
 200
@@ -205,7 +205,7 @@ $ ./examples/create-new-user $spf jm@example.com some-password "Júlia Muñoz"
 User created
 201
 $ curl udge/u/$spf | display
-test-sp-f-YYYYMMDD-HHMMSS @ Udge Online Judge
+spfYYYYMMDD-HHMMSS @ Udge Online Judge
 Júlia Muñoz @ Udge Online Judge
 Scores by problem
 200
@@ -214,7 +214,7 @@ $ ./examples/create-new-user $zz1 zz1@example.com some-password "ZYX Ææ <%2B-*
 User created
 201
 $ curl udge/u/$zz1 | display
-test-zz-1-YYYYMMDD-HHMMSS @ Udge Online Judge
+zz1YYYYMMDD-HHMMSS @ Udge Online Judge
 ZYX Ææ &lt;+-*%&amp;&gt; 123 @ Udge Online Judge
 Scores by problem
 200
@@ -223,7 +223,7 @@ $ ./examples/create-new-user $zz2 pedroii@example.com some-password 'Pedro "Dom 
 User created
 201
 $ curl udge/u/$zz2 | display
-test-zz-2-YYYYMMDD-HHMMSS @ Udge Online Judge
+zz2YYYYMMDD-HHMMSS @ Udge Online Judge
 Pedro &quot;Dom Pedro II&quot; de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga @ Udge Online Judge
 Scores by problem
 200
