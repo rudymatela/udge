@@ -225,6 +225,11 @@ clean-test-users:
 	rm -rf /var/lib/udge/submissions/test-*-*-*
 	rm -rf /var/lib/udge/slot/test-*-*-*
 	rm -rf /var/lib/udge/html/u/test-*-*-*.html
+	rm -rf /var/lib/udge/users/tu-*-*
+	rm -rf /var/lib/udge/results/tu-*-*
+	rm -rf /var/lib/udge/submissions/tu-*-*
+	rm -rf /var/lib/udge/slot/tu-*-*
+	rm -rf /var/lib/udge/html/u/tu-*-*.html
 
 install:
 	make install-bin

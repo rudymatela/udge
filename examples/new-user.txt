@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ user=test-new-user-`date "+%Y%m%d-%H%M%S"`
+$ user=tu-`date "+%Y%m%d-%H%M%S"`
 $
 $ alias curl='curl -sw "%{http_code}\n"'
 $ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
@@ -154,6 +154,12 @@ $ curl -XPOST udge/new-user -Fuser=../../../../../bin/ls -Femail=u@example.com -
 New user – Udge Online Judge
 New user
 invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
+422
+
+$ curl -XPOST udge/new-user -Fuser=o234567890123456789 -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+New user – Udge Online Judge
+New user
+username must have at most 18 characters
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=notanemail -Femail-confirmation=notanemail -Fpassword=the-password -Fpassword-confirmation=the-password | display

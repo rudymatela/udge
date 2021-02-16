@@ -118,9 +118,9 @@ post() {
 	email_confirmation_value="`html-cat "$email_confirmation_fn"`"
 
 	diff -q $email_fn $email_confirmation_fn >/dev/null 2>/dev/null || email_error="emails do not match"
+	[ "`wc -c <$user_fn`" -le 18 ] || user_error="username must have at most 18 characters"
 	sane-file "$user_fn"           || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]              || user_error="username is missing"
-	[ "`wc -c <$user_fn`" -le 18 ] || user_error="username must have at most 18 characters"
 	password_error="`password-errors | head -1`"
 	sane-email-file "$email_fn" || email_error="invalid or unsupported email address"
 	[ -s "$email_fn" ]          || email_error="email is missing"
