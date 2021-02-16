@@ -119,7 +119,7 @@ post() {
 
 	diff -q $email_fn $email_confirmation_fn >/dev/null 2>/dev/null || email_error="emails do not match"
 	[ "`wc -c <$user_fn`" -ge  4 ] || user_error="username must have at least 4 characters"
-	[ "`wc -c <$user_fn`" -le 30 ] || user_error="username must have at most 30 characters"
+	[ "`wc -c <$user_fn`" -le 18 ] || user_error="username must have at most 18 characters"
 	sane-file "$user_fn"           || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]              || user_error="username is missing"
 	password_error="`password-errors | head -1`"

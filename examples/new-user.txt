@@ -177,7 +177,7 @@ username must have at least 4 characters
 $ curl -XPOST udge/new-user -Fuser=o234567890123456789012345678901 -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
 New user – Udge Online Judge
 New user
-username must have at most 30 characters
+username must have at most 18 characters
 422
 
 $ curl -XPOST udge/new-user -Fuser=$user -Femail=notanemail -Femail-confirmation=notanemail -Fpassword=the-password -Fpassword-confirmation=the-password | display
@@ -258,7 +258,7 @@ password is missing
 password is missing
 422
 
-$ curl -XPOST udge/new-user -Fuser=user30chars2345678901234567890 | display
+$ curl -XPOST udge/new-user -Fuser=user18chars2345678 | display
 New user – Udge Online Judge
 New user
 email is missing
@@ -267,10 +267,10 @@ password is missing
 password is missing
 422
 
-$ curl -XPOST udge/new-user -Fuser=user31chars23456789012345678901 | display
+$ curl -XPOST udge/new-user -Fuser=user19chars23456789 | display
 New user – Udge Online Judge
 New user
-username must have at most 30 characters
+username must have at most 18 characters
 email is missing
 email is missing
 password is missing
