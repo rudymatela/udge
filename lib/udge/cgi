@@ -168,6 +168,11 @@ sane-email-file() {
 	# above, LANG=C is needed so [a-z] does not match characters like "ąęíóü"
 }
 
+# is this user valid according to the regex?
+valid-user() {
+	[ -z "$INVALID_USER_REGEX" ] || grep -vqE "$INVALID_USER_REGEX" "$1"
+}
+
 # usage: check-user username password_file
 check-user() {
 	username="$1"

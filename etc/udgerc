@@ -17,6 +17,7 @@ RUN=/run/udge
 
 SCORE=fractions
 NEW_USER=true
+INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
 
 GHCFLAGS=-dynamic # for Arch Linux
 MAX_PROCESSES=512

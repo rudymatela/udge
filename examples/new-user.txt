@@ -277,6 +277,53 @@ password is missing
 password is missing
 422
 
+$ curl -XPOST udge/new-user -Fuser=admin -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+username already exists, pick another
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=administrator -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+username already exists, pick another
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=badmin -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+username already exists, pick another
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=the-administrator -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+username already exists, pick another
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=aadmin_for_udge -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+username already exists, pick another
+password is missing
+password is missing
+422
+
+$ curl -XPOST udge/new-user -Fuser=badminton -Femail=u@example.com -Femail-confirmation=u@example.com | display
+New user – Udge Online Judge
+New user
+password is missing
+password is missing
+422
+
 $ . /etc/udgerc
 $ ls -1 $USERS/$user
 email

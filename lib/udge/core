@@ -23,7 +23,7 @@
 . /etc/udgerc
 
 # a sanity check for user and problem names
-SANE='^[a-z_][a-z0-9_-]*$'
+SANE='^[a-z][a-z0-9_-]*$'
 
 # a sanity check for emails (needs -E)
 # not a full RFC compliant verification, but does the job.
