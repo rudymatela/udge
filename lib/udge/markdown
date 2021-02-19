@@ -40,6 +40,40 @@ class() {
 	sed -e 's/<table>/<table class="table table-hover">/'
 }
 
+colour-fractions() {
+	# Hacky?  ¯\_(ツ)_/¯  Hey, as long as it works...
+	sed -Ee '
+		s,\* +1/1:,* <span class="one">1/1</span>:,;
+		s,\* +2/2:,* <span class="one">2/2</span>:,;
+		s,\* +3/3:,* <span class="one">3/3</span>:,;
+		s,\* +4/4:,* <span class="one">4/4</span>:,;
+		s,\* +5/5:,* <span class="one">5/5</span>:,;
+		s,\* +6/6:,* <span class="one">6/6</span>:,;
+		s,\* +8/8:,* <span class="one">8/8</span>:,;
+		s,\* +9/9:,* <span class="one">9/9</span>:,;
+		s,\* +10/10:,* <span class="one">10/10</span>:,;
+		s,\* +12/12:,* <span class="one">12/12</span>:,;
+		s,\* +16/16:,* <span class="one">16/16</span>:,;
+		s,\* +18/18:,* <span class="one">18/18</span>:,;
+		s,\* +20/20:,* <span class="one">20/20</span>:,;
+		s,\* +24/24:,* <span class="one">24/24</span>:,;
+		s,\* +25/25:,* <span class="one">25/25</span>:,;
+		s,\* +30/30:,* <span class="one">30/30</span>:,;
+		s,\* +32/32:,* <span class="one">32/32</span>:,;
+		s,\* +40/40:,* <span class="one">40/40</span>:,;
+		s,\* +50/50:,* <span class="one">50/50</span>:,;
+		s,\* +60/60:,* <span class="one">60/60</span>:,;
+		s,\* +64/64:,* <span class="one">64/64</span>:,;
+		s,\* +100/100:,* <span class="one">100/100</span>:,;
+		s,\* +120/120:,* <span class="one">120/120</span>:,;
+		s,\* +128/128:,* <span class="one">128/128</span>:,;
+		s,\* +256/256:,* <span class="one">256/256</span>:,;
+		s,\* +360/360:,* <span class="one">360/360</span>:,;
+		s,\* +(0/[0-9]+):,* <span class="zero">\1</span>:,;
+		s,\* +([0-9]+/[0-9]+):,* <span class="frac">\1</span>:,;
+	'
+}
+
 marky() {
 	sed -e 's|^{#\([a-z0-9-]*\)}$|<a name="\1"></a>|'
 }
@@ -58,7 +92,7 @@ html-header "$page_title"
 html-navbar $index
 if grep -q "$copyright" "$@"
 then
-	grep -B10000 "$copyright" "$@" | head -n -1 | marky | markdown | class | multicolumn
+	grep -B10000 "$copyright" "$@" | head -n -1 | marky | colour-fractions | markdown | class | multicolumn
 	html-navbar $index
 	echo '<p style="text-align:right;font-size:smaller">'
 	# This automatically links a few license types
