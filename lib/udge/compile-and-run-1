@@ -39,6 +39,8 @@ src="$2"
 dst="$3"
 verbose="$4"
 
+export CFLAGS GHCFLAGS
+
 [ -n "$set" ] || errxit "must provide input folder"
 [ -n "$src" ] || errxit "must provide source"
 [ -n "$dst" ] || errxit "must provide destination folder"
