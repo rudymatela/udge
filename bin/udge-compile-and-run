@@ -73,4 +73,4 @@ cd $lock
 $compileandrun $PROBLEMS/$problem $submission $lock/run- $verbose
 cd - >/dev/null
 mv $lock/run- $lock/run
-echo Created $lock/run
+echo "Created $lock/run (`du -hs $lock/run | cut -f1`)"
