@@ -49,4 +49,6 @@ do
 	$lib/compile-and-run-1 $dir $src $dst/$id $verbose || break
 done
 
+[ -n "$verbose" ] && du -hs $dst
+
 true
