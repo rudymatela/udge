@@ -469,7 +469,7 @@ For example:
 	submissions/janeroe/20200224-001234/hello.hs
 
 
-#### Results Directory --- `/var/lib/udge/submissions`
+#### Results Directory --- `/var/lib/udge/results`
 
 The results directory contains the results of evaluated solutions.
 
