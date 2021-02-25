@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="155mm" height="185mm" viewBox="-1 -1 602 722" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="155mm" height="175mm" viewBox="-1 -1 602 682" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <!-- Copyright (C) 2020-2021 Rudy Matela -->
   <title>How Udge works</title>
   <desc>How Udge works.  Copyright (C) 2020-2021 Rudy Matela</desc>
@@ -147,12 +147,12 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="343.622,367.474 354.573,365.219 346.199,357.812 "/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="360" y="600" width="100" height="40" rx="10" ry="10"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="600" width="100" height="40" rx="10" ry="10"/>
+    <rect style="fill: #ffffff" x="360" y="440" width="100" height="40" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="440" width="100" height="40" rx="10" ry="10"/>
   </g>
-  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="410" y="616.431">
-    <tspan x="410" y="616.431">/var/lib/udge</tspan>
-    <tspan x="410" y="632.431">/problem/</tspan>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="410" y="456.431">
+    <tspan x="410" y="456.431">/var/lib/udge</tspan>
+    <tspan x="410" y="472.431">/problem/</tspan>
   </text>
   <g>
     <rect style="fill: #ffffff" x="500" y="440" width="100" height="40"/>
@@ -162,12 +162,12 @@
     <tspan x="550" y="464.431">*udge-backup*</tspan>
   </text>
   <g>
-    <rect style="fill: #ffffff" x="360" y="680" width="100" height="40" rx="10" ry="10"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="680" width="100" height="40" rx="10" ry="10"/>
+    <rect style="fill: #ffffff" x="360" y="600" width="100" height="40" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="600" width="100" height="40" rx="10" ry="10"/>
   </g>
-  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="410" y="696.431">
-    <tspan x="410" y="696.431">/var/lib/udge</tspan>
-    <tspan x="410" y="712.431">/backups/</tspan>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="410" y="616.431">
+    <tspan x="410" y="616.431">/var/lib/udge</tspan>
+    <tspan x="410" y="632.431">/backups/</tspan>
   </text>
   <g>
     <rect style="fill: #ffffff" x="200" y="480" width="120" height="40"/>
@@ -194,8 +194,8 @@
     <tspan x="260" y="592.431">-problem-htmls*</tspan>
   </text>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="359.518" y1="606.538" x2="326.533" y2="597.742"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="336.403,595.199 325.452,597.454 333.826,604.862 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="384.438" y1="480.449" x2="290.431" y2="555.655"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="294.243,546.202 289.558,556.354 300.49,554.011 "/>
   </g>
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="320.507" y1="563.865" x2="353.492" y2="555.069"/>
@@ -249,8 +249,8 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="344.44,545 354.44,540 344.44,535 "/>
   </g>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 460.478 620 C 510.478,620 550,504.477 550,486.713"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="555,495.595 550,485.595 545,495.595 "/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 460.483 460 C 530.483,460 445.517,460 493.281,460"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="484.399,465 494.399,460 484.399,455 "/>
   </g>
   <g>
     <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 460.488 540 C 490.488,540 502.235,523.686 530.894,485.475"/>
@@ -270,35 +270,35 @@
     <tspan x="100" y="67.2077">Available under the GPLv2 license.</tspan>
   </text>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 565.344 480.459 C 595.344,520.459 574.486,700 466.722,700"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="475.604,695 465.604,700 475.604,705 "/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 555.127 480.507 C 565.127,520.507 554.396,587.912 466.579,607.427"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="474.165,600.619 465.488,607.669 476.334,610.381 "/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="200" y="680" width="120" height="40"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="200" y="680" width="120" height="40"/>
+    <rect style="fill: #ffffff" x="200" y="640" width="120" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x="200" y="640" width="120" height="40"/>
   </g>
-  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="260" y="696.431">
-    <tspan x="260" y="696.431">(suggestion)</tspan>
-    <tspan x="260" y="712.431">rsync</tspan>
+  <text font-size="12.8" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="260" y="656.431">
+    <tspan x="260" y="656.431">(suggestion)</tspan>
+    <tspan x="260" y="672.431">rsync</tspan>
   </text>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x1="60.5048" y1="595.916" x2="215.277" y2="676.666"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" points="205.089,676.991 216.268,677.183 209.715,668.125 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x1="60.5048" y1="590.61" x2="195.206" y2="637.463"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" points="185.175,639.268 196.262,637.83 188.46,629.823 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="359.518" y1="700" x2="326.743" y2="700"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="335.625,695 325.625,700 335.625,705 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="359.518" y1="633.462" x2="326.533" y2="642.258"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="333.826,635.138 325.452,642.546 336.403,644.801 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="199.496" y1="700" x2="66.2361" y2="700"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="75.118,695 65.118,700 75.118,705 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="199.496" y1="660" x2="66.2361" y2="660"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="75.118,655 65.118,660 75.118,665 "/>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="0" y="680" width="60" height="40" rx="10" ry="10"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="0" y="680" width="60" height="40" rx="10" ry="10"/>
+    <rect style="fill: #ffffff" x="0" y="640" width="60" height="40" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="0" y="640" width="60" height="40" rx="10" ry="10"/>
   </g>
-  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="30" y="704.431">
-    <tspan x="30" y="704.431">/.../</tspan>
+  <text font-size="12.8" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="30" y="664.431">
+    <tspan x="30" y="664.431">/.../</tspan>
   </text>
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #442200" x1="30.2441" y1="360.488" x2="86.967" y2="473.934"/>
@@ -460,5 +460,13 @@
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #004422" x1="384.438" y1="240.449" x2="290.431" y2="315.655"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="294.243,306.202 289.558,316.354 300.49,314.011 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="384.438" y1="439.551" x2="290.431" y2="364.345"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="300.49,365.989 289.558,363.646 294.243,373.798 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 440.732 240.488 C 470.732,260.488 480.362,376.434 528.93,434.716"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="519.403,431.094 529.646,435.575 527.085,424.692 "/>
   </g>
 </svg>
