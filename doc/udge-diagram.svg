@@ -5,10 +5,6 @@
   <title>How Udge works</title>
   <desc>How Udge works.  Copyright (C) 2020-2021 Rudy Matela</desc>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="445.854" y1="400.488" x2="508.731" y2="436.418"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="498.539,436.352 509.702,436.972 503.5,427.67 "/>
-  </g>
-  <g>
     <rect style="fill: #ffffff" x="360" y="40" width="100" height="40" rx="10" ry="10"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="40" width="100" height="40" rx="10" ry="10"/>
   </g>
@@ -257,11 +253,11 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="529.564,495.581 531.564,484.581 521.564,489.581 "/>
   </g>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 440.74 160.494 C 470.74,180.494 507.972,375.943 536.972,433.943"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 460.435 160.174 C 510.435,180.174 507.972,375.943 536.972,433.943"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="528.527,428.235 537.472,434.943 537.472,423.763 "/>
   </g>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 445.866 80.4947 C 515.866,120.495 550,415.501 550,433.265"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 460.494 80.1976 C 510.494,100.198 550,415.501 550,433.265"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="545,424.383 550,434.383 555,424.383 "/>
   </g>
   <text font-size="4.51556" style="fill: #f8f8f8;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="55.9188">
@@ -337,11 +333,11 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="332.761,240.476 324.855,248.382 335.923,249.963 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x1="580" y1="380" x2="559.873" y2="433.673"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" points="558.31,423.601 559.48,434.72 567.673,427.112 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x1="590" y1="380" x2="563.033" y2="433.934"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" points="562.533,423.754 562.533,434.934 571.477,428.226 "/>
   </g>
-  <text font-size="12.8016" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="580" y="374.432">
-    <tspan x="580" y="374.432">...</tspan>
+  <text font-size="12.8016" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="590" y="374.432">
+    <tspan x="590" y="374.432">...</tspan>
   </text>
   <g>
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #442200" x1="20" y1="360" x2="20" y2="413.764"/>
@@ -382,15 +378,15 @@
     <tspan x="59.1056" y="436.43"></tspan>
     <tspan x="59.1056" y="444.431">/2min</tspan>
   </text>
-  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="569.544" y="382.096">
-    <tspan x="569.544" y="382.096"></tspan>
-    <tspan x="569.544" y="390.097"></tspan>
-    <tspan x="569.544" y="398.098"></tspan>
-    <tspan x="569.544" y="406.099"></tspan>
-    <tspan x="569.544" y="414.1"></tspan>
-    <tspan x="569.544" y="422.101"></tspan>
-    <tspan x="569.544" y="430.102"></tspan>
-    <tspan x="569.544" y="438.103">/1d</tspan>
+  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="576.016" y="382.18">
+    <tspan x="576.016" y="382.18"></tspan>
+    <tspan x="576.016" y="390.181"></tspan>
+    <tspan x="576.016" y="398.182"></tspan>
+    <tspan x="576.016" y="406.183"></tspan>
+    <tspan x="576.016" y="414.184"></tspan>
+    <tspan x="576.016" y="422.185"></tspan>
+    <tspan x="576.016" y="430.186"></tspan>
+    <tspan x="576.016" y="438.187">/1d</tspan>
   </text>
   <g>
     <rect style="fill: #ffffff" x="90" y="190" width="60" height="20"/>
@@ -466,7 +462,11 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="300.49,365.989 289.558,363.646 294.243,373.798 "/>
   </g>
   <g>
-    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 440.732 240.488 C 470.732,260.488 480.362,376.434 528.93,434.716"/>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="519.403,431.094 529.646,435.575 527.085,424.692 "/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 445.883 240.504 C 515.883,280.504 453.052,376.902 521.355,435.447"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="511.357,433.463 522.204,436.174 517.865,425.87 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" d="M 430.501 400.501 C 450.501,420.501 465.704,431.901 493.582,441.194"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="483.575,443.129 494.643,441.548 486.737,433.642 "/>
   </g>
 </svg>
