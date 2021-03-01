@@ -11,3 +11,9 @@ try searching for it on [the rank](/rank).
 If you can't find it,
 contact the site administrator
 mentioning your email.
+
+
+Copyright (C) 2020-2021  Rudy Matela
+Udge is free/libre software.
+It is available under the GPLv2 license
+unless otherwise stated in specific files.

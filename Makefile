@@ -462,7 +462,7 @@ test-dev-install:
 
 # lists files missing copyright notices
 list-missing-copyright:
-	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE problem/*/desc.md problem/*/*/check-* problem/*/*/*.{c,py,hs,cc,cs,java,js,lua,rb} doc Makefile README.md || true
+	grep -LR Copyright bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE problem/*.md problem/*/desc.md problem/*/*/check-* problem/*/*/*.{c,py,hs,cc,cs,java,js,lua,rb} doc Makefile README.md || true
 
 # lists programs whose description is missing from the README.md file
 list-missing-description:
