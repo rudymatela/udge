@@ -1,6 +1,5 @@
-### Udge Online Judge
-
-# Forgot password?
+Forgot password
+---------------
 
 If you forgot your password,
 please contact the site administrator for a new one.

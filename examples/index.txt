@@ -45,9 +45,8 @@ Udge Online Judge
 404
 
 $ curl -s udge/forgot-password | display
-Forgot password? – Udge Online Judge
-Udge Online Judge
-Forgot password?
+Forgot password – Udge Online Judge
+Forgot password
 200
 
 $ curl -s udge | grep hello | sort
