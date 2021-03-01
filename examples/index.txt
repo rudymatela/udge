@@ -49,6 +49,11 @@ Forgot password – Udge Online Judge
 Forgot password
 200
 
+$ curl -s udge/settings | display
+User settings – Udge Online Judge
+User settings
+200
+
 $ curl -s udge | grep hello | sort
 <li><a href="/hello">hello</a></li>
 <li><a href="/hello-world">hello-world</a></li>

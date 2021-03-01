@@ -40,6 +40,8 @@ html-header "$user @ $NAME"
 html-navbar
 echo "<h2>$name @ $NAME</h2>"
 
+echo '<p style="text-align:right;font-size:smaller;margin-bottom:-1em">[<a href="/settings">user settings</a>]</p>'
+
 $bin/udge-user-stats $user overall | sed -e 's,^,<p>,;s,$,</p>,;s,the rank,<a href="/rank">the rank</a>,'
 
 colour-fractions() {
