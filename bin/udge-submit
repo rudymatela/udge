@@ -65,7 +65,12 @@ case $http_code in
 *)
 	bn=`basename $0`
 	echo "$bn: $http_code"
-	cat $tmp | grep "help-block" | sed -e "s/<[^>]*>//g" | sort -u | sed -e "s,^,$bn: ,"
+	cat $tmp |
+	grep "help-block" |
+	sed -e "s/<[^>]*>//g" |
+	sed -e "s/ (forgot password?)//" |
+	sort -u |
+	sed -e "s,^,$bn: ,"
 	rm -f $tmp
 	exit 1
 	;;

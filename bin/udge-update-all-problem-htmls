@@ -49,8 +49,9 @@ update() {
 }
 
 mkdir -p $PUBLIC_HTML
-what=markdown- update index.md index.html
-what=markdown- update 404.md   404.html
+what=markdown- update index.md           index.html
+what=markdown- update 404.md             404.html
+what=markdown- update forgot-password.md forgot-password.html
 for problem in `ls-problems`
 do
 	what=markdown- update $problem/desc.md $problem.html

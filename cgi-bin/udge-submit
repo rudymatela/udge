@@ -153,8 +153,10 @@ post() {
 		exit
 	fi
 
-	check-user "$user_value" "$password_fn" || user_error="invalid credentials"
-	password_error="$user_error"
+	check-user "$user_value" "$password_fn" ||
+	user_error="invalid credentials"
+	[ -z "$user_error" ] ||
+	password_error="invalid credentials <small>(<a href="/forgot-password">forgot password</a>?)</small>"
 	if has-error
 	then
 		status=status-401-unauthorized
