@@ -143,7 +143,7 @@ $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 $ ### ### After compiling and running, results are created on /run ### ###
 $ udge-compile-and-run 1 | anonymize
 Compiling then running /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c.
-Created /run/udge/1/lock/run
+Created /run/udge/1/lock/run (28K)
 
 $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 /run/udge/1/lock/exe
