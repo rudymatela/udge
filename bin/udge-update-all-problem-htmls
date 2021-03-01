@@ -48,10 +48,17 @@ update() {
 	true
 }
 
+ls-mds() {
+	find problem/ -mindepth 1 -maxdepth 1 -name "*.md" |
+	sed -e 's|^problem/||;s|\.md$||'
+}
+
 mkdir -p $PUBLIC_HTML
-what=markdown- update index.md           index.html
-what=markdown- update 404.md             404.html
-what=markdown- update forgot-password.md forgot-password.html
+for md in `ls-mds`
+do
+	# index.md, 404.md, forgot-password.md
+	what=markdown- update $md.md $md.html
+done
 for problem in `ls-problems`
 do
 	what=markdown- update $problem/desc.md $problem.html
