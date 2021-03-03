@@ -64,9 +64,13 @@ __merchantability__ or __fitness for a particular purpose__.
 See the GNU General Public License for more details.
 
 Udge is already functional and usable but it is a _work in progress_.
-Submission sandboxing is still pretty limited so use with care.
-For now, only give submission access to people you trust:
-either deactivate user creation or run this only on a local network.
+Keep in mind that Udge runs submitted programs so use with care.
+There is submission sandboxing if users and cron jobs are set up correctly
+but this feature can still be improved.
+Keep an eye on the logs to see what is being submitted and run.
+
+Udge is currently used on [Computer Science by Example](https://cscx.org/),
+a collection of programming exercises.
 
 
 Dependencies
