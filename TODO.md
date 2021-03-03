@@ -3,10 +3,6 @@ TODO list for Udge
 
 * make so that `disk-usage-files.c` is OLE'd
 
-* add `examples/sandbox/stdout-1024.c` example (OK)
-
-* add `examples/sandbox/stdout-1025.c` example (Fail)
-
 * remove the requirement of setting most options on udgerc
 
 * update the README video
