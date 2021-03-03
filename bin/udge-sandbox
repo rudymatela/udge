@@ -29,7 +29,7 @@ prefix="$(dirname "$(dirname "$0")")"
 
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512
 
-ulimit -c 262144 # K, 256M
+ulimit -c 65536 # K, 64M
 ulimit -d 1048576 # K, 1024M, 1G
 ulimit -f 1024 # K, 1M
 ulimit -i 1024 # signals
