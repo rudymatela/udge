@@ -565,7 +565,7 @@ under `examples/<problem>`:
 * `examples/add/0-re.c`:     example solution to `add`   in C      -- 0/6 -- runtime error;
 * `examples/hello/hello.c`:  example solution to `hello` in C      -- 6/6;
 * `examples/add/add.py`:     example solution to `add`   in Python -- 6/6;
-* `examples/add/4-octals.c`: example solution to `add`   in C      -- 4/6 -- wrong output.
+* `examples/add/4-octals.c`: example solution to `add`   in C      -- 4/6 -- incorrect output.
 
 
 
