@@ -31,7 +31,7 @@ prefix="$(dirname "$(dirname "$0")")"
 
 ulimit -c 262144 # blocks, 128M
 ulimit -d 1048576 # K, 1024M, 1G
-ulimit -f 262144 # blocks, 128M
+ulimit -f 2048 # blocks, 1M
 ulimit -i 1024 # signals
 ulimit -l 32 # K
 ulimit -m 2097152 # K, 2048M, 2G

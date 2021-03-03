@@ -27,6 +27,7 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 
 fail() {
+	[ -n "$verbose" ] && [ -f "$run/exit" ] && echo -n "exit code: " && cat "$run/exit"
 	[ -n "$verbose" ] && [ -f "$run/err" ] && echo "submitted exe's stderr:" >&2 && cat "$run/err" >&2
 	echo "$@"
 	exit 1

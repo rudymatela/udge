@@ -81,7 +81,7 @@ time limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/disk-usage.c
-time limit exceeded
+runtime error
 0/1
 $
 $ udge-judge hello-world examples/sandbox/sol.c
