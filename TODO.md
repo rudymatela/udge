@@ -1,8 +1,11 @@
 TODO list for Udge
 ==================
 
-* add `examples/sandbox/disk-usage-files.c` example
-  which distributes disk usage across multiple files
+* make so that `disk-usage-files.c` is OLE'd
+
+* add `examples/sandbox/stdout-1024.c` example (OK)
+
+* add `examples/sandbox/stdout-1025.c` example (Fail)
 
 * remove the requirement of setting most options on udgerc
 
