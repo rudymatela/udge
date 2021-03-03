@@ -52,6 +52,27 @@ check-exit-code() {
 	[ "$1" = 0 ]
 }
 
+exit-code-meaning() {
+	# I found no comprehensive table with the default exit codes in Linux/Unix
+	# for various signals and behaviours.  This is a compilation from various
+	# assorted web sources and my own tests.
+	case "$1" in
+	0) echo "error" ;; # should never be reached
+	127) echo "runtime error: command not found"        ;;
+	132) echo "runtime error: illegal instruction"      ;; # SIGILL
+	133) echo "runtime error: division by zero"         ;;
+	134) echo "runtime error: aborted"                  ;; # SIGABRT
+	136) echo "runtime error: floating point exception" ;; # SIGFPE
+	137) echo "memory limit exceeded"                   ;;
+	139) echo "runtime error: segmentation fault"       ;; # SIGSEGV
+	152) echo "time limit exceeded"                     ;; # SIGXCPU
+	153) echo "output limit exceeded"                   ;; # SIGXFSZ
+	158) echo "time limit exceeded"                     ;; # SIGXCPU
+	159) echo "output limit exceeded"                   ;; # SIGXFSZ
+	*)   echo "runtime error"                           ;;
+	esac
+}
+
 check-out() {
 	if [ -n "$verbose" ]
 	then
@@ -76,9 +97,10 @@ grep -q "^timeout: sending signal TERM"      $run/err && fail "time limit exceed
 grep -q "Cannot allocate memory"             $run/err && fail "memory limit exceeded" # not a catch-all
 
 # checks the exit code
-checkexitcode=check-exit-code message="runtime error"
+exitcode="$(cat $run/exit)"
+checkexitcode=check-exit-code message="$(exit-code-meaning $exitcode)"
 [ -x $sol/check-exit-code ] && checkexitcode=$sol/check-exit-code message="incorrect exit code"
-$checkexitcode $(cat $run/exit) || fail "$message"
+$checkexitcode "$exitcode" || fail "$message"
 
 # checks standard output and standard error
 check=check-out

@@ -1,6 +1,6 @@
 #!/usr/bin/env -S clitest -1
 #
-# Tests to the "add" problem of Udge in C.
+# Tests Udge runtime error detection.
 #
 # This file is part of Udge.
 #
@@ -20,38 +20,30 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ udge-judge add examples/add/add.c
-6/6
-$ udge-judge add examples/add/0-wo.c
+$ udge-judge hello-world examples/runtime/exit0.c
 incorrect output
-0/6
-$ udge-judge add examples/add/0-re.c 2>&1 | tail -2
-runtime error: segmentation fault
-0/6
-$ udge-judge add examples/add/0-re2.c
+0/1
+$ udge-judge hello-world examples/runtime/exit1.c
 runtime error
-0/6
-$ udge-judge add examples/add/0-tle.c
-time limit exceeded
-0/6
-$ udge-judge add examples/add/0-ce.c 2>&1 | tail -2
-compile error
-0/6
-$ udge-judge add examples/add/1-egio-a.c
+0/1
+$ udge-judge hello-world examples/runtime/exit2.c
+runtime error
+0/1
+$ udge-judge hello-world examples/runtime/exit127.c
+runtime error: command not found
+0/1
+$ udge-judge hello-world examples/runtime/div0.c
+runtime error: floating point exception
+0/1
+$ udge-judge hello-world examples/runtime/system.c
 incorrect output
-1/6
-$ udge-judge add examples/add/1-egio-b.c
-incorrect output
-1/6
-$ udge-judge add examples/add/0-egio.c
-incorrect output
-0/6
-$ udge-judge add examples/add/2-egio.c
-incorrect output
-2/6
-$ udge-judge add examples/add/4-octals.c
-incorrect output
-4/6
-$ udge-judge add examples/add/5-no-function.c 2>&1 | tail -2
-compile error
-5/6
+0/1
+$ udge-judge hello-world examples/runtime/segmentation.c
+runtime error: segmentation fault
+0/1
+$ udge-judge hello-world examples/runtime/assert-failure.c
+runtime error: aborted
+0/1
+$ udge-judge hello-world examples/runtime/ill.c
+runtime error: illegal instruction
+0/1

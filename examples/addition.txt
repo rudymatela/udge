@@ -32,5 +32,5 @@ $ udge-judge addition examples/addition/0-tle.c
 time limit exceeded
 0/1
 $ udge-judge addition examples/addition/0-re.c
-runtime error
+runtime error: segmentation fault
 0/1

@@ -1,6 +1,9 @@
 TODO list for Udge
 ==================
 
+* add `examples/sandbox/disk-usage-files.c` example
+  which distributes disk usage across multiple files
+
 * remove the requirement of setting most options on udgerc
 
 * update the README video

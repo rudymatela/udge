@@ -101,6 +101,7 @@ test-judge: \
   rectangle-js.clitest \
   rectangle-lua.clitest \
   rectangle-rb.clitest \
+  runtime.clitest \
   cat.clitest \
   tee.clitest \
   sandbox.clitest \
