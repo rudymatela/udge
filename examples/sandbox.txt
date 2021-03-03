@@ -96,6 +96,14 @@ $ udge-judge hello-world examples/sandbox/output-1024k1b.c
 output limit exceeded
 0/1
 $
+$ udge-judge hello-world examples/sandbox/file-1m.c
+incorrect output
+0/1
+$
+$ udge-judge hello-world examples/sandbox/file-1m1b.c
+output limit exceeded
+0/1
+$
 $ udge-judge hello-world examples/sandbox/sol.c
 runtime error
 0/1
