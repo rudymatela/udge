@@ -88,6 +88,14 @@ $ udge-judge hello-world examples/sandbox/disk-usage-files.c # TODO: FIXME: XXX:
 incorrect output
 0/1
 $
+$ udge-judge hello-world examples/sandbox/output-1024k.c
+incorrect output
+0/1
+$
+$ udge-judge hello-world examples/sandbox/output-1024k1b.c
+output limit exceeded
+0/1
+$
 $ udge-judge hello-world examples/sandbox/sol.c
 runtime error
 0/1
