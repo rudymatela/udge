@@ -80,11 +80,11 @@ $ udge-judge hello-world examples/sandbox/busy.c
 time limit exceeded
 0/1
 $
-$ udge-judge hello-world examples/sandbox/disk-usage.c
+$ udge-judge hello-world examples/sandbox/diskfill.c
 output limit exceeded
 0/1
 $
-$ udge-judge hello-world examples/sandbox/disk-usage-files.c # TODO: FIXME: XXX: output limit exceeded
+$ udge-judge hello-world examples/sandbox/180mib.c # TODO: FIXME: XXX: output limit exceeded
 incorrect output
 0/1
 $
