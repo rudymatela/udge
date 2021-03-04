@@ -93,6 +93,7 @@ mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem ||
 cleanup
 echo created $RESULTS/$user/$problem/$timestamp/$problem.$language
 echo created $RESULTS/$user/$problem/$timestamp/result
+echo created $RESULTS/$user/$problem/$timestamp/time
 
 bestmp="`mktemp /tmp/udge-best-XXXXXXXXXX`"
 chmod 644 $bestmp
