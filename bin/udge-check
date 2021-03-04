@@ -49,8 +49,6 @@ slotuser="`stat -c%U $SLOTS/$s/lock`"
 	pgrep -u $slotuser >/dev/null &&
 	warn "There are `pgrep -cu $slotuser` processes running for $slotuser."
 
-cp -r $RUN/$s/{lock/run,check}  # copy everything to check just in case
-
 cleanup() {
 	rm -r $SLOTS/$s/lock
 	# if a junk file already exists, move it somewhere else 1st
@@ -84,6 +82,14 @@ language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 [ -n "$timestamp" ] || clerrxit "could not parse timestamp"
 [ -n "$problem" ]   || clerrxit "could not parse problem"
 [ -n "$language" ]  || clerrxit "could not parse language"
+
+# Copy everything to check just in case there's a process still running.
+# If a full copy cannot be made, it is simply deleted
+# ultimately yielding "unknown error" down the line.
+# This may happen when:
+# 1. there's a file we can't read in lock/run; or
+# 2. there's no space left on the device.
+cp -r $RUN/$s/{lock/run,check} || rm -r $RUN/$s/check
 
 $lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
 $lib/timeavg $RUN/$s/check/run                  | tee $SLOTS/$s/lock/$user/$timestamp/time

@@ -46,7 +46,7 @@ verbose="$3"
 [ -n "$run" ] || ferrxit "must provide output folder"
 
 [ -d "$sol" ] || ferrxit "input folder not found: '$sol'"
-[ -d "$run" ] || ferrxit "output folder not found: '$run'"
+[ -d "$run" ] || warn    "output folder not found: '$run'"
 
 check-exit-code() {
 	[ "$1" = 0 ]
@@ -87,6 +87,11 @@ compile-error() {
 	cat $run/log >&2
 	fail "compile error"
 }
+
+# This may happen when:
+# 1. there's no space left on device, i.e.: output limit exceeded
+# 2. a file to which udge has no read permissions was created
+[ -d "$run" ] || fail "unknown error"
 
 # checks that it is compiled
 [ -e $run/exe* ] || compile-error

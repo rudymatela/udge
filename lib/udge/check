@@ -39,7 +39,7 @@ verbose="$3"
 [ -n "$out" ] || errxit "must provide output folder"
 
 [ -d "$set" ] || errxit "input folder not found: '$set'"
-[ -d "$out" ] || errxit "output folder not found: '$out'"
+[ -d "$out" ] || warn   "output folder not found: '$out'"
 
 total=0
 outof=`n-points-path "$set"`

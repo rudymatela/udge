@@ -124,6 +124,10 @@ cd - >/dev/null
 
 touch "$dst"
 
+[ -n "$verbose" ] && echo "$dst $(du -m "$dst" | cut -f1)MiB"
+
+[ $(du -ms "$dst" | cut -f1) -le 2 ] || errxit "output limit exceeded"
+
 grep -q "udge-sandbox: fork: .* unavailable" $dst/err && errxit "too many processes"
 grep -q "^timeout: sending signal TERM"      $dst/err && exit 1
 true

@@ -22,12 +22,16 @@
 #
 #
 # If this program cannot parse input, it prints "- -"
+# including when the run folder does not exist.
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 
+exitwith() {
+	echo "$@"
+}
+
 run="$1"
 [ -n "$run" ] || errxit "must provide run folder"
-[ -d "$run" ] || errxit "run foolder not found: $run"
 
 # avg computes the average of numbers given in standard input.
 # arguments:
