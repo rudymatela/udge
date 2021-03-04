@@ -164,6 +164,7 @@ $ udge-check 2>/dev/null | sed -e 's/^0 [0-2]$/0 ?/' | anonymize
 checking /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
 created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/hello-world.c
 created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/result
+created /var/lib/udge/results/<user>/hello-world/YYYYMMDD-HHMMSS/time
 running again...
 udge-check: nothing to do
 updated /var/lib/udge/results/<user>/hello-world/best
