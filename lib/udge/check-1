@@ -69,6 +69,7 @@ exit-code-meaning() {
 	153) echo "output limit exceeded"                   ;; # SIGXFSZ
 	158) echo "time limit exceeded"                     ;; # SIGXCPU
 	159) echo "output limit exceeded"                   ;; # SIGXFSZ
+	OLE) echo "output limit exceeded"                   ;; # SIGXFSZ
 	*)   echo "runtime error"                           ;;
 	esac
 }
@@ -97,9 +98,10 @@ compile-error() {
 [ -e $run/exe* ] || compile-error
 
 # sandboxing checks
-grep -q "udge-sandbox: fork: .* unavailable" $run/err && fail "reached maximum number of processes"
-grep -q "^timeout: sending signal TERM"      $run/err && fail "time limit exceeded"
-grep -q "Cannot allocate memory"             $run/err && fail "memory limit exceeded" # not a catch-all
+grep -q "^OLE$"                              $run/exit && fail "output limit exceeded"
+grep -q "udge-sandbox: fork: .* unavailable" $run/err  && fail "reached maximum number of processes"
+grep -q "^timeout: sending signal TERM"      $run/err  && fail "time limit exceeded"
+grep -q "Cannot allocate memory"             $run/err  && fail "memory limit exceeded" # not a catch-all
 
 # checks the exit code
 exitcode="$(cat $run/exit)"

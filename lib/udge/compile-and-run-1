@@ -126,7 +126,13 @@ touch "$dst"
 
 [ -n "$verbose" ] && echo "$dst $(du -m "$dst" | cut -f1)MiB"
 
-[ $(du -ms "$dst" | cut -f1) -le 2 ] || errxit "output limit exceeded"
+output-limit-exceeded() {
+	rm -rf $dst/{out,err,files}
+	echo 'OLE' >$dst/exit
+	errxit "output limit exceeded, cleaned up and forced exit code"
+}
+
+[ $(du -ms "$dst" | cut -f1) -le 2 ] || output-limit-exceeded
 
 grep -q "udge-sandbox: fork: .* unavailable" $dst/err && errxit "too many processes"
 grep -q "^timeout: sending signal TERM"      $dst/err && exit 1

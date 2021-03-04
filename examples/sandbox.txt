@@ -84,9 +84,9 @@ $ udge-judge hello-world examples/sandbox/diskfill.c
 output limit exceeded
 0/1
 $
-$ udge-judge hello-world examples/sandbox/180mib.c # TODO: FIXME: XXX: output limit exceeded
-compile-and-run-1, error: output limit exceeded
-incorrect output
+$ udge-judge hello-world examples/sandbox/180mib.c
+compile-and-run-1, error: output limit exceeded, cleaned up and forced exit code
+output limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/stdout-1m.c
