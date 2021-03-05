@@ -35,9 +35,6 @@ runtime error: command not found
 $ udge-judge hello-world examples/runtime/div0.c
 runtime error: floating point exception
 0/1
-$ udge-judge hello-world examples/runtime/system.c
-incorrect output
-0/1
 $ udge-judge hello-world examples/runtime/segmentation.c
 runtime error: segmentation fault
 0/1
@@ -46,4 +43,14 @@ runtime error: aborted
 0/1
 $ udge-judge hello-world examples/runtime/ill.c
 runtime error: illegal instruction
+0/1
+$
+$ # one can run system("...") without issues
+$ udge-judge hello-world examples/runtime/system.c
+incorrect output
+0/1
+$
+$ # other system files are readable when not using a chroot
+$ udge-judge hello-world examples/runtime/ls.c
+incorrect output
 0/1
