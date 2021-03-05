@@ -54,4 +54,4 @@ do
 	chown $udge.$udgeslot $RUN/$slot
 done
 
-ls -l /run/udge
+ls -l $RUN
