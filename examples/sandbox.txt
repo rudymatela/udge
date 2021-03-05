@@ -105,6 +105,10 @@ $ udge-judge hello-world examples/sandbox/file-1m1b.c
 output limit exceeded
 0/1
 $
+$ udge-judge hello-world examples/sandbox/tmp60mib.c  # TODO: cleanup /tmp file somehow
+output limit exceeded
+0/1
+$
 $ udge-judge hello-world examples/sandbox/sol.c
 runtime error
 0/1
