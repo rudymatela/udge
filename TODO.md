@@ -1,7 +1,7 @@
 TODO list for Udge
 ==================
 
-* make so that `disk-usage-files.c` is OLE'd
+* cleanup any files created at `tmp` somehow
 
 * remove the requirement of setting most options on udgerc
 
