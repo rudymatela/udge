@@ -48,6 +48,7 @@ program="`realpath $program`"
 compileandrun="`realpath "$lib/compile-and-run"`"
 cd $tmpdir
 $compileandrun $problemdir $program $tmpdir/out $verbose
+[ `du -ms $tmpdir | cut -f1` -lt 12 ] || warn "big $tmpdir `du -hs $tmpdir | cut f1`"
 cd - >/dev/null
 $lib/check $problemdir $tmpdir/out $verbose
 rm -r $tmpdir
