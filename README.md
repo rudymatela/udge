@@ -196,10 +196,9 @@ First make sure you have all the [dependencies] installed.  Then:
 		make enable-nginx-udge-site
 
 9. test that everything works
-	by typing `udge/` (or your selected domain of steps 5 and 6)
+	by typing `udge.example.com` (or your selected domain of steps 5 and 6)
 	in your browser's address bar.
-	Do not forget the `/` at the end, otherwise your browser may search the web
-	for "udge".  If it does not work try also `http://udge/`.
+	If this does not work try also `http://udge/` or `http://udge.example.com/`.
 
 	You should see the problem index and the menu at the top and bottom.
 
@@ -413,7 +412,7 @@ User information is stored in plain files under the `users` directory.
 Each user is described as a directory with it's name which should be composed
 only of English lowercase letters, dashes (`-`) and underscores (`_`).
 
-Emails and passwords are stored each in its own file with a single line:
+Emails, password hashes and salts are stored each in its own file with a single line:
 
 	/var/lib/udge/users/<user>/email
 	/var/lib/udge/users/<user>/password
@@ -427,6 +426,9 @@ For example:
 	users/johndoe/salt:QHFNE6WhJD9VoRGeLljOGwBZz//LTXUfnzJpw1k9
 	users/johndoe/email:johndoe@example.com
 	users/johndoe/password:edbe9e7dd28ca60a1874c88f036513bcf0bcc4d8b5d1f7d875e4fc37b8059828
+
+User passwords are not stored into the system, just their hashes after salting.
+There's a different random salt for each user.
 
 
 #### Problem Directory --- `/var/lib/udge/problem`
