@@ -140,12 +140,27 @@ First make sure you have all the [dependencies] installed.  Then:
 	The Makefile should be able to figure these automatically on Arch Linux
 	(tested) and on Debian/Ubuntu variants (tested).
 
-2. (for Ubuntu/Debian variants)
-	if you are running Ubuntu or another system
-	that has `/run` mounted as a filesystem with noexec restrictions,
+2. (required for Ubuntu/Debian variants, recommended for other systems)
 	add the following to `/etc/fstab`:
 
-		tmpfs /run/udge tmpfs rw,nosuid,nodev,relatime,size=48944k,mode=755,uid=udge,gid=udge 0 0
+		tmpfs /run/udge   tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=755,uid=udge,gid=udge   0 0
+		tmpfs /run/udge/1 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-1 0 0
+		tmpfs /run/udge/2 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-2 0 0
+		tmpfs /run/udge/3 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-3 0 0
+		tmpfs /run/udge/4 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-4 0 0
+		tmpfs /run/udge/5 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-5 0 0
+		tmpfs /run/udge/6 tmpfs rw,nosuid,nodev,relatime,size=12288k,mode=775,uid=udge,gid=udge-6 0 0
+
+	The above will isolate the file system that Udge uses for each slot
+	making sure that a submission that accidentally fills up the disk
+	is not able to disrupt other submissions that are running at the same time.
+	Here we use a modest limit of 12M per slot since tmpfss reside in memory.
+
+	If you are running Ubuntu or another system
+	that has `/run` mounted as a filesystem with noexec restrictions,
+	at least the first line with `/run/udge` is required.
+	Though if you decide to use the first line alone,
+	better use a bigger size such as `48944k`.
 
 3. (optional)
 	add your problems to `/var/lib/udge/problem`
