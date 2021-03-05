@@ -21,9 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# This is for development purposes.  In most cases,
-# you'd rather use `/etc/tmpfiles.d/udge.conf` to
-# create the `/run/udge` hierarchy.
+# This is for development purposes.
+# In most cases, you'd rather use
+# `/etc/fstab` or `/etc/tmpfiles.d/udge.conf`
+# to create the `/run/udge` hierarchy.
+# (cf. Udge's README file)
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
