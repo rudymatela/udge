@@ -285,6 +285,7 @@ install-bin:
 	install -m 0755 bin/udge-create-run               $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-create-submission        $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-delete-user              $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-health                   $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-judge                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-latest-results           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-passwd                   $(DESTDIR)$(PREFIX)/bin

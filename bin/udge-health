@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+# udge-health: prints information about the health of Udge
+#
+# Usage: udge-health
+#
+#
+# Copyright (C) 2020-2021  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+
+nissues=0
+
+issue() {
+	echo "$@"
+	((nissues++))
+}
+
+check-file() {
+	[ -f $1 ] || issue "The $1 file does not exist"
+}
+
+check-dir() {
+	[ -d $1 ] || issue "The $2 dir does not exist: $1"
+}
+
+# display a file's permissions and ownership
+#
+# $ pwn /var/lib/udge/users
+# 2775/drwxrwsr-x http.udge
+# $ pwn /var/lib/udge/users/*
+# 2770/drwxrws--- http.udge
+# 644/-rw-r--r-- udge.udge
+# 2770/drwxrws--- http.udge
+# 2770/drwxrws--- http.udge
+pwn() {
+	stat -Lc"%a/%A %U.%G %F %n" "$@"
+}
+
+check-file /etc/udgerc
+check-dir $PROBLEMS    problems
+check-dir $USERS       users
+check-dir $SUBMISSIONS submissions
+check-dir $RESULTS     results
+check-dir $SLOTS       slots
+check-dir $PUBLIC_HTML html
+check-dir $BACKUPS     backups
+check-dir $RUN         run
+
+user=`stat -c%U $SLOTS`
+http=http # TODO: use guessing from Makefile
+
+diff -rud - <(pwn /etc/udgerc $USERS $PROBLEMS $RESULTS $PUBLIC_HTML $SUBMISSIONS $SLOTS $RUN $BACKUPS) <<REFERENCE
+644/-rw-r--r-- root.root regular file /etc/udgerc
+2775/drwxrwsr-x http.$user directory $USERS
+755/drwxr-xr-x $user.$user directory $PROBLEMS
+755/drwxr-xr-x $user.$user directory $RESULTS
+755/drwxr-xr-x $user.$user directory $PUBLIC_HTML
+2775/drwxrwsr-x http.$user directory $SUBMISSIONS
+755/drwxr-xr-x $user.$user directory $SLOTS
+755/drwxr-xr-x $user.$user directory $RUN
+755/drwxr-xr-x $user.$user directory $BACKUPS
+REFERENCE
+
+[ $nissues = 0 ] || echo $nissues issues found
+
+# TODO: check web endpoints
+# TODO: other checks as well
