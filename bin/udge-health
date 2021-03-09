@@ -112,6 +112,7 @@ check-pwn  "660/-rw-rw---- http.$user" $USERS/*/salt
 # TODO: check other files on $PROBLEMS
 
 # --- ownership and permissions of results directory structure --- #
+check-pwn "775/drwxrwxr-x $user.$user" $RESULTS/*/
 # TODO: check other files on $RESULTS
 
 # TODO: check other directory structures
