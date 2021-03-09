@@ -92,21 +92,21 @@ echo "guessing http user to be $http"
 
 # --- ownership and permissions of main files and directories --- #
 check-pwn "0644/-rw-r--r-- root.root"   /etc/udgerc
-check-pwn "2775/drwxrwsr-x http.$user"  $USERS
+check-pwn "2775/drwxrwsr-x $http.$user"  $USERS
 check-pwn "0755/drwxr-xr-x $user.$user" $PROBLEMS
 check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS
 check-pwn "0755/drwxr-xr-x $user.$user" $PUBLIC_HTML
-check-pwn "2775/drwxrwsr-x http.$user"  $SUBMISSIONS
+check-pwn "2775/drwxrwsr-x $http.$user"  $SUBMISSIONS
 check-pwn "0755/drwxr-xr-x $user.$user" $SLOTS
 check-pwn "0755/drwxr-xr-x $user.$user" $RUN
 check-pwn "0755/drwxr-xr-x $user.$user" $BACKUPS
 
 # --- ownership and permissions of user directory structure --- #
-check-pwn "2775/drwxrwsr-x http.$user" $USERS/*/
-check-pwn "0664/-rw-rw-r-- http.$user" $USERS/*/email
-check-pwn "0664/-rw-rw-r-- http.$user" $USERS/*/name
-check-pwn "0660/-rw-rw---- http.$user" $USERS/*/password
-check-pwn "0660/-rw-rw---- http.$user" $USERS/*/salt
+check-pwn "2775/drwxrwsr-x $http.$user" $USERS/*/
+check-pwn "0664/-rw-rw-r-- $http.$user" $USERS/*/email
+check-pwn "0664/-rw-rw-r-- $http.$user" $USERS/*/name
+check-pwn "0660/-rw-rw---- $http.$user" $USERS/*/password
+check-pwn "0660/-rw-rw---- $http.$user" $USERS/*/salt
 # TODO: check there are no other files on $USERS with find
 
 # --- ownership and permissions of problem directory structure --- #
