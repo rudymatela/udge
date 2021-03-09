@@ -102,7 +102,11 @@ check-pwn  "755/drwxr-xr-x $user.$user" $BACKUPS
 
 # --- ownership of user directory structure --- #
 check-pwn "2775/drwxrwsr-x http.$user" $USERS/*/
-# TODO: check other files on $USERS
+check-pwn  "664/-rw-rw-r-- http.$user" $USERS/*/email
+check-pwn  "664/-rw-rw-r-- http.$user" $USERS/*/name
+check-pwn  "660/-rw-rw---- http.$user" $USERS/*/password
+check-pwn  "660/-rw-rw---- http.$user" $USERS/*/salt
+# TODO: check there are no other files on $USERS with find
 
 # --- ownership of problem directory structure --- #
 # TODO: check other files on $PROBLEMS
