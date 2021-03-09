@@ -28,6 +28,7 @@ nissues=0
 issue() {
 	echo "$@"
 	((nissues++))
+	return 1
 }
 
 check-file() {
@@ -50,7 +51,7 @@ check-pwn() {
 	shift
 	for f in "$@"
 	do
-		check-pwn-1 "$expected" "$f"
+		check-pwn-1 "$expected" "$f" || break
 	done
 }
 
@@ -113,7 +114,15 @@ check-pwn "0660/-rw-rw---- http.$user" $USERS/*/salt
 
 # --- ownership and permissions of results directory structure --- #
 check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/
+check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/*/
+check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/*/*/
+check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/*.*
+check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/result
+check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/time
+check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/best*
+check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/rank
 # TODO: check other files on $RESULTS
+# TODO: list results without users
 
 # TODO: check other directory structures
 # TODO: check web endpoints
