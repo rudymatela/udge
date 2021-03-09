@@ -69,7 +69,15 @@ check-dir $BACKUPS     backups
 check-dir $RUN         run
 
 user=`stat -c%U $SLOTS`
-http=http # TODO: use guessing from Makefile
+[ -n "$user" ] || user=udge
+echo "guessing udge user to be $user"
+http=$(id -u www-data -n 2>/dev/null ||
+       id -u http     -n 2>/dev/null ||
+       id -u nginx    -n 2>/dev/null ||
+       id -u www      -n 2>/dev/null ||
+       id -u httpd    -n 2>/dev/null ||
+       id -u root     -n 2>/dev/null)
+echo "guessing http user to be $http"
 
 check-pwn  "644/-rw-r--r-- root.root"   /etc/udgerc
 check-pwn "2775/drwxrwsr-x http.$user"  $USERS
