@@ -38,11 +38,20 @@ check-dir() {
 	[ -d $1 ] || issue "The $2 dir does not exist: $1"
 }
 
-check-pwn() {
+check-pwn-1() {
 	expected="$1"
 	file="$2"
 	actual="$(pwn "$2")"
 	[ "$expected" = "$actual" ] || issue -e "permissions and ownership for $file are different from expected\n  actual:    $actual\n  expected:  $expected"
+}
+
+check-pwn() {
+	expected="$1"
+	shift
+	for f in "$@"
+	do
+		check-pwn-1 "$expected" "$f"
+	done
 }
 
 # display a file's permissions and ownership
@@ -58,6 +67,7 @@ pwn() {
 	stat -Lc"%a/%A %U.%G" "$@"
 }
 
+# --- existence of main files and directories --- #
 check-file /etc/udgerc
 check-dir $PROBLEMS    problems
 check-dir $USERS       users
@@ -79,6 +89,7 @@ http=$(id -u www-data -n 2>/dev/null ||
        id -u root     -n 2>/dev/null)
 echo "guessing http user to be $http"
 
+# --- ownership and permissions of main files and directories --- #
 check-pwn  "644/-rw-r--r-- root.root"   /etc/udgerc
 check-pwn "2775/drwxrwsr-x http.$user"  $USERS
 check-pwn  "755/drwxr-xr-x $user.$user" $PROBLEMS
@@ -89,7 +100,15 @@ check-pwn  "755/drwxr-xr-x $user.$user" $SLOTS
 check-pwn  "755/drwxr-xr-x $user.$user" $RUN
 check-pwn  "755/drwxr-xr-x $user.$user" $BACKUPS
 
-[ $nissues = 0 ] || echo $nissues issues found
+# --- ownership of user directory structure --- #
+check-pwn "2775/drwxrwsr-x http.$user" $USERS/*/
+# TODO: check other files on $USERS
 
+# --- ownership of problem directory structure --- #
+# TODO: check other files on $PROBLEMS
+
+# TODO: check other directory structures
 # TODO: check web endpoints
 # TODO: other checks as well
+
+[ $nissues = 0 ] || echo $nissues issues found
