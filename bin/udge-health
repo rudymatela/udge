@@ -38,6 +38,13 @@ check-dir() {
 	[ -d $1 ] || issue "The $2 dir does not exist: $1"
 }
 
+check-pwn() {
+	expected="$1"
+	file="$2"
+	actual="$(pwn "$2")"
+	[ "$expected" = "$actual" ] || issue -e "permissions and ownership for $file are different from expected\n  actual:    $actual\n  expected:  $expected"
+}
+
 # display a file's permissions and ownership
 #
 # $ pwn /var/lib/udge/users
@@ -48,7 +55,7 @@ check-dir() {
 # 2770/drwxrws--- http.udge
 # 2770/drwxrws--- http.udge
 pwn() {
-	stat -Lc"%a/%A %U.%G %F %n" "$@"
+	stat -Lc"%a/%A %U.%G" "$@"
 }
 
 check-file /etc/udgerc
@@ -64,17 +71,15 @@ check-dir $RUN         run
 user=`stat -c%U $SLOTS`
 http=http # TODO: use guessing from Makefile
 
-diff -rud - <(pwn /etc/udgerc $USERS $PROBLEMS $RESULTS $PUBLIC_HTML $SUBMISSIONS $SLOTS $RUN $BACKUPS) <<REFERENCE
-644/-rw-r--r-- root.root regular file /etc/udgerc
-2775/drwxrwsr-x http.$user directory $USERS
-755/drwxr-xr-x $user.$user directory $PROBLEMS
-755/drwxr-xr-x $user.$user directory $RESULTS
-755/drwxr-xr-x $user.$user directory $PUBLIC_HTML
-2775/drwxrwsr-x http.$user directory $SUBMISSIONS
-755/drwxr-xr-x $user.$user directory $SLOTS
-755/drwxr-xr-x $user.$user directory $RUN
-755/drwxr-xr-x $user.$user directory $BACKUPS
-REFERENCE
+check-pwn  "644/-rw-r--r-- root.root"   /etc/udgerc
+check-pwn "2775/drwxrwsr-x http.$user"  $USERS
+check-pwn  "755/drwxr-xr-x $user.$user" $PROBLEMS
+check-pwn  "755/drwxr-xr-x $user.$user" $RESULTS
+check-pwn  "755/drwxr-xr-x $user.$user" $PUBLIC_HTML
+check-pwn "2775/drwxrwsr-x http.$user"  $SUBMISSIONS
+check-pwn  "755/drwxr-xr-x $user.$user" $SLOTS
+check-pwn  "755/drwxr-xr-x $user.$user" $RUN
+check-pwn  "755/drwxr-xr-x $user.$user" $BACKUPS
 
 [ $nissues = 0 ] || echo $nissues issues found
 
