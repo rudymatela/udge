@@ -5,6 +5,8 @@ TODO list for Udge
 
 * remove the requirement of setting most options on udgerc
 
+* support multiple sites by multiple udgerc files (`UDGERC=/etc/blahrc`)
+
 * update the README video
 
 * configure rate limiting on nginx

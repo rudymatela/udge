@@ -585,6 +585,20 @@ under `examples/<problem>`:
 * `examples/add/4-octals.c`: example solution to `add`   in C      -- 4/6 -- incorrect output.
 
 
+Other similar software
+----------------------
+
+Udge is not the first and only online judge system out there.
+Here are some alternatives:
+
+* [OJudge Platform](https://github.com/TheOnlineJudge/ojudge)
+* [BOCA Online Contest Administrator](https://www.ime.usp.br/~cassio/boca/)
+* [PC2: Programming Contest Control System](http://pc2.ecs.csus.edu/)
+* [Leipzig Autotool](http://www.imn.htwk-leipzig.de/~waldmann/autotool/)
+* [QingdaoU's Online Judge](https://github.com/QingdaoU/OnlineJudge)
+* [DMOJ: Modern Online Judge](https://github.com/DMOJ/online-judge)
+
+
 
 [Make]:       https://www.gnu.org/software/make/
 [Bash]:       https://www.gnu.org/software/bash/
