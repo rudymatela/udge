@@ -597,6 +597,7 @@ Here are some alternatives:
 * [Leipzig Autotool](http://www.imn.htwk-leipzig.de/~waldmann/autotool/)
 * [QingdaoU's Online Judge](https://github.com/QingdaoU/OnlineJudge)
 * [DMOJ: Modern Online Judge](https://github.com/DMOJ/online-judge)
+* [VPL, the Virtual Programming lab for Moodle](https://vpl.dis.ulpgc.es/)
 
 
 
