@@ -182,7 +182,7 @@ post() {
 		exit
 	fi
 
-	$bin/udge-create-submission "$user_value" "$tmpdata/program/value" "$timestamp" "$problem_value" "$language_value" >&2 ||
+	$bin/udge-create-submission "$user_value" "$tmpdata/program/value" "$timestamp" "$problem_value" "$language_value" >/dev/null ||
 		errxit "internal server error, could not create submission"
 
 	status-202-accepted

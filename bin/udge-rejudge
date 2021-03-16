@@ -57,5 +57,5 @@ user="`     get 1`"
 
 $bin/udge-create-submission "$user" "$path" "$timestamp" "$problem" "$language" &&
 diff -q "$path" "$SUBMISSIONS/$user/$timestamp/$problem.$language" &&
-echo removing $dirname &&
-rm -r $dirname
+rm -r $dirname &&
+echo removed $dirname

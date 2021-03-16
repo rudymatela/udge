@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* don't abuse stderr on cgi scripts
-
 * limit the number of concurrent files with `-n` on `udge-sandbox`
 
 * carry on with the implementation of `udge-health`,

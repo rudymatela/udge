@@ -46,7 +46,8 @@ basename="`basename "$file"`"
 
 # optional arguments
 
-[ -n "$timestamp" ]             || timestamp=`date -u +%Y%m%d-%H%M%S`
+realtimestamp=`date -u +%Y%m%d-%H%M%S`
+[ -n "$timestamp" ]             || timestamp=$realtimestamp
 sane-timestamp "$timestamp"     || errxit "invalid timestamp '$timestamp'"
 now=`echo $timestamp | sed -E 's/(....)(..)(..)-(..)(..)(..)/\1-\2-\3 \4:\5:\6/'`
 
@@ -67,8 +68,13 @@ umask 0002 # allows for members of the udge group to write (or remove)
 mkdir -p $destdir || errxit "could not create directory '$destdir'"
 cp --no-preserve=all "$file" "$destfile" || errxit "could not create file '$destfile'"
 
-logprefix="udge-submit @ $timestamp by $user - $problem.$language"
-echo "$logprefix: submission successful"
-echo "$logprefix: $destfile"
-cat -v $destfile | sed -e "s|^|$logprefix: |"
-echo "$logprefix: EOF"
+echo "created $destfile"
+
+log() {
+	echo "submission by $user for $problem in $language"
+	echo "$destfile"
+	cat -v "$destfile"
+	echo "EOF"
+}
+
+log | logger -t udge-submission || warn "cannot write to the system log (logger -t udge-submission)"
