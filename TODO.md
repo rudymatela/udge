@@ -17,6 +17,10 @@ TODO list for Udge
 For later
 ---------
 
+* (help needed) Ubuntu / Debian package
+
+* (help needed) Dockerfile and docker container
+
 * (quasi-stateless) User settings
 
 		udge.example.com/settings
