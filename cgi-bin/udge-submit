@@ -122,29 +122,27 @@ post() {
 		[ "`wc -c <$program_fn`" -le 8192 ] || program_error="source file is too big"
 	} || program_error="program is missing"
 
-	if [ -s "$problem_fn" ]
-	then
+	[ -s "$problem_fn" ] && {
 		sane-file "$problem_fn"           || problem_error="problem id invalid" problem_value=""
 		[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id" problem_value=""
-	else
+	} || {
 		sane "$filename" &&
 		[ -n "$filename" ] &&
 		[ -d "$PROBLEMS/$filename" ] &&
 		problem_value="$filename" ||
 		problem_error="select the problem"
-	fi
+	}
 
-	if [ -s "$language_fn" ]
-	then
+	[ -s "$language_fn" ] && {
 		sane-file "$language_fn"              || language_error="invalid language"                language_value=""
 		[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language" language_value=""
-	else
+	} || {
 		sane "$extension" &&
 		[ -n "$extension" ] &&
 		[ -x "$lib/compile/$extension" ] &&
 		language_value="$extension" ||
 		language_error="select the language"
-	fi
+	}
 
 	if has-error
 	then
