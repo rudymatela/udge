@@ -3,13 +3,6 @@ TODO list for Udge
 
 * limit the number of concurrent files with `-n` on `udge-sandbox`
 
-* make so that cgi scripts "throw" less errors by only running `wc` on existing
-  files (and similar tricks).  We currently often get:
-
-		/usr/local/cgi-bin/udge-new-user: line 121: [: : integer expression expected
-
-  and such on the system logs.
-
 * carry on with the implementation of `udge-health`,
   see `TODO:` comments over there
 
