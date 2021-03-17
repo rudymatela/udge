@@ -26,6 +26,14 @@ server {
 		try_files $uri $uri/index.html $uri.html =404;
 	}
 
+	# custom 404 page under /u
+	location /u/ {
+		index index.html;
+		try_files $uri $uri/index.html $uri.html =404;
+		error_page 404 /u404.html;
+	}
+
+	location /u404 { internal; }
 	location /404 { internal; }
 	location /500 { internal; }
 	location /502 { internal; }
