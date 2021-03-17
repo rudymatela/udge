@@ -65,19 +65,19 @@ $
 $
 $ udge-submit examples/hello.c hello blub
 udge-submit: 422
-udge-submit: invalid or unsupported language
+udge-submit: invalid language
 $
 $
 $ UDGE_USERNAME='#!/\X12' UDGE_PASSWORD=pass udge-submit examples/hello.c invalid-problem blub
 udge-submit: 422
 udge-submit: invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)
-udge-submit: invalid or unsupported language
+udge-submit: invalid language
 udge-submit: invalid problem id
 $
 $
 $ udge-submit examples/hello.c "../../../../../../../bin/ls" c
 udge-submit: 422
-udge-submit: problem id invalid
+udge-submit: invalid problem id
 $
 $
 $ udge-submit examples/hello.c add "../../../../../../../bin/ls"

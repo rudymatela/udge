@@ -123,8 +123,9 @@ post() {
 	} || program_error="program is missing"
 
 	[ -s "$problem_fn" ] && {
-		sane-file "$problem_fn"           || problem_error="problem id invalid" problem_value=""
-		[ -d "$PROBLEMS/$problem_value" ] || problem_error="invalid problem id" problem_value=""
+		sane-file "$problem_fn" &&
+		[ -d "$PROBLEMS/$problem_value" ] ||
+		problem_error="invalid problem id" problem_value=""
 	} || {
 		sane "$filename" &&
 		[ -n "$filename" ] &&
@@ -134,8 +135,9 @@ post() {
 	}
 
 	[ -s "$language_fn" ] && {
-		sane-file "$language_fn"              || language_error="invalid language"                language_value=""
-		[ -x "$lib/compile/$language_value" ] || language_error="invalid or unsupported language" language_value=""
+		sane-file "$language_fn" &&
+		[ -x "$lib/compile/$language_value" ] ||
+		language_error="invalid language" language_value=""
 	} || {
 		sane "$extension" &&
 		[ -n "$extension" ] &&
