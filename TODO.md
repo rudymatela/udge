@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* limit the number of concurrent files with `-n` on `udge-sandbox`
-
 * carry on with the implementation of `udge-health`,
   see `TODO:` comments over there
 
