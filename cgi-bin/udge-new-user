@@ -141,8 +141,7 @@ post() {
 		exit
 	fi
 
-	user_dir="$USERS/$user_value"
-	[ -e "$user_dir" ] && user_error="username already exists (pick another)"
+	[ -e "$USERS/$user_value" ] && user_error="username already exists (pick another)"
 	if has-error
 	then
 		status=status-409-conflict
