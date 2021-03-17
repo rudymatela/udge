@@ -144,25 +144,21 @@ post() {
 		language_error="select the language"
 	}
 
-	if has-error
-	then
-		status=status-422-unprocessable-entity
-		get
+	has-error && {
 		rm -r $tmpdata
-		exit
-	fi
+		status=status-422-unprocessable-entity get
+		return
+	}
 
 	check-user "$user_value" "$password_fn" ||
 	user_error="invalid credentials"
 	[ -z "$user_error" ] ||
 	password_error="invalid credentials <small>(<a href="/forgot-password">forgot password</a>?)</small>"
-	if has-error
-	then
-		status=status-401-unauthorized
-		get
+	has-error && {
 		rm -r $tmpdata
-		exit
-	fi
+		status=status-401-unauthorized get
+		return
+	}
 
 	timestamp=`date -u +%Y%m%d-%H%M%S`
 	submissions="$SUBMISSIONS/$user_value"
@@ -173,13 +169,11 @@ post() {
 	[ -d $destdir ]         && program_error="no more than 1 submission per second, try again in a few seconds"
 	n_enqueued=`ls -1 $submissions 2>/dev/null | wc -l`
 	[ "$n_enqueued" -lt 3 ] || program_error="no more than 3 submissions on the queue per user, try again in a few minutes"
-	if has-error
-	then
-		status=status-429-too-many-requests
-		get
+	has-error && {
 		rm -r $tmpdata
-		exit
-	fi
+		status=status-429-too-many-requests get
+		return
+	}
 
 	$bin/udge-create-submission "$user_value" "$tmpdata/program/value" "$timestamp" "$problem_value" "$language_value" >/dev/null ||
 		errxit "internal server error, could not create submission"

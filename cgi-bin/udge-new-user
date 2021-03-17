@@ -167,22 +167,18 @@ post() {
 	user_error="`check-user`"
 	password_error="`check-password`"
 	email_error="`check-email`"
-	if has-error
-	then
-		status=status-422-unprocessable-entity
-		get
+	has-error && {
 		rm -r $tmpdata
-		exit
-	fi
+		status=status-422-unprocessable-entity get
+		return
+	}
 
 	[ -e "$USERS/$user_value" ] && user_error="username already exists (pick another)"
-	if has-error
-	then
-		status=status-409-conflict
-		get
+	has-error && {
 		rm -r $tmpdata
-		exit
-	fi
+		status=status-409-conflict get
+		return
+	}
 
 	echo | cat $password_fn - $password_confirmation_fn |
 		$bin/udge-add-user $user_value $email_value "$name_value"
