@@ -376,6 +376,16 @@ uninstall:
 	rm -rf $(DESTDIR)$(PREFIX)/lib/udge
 	rm -rf $(DESTDIR)/etc/cron.d/udge
 
+# shows the differences between default and installed config files
+#
+# use this target to see if your configs are too out of date
+# after updating udge with install-bin
+diff-conf:
+	diff -rud etc/udgerc                     /etc/udgerc                     || true
+	diff -rud etc/tmpfiles.d/udge.conf       /etc/tmpfiles.d/udge.conf       || true
+	diff -rud etc/nginx/sites-available/udge /etc/nginx/sites-available/udge || true
+	diff -rud etc/cron.d/udge                /etc/cron.d/udge                || true
+
 now=$(shell date "+%Y%m%d-%H%M%S")
 purge-configs:
 	mv $(DESTDIR)/etc/udgerc                     $(DESTDIR)/etc/udgerc-old-$(now)
