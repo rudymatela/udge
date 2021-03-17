@@ -91,14 +91,21 @@ has-error() {
 }
 
 
-password-errors() {
-	[ -s "$password_fn" ] || echo "password is missing"
+check-password() {
+	[ -s "$password_fn" ] || {
+		echo "password is missing"
+		return
+	}
+	diff -q $password_fn $password_confirmation_fn >/dev/null 2>/dev/null || {
+		echo "passwords do not match"
+		return
+	}
 	cracklib-check < "$password_fn" |
 	sed -e "s/.*: //" |
 	sed -e "s/^OK$//" |
 	sed -e "s/dictionary word$/& (hint: use two dictionary words)/" |
-	grep -v "^$"
-	diff -q $password_fn $password_confirmation_fn >/dev/null 2>/dev/null || echo "passwords do not match"
+	grep -v "^$" |
+	head -1
 }
 
 
@@ -123,7 +130,7 @@ post() {
 	valid-user "$user_fn"          || user_error="username already exists, pick another"
 	sane-file "$user_fn"           || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
 	[ -s "$user_fn" ]              || user_error="username is missing"
-	password_error="`password-errors | head -1`"
+	password_error="`check-password`"
 	sane-email-file "$email_fn" || email_error="invalid or unsupported email address"
 	[ -s "$email_fn" ]          || email_error="email is missing"
 	if has-error
