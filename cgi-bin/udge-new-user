@@ -133,6 +133,22 @@ check-password() {
 }
 
 
+check-email() {
+	[ -s "$email_fn" ] || {
+		echo "email is missing"
+		return
+	}
+	sane-email-file "$email_fn" || {
+		echo "invalid or unsupported email address"
+		return
+	}
+	diff -q $email_fn $email_confirmation_fn >/dev/null 2>/dev/null || {
+		echo "emails do not match"
+		return
+	}
+}
+
+
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	$bin/cgi-create-data-files $tmpdata
@@ -148,11 +164,9 @@ post() {
 	email_value="`html-cat "$email_fn"`"
 	email_confirmation_value="`html-cat "$email_confirmation_fn"`"
 
-	diff -q $email_fn $email_confirmation_fn >/dev/null 2>/dev/null || email_error="emails do not match"
 	user_error="`check-user`"
 	password_error="`check-password`"
-	sane-email-file "$email_fn" || email_error="invalid or unsupported email address"
-	[ -s "$email_fn" ]          || email_error="email is missing"
+	email_error="`check-email`"
 	if has-error
 	then
 		status=status-422-unprocessable-entity
