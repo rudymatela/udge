@@ -27,7 +27,9 @@ server {
 	}
 
 	location /404 { internal; }
+	location /500 { internal; }
 	location /502 { internal; }
+	location /504 { internal; }
 
 	location ~ \.html$ {
 		internal;
@@ -42,7 +44,9 @@ server {
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-submit;
 		include fastcgi_params;
 		fastcgi_intercept_errors on;
-
+		fastcgi_connect_timeout 12s;
+		fastcgi_read_timeout    12s;
+		fastcgi_send_timeout    12s;
 	}
 
 	location = /new-user {
@@ -50,9 +54,14 @@ server {
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-new-user;
 		include fastcgi_params;
 		fastcgi_intercept_errors on;
+		fastcgi_connect_timeout 12s;
+		fastcgi_read_timeout    12s;
+		fastcgi_send_timeout    12s;
 	}
 
 	error_page 403 =404 /404.html; # show 403 as 404
 	error_page 404 /404.html;
+	error_page 500 /500.html;
 	error_page 502 /502.html;
+	error_page 504 /504.html;
 }

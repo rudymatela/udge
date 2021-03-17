@@ -75,6 +75,10 @@ status-429-too-many-requests() {
 	echo 'Status: 429 Too Many Requests'
 }
 
+status-500-internal-server-error() {
+	echo 'Status: 500 Internal Server Error'
+}
+
 page-403-forbidden() {
 	status=status-403-forbidden
 	http-header
