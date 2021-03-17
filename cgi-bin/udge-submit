@@ -112,14 +112,15 @@ post() {
 	extension="${filename##*.}"
 	filename="${filename%.*}"
 
-	sane-file "$user_fn"  || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
-	[ -s "$user_fn" ]     || user_error="user is missing"
+	[ -s "$user_fn" ] && {
+		sane-file "$user_fn" || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	} || user_error="user is missing"
 
 	[ -s "$password_fn" ] || password_error="password is missing"
 
-	[ -s "$program_fn" ] &&
-	[ "`wc -c <$program_fn`" -le 8192 ] || program_error="source file is too big"
-	[ -s "$program_fn" ]                || program_error="program is missing"
+	[ -s "$program_fn" ] && {
+		[ "`wc -c <$program_fn`" -le 8192 ] || program_error="source file is too big"
+	} || program_error="program is missing"
 
 	if [ -s "$problem_fn" ]
 	then
