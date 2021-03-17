@@ -26,9 +26,8 @@ server {
 		try_files $uri $uri/index.html $uri.html =404;
 	}
 
-	location /404 {
-		internal;
-	}
+	location /404 { internal; }
+	location /502 { internal; }
 
 	location ~ \.html$ {
 		internal;
@@ -42,14 +41,18 @@ server {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-submit;
 		include fastcgi_params;
+		fastcgi_intercept_errors on;
+
 	}
 
 	location = /new-user {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-new-user;
 		include fastcgi_params;
+		fastcgi_intercept_errors on;
 	}
 
-	error_page 404 /404.html;
 	error_page 403 =404 /404.html; # show 403 as 404
+	error_page 404 /404.html;
+	error_page 502 /502.html;
 }
