@@ -181,9 +181,11 @@ todo: var/html/TODO.html
 diagram: var/html/doc/udge-diagram.svg
 
 var/html/README.html: README.md
+	mkdir -p var/html
 	./lib/udge/markdown $< > $@
 
 var/html/TODO.html: TODO.md
+	mkdir -p var/html
 	./lib/udge/markdown $< > $@
 
 var/html/doc/udge-diagram.svg: doc/udge-diagram.svg
