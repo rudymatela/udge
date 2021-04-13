@@ -92,7 +92,7 @@ language="` echo $submission | sed -e 's,.*/\(.*\)/\(.*\)/\(.*\)\.\(.*\),\4,'`"
 cp -r $RUN/$s/{lock/run,check} || rm -r $RUN/$s/check
 
 $lib/check $PROBLEMS/$problem $RUN/$s/check/run | tee $SLOTS/$s/lock/$user/$timestamp/result
-$lib/timeavg $RUN/$s/check/run                  | tee $SLOTS/$s/lock/$user/$timestamp/time
+$lib/timeavg $RUN/$s/check/run                  | tee $SLOTS/$s/lock/$user/$timestamp/time | tail -1
 mkdir -p $RESULTS/$user/$problem
 mv $SLOTS/$s/lock/$user/$timestamp $RESULTS/$user/$problem ||
 	warn "submission already judged?"

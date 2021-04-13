@@ -43,5 +43,7 @@ avg() {
 	sed -e "s/-[^ ]*/-/g"
 }
 
+head -1q $run/{,*/}time 2>/dev/null
+echo ------
 head -1q $run/{,*/}time 2>/dev/null | cut -d\  -f1 | avg "%.0f "  "*1000"
 head -1q $run/{,*/}time 2>/dev/null | cut -d\  -f2 | avg "%.0f\n" "/1024"

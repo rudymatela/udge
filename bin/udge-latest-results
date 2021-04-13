@@ -75,11 +75,11 @@ entries() {
 		dn="`dirname $filename`"
 		result="`tail -1 $dn/result`"
 
-		time="`cut -d' ' -f1 $dn/time`"
+		time="`tail -n -1 $dn/time 2>/dev/null | cut -d' ' -f1`"
 		[ -n "$time" ] || time=-
 		[ "$time" = "-" ] || time=${time}ms
 
-		memory="`cut -d' ' -f2 $dn/time`"
+		memory="`tail -n -1 $dn/time 2>/dev/null | cut -d' ' -f2`"
 		[ -n "$memory" ] || memory=-
 		[ "$memory" = "-" ] || memory=${memory}MB
 
