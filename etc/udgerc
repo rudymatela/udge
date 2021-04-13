@@ -19,5 +19,8 @@ SCORE=fractions
 NEW_USER=true
 INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
 
+JAVA_EXTRA_TIME=2
+CS_EXTRA_TIME=2
+
 GHCFLAGS=-dynamic # for Arch Linux
 MAX_PROCESSES=1024

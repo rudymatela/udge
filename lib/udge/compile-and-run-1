@@ -65,8 +65,8 @@ case "$src" in
 	*.lhs)  lang=hs                          ;;
 	*.lua)  lang=lua  ;run=lua               ;;
 	*.py)   lang=py                          ;;
-	*.cs)   lang=cs   ;run=mono    ;ext=.exe ;;
-	*.java) lang=java ;run="$java" ;ext=.jar ;;
+	*.cs)   lang=cs   ;run=mono    ;ext=.exe ;extra_time=$CS_EXTRA_TIME   ;;
+	*.java) lang=java ;run="$java" ;ext=.jar ;extra_time=$JAVA_EXTRA_TIME ;;
 	*.js)   lang=js   ;run=node    ;ext=.js  ;;
 	*.rb)   lang=rb                          ;;
 	*) errxit "unknown/unsupported file format or language" ;;
@@ -99,6 +99,8 @@ args=`maybe-cat $set/args`
 
 [ -n "$DEFAULT_TIME_LIMIT" ] || DEFAULT_TIME_LIMIT=1
 time_limit=`cator $DEFAULT_TIME_LIMIT $set/time-limit`
+[ -n "$extra_time" ] && time_limit=$((time_limit + extra_time))
+[ -n "$verbose" ] && echo "Time limit is $time_limit."
 
 sandbox=`realpath $bin/udge-sandbox`
 
@@ -124,7 +126,7 @@ cd - >/dev/null
 
 touch "$dst"
 
-[ -n "$verbose" ] && echo "$dst $(du -m "$dst" | cut -f1)MiB"
+[ -n "$verbose" ] && echo "$dst is $(du -ms "$dst" | cut -f1)MiB, $src runtime was: $(cat $dst/time 2>/dev/null)"
 
 output-limit-exceeded() {
 	rm -rf $dst/{out,err,files}
