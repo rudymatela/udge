@@ -65,4 +65,24 @@ $ find /run/udge | sort
 /run/udge/6
 $
 $
+$ udge-submit examples/sandbox/ole.c hello
+Submission successful (202)
+$
+$
+$ udge-pick-and-judge 2>/dev/null | grep -B1 -A1 "^./.$" # TODO: should be "output limit exceeded"
+unknown error
+0/6
+- -
+$
+$
+$ find /run/udge | sort
+/run/udge
+/run/udge/1
+/run/udge/2
+/run/udge/3
+/run/udge/4
+/run/udge/5
+/run/udge/6
+$
+$
 $ udge-delete-user $user -f
