@@ -31,6 +31,5 @@ $ $tmp
 $ # since late 2021 unshare silently kills the process and prints no error
 $ MAX_PROCESSES=2048 udge-sandbox $tmp
 $ # unshare: fork failed: Resource temporarily unavailable
-$ # TODO: detect this somehow by printing the id of a collection of processes
 $
 $ rm $tmp
