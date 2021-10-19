@@ -40,14 +40,16 @@ prefix="$(dirname "$(dirname "$0")")"
 
 set -e
 
+verbose="$1"
+
 $bin/udge-pick
 for slot in `ls-slots`
 do
-	$bin/udge-compile-and-run $slot
+	$bin/udge-compile-and-run $slot $verbose
 done
 $bin/udge-check
 # one last pass through compile-and-run to clear out junk files
 for slot in `ls-slots`
 do
-	$bin/udge-compile-and-run $slot
+	$bin/udge-compile-and-run $slot $verbose
 done
