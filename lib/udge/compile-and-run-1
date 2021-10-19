@@ -126,15 +126,19 @@ cd - >/dev/null
 
 touch "$dst"
 
-[ -n "$verbose" ] && echo "$dst is $(du -ms "$dst" | cut -f1)MiB, $src runtime was: $(cat $dst/time 2>/dev/null)"
+[ -n "$verbose" ] && echo "$src exit code was: $(cat $dst/exit)"
+[ -n "$verbose" ] && echo "$src runtime was: $(tail -1 $dst/time 2>/dev/null)"
+[ -n "$verbose" ] && echo "$dst is $(du -ms "$dst" | cut -f1)MiB"
 
 output-limit-exceeded() {
 	rm -rf $dst/{out,err,files}
-	echo 'OLE' >$dst/exit
-	errxit "output limit exceeded, cleaned up and forced exit code"
+	[ -n "$1" ] && echo 'OLE' >$dst/exit
+	[ -n "$1" ] && and=" and forced exit code"
+	errxit "output limit exceeded, cleaned up$and"
 }
 
-[ $(du -ms "$dst" | cut -f1) -le 2 ] || output-limit-exceeded
+[ $(du -ms "$dst" | cut -f1) -le 2 ] || output-limit-exceeded force
+grep -qE "^(153|159)$" $dst/exit     && output-limit-exceeded
 
 grep -q "udge-sandbox: fork: .* unavailable" $dst/err && errxit "too many processes"
 grep -q "^timeout: sending signal TERM"      $dst/err && exit 1

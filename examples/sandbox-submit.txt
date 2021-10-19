@@ -69,8 +69,8 @@ $ udge-submit examples/sandbox/ole.c hello
 Submission successful (202)
 $
 $
-$ udge-pick-and-judge 2>/dev/null | grep -B1 -A1 "^./.$" # TODO: should be "output limit exceeded"
-unknown error
+$ udge-pick-and-judge 2>/dev/null | grep -B1 -A1 "^./.$"
+output limit exceeded
 0/6
 - -
 $

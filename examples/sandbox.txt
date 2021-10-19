@@ -81,6 +81,7 @@ time limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/diskfill.c
+compile-and-run-1, error: output limit exceeded, cleaned up
 output limit exceeded
 0/1
 $
@@ -94,6 +95,7 @@ incorrect output
 0/1
 $
 $ udge-judge hello-world examples/sandbox/stdout-1m1b.c
+compile-and-run-1, error: output limit exceeded, cleaned up
 output limit exceeded
 0/1
 $
@@ -102,6 +104,7 @@ incorrect output
 0/1
 $
 $ udge-judge hello-world examples/sandbox/file-1m1b.c
+compile-and-run-1, error: output limit exceeded, cleaned up
 output limit exceeded
 0/1
 $
@@ -110,6 +113,7 @@ runtime error
 0/1
 $
 $ udge-judge hello-world examples/sandbox/tmp60mib.c  # TODO: cleanup /tmp file somehow
+compile-and-run-1, error: output limit exceeded, cleaned up
 output limit exceeded
 0/1
 $
