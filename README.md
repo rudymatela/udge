@@ -3,7 +3,7 @@ Udge
 
 Udge is an online judge for programming problems.
 
-![Submitting a couple solutions to Udge](https://user-images.githubusercontent.com/3999598/81507735-ac9ed080-92d5-11ea-9b47-3d036fb33ad9.gif)
+![Submitting a couple solutions to Udge](https://user-images.githubusercontent.com/3999598/142065705-a28b0c25-f465-4195-9c41-183677387c2a.gif)
 
 Using Udge you can host programming problems in an HTTP site.
 Users can submit solution programs which are automatically scored.
