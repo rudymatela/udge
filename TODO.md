@@ -48,6 +48,8 @@ For later
 		new password: ______
 		new password confirmation: ______
 
+* do not allow two users with the same email (needs email confirmation)
+
 * cleanup any files created at `tmp` somehow
   `udge-health` needs to be completed first
 
