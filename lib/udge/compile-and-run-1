@@ -69,6 +69,7 @@ case "$src" in
 	*.java) lang=java ;run="$java" ;ext=.jar ;extra_time=$JAVA_EXTRA_TIME ;;
 	*.js)   lang=js   ;run=node    ;ext=.js  ;;
 	*.rb)   lang=rb                          ;;
+	*.scm)  lang=scm                         ;;
 	*) errxit "unknown/unsupported file format or language" ;;
 esac
 

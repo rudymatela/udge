@@ -64,5 +64,10 @@ For later
 	- R
 	- Perl
 	- PHP
+	- `https://www.tiobe.com/tiobe-index/`
+	- `https://pypl.github.io/`
+	- `https://en.wikipedia.org/wiki/Measuring_programming_language_popularity`
+	- `https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies`
+	- `https://spectrum.ieee.org/top-programming-languages/`
 
 * On the user page, only show problems with tries (for now, keep as it is)

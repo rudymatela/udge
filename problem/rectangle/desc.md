@@ -132,6 +132,13 @@ Alternatively, you can declare the rectangle type as:
 	  def perimeter
 	end
 
+#### Scheme
+
+	(define (area rectangle) ...)
+	(define (perimeter rectangle) ...)
+	;;; where a rectangle is represented by (cons w h)
+
+
 ### Scoring
 
 * 1/3: works for the above example

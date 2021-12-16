@@ -46,6 +46,7 @@ Features:
 	- [Lua]
 	- [Python]
 	- [Ruby]
+	- [Scheme]
 
 [a simple plaintext file database]: #a-file-based-database
 
@@ -110,14 +111,15 @@ These are the optional dependencies:
 * [Mono]       --- for [C#] submission support
 * [nodejs]     --- for [JavaScript] submission support
 * [Ruby]       --- for [Ruby] submission support
+* [GNU Guile]  --- for [Scheme] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby
+	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile
 
 [dependencies]: #dependencies
 
@@ -623,6 +625,7 @@ Here are some alternatives:
 [GHC]:        https://www.haskell.org/ghc/
 [Mono]:       https://www.mono-project.com/
 [nodejs]:     https://nodejs.org/
+[Guile]:      https://www.gnu.org/software/guile/
 
 [C]:          https://en.wikipedia.org/wiki/The_C_Programming_Language
 [C++]:        https://en.wikipedia.org/wiki/The_C++_Programming_Language
@@ -633,6 +636,7 @@ Here are some alternatives:
 [Lua]:        https://www.lua.org/
 [Python]:     https://www.python.org/
 [Ruby]:       https://www.ruby-lang.org/
+[Scheme]:     http://www.scheme-reports.org/
 
 [Linux]:      https://kernel.org/
 [Arch Linux]: https://archlinux.org/
