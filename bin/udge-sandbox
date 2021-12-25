@@ -44,6 +44,9 @@ ulimit -x 1024 # file locks
 # use `ulimit -a` for a list
 # use `ulimit -h` for a complete list
 
+# for `-f`, `ulimit -a` lists the unit as blocks but it seems to be KiBs
+# cf.: examples/sandbox.txt, *-1m.c and *-1m1b.c files
+
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
 exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
