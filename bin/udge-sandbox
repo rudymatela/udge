@@ -29,6 +29,21 @@ prefix="$(dirname "$(dirname "$0")")"
 
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512
 
+# Erlang HACK:
+# on Ubuntu 20.04 with Erlang/OTP 22 [erts-10.6.4],
+# HOME must be set to use escript, see:
+#
+#     $ udge-sandbox /usr/bin/escript hello-world.erl
+#     erlexec: HOME must be set
+#
+# escript works fine on Arch Linux (2021-12)
+# with Erlang/OTP 24 [erts-12.1.5].
+#
+# The following hack makes it so that the program is run
+# even on Ubuntu when the first argument is "escript"
+ENV=
+echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
+
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
 ulimit -f 8192 # K, 8M, increased from 1M due to Erlang
@@ -49,7 +64,7 @@ ulimit -x 1024 # file locks
 
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
-exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
+exec unshare -Urn -impuf --kill-child env -i $chroot $ENV "$@"
 
 # In a fresh user, only 5 processes are needed, they are:
 #
