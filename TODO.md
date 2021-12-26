@@ -70,4 +70,39 @@ For later
 	- `https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies`
 	- `https://spectrum.ieee.org/top-programming-languages/`
 
+* Fix Erlang/escript hackyness of copying the beam file.
+
+* Fix Erlang/escript slowness (cf. `ERL_EXTRA_TIME=3`).
+
+	My model solution for `add` in Erlang takes a whopping 3.4 seconds to
+	process test set #4:
+
+		$ /usr/bin/time -f%e escript examples/add/add.erl <problem/add/4/in >/dev/null
+		3.40
+		$ /usr/bin/time -f%e python examples/add/add.py <problem/add/4/in >/dev/null
+		0.07
+
+	For reference, my Python solution takes 0.07 seconds!
+	Maybe my solution is not good enough or maybe I am not using `escript` right...
+
+	Compiling Erlang programs seems to make them run even slower, see:
+
+		$ cp examples/hello-world/hello-world.erl helloworld.erl
+		$ erlc helloworld.erl
+		$ /usr/bin/time -f%e erl -noshell -s helloworld main [] -s init stop
+		Hello, World!
+		1.12
+		$ /usr/bin/time -f%e escript helloworld.erl
+		0.15
+
+	Weirdly, the `Hello, World!` message appears almost instantly.
+	It seems Erlang takes a second to call `init:stop()` or
+	`init:stop()` takes a full second to run.
+
+	Maybe this is not the proper way to run Erlang,
+	is it designed to have the VM running all the time
+	and programs being called from it?
+
+* Fix Erlang/escript running under 1MiB `-f` (revert udge-sandbox's increase)
+
 * On the user page, only show problems with tries (for now, keep as it is)

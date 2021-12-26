@@ -47,6 +47,7 @@ Features:
 	- [Python]
 	- [Ruby]
 	- [Scheme]
+	- [Erlang]
 
 [a simple plaintext file database]: #a-file-based-database
 
@@ -112,14 +113,15 @@ These are the optional dependencies:
 * [nodejs]     --- for [JavaScript] submission support
 * [Ruby]       --- for [Ruby] submission support
 * [GNU Guile]  --- for [Scheme] submission support
+* [Erlang]     --- for [Erlang] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0
+	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 erlang
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang
 
 [dependencies]: #dependencies
 
@@ -626,6 +628,7 @@ Here are some alternatives:
 [Mono]:       https://www.mono-project.com/
 [nodejs]:     https://nodejs.org/
 [Guile]:      https://www.gnu.org/software/guile/
+[Erlang]:     https://erlang.org/
 
 [C]:          https://en.wikipedia.org/wiki/The_C_Programming_Language
 [C++]:        https://en.wikipedia.org/wiki/The_C++_Programming_Language

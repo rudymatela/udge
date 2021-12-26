@@ -21,6 +21,7 @@ INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
 
 JAVA_EXTRA_TIME=2
 CS_EXTRA_TIME=2
+ERL_EXTRA_TIME=6
 
 GHCFLAGS=-dynamic # for Arch Linux
 GUILE_AUTO_COMPILE=0 # avoid Guile's funny business of using ~/.cache

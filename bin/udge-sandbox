@@ -31,7 +31,7 @@ prefix="$(dirname "$(dirname "$0")")"
 
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
-ulimit -f 1024 # K, 1M
+ulimit -f 8192 # K, 8M, increased from 1M due to Erlang
 ulimit -i 1024 # signals
 ulimit -l 32 # K
 ulimit -m 2097152 # K, 2048M, 2G

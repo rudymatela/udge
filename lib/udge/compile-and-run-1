@@ -61,6 +61,8 @@ case "$src" in
 	*.c)    lang=c                           ;;
 	*.cc)   lang=cc                          ;;
 	*.cpp)  lang=cc                          ;;
+	*.erl)  lang=erl  ;run=escript           ;extra_time=$ERL_EXTRA_TIME  ;;
+	*.escript)lang=erl;run=escript           ;;
 	*.hs)   lang=hs                          ;;
 	*.lhs)  lang=hs                          ;;
 	*.lua)  lang=lua  ;run=lua               ;;
@@ -108,6 +110,7 @@ sandbox=`realpath $bin/udge-sandbox`
 mkdir $dst/files
 [ "$(echo $set/*.txt)" != "$set/*.txt" ] && cp $set/*.txt $dst/files
 [ "$(echo $set/bf/*)"  != "$set/bf/*"  ] && cp $set/bf/*  $dst/files
+[ -f thelib.beam ] && cp thelib.beam $dst/files # TODO: avoid this beam copy.  Hack!
 cd $dst/files
 
 # the order here does matter:

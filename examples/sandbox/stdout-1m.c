@@ -1,5 +1,5 @@
 /*
- * examples/sandbox/output-1024k.c: produces 1024KiB of output
+ * examples/sandbox/output-1m.c: produces almost 2MiB of output
  *
  *
  * Copyright (C) 2020-2021  Rudy Matela
@@ -24,7 +24,7 @@
 int main(void)
 {
 	int i;
-	for (i=0; i<1024*1024; i++)
+	for (i=0; i<2*1024*1024 - 24*1024; i++)
 		putchar('\0');
 	return 0;
 }
