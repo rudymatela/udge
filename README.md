@@ -117,7 +117,7 @@ These are the optional dependencies:
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 erlang
+	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 erlang-base
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
