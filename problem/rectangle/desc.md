@@ -94,6 +94,10 @@ Alternatively, you can declare the rectangle type as:
 		public int Perimeter();
 	}
 
+#### Erlang
+
+	-record(rectangle, {width, height}).
+
 #### Java
 
 	public class Rectangle
@@ -131,6 +135,12 @@ Alternatively, you can declare the rectangle type as:
 	  def area
 	  def perimeter
 	end
+
+#### Racket
+
+	(define (area rectangle) ...)
+	(define (perimeter rectangle) ...)
+	; where a rectangle is represented by (cons w h)
 
 #### Scheme
 

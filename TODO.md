@@ -103,6 +103,10 @@ For later
 	is it designed to have the VM running all the time
 	and programs being called from it?
 
+* Remove `(display "")` hack in Racket example programs and main files
+
+* Find a way to check the syntax of Racket files
+
 * Fix Erlang/escript running under 1MiB `-f` (revert udge-sandbox's increase)
 
 * On the user page, only show problems with tries (for now, keep as it is)

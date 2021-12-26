@@ -46,6 +46,7 @@ Features:
 	- [Lua]
 	- [Python]
 	- [Ruby]
+	- [Racket]
 	- [Scheme]
 	- [Erlang]
 
@@ -112,16 +113,17 @@ These are the optional dependencies:
 * [Mono]       --- for [C#] submission support
 * [nodejs]     --- for [JavaScript] submission support
 * [Ruby]       --- for [Ruby] submission support
+* [Racket]     --- for [Racket] submission support
 * [GNU Guile]  --- for [Scheme] submission support
 * [Erlang]     --- for [Erlang] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 erlang-base
+	apt-get install bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 erlang-base racket
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang
+	pacman -S bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang racket-minimal
 
 [dependencies]: #dependencies
 
@@ -639,6 +641,7 @@ Here are some alternatives:
 [Lua]:        https://www.lua.org/
 [Python]:     https://www.python.org/
 [Ruby]:       https://www.ruby-lang.org/
+[Racket]:     https://racket-lang.org/
 [Scheme]:     http://www.scheme-reports.org/
 
 [Linux]:      https://kernel.org/

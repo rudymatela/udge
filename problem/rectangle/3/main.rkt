@@ -1,4 +1,4 @@
-;;; main.scm: main file for an "rectangle" solution
+;;; main.rkt: main file for an "rectangle" solution
 ;;;
 ;;; This is appended to the submitted Lua program and tests the area and
 ;;; perimeter functions.
@@ -37,5 +37,6 @@
             (display ", perimeter = ")
             (display (perimeter (cons w h)))
             (newline)
-            (main))))))
+            (main)))
+      (display ""))))
 (with-input-from-file "in.txt" udge-rectangle-main-udge--)

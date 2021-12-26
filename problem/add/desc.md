@@ -58,10 +58,12 @@ Please refer to the information for the chosen language:
 * Haskell type:          `add :: Int -> Int -> Int`
 * C++ prototype:         `int add(int x, int y);`
 * C# definition:         `public static int Add(int x, int y)` inside a class `Program`
+* Erlang definition:     `add/2`
 * Java definition:       `public static int add(int x, int y)` inside a public class `Add`
 * JavaScript definition: `function add(x, y)`
 * Lua definition:        `function add(x, y)`
 * Ruby definition:       `def add(x,y)`
+* Racket definition:     `(define (add x y) ...)`
 * Scheme definition:     `(define (add x y) ...)`
 
 If you are confused by the above,
