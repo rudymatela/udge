@@ -114,7 +114,7 @@ These are the optional dependencies:
 * [nodejs]     --- for [JavaScript] submission support
 * [Ruby]       --- for [Ruby] submission support
 * [Racket]     --- for [Racket] submission support
-* [GNU Guile]  --- for [Scheme] submission support
+* [Guile]      --- for [Scheme] submission support
 * [Erlang]     --- for [Erlang] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
