@@ -8,8 +8,6 @@ TODO list for Udge
 
 * support multiple sites by multiple udgerc files (`UDGERC=/etc/blahrc`)
 
-* update the README video
-
 
 For later
 ---------
