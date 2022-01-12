@@ -10,9 +10,6 @@ TODO list for Udge
 
 * update the README video
 
-* configure rate limiting on nginx
-  https://www.nginx.com/blog/rate-limiting-nginx/
-
 
 For later
 ---------

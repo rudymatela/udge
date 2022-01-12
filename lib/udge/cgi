@@ -82,10 +82,11 @@ status-500-internal-server-error() {
 page-403-forbidden() {
 	status=status-403-forbidden
 	http-header
-	html-header "403 Forbidden"
+	html-header "403 Forbidden – $NAME"
 	html-navbar
 	echo "<h3>$NAME</h3>"
 	echo '<h1>403 Forbidden</h1>'
+	echo '<p>Access denied.</p>'
 	html-navbar
 	html-footer
 }
@@ -93,10 +94,11 @@ page-403-forbidden() {
 page-405-method-not-allowed() {
 	status=status-405-method-not-allowed
 	http-header
-	html-header "405 Method Not Allowed"
+	html-header "405 Method Not Allowed – $NAME"
 	html-navbar
 	echo "<h3>$NAME</h3>"
 	echo '<h1>405 Method Not Allowed</h1>'
+	echo '<p>Method not allowed.</p>'
 	html-navbar
 	html-footer
 }

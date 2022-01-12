@@ -41,10 +41,10 @@ password is missing
 
 $ sed -i 's/NEW_USER=true/NEW_USER=false/' etc/udgerc
 $ curl -XGET udge/new-user | display
-404 Not Found – Udge Online Judge
+403 Forbidden – Udge Online Judge
 Udge Online Judge
-404 Not Found
-404
+403 Forbidden
+403
 
 $ sed -i 's/NEW_USER=false/NEW_USER=true/' etc/udgerc
 $ curl -XGET udge/new-user | display

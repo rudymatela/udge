@@ -91,13 +91,13 @@ Submit your solution
 200
 
 $ curl -XPUT udge/submit | display
-405 Method Not Allowed
+405 Method Not Allowed – Udge Online Judge
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPATCH udge/submit | display
-405 Method Not Allowed
+405 Method Not Allowed – Udge Online Judge
 Udge Online Judge
 405 Method Not Allowed
 405

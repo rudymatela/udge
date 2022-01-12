@@ -31,13 +31,13 @@ New user
 200
 
 $ curl -XPUT udge/new-user | display
-405 Method Not Allowed
+405 Method Not Allowed – Udge Online Judge
 Udge Online Judge
 405 Method Not Allowed
 405
 
 $ curl -XPATCH udge/new-user | display
-405 Method Not Allowed
+405 Method Not Allowed – Udge Online Judge
 Udge Online Judge
 405 Method Not Allowed
 405

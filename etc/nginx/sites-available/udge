@@ -1,6 +1,23 @@
 # nginx configuration file for Udge
 #
 # Udge - GPLv2 - Copyright (C) 2020-2021  Rudy Matela
+
+# don't rate limit localhost for fast tests
+geo $limit {
+	default      1;
+	127.0.0.1/32 0;
+	::1/128      0;
+}
+
+map $limit $limit_key {
+	0 "";
+	1 $binary_remote_addr;
+}
+
+limit_req_zone $limit_key zone=udgepages:6m rate=6r/s;
+limit_req_zone $limit_key zone=udgecgi:6m   rate=12r/m; # 1r/6s
+# about rate limiting: https://www.nginx.com/blog/rate-limiting-nginx/
+
 server {
 	server_name
 		udge.example.com # replace this by your actual domain name
@@ -24,6 +41,8 @@ server {
 	location / {
 		index index.html;
 		try_files $uri $uri/index.html $uri.html =404;
+		limit_req zone=udgepages burst=9 delay=6;
+		limit_req_status 429;
 	}
 
 	# custom 404 page under /u
@@ -31,6 +50,8 @@ server {
 		index index.html;
 		try_files $uri $uri/index.html $uri.html =404;
 		error_page 404 /u404.html;
+		limit_req zone=udgepages burst=9 delay=6;
+		limit_req_status 429;
 	}
 
 	location /u404 { internal; }
@@ -51,24 +72,31 @@ server {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-submit;
 		include fastcgi_params;
-		fastcgi_intercept_errors on;
+		fastcgi_intercept_errors off;
 		fastcgi_connect_timeout 12s;
 		fastcgi_read_timeout    12s;
 		fastcgi_send_timeout    12s;
+		limit_req zone=udgecgi burst=6 delay=5; # alt: nodelay
+		limit_req_status 429;
+		error_page 429 /429.html;
 	}
 
 	location = /new-user {
 		fastcgi_pass unix:/run/fcgiwrap.sock;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-new-user;
 		include fastcgi_params;
-		fastcgi_intercept_errors on;
+		fastcgi_intercept_errors off;
 		fastcgi_connect_timeout 12s;
 		fastcgi_read_timeout    12s;
 		fastcgi_send_timeout    12s;
+		limit_req zone=udgecgi burst=6 delay=5; # alt: nodelay
+		limit_req_status 429;
+		error_page 429 /429.html;
 	}
 
 	error_page 403 =404 /404.html; # show 403 as 404
 	error_page 404 /404.html;
+	error_page 429 /429.html;
 	error_page 500 /500.html;
 	error_page 502 /502.html;
 	error_page 504 /504.html;
