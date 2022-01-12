@@ -13,7 +13,7 @@ contact the site administrator
 mentioning your email.
 
 
-Copyright (C) 2020-2021  Rudy Matela
+Copyright (C) 2020-2022  Rudy Matela
 Udge is free/libre software.
 It is available under the GPLv2 license
 unless otherwise stated in specific files.

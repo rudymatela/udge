@@ -57,6 +57,6 @@ Simply concatenate files and print them on standard output
 and, when you see `-`, copy from standard input.
 
 
-Copyright © 2020-2021  Rudy Matela
+Copyright © 2020-2022  Rudy Matela
 This text is available under the CC BY-SA 4.0 license
 or (at your option) the GFDL 1.3 license

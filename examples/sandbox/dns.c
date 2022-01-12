@@ -21,7 +21,7 @@
  * as it did not block the DNS call.
  *
  *
- * Copyright (C) 2020-2021  Rudy Matela
+ * Copyright (C) 2020-2022  Rudy Matela
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
