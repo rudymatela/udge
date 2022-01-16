@@ -41,7 +41,7 @@ server {
 	location / {
 		index index.html;
 		try_files $uri $uri/index.html $uri.html =404;
-		limit_req zone=udgepages burst=9 delay=6;
+		limit_req zone=udgepages burst=36 delay=24;
 		limit_req_status 429;
 	}
 
@@ -50,7 +50,7 @@ server {
 		index index.html;
 		try_files $uri $uri/index.html $uri.html =404;
 		error_page 404 /u404.html;
-		limit_req zone=udgepages burst=9 delay=6;
+		limit_req zone=udgepages burst=36 delay=24;
 		limit_req_status 429;
 	}
 
@@ -76,7 +76,7 @@ server {
 		fastcgi_connect_timeout 12s;
 		fastcgi_read_timeout    12s;
 		fastcgi_send_timeout    12s;
-		limit_req zone=udgecgi burst=6 delay=5; # alt: nodelay
+		limit_req zone=udgecgi burst=9 delay=6; # alt: nodelay
 		limit_req_status 429;
 		error_page 429 /429.html;
 	}
@@ -89,7 +89,7 @@ server {
 		fastcgi_connect_timeout 12s;
 		fastcgi_read_timeout    12s;
 		fastcgi_send_timeout    12s;
-		limit_req zone=udgecgi burst=6 delay=5; # alt: nodelay
+		limit_req zone=udgecgi burst=9 delay=6; # alt: nodelay
 		limit_req_status 429;
 		error_page 429 /429.html;
 	}
