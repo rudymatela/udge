@@ -105,3 +105,23 @@ For later
 * Fix Erlang/escript running under 1MiB `-f` (revert udge-sandbox's increase)
 
 * On the user page, only show problems with tries (for now, keep as it is)
+
+* Fix Lua lib compilation (or wait for upstream fix)
+
+	As of 2022-03-16, lua lib compilation is not working on my Arch box with Lua
+	5.4.4 and glibc 2.35-2.  I managed to pin the problem down to building with
+	multiple arguments:
+
+		$ luac -o exe-as-lib examples/add/add.lua problem/add/6/main.lua
+		free(): double free detected in tcache 2
+		Aborted (core dumped)
+
+	The following actually works:
+
+		$ cat examples/add/add.lua problem/add/6/main.lua >tmp.lua
+		$ luac -o exe-as-lib tmp.lua
+
+	For now, I'll keep compilation as is, if upstream is not fixed I can change
+	to the temporary file approach.
+
+	On Ubuntu, the issue seems not to be present.
