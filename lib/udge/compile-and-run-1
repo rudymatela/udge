@@ -70,6 +70,7 @@ case "$src" in
 	*.cs)      lang=cs   ;run=mono    ;ext=.exe ;extra_time=$CS_EXTRA_TIME   ;;
 	*.java)    lang=java ;run="$java" ;ext=.jar ;extra_time=$JAVA_EXTRA_TIME ;;
 	*.js)      lang=js   ;run=node    ;ext=.js                               ;;
+	*.r)       lang=r                                                        ;;
 	*.rb)      lang=rb                                                       ;;
 	*.rkt)     lang=rkt                         ;extra_time=$RKT_EXTRA_TIME  ;;
 	*.scm)     lang=scm                                                      ;;

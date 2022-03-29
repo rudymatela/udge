@@ -50,7 +50,7 @@ ulimit -f 8192 # K, 8M, increased from 1M due to Erlang
 ulimit -i 1024 # signals
 ulimit -l 32 # K
 ulimit -m 2097152 # K, 2048M, 2G
-ulimit -n 128 # files
+ulimit -n 256 # files
 ulimit -q 1024 # queues
 ulimit -s 8192 # K, 8M
 ulimit -u $MAX_PROCESSES # processes

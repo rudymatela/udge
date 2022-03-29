@@ -56,7 +56,6 @@ For later
 
 * Languages to support later (in no particular order):
 
-	- R
 	- Perl
 	- PHP
 	- `https://www.tiobe.com/tiobe-index/`

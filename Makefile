@@ -81,6 +81,7 @@ test-judge: \
   hello-world-scm.clitest \
   hello-world-rkt.clitest \
   hello-world-erl.clitest \
+  hello-world-r.clitest \
   addition.clitest \
   addition-hs.clitest \
   addition-py.clitest \
@@ -98,6 +99,7 @@ test-judge: \
   add-scm.clitest \
   add-rkt.clitest \
   add-erl.clitest \
+  add-r.clitest \
   rectangle.clitest \
   rectangle-hs.clitest \
   rectangle-py.clitest \
