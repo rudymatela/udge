@@ -63,6 +63,7 @@ Please refer to the information for the chosen language:
 * JavaScript definition: `function add(x, y)`
 * Lua definition:        `function add(x, y)`
 * Ruby definition:       `def add(x,y)`
+* R definition:          `add <- function(x, y)`
 * Racket definition:     `(define (add x y) ...)`
 * Scheme definition:     `(define (add x y) ...)`
 
