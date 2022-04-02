@@ -148,6 +148,12 @@ Alternatively, you can declare the rectangle type as:
 	(define (perimeter rectangle) ...)
 	;;; where a rectangle is represented by (cons w h)
 
+#### R
+
+	rectangle = list(width = ..., height = ...)
+	area <- function (rectangle)
+	perimeter <- function (rectangle)
+
 
 ### Scoring
 
