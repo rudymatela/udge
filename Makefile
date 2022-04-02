@@ -112,6 +112,7 @@ test-judge: \
   rectangle-scm.clitest \
   rectangle-rkt.clitest \
   rectangle-erl.clitest \
+  rectangle-r.clitest \
   runtime.clitest \
   cat.clitest \
   tee.clitest \
@@ -343,6 +344,7 @@ install-bin:
 	install -m 0755 lib/udge/compile/rkt  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0755 lib/udge/compile/r    $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 -d                           $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/c    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
@@ -356,6 +358,7 @@ install-bin:
 	install -m 0755 lib/udge/compile-as-lib/rkt  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
+	install -m 0755 lib/udge/compile-as-lib/r    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 -d                       $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/fractions $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/icpc      $(DESTDIR)$(PREFIX)/lib/udge/score
