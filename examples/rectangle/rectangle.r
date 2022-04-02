@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 #
-# examples/add/add.r: solution to the "add" example problem
+# examples/rectangle/rectangle.r: solution to the "rectangle" example problem
 #
-# This program is an example solution to the "add" example problem
-# that gets a full 6/6 score.
+# This program is an example solution to the "rectangle" example problem
+# that gets a full 3/3 score.
 #
 # This file is part of Udge.
 #
@@ -22,15 +22,25 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-add <- function(i, j) {
-	return (i+j)
+
+area <- function(rectangle) {
+	return (rectangle$width*rectangle$height)
+}
+
+perimeter <- function(rectangle) {
+	return (2 * (rectangle$height + rectangle$width))
 }
 
 input <- file("stdin", "r")
 while (length(l <- readLines(input, n=1)) > 0) {
 	l <- strsplit(l, " +")[[1]]
-	x <- strtoi(l[1], 10)
-	y <- strtoi(l[2], 10)
-	cat(add(x,y))
+	rectangle = list(height = strtoi(l[1], 10), width = strtoi(l[2], 10))
+	cat(rectangle$height)
+	cat("x")
+	cat(rectangle$width)
+	cat(" rectangle, area = ")
+	cat(area(rectangle))
+	cat(", perimeter = ")
+	cat(perimeter(rectangle))
 	cat("\n")
 }

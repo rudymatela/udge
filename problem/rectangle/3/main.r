@@ -1,11 +1,9 @@
-#!/usr/bin/env Rscript
+# main.r: main file for an "rectangle" solution
 #
-# examples/add/add.r: solution to the "add" example problem
+# This is appended to the submitted R program and tests the add function.
 #
-# This program is an example solution to the "add" example problem
-# that gets a full 6/6 score.
-#
-# This file is part of Udge.
+# The submitted file processes the standard input and this processes the
+# "in.txt" file.
 #
 #
 # Copyright (C) 2020-2022  Rudy Matela
@@ -22,15 +20,19 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-add <- function(i, j) {
-	return (i+j)
-}
 
-input <- file("stdin", "r")
+# standard input is already processed
+# as the submitted programmed is run when imported
+input <- file("in.txt", "r")
 while (length(l <- readLines(input, n=1)) > 0) {
 	l <- strsplit(l, " +")[[1]]
-	x <- strtoi(l[1], 10)
-	y <- strtoi(l[2], 10)
-	cat(add(x,y))
+	rectangle = list(height = strtoi(l[1], 10), width = strtoi(l[2], 10))
+	cat(rectangle$height)
+	cat("x")
+	cat(rectangle$width)
+	cat(" rectangle, area = ")
+	cat(area(rectangle))
+	cat(", perimeter = ")
+	cat(perimeter(rectangle))
 	cat("\n")
 }

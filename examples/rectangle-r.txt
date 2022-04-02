@@ -1,9 +1,6 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/env -S clitest -1
 #
-# examples/add/add.r: solution to the "add" example problem
-#
-# This program is an example solution to the "add" example problem
-# that gets a full 6/6 score.
+# Tests for the "rectangle" example problem in R.
 #
 # This file is part of Udge.
 #
@@ -22,15 +19,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-add <- function(i, j) {
-	return (i+j)
-}
 
-input <- file("stdin", "r")
-while (length(l <- readLines(input, n=1)) > 0) {
-	l <- strsplit(l, " +")[[1]]
-	x <- strtoi(l[1], 10)
-	y <- strtoi(l[2], 10)
-	cat(add(x,y))
-	cat("\n")
-}
+$ udge-judge rectangle examples/rectangle/rectangle.r
+3/3
+$ udge-judge rectangle examples/rectangle/rectangle-no-functions.r
+runtime error
+2/3
+$ udge-judge rectangle examples/hello-world/hello-world.r
+incorrect output
+0/3
