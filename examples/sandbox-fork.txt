@@ -28,8 +28,7 @@ time limit exceeded
 $
 $ cc examples/sandbox/fork4096.c -o $tmp
 $ $tmp
-$ # since late 2021 unshare silently kills the process and prints no error
 $ MAX_PROCESSES=2048 udge-sandbox $tmp
-$ # unshare: fork failed: Resource temporarily unavailable
+unshare: fork failed: Resource temporarily unavailable
 $
 $ rm $tmp
