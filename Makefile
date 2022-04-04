@@ -483,7 +483,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 123 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 125 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 
