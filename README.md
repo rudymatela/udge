@@ -632,16 +632,17 @@ Here are some alternatives:
 [Mono]:       https://www.mono-project.com/
 [nodejs]:     https://nodejs.org/
 [Guile]:      https://www.gnu.org/software/guile/
-[Erlang]:     https://erlang.org/
 
 [C]:          https://en.wikipedia.org/wiki/The_C_Programming_Language
 [C++]:        https://en.wikipedia.org/wiki/The_C++_Programming_Language
 [C#]:         http://csharp.net/
+[Erlang]:     https://erlang.org/
 [Haskell]:    https://haskell.org/
 [Java]:       https://www.java.com/
 [JavaScript]: https://en.wikipedia.org/wiki/JavaScript
 [Lua]:        https://www.lua.org/
 [Python]:     https://www.python.org/
+[R]:          https://www.r-project.org/
 [Ruby]:       https://www.ruby-lang.org/
 [Racket]:     https://racket-lang.org/
 [Scheme]:     http://www.scheme-reports.org/
