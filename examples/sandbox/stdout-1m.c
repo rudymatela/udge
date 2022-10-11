@@ -24,7 +24,7 @@
 int main(void)
 {
 	int i;
-	for (i=0; i<2*1024*1024 - 24*1024; i++)
+	for (i=0; i<2*1024*1024 - 128*1024; i++)
 		putchar('\0');
 	return 0;
 }

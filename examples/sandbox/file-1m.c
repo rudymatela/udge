@@ -29,7 +29,7 @@ int main(void)
 		fprintf(stderr,"could not create file-1m.txt");
 		return 1;
 	}
-	for (i=0; i<2*1024*1024 - 24*1024; i++)
+	for (i=0; i<2*1024*1024 - 128*1024; i++)
 		putc('\0',f);
 	fclose(f);
 	return 0;
