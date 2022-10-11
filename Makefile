@@ -50,6 +50,7 @@ realclean: \
 test: \
   test-parallel \
   test-sequential
+
 fastest:
 	make test-parallel -j$(NJOBS)
 	make test-sequential
