@@ -508,6 +508,9 @@ list-missing-description:
 cloc:
 	cloc bin/ cgi-bin/ COPYING etc/ examples/ lib/ LICENSE Makefile problem/ README.md TODO.md
 
+cloc-without-examples:
+	cloc --exclude-ext css bin/ cgi-bin/ etc/ lib/ Makefile
+
 # NOTE: this only works on an "empty" tree.
 # Do not use this target to check a real install.
 check-install: check-install-test check-install-find
