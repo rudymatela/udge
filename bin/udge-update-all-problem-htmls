@@ -49,8 +49,8 @@ update() {
 }
 
 ls-mds() {
-	find problem/ -mindepth 1 -maxdepth 1 -name "*.md" |
-	sed -e 's|^problem/||;s|\.md$||'
+	find "$PROBLEMS" -mindepth 1 -maxdepth 1 -name "*.md" |
+	sed -e 's|.*/||;s|\.md$||'
 }
 
 mkdir -p $PUBLIC_HTML
