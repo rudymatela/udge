@@ -118,15 +118,19 @@ all-stats() {
 
 
 short-stats() {
+	# anonimizer/pseudonym option
+	u=$user
+	[ -n "$1" ] && u="$1"
+
 	s="`$score $user`" || errxit "problem evaluating scores for $user using '$score $user'"
-	echo "`$score $user` $user"
+	echo "$s $u"
 }
 
 
 case "$action" in
 	overall) overall-stats ;;
 	problem) problem-stats "$@" ;;
-	short)   short-stats ;;
+	short)   short-stats "$@" ;;
 	all|"")  all-stats ;;
 	*)       errxit "Unknown stat type" ;;
 esac

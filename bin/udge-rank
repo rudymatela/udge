@@ -4,6 +4,8 @@
 #
 # Usage: udge-rank
 #
+# anonymized-by-request rank: udge-rank anon
+#
 #
 # Copyright (C) 2020-2022  Rudy Matela
 #
@@ -23,11 +25,16 @@
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
+anon="$1"
+
 i=0
 j=0
 for user in `ls-users`
 do
-	$bin/udge-user-stats $user short "$1" ||
+	pseudonym=
+	[ -n "$anon" ] && [ -f $USERS/$user/anonymous ] && pseudonym=a--
+	[ -n "$anon" ] && [ -f $USERS/$user/unlisted ] && continue
+	$bin/udge-user-stats $user short $pseudonym ||
 	warn "`basename $0`: problem retrieving user stats ($user), deleted?"
 done |
 # the multiple nk's here allow for negative numbers to be considered
