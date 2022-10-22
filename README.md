@@ -214,16 +214,28 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	which will depend on your Linux distribution.
 
-8. enable Udge on Nginx and reload the configuration:
+8. (optional) start and enable fcgiwrap and fcgiwrap.socket:
+
+	- `systemctl start fcgiwrap.socket`
+	- `systemctl start fcgiwrap`
+	- `systemctl enable fcgiwrap.socket`
+	- `systemctl enable fcgiwrap`
+
+9. enable Udge on Nginx and reload the configuration:
 
 		make enable-nginx-udge-site
 
-9. test that everything works
+10. test that everything works
 	by typing `udge.example.com` (or your selected domain of steps 5 and 6)
 	in your browser's address bar.
 	If this does not work try also `http://udge/` or `http://udge.example.com/`.
 
 	You should see the problem index and the menu at the top and bottom.
+
+11. (optional) install and configure a certificate with certbot
+
+		apt install certbot python-certbot-nginx  # or equivalent
+		sudo certbot --nginx -d udge.example.com -d www.udge.example.com
 
 Udge can be customized on it's configuration file `/etc/udgerc`.
 
