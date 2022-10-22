@@ -141,7 +141,7 @@ $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c
 
 $ ### ### After compiling and running, results are created on /run ### ###
-$ udge-compile-and-run 1 | sed -e "s/[23][0-9]K/30K/" | anonymize
+$ udge-compile-and-run 1 | sed -e "s/[234][0-9]K/30K/" | anonymize
 Compiling then running /var/lib/udge/slot/1/lock/<user>/YYYYMMDD-HHMMSS/hello-world.c.
 Created /run/udge/1/lock/run (30K)
 
