@@ -49,7 +49,7 @@ update() {
 }
 
 ls-mds() {
-	find "$PROBLEMS" -mindepth 1 -maxdepth 1 -name "*.md" |
+	find "$PROBLEMS/" -mindepth 1 -maxdepth 1 -name "*.md" |
 	sed -e 's|.*/||;s|\.md$||'
 }
 
