@@ -27,7 +27,7 @@ prefix="$(dirname "$(dirname "$0")")"
 set -e
 
 install-csss
-dst="$PUBLIC_HTML/rank.html"
+dst="$PUBLIC_HTML/$RANKPATH.html"
 tmpfile="$dst.html"
 lockfile -r0 "$tmpfile" || errxit "instance still running?  if not, delete '$tmpfile' and try again"
 chmod +w "$tmpfile"

@@ -16,6 +16,8 @@ BACKUPS=/var/lib/udge/backups
 RUN=/run/udge
 
 NAVBAR="submit rank"
+RANKPATH="rank"
+RANKNAME="User Rank"
 SCORE=fractions
 NEW_USER=true
 INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
