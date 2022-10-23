@@ -26,7 +26,7 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 
 index="`basename $1 .md`"
 
-copyright="^Copyright .*[0-9][0-9][0-9][0-9].*$"
+copyright='^\(Copyright\|©\|(C)\) .*[0-9][0-9][0-9][0-9].*$'
 
 page_title="`head -1 "$1"`"
 echo "$page_title" | grep -q "^##" &&
