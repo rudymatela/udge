@@ -84,7 +84,7 @@ at `human-timestamp $timestamp`
 </p>
 
 <p>
-Please check your <a href="/u/$user_value">user page</a>
+Please check your <a href="/u/`user-or-anon $user_value`">user page</a>
 for the results
 after a few minutes.
 </p>
