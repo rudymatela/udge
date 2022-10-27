@@ -1,0 +1,56 @@
+#!/usr/bin/env -S clitest -1
+#
+# Tests for the new user page.
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2020-2022  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+$ user=fnd`date "+%Y%m%d-%H%M%S"`
+$
+$ alias curl='curl -sw "%{http_code}\n"'
+$ alias display='grep -E "(<title>|<h.>|help-block|^[0-9]+$)" | sed -e "s/<[^>]*>//g"; echo'
+$
+$ curl -XGET udge/u | display
+Find your user page – Udge Online Judge
+Find your user page
+200
+
+$ curl -XPOST udge/new-user -Fuser=$user -Femail=u@example.com -Femail-confirmation=u@example.com -Fpassword=the-password -Fpassword-confirmation=the-password | display
+User created
+User created
+201
+
+$ udge-update-user-html $user | display
+
+$ curl -XPOST udge/u -Fuser=$user -Fpassword=not-the-password | display
+Find your user page – Udge Online Judge
+Find your user page
+invalid credentials
+invalid credentials (forgot password?)
+401
+
+$ curl -XPOST udge/u -Fuser=$user -Fpassword=the-password | display
+303
+
+$ curl -L udge/u -Fuser=$user -Fpassword=the-password | sed -e "s/fnd........-....../fndYYYYMMDD-HHMMDD/" | display 
+fndYYYYMMDD-HHMMDD @ Udge Online Judge
+fndYYYYMMDD-HHMMDD @ Udge Online Judge
+Scores by problem
+200
+
+$ udge-delete-user $user -f

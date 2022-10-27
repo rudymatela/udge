@@ -94,6 +94,19 @@ server {
 		error_page 429 /429.html;
 	}
 
+	location = /u {
+		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-find-user-page;
+		include fastcgi_params;
+		fastcgi_intercept_errors off;
+		fastcgi_connect_timeout 12s;
+		fastcgi_read_timeout    12s;
+		fastcgi_send_timeout    12s;
+		limit_req zone=udgecgi burst=9 delay=6; # alt: nodelay
+		limit_req_status 429;
+		error_page 429 /429.html;
+	}
+
 	error_page 403 =404 /404.html; # show 403 as 404
 	error_page 404 /404.html;
 	error_page 429 /429.html;

@@ -1,0 +1,107 @@
+#!/bin/bash
+#
+# cgi-bin/udge-user: find user progress page from login/password
+#
+#
+# Copyright (C) 2020-2022  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Recommended config using fcgiwrap:
+#
+# location = /u {
+#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-user;
+#   include fastcgi.conf;
+# }
+#
+# Use the above inside an existing server{} entry.
+
+set -e
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+. "$lib/html"
+. "$lib/cgi"
+
+get() {
+	http-header
+	html-header "Find your user page – $NAME"
+	html-navbar
+	echo "<h2>Find your user page</h2>"
+	echo "<form action="/u" method="POST" enctype="multipart/form-data">"
+	html-form-input text     user     "Username" 'username' "$user_error" "$user_value"
+	html-form-input password password 'Password' 'password' "$password_error"
+	echo '<input type="submit" name="submit" value="Find user page">'
+	echo "</form>"
+	html-navbar
+	html-footer
+}
+
+has-error() {
+	[ -n "$user_error"     ] ||
+	[ -n "$password_error" ] ||
+	false
+}
+
+
+success() {
+	status-303-see-other
+	echo "Location: /u/$user_value"
+	echo
+}
+
+
+post() {
+	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
+	$bin/cgi-create-data-files $tmpdata || errxit "problem while creating cgi-data-files"
+
+	user_fn="$tmpdata/user/value"
+	password_fn="$tmpdata/password/value"
+	user_value="`html-cat "$user_fn"`"
+
+	[ -s "$user_fn" ] && {
+		sane-file "$user_fn" || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	} || user_error="user is missing"
+
+	[ -s "$password_fn" ] || password_error="password is missing"
+
+	has-error && {
+		rm -r $tmpdata
+		status=status-422-unprocessable-entity get
+		return
+	}
+
+	check-user "$user_value" "$password_fn" ||
+	user_error="invalid credentials"
+	[ -z "$user_error" ] ||
+	password_error="invalid credentials <small>(<a href="/forgot-password">forgot password</a>?)</small>"
+	has-error && {
+		rm -r $tmpdata
+		status=status-401-unauthorized get
+		return
+	}
+
+	success
+
+	rm -r $tmpdata
+}
+
+
+case $REQUEST_METHOD in
+	GET)  get  ;;
+	POST) post ;;
+	*)    page-405-method-not-allowed ;;
+esac

@@ -47,6 +47,10 @@ status-202-accepted() {
 	echo 'Status: 202 Accepted'
 }
 
+status-303-see-other() {
+	echo 'Status: 303 See Other'
+}
+
 status-400-bad-request() {
 	echo 'Status: 400 Bad Request'
 }

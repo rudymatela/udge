@@ -130,6 +130,7 @@ test-web-parallel: \
   index.clitest \
   test-no-broken-links \
   new-user.clitest \
+  find-user.clitest \
   names.clitest \
   tidy
 
@@ -315,8 +316,9 @@ install-bin:
 	install -m 0755 bin/udge-update-rank-html         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-update-user-html         $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-user-stats               $(DESTDIR)$(PREFIX)/bin
-	install -m 0755 cgi-bin/udge-new-user $(DESTDIR)$(PREFIX)/cgi-bin
-	install -m 0755 cgi-bin/udge-submit   $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 cgi-bin/udge-new-user       $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 cgi-bin/udge-submit         $(DESTDIR)$(PREFIX)/cgi-bin
+	install -m 0755 cgi-bin/udge-find-user-page $(DESTDIR)$(PREFIX)/cgi-bin
 	install -m 0755 -d                         $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/bootstrap.css     $(DESTDIR)$(PREFIX)/lib/udge
 	install -m 0644 lib/udge/udge.css          $(DESTDIR)$(PREFIX)/lib/udge
