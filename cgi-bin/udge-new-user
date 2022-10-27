@@ -70,7 +70,7 @@ and name <strong>$name_value</strong>.
 </p>
 
 <p>
-Your <a href="/u/$user_value">user page</a> will be available in a few minutes.
+Your <a href="/u/`user-or-anon $user_value`">user page</a> will be available in a few minutes.
 </p>
 
 <p>
