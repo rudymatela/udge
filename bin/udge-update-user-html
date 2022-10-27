@@ -45,6 +45,7 @@ doit() {
 }
 
 [ ! -e "$user_html" ]                     && doit "created $user_html"
+[ "$user_html" -ot "$USERS/$user" ]       && doit "updated $user_html (new settings)"
 [ "$user_html" -ot "$SUBMISSIONS/$user" ] && doit "updated $user_html (new submissions)"
 [ "$user_html" -ot "$RESULTS/$user"  ]    && doit "updated $user_html (new results)"
 for d in `find $SLOTS -mindepth 3 -maxdepth 3 -name "$user" -type d`; do
