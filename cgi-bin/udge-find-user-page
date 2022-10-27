@@ -59,7 +59,12 @@ has-error() {
 
 success() {
 	status-303-see-other
-	echo "Location: /u/$user_value"
+	if [ -e "$USERS/$user_value/anonymous" ]
+	then
+		echo "Location: /u/`cat $USERS/$user_value/anonymous`"
+	else
+		echo "Location: /u/$user_value"
+	fi
 	echo
 }
 

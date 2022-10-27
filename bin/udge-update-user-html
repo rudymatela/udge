@@ -34,6 +34,12 @@ set -e
 
 install-csss
 
+[ -e "$USERS/$user/anonymous" ] && {
+	rm -f $user_html
+	anon="`cat $USERS/$user/anonymous`"
+	user_html="$PUBLIC_HTML/u/$anon.html"
+}
+
 doit() {
 	tmpfile="$user_html.html"
 	lockfile -r0 $tmpfile || errxit "instance still running?  if not, delete '$tmpfile' and try again"
