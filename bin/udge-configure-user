@@ -28,6 +28,7 @@ errxit() {
 	echo "  $0 <user> <command> [arguments]" >&2
 	echo "  $0 <user> anonymize"             >&2
 	echo "  $0 <user> deanonymize"           >&2
+	echo "  $0 <user> unlist"                >&2
 	exit 1
 }
 
@@ -58,11 +59,17 @@ anonymize() {
 deanonymize() {
 	# make the user appear named in the rank
 	# and make the user page URL based on username
-	rm -f $user_dir/anonymous
+	rm -f $user_dir/anonymous $user_dir/unlisted
+}
+
+unlist() {
+	anonymize
+	touch $user_dir/unlisted
 }
 
 case $cmd in
 	anonymize)   anonymize   ;;
 	deanonymize) deanonymize ;;
-	*)           errxit "Unknown command $cmd"
+	unlist)      unlist      ;;
+	*)           errxit "Unknown command $cmd" ;;
 esac
