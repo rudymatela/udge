@@ -298,6 +298,7 @@ install-bin:
 	install -m 0755 bin/udge-check                    $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-check-and-pick           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-compile-and-run          $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 bin/udge-configure-user           $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-create-run               $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-create-submission        $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 bin/udge-delete-user              $(DESTDIR)$(PREFIX)/bin
