@@ -29,7 +29,7 @@ mkrow() {
 	sed -e "s|^ *$c$c\(.*\)$|<pos<\1>><user<\2>><score<\3>>|" |
 	sed -e "s|  *|>><score<|g" |
 	sed -e "s|<pos<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
-	sed -e "s|<user<a-->>|<td>anonymous</td>|" |
+	sed -e "s|<user<-[^>]*>>|<td>anonymous</td>|" |
 	sed -e "s|<user<\([^>]*\)>>|<td><a href=\"/u/\1\">\1</a></td>|g" |
 	sed -e "s|<score<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
 	sed -e "s|^|<tr>|" |
