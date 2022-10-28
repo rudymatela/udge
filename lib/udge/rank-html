@@ -24,8 +24,9 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 
+denon="$1"
 anonymize="s|<user<-[^>]*>>|<td>anonymous</td>|"
-[ -n "$1" ] && anonymize="s|<user<-\([^/]*\)/\([^>]*\)>>|<td><a href=\"/u/\2\">\1</a></td>|g"
+[ -n "$denon" ] && anonymize="s|<user<-\([^/]*\)/\([^>]*\)>>|<td><a href=\"/u/\2\">\1</a></td>|g"
 
 mkrow() {
 	c='\([^ ]*\) *'
@@ -47,7 +48,7 @@ echo '<thead>'
 echo "# user `$lib/score/$SCORE`" | html-escape | mkrow | sed -e 's/<td/<th/;s/td>/th>/' | sed -e "s|<a[^>]*>||;s|</a>||"
 echo '</thead>'
 echo '<tbody>'
-$bin/udge-rank anon | mkrow
+$bin/udge-rank anon "$denon" | mkrow
 echo '</tbody>'
 echo '</table>'
 html-navbar "$RANKPATH"

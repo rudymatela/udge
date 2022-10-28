@@ -19,6 +19,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# For the regular rank at $RANKPATH use:
+#
+# * udge-update-rank-html
+#
+# For a deanonimized rank (intended for admins only), use:
+#
+# * ./bin/udge-update-rank-html /var/lib/udge/html/rank-some-long-url.html den
 
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
