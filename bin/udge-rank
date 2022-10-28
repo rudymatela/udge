@@ -34,11 +34,8 @@ i=0
 j=0
 for user in `ls-users`
 do
-	pseudonym=
-	[ -n "$anon" ] && [ -f $USERS/$user/anonymous ] &&
-	pseudonym=-$user/`cat "$USERS/$user/anonymous"`
 	[ -n "$anon" ] && [ -f $USERS/$user/unlisted ] && [ -z "$denon" ] && continue
-	$bin/udge-user-stats $user short $pseudonym ||
+	$bin/udge-user-stats $user short ||
 	warn "`basename $0`: problem retrieving user stats ($user), deleted?"
 done |
 # the multiple nk's here allow for negative numbers to be considered
@@ -50,6 +47,8 @@ do
 	[ "$scores" = "$prev" ] || j=$i
 	mkdir -p $RESULTS/$user
 	echo $j > $RESULTS/$user/rank
-	printf "%s %s %s\n" $j. $user "$scores"
+	name=$user
+	[ -n "$anon" ] && [ -f $USERS/$user/anonymous ] && name=-$user/`cat "$USERS/$user/anonymous"`
+	printf "%s %s %s\n" $j. $name "$scores"
 	prev="$scores"
 done | column -t
