@@ -24,12 +24,15 @@ prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
 
+anonymize="s|<user<-[^>]*>>|<td>anonymous</td>|"
+[ -n "$1" ] && anonymize="s|<user<-\([^/]*\)/\([^>]*\)>>|<td><a href=\"/u/\2\">\1</a></td>|g"
+
 mkrow() {
 	c='\([^ ]*\) *'
 	sed -e "s|^ *$c$c\(.*\)$|<pos<\1>><user<\2>><score<\3>>|" |
 	sed -e "s|  *|>><score<|g" |
 	sed -e "s|<pos<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
-	sed -e "s|<user<-[^>]*>>|<td>anonymous</td>|" |
+	sed -e "$anonymize" |
 	sed -e "s|<user<\([^>]*\)>>|<td><a href=\"/u/\1\">\1</a></td>|g" |
 	sed -e "s|<score<\([^>]*\)>>|<td style=\"text-align: right\">\1</td>|g" |
 	sed -e "s|^|<tr>|" |

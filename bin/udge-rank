@@ -32,7 +32,8 @@ j=0
 for user in `ls-users`
 do
 	pseudonym=
-	[ -n "$anon" ] && [ -f $USERS/$user/anonymous ] && pseudonym=-`cat "$USERS/$user/anonymous"`
+	[ -n "$anon" ] && [ -f $USERS/$user/anonymous ] &&
+	pseudonym=-$user/`cat "$USERS/$user/anonymous"`
 	[ -n "$anon" ] && [ -f $USERS/$user/unlisted ] && continue
 	$bin/udge-user-stats $user short $pseudonym ||
 	warn "`basename $0`: problem retrieving user stats ($user), deleted?"
