@@ -125,7 +125,7 @@ On [Ubuntu] or [Debian], you can install all dependencies with:
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang racket-minimal r
+	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils time discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang racket-minimal r
 
 [dependencies]: #dependencies
 
