@@ -3,6 +3,8 @@ TODO list for Udge
 
 * add configurable anonymity setting
 
+* replace references to `/rank` by `$RANKPATH`
+
 * replace the procmail dependency
 
 * carry on with the implementation of `udge-health`,
