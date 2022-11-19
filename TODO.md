@@ -19,6 +19,8 @@ TODO list for Udge
 For later
 ---------
 
+* workaround Lua v5.4 bug on Arch Linux (`add-lua.txt` and `rectangle-lua.txt`)
+
 * (help needed) Ubuntu / Debian package
 
 * (help needed) Dockerfile and docker container
