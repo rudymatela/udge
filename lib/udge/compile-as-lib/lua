@@ -21,4 +21,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 set -e
 
-luac -o "$2" "$1" "$3"
+cat "$1" "$3" >lib-and-main.lua
+luac -o "$2" lib-and-main.lua
+rm lib-and-main.lua
+
+# This script used to be simply:
+#
+#     luac -o "$2" "$1" "$3"
+#
+# Unfortunately, starting with lua5.4, this no longer works, see:
+#
+#     $ cp .../udge/examples/add/add.lua .
+#     $ cp .../udge/problem/add/6/main.lua .
+#     $ luac -o add add.lua main.lua
+#     free(): double free detected in tcache 2
+#     Aborted (core dumped)
+#
+# Things work fine with older versions of lua:
+#
+#     $ luac5.1 -o add add.lua main.lua
+#     $ luac5.2 -o add add.lua main.lua
+#     $ luac5.3 -o add add.lua main.lua
+#
+# With 5.4 things break:
+#
+#     $ luac5.4 -o add add.lua main.lua
+#     free(): double free detected in tcache 2
+#     Aborted (core dumped)
