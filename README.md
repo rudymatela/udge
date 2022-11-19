@@ -237,6 +237,9 @@ First make sure you have all the [dependencies] installed.  Then:
 		apt install certbot python-certbot-nginx  # or equivalent
 		sudo certbot --nginx -d udge.example.com -d www.udge.example.com
 
+12. (optional) add an extra `css` file to `/usr/local/lib/udge/extra.css`
+    if you would like to configure the appearance of Udge.
+
 Udge can be customized on it's configuration file `/etc/udgerc`.
 
 [Installing and Configuring]: #installing-and-configuring

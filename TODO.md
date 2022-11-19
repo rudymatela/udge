@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* allow an additional CSS file
-
 * add configurable anonymity setting
 
 * replace the procmail dependency

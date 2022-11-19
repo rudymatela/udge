@@ -20,15 +20,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# lists all css files in lib/udge/*.css
+# always starts with bootstrap then udge then others
+list-csss() {
+	echo bootstrap.css
+	echo udge.css
+	for css in $lib/*.css
+	do
+		basename $css
+	done | grep -vE "(bootstrap.css|udge.css)"
+}
+
 install-csss() {
 	mkdir -p "$PUBLIC_HTML"
 
-	dst="$PUBLIC_HTML/bootstrap.css"
-	[ -e "$dst" ] || cp -v "$lib/bootstrap.css" "$dst"
-
-	dst="$PUBLIC_HTML/udge.css"
-	[ -e "$dst" ]                  || cp -v "$lib/udge.css" "$dst"
-	[ "$dst" -nt "$lib/udge.css" ] || cp -v "$lib/udge.css" "$dst"
+	for css in `list-csss`
+	do
+		dst="$PUBLIC_HTML/$css"
+		[ -e "$dst" ]              || cp -v "$lib/$css" "$dst"
+		[ "$dst" -nt "$lib/$css" ] || cp -v "$lib/$css" "$dst"
+	done
 }
 
 html-header() {
@@ -39,9 +50,13 @@ cat <<HTML
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 HTML
 [ -n "$page_author" ] && echo "<meta name=\"author\" content=\"$page_author\">"
+for css in `list-csss`
+do
 cat <<HTML
-<link rel="stylesheet" href="/bootstrap.css">
-<link rel="stylesheet" href="/udge.css">
+<link rel="stylesheet" href="/$css">
+HTML
+done
+cat <<HTML
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$@</title>
 </head>
