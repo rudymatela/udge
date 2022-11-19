@@ -159,6 +159,14 @@ html-form-select() {
 	echo "</div>"
 }
 
+find-user-form() {
+	echo "<h2>Find your user page</h2>"
+	echo "<form action="/u" method="POST" enctype="multipart/form-data">"
+	html-form-input text     user     "Username" 'username' "$user_error" "$user_value"
+	html-form-input password password 'Password' 'password' "$password_error"
+	echo '<input type="submit" name="submit" value="Find user page">'
+	echo "</form>"
+}
 
 # are user and problem name sane?
 # usage: sane-file filename

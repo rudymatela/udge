@@ -23,6 +23,7 @@
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 . "$lib/html"
+$SHARING_OPTIONS && . "$lib/cgi"
 
 denon="$1"
 anonymize="s|<user<-[^>]*>>|<td>anonymous</td>|"
@@ -51,5 +52,6 @@ echo '<tbody>'
 $bin/udge-rank anon "$denon" | mkrow
 echo '</tbody>'
 echo '</table>'
+$SHARING_OPTIONS && find-user-form
 html-navbar "$RANKPATH"
 html-footer

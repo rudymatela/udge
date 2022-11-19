@@ -37,6 +37,7 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/cgi"
 
 get() {
+	SHARING_TEXT="Progress sharing on the <a href=\"/$RANKPATH\">$RANKPATH</a> page"
 	http-header
 	html-header "New user – $NAME"
 	html-navbar
@@ -48,6 +49,9 @@ get() {
 	html-form-input email    email-confirmation    'Email confirmation'    'email confirmation'    "$email_error"    "$email_confirmation_value"
 	html-form-input password password              'Password'              'password'              "$password_error" "$password_value"
 	html-form-input password password-confirmation 'Password confirmation' 'password confirmation' "$password_error" "$password_confirmation_value"
+	$SHARING_OPTIONS &&
+	ls-sharing-options |
+	html-form-select sharing "$SHARING_TEXT" 'select...'  "$sharing_error" "$sharing_value"
 	echo '<input type="submit" name="submit" value="Create new user">'
 	echo '</form>'
 	html-navbar
@@ -149,6 +153,22 @@ check-email() {
 }
 
 
+check-sharing() {
+	[ -s "$sharing_fn" ] || {
+		echo "please select an option"
+		return
+	}
+	sane-file "$problem_fn" || {
+		echo "invalid sharing option"
+		return
+	}
+	grep -qE "^(public|anonymous|unlisted)$" "$problem_fn" || {
+		echo "unrecognized sharing option"
+		return
+	}
+}
+
+
 post() {
 	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
 	$bin/cgi-create-data-files $tmpdata
@@ -163,6 +183,12 @@ post() {
 	name_value="`html-cat "$name_fn"`"
 	email_value="`html-cat "$email_fn"`"
 	email_confirmation_value="`html-cat "$email_confirmation_fn"`"
+
+	$SHARING_OPTIONS && {
+		sharing_fn="$tmpdata/sharing/value"
+		sharing_value="`html-cat "$sharing_fn"`"
+		sharing_error="`check-sharing`"
+	}
 
 	user_error="`check-user`"
 	password_error="`check-password`"
@@ -183,6 +209,14 @@ post() {
 	echo | cat $password_fn - $password_confirmation_fn |
 		$bin/udge-add-user $user_value $email_value "$name_value"
 	[ -n "$name_value" ] || name_value=$user_value
+
+	# we do not want to lock because of this, hence || true
+	$SHARING_OPTIONS &&
+	case "$sharing_value" in
+	anonymous) $bin/udge-configure-user $user_value anonymize || true ;;
+	unlisted)  $bin/udge-configure-user $user_value unlist    || true ;;
+	*)                                                           true ;;
+	esac
 
 	rm -r $tmpdata
 	status=status-201-created
