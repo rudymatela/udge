@@ -16,7 +16,7 @@ BACKUPS=/var/lib/udge/backups
 RUN=/run/udge
 
 NAVBAR="submit rank"
-RANKPATH="rank"
+RANKPATH=rank
 RANKNAME="User Rank"
 SCORE=fractions
 NEW_USER=true
