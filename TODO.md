@@ -1,12 +1,19 @@
 TODO list for Udge
 ==================
 
+* allow an additional CSS file
+
+* add configurable anonymity setting
+
+* replace the procmail dependency
+
 * carry on with the implementation of `udge-health`,
   see `TODO:` comments over there
 
 * remove the requirement of setting most options on `/etc/udgerc`
 
 * support multiple sites by multiple udgerc files (`UDGERC=/etc/blahrc`)
+	- problem: needs multiple `udge` users, would be tricky to configure
 
 
 For later
