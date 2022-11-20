@@ -19,21 +19,6 @@ For later
 
 * (help needed) Dockerfile and docker container
 
-* (quasi-stateless) User settings
-
-		udge.example.com/settings
-		# User settings
-		Username: ______
-		Password: ______
-
-		udge.example.com/settings/user
-		# User settings for user
-		Name: ______
-		Email: ______
-		Email confirmation: ______
-		Password: ______
-		To change your username please contact admin@udge.example.com
-
 * (quasi-stateless) Password reset
 
 		udge.example.com/reset-password
@@ -46,14 +31,27 @@ For later
 		new password: ______
 		new password confirmation: ______
 
+* (quasi-stateless) User settings
+
+		(see git logs for an attempt)
+
+		POST udge.example.com/settings
+		# User settings
+		Username: ______
+		Password: ______
+
+		POST udge.example.com/settings
+		# User settings for user
+		Name: ______
+		Email: ______
+		Email confirmation: ______
+		Password: ______
+		To change your username please contact admin@udge.example.com
+
 * do not allow two users with the same email (needs email confirmation)
 
 * cleanup any files created at `tmp` somehow
   `udge-health` needs to be completed first
-
-* Let users configure if they would be appear anonymized on the ranking and
-  have a private user page.  (All this as a single option.)
-  The private user page would be accessed on `/p/<user_sha1_base64_etc>`
 
 * Add a user's submission page?  `u/<user_name>/submissions`
 
