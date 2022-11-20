@@ -38,6 +38,12 @@ prefix="$(dirname "$(dirname "$0")")"
 
 get() {
 	SHARING_TEXT="Progress sharing on the <a href=\"/$RANKPATH\">$RANKPATH</a> page"
+	email_title='Email'
+	email_placeholder='email'
+	[ -n "$EMAIL_TEMPLATE" ] && {
+		email_title="Email (@${EMAIL_TEMPLATE#*@})"
+		email_placeholder="$EMAIL_TEMPLATE"
+	}
 	http-header
 	html-header "New user – $NAME"
 	html-navbar
@@ -45,7 +51,7 @@ get() {
 	echo '<form action="/new-user" method="POST" enctype="multipart/form-data">'
 	html-form-input text     user                  'Username'              'username'              "$user_error"     "$user_value"
 	html-form-input text     name                  'Name (optional)'       'name'                  "$name_error"     "$name_value"
-	html-form-input email    email                 'Email'                 'email'                 "$email_error"    "$email_value"
+	html-form-input email    email                 "$email_title"          "$email_placeholder"    "$email_error"    "$email_value"
 	html-form-input email    email-confirmation    'Email confirmation'    'email confirmation'    "$email_error"    "$email_confirmation_value"
 	html-form-input password password              'Password'              'password'              "$password_error" "$password_value"
 	html-form-input password password-confirmation 'Password confirmation' 'password confirmation' "$password_error" "$password_confirmation_value"
