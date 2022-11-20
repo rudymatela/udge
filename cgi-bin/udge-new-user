@@ -158,11 +158,11 @@ check-sharing() {
 		echo "please select an option"
 		return
 	}
-	sane-file "$problem_fn" || {
+	sane-file "$sharing_fn" || {
 		echo "invalid sharing option"
 		return
 	}
-	grep -qE "^(public|anonymous|unlisted)$" "$problem_fn" || {
+	grep -qE "^(public|anonymous|unlisted)$" "$sharing_fn" || {
 		echo "unrecognized sharing option"
 		return
 	}
