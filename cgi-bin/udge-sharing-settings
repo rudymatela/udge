@@ -1,0 +1,164 @@
+#!/bin/bash
+#
+# cgi-bin/udge-sharing-settings: user sharing settings page
+#
+#
+# Copyright (C) 2020-2022  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# This is not enabled by default and should only be enabled
+# in case you want to allow users to update their sharing/anonymity settings.
+#
+# Automated testing of this script is not included in Udge!
+# Be careful and test manually after deploying.
+#
+# Recommended config using fcgiwrap:
+#
+# location = /settings {
+#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-sharing-settings;
+#   include fastcgi.conf;
+# }
+#
+# Use the above inside an existing server{} entry.
+
+set -e
+
+prefix="$(dirname "$(dirname "$0")")"
+. "$prefix/lib/udge/core"
+. "$lib/html"
+. "$lib/cgi"
+
+get() {
+	http-header
+	html-header "User settings – $NAME"
+	html-navbar
+	echo "<h2>User settings</h2>"
+	echo '<form action="/settings" method="POST" enctype="multipart/form-data">'
+	html-form-input text     user                  'Username'              'username'              "$user_error"     "$user_value"
+	html-form-input password password              'Password'              'password'              "$password_error" "$password_value"
+	ls-sharing-options |
+	html-form-select sharing "Progress sharing on the <a href=\"$RANKPATH\">$RANKPATH</a> page" 'select...'  "$sharing_error" "$sharing_value"
+	echo '<input type="submit" name="submit" value="Update settings">'
+	echo '</form>'
+	html-navbar
+	html-footer
+}
+
+
+success() {
+	http-header
+	html-header "Settings updated"
+	html-navbar
+	cat <<HTML
+<h2>Settings updated</h2>
+
+<p>
+Successfully updated settings of
+user <strong>$user_value</strong>.
+</p>
+
+<p>
+Your changes may take a few minutes to be in effect.
+</p>
+HTML
+	html-navbar
+	html-footer
+}
+
+
+has-error() {
+	[ -n "$user_error"     ] ||
+	[ -n "$password_error" ] ||
+	[ -n "$sharing_error" ] ||
+	false
+}
+
+
+check-sharing() {
+	[ -s "$sharing_fn" ] || {
+		echo "please select an option"
+		return
+	}
+	sane-file "$sharing_fn" || {
+		echo "invalid sharing option"
+		return
+	}
+	grep -qE "^(public|anonymous|unlisted)$" "$sharing_fn" || {
+		echo "unrecognized sharing option"
+		return
+	}
+}
+
+
+post() {
+	tmpdata=`mktemp -d "/tmp/udge-tmpdata.XXXXXXXXXX"`
+	$bin/cgi-create-data-files $tmpdata || errxit "problem while creating cgi-data-files"
+
+	user_fn="$tmpdata/user/value"
+	password_fn="$tmpdata/password/value"
+	sharing_fn="$tmpdata/sharing/value"
+	user_value="`html-cat "$user_fn"`"
+	sharing_value="`html-cat "$sharing_fn"`"
+
+	[ -s "$user_fn" ] && {
+		sane-file "$user_fn" || user_error="invalid characters: use lowercase English letters, digits, dashes (-) or underscores (_)"
+	} || user_error="user is missing"
+
+	[ -s "$password_fn" ] || password_error="password is missing"
+
+	sharing_error="`check-sharing`"
+
+	has-error && {
+		rm -r $tmpdata
+		status=status-422-unprocessable-entity get
+		return
+	}
+
+	check-user "$user_value" "$password_fn" ||
+	user_error="invalid credentials"
+	[ -z "$user_error" ] ||
+	password_error="invalid credentials <small>(<a href="/forgot-password">forgot password</a>?)</small>"
+	has-error && {
+		rm -r $tmpdata
+		status=status-401-unauthorized get
+		return
+	}
+
+	# we do not want to lock because of this, hence || true
+	case "$sharing_value" in
+	public)    $bin/udge-configure-user $user_value deanonymize || true ;;
+	anonymous) $bin/udge-configure-user $user_value anonymize   || true ;;
+	unlisted)  $bin/udge-configure-user $user_value unlist      || true ;;
+	*)                                                             true ;;
+	esac
+
+	success
+
+	rm -r $tmpdata
+}
+
+
+if $SHARING_OPTIONS
+then
+	case $REQUEST_METHOD in
+	GET)  get  ;;
+	POST) post ;;
+	*)    page-405-method-not-allowed ;;
+	esac
+else
+	page-403-forbidden
+fi
