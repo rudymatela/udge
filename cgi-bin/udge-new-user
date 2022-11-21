@@ -97,6 +97,7 @@ has-error() {
 	[ -n "$user_error"     ] ||
 	[ -n "$password_error" ] ||
 	[ -n "$email_error"    ] ||
+	[ -n "$sharing_error"  ] ||
 	false
 }
 
