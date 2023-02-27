@@ -26,5 +26,9 @@
 # One can create a malicious zip file that expands to fill the disk
 # upon unzipping.   Use with care!
 set -e
+echo 'aborting catch-all zip compilation by default' >&2
+echo 'please set-up a custom per-problem compilation script' >&2
+# see problem/salaries for an example of how to do this
+exit 1
 unzip   "$1"             '*.c' '*.h'  # just C and header files
 cc $CFLAGS *.c -o "$2" -lm

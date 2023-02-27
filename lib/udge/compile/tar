@@ -26,5 +26,9 @@
 # One can create a malicious tarball file that expands to fill the disk
 # upon extraction.  Use with care!
 set -e
+echo 'aborting catch-all *.tar.* compilation by default' >&2
+echo 'please set-up a custom per-problem compilation script' >&2
+# see problem/salaries for an example of how to do this
+exit 1
 tar -xf "$1" --wildcards '*.c' '*.h'  # just C and header files
 cc $CFLAGS *.c -o "$2" -lm
