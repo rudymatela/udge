@@ -74,6 +74,9 @@ case "$src" in
 	*.rb)      lang=rb                                                       ;;
 	*.rkt)     lang=rkt                         ;extra_time=$RKT_EXTRA_TIME  ;;
 	*.scm)     lang=scm                                                      ;;
+	*.zip)     lang=zip                                                      ;;
+	*.tar)     lang=tar                                                      ;;
+	*.tar.*)   lang=tar                                                      ;;
 	*) errxit "unknown/unsupported file format or language"                  ;;
 esac
 
