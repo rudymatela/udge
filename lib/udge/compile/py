@@ -21,8 +21,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 set -e
 python=python3
-head -1 "$1" | grep -q python2 && python=python2
-head -1 "$1" | grep -q python3 && python=python3
 $python -mpy_compile "$1"
 echo "#!/usr/bin/env $python" > "$2"
 cat "$1" >> "$2"

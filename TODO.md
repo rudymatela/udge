@@ -1,9 +1,6 @@
 TODO list for Udge
 ==================
 
-* remove python2 support (and references to it)
-	- default to python3!
-
 * replace the procmail dependency
 
 * carry on with the implementation of `udge-health`,
