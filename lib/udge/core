@@ -138,10 +138,10 @@ ls-languages() {
 	[ -d $lib/compile ] || errxit "could not find $lib/compile"
 	for compiler in `find $lib/compile/ -mindepth 1 -maxdepth 1 -executable | sort`
 	do
-		language=`echo $compiler | sed -e "s,.*/,,"`
-		name=`head -3 $compiler | tail -1 | grep "^# " | sed -e "s/# //"`
-		[ -n "$name" ] || name=$language
-		printf "%-3s %s\n" $language $name
+		language="`echo $compiler | sed -e "s,.*/,,"`"
+		name="`head -3 $compiler | tail -1 | grep "^# " | sed -e "s/# //"`"
+		[ -n "$name" ] || name="$language"
+		printf "%-3s %s\n" "$language" "$name"
 	done
 }
 
