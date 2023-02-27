@@ -91,8 +91,10 @@ main=`basename $main`
 aslib=
 [ -f "$main" ] && aslib=-as-lib
 exe=exe$aslib$ext
+compile="$set/compile"
+[ -x "$compile" ] || compile="$lib/compile$aslib/$lang"
 [ -e $exe ] ||
-"$lib/compile$aslib/$lang" "$src" $exe "$main" >$dst/log 2>&1 ||
+"$compile" "$src" $exe "$main" >$dst/log 2>&1 ||
 verrxit "Failed to compile $src"
 cp $exe $dst
 touch $dst/log

@@ -117,6 +117,7 @@ test-judge: \
   runtime.clitest \
   cat.clitest \
   tee.clitest \
+  salaries.clitest \
   sandbox.clitest \
   hello.clitest
 
@@ -151,6 +152,8 @@ test-happy: \
   happy-day-1.clitest \
   happy-day-2.clitest \
   happy-day-3.clitest
+
+test-sanity: test-makefile test-no-broken-links
 
 test-no-broken-links: html
 	wget -nv -r udge/
@@ -350,6 +353,9 @@ install-bin:
 	install -m 0755 lib/udge/compile/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/r    $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0644 lib/udge/compile/zip  $(DESTDIR)$(PREFIX)/lib/udge/compile
+	install -m 0644 lib/udge/compile/tar  $(DESTDIR)$(PREFIX)/lib/udge/compile
+	# ^ zip & tar are intentionally disabled by default by not setting the execution bit
 	install -m 0755 -d                           $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/c    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
@@ -488,7 +494,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 125 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 134 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 

@@ -66,6 +66,7 @@ score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
   hello          -  0
   hello-world    -  0
   rectangle      -  0
+  salaries       -  0
   tee            -  0
 $ udge-user-stats $user2 | sed -e "s/position .* on the rank/position ? on the rank/"
 1 problems solved
@@ -79,6 +80,7 @@ score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
   hello          -  0
   hello-world  0/1  1  lua
   rectangle      -  0
+  salaries       -  0
   tee            -  0
 $
 $ udge-rank 2>/dev/null | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//;s/$user1/<u1>/;s/$user2/<u2>/;s/  */  /g"

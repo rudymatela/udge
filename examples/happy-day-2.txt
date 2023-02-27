@@ -68,6 +68,7 @@ score: 1 1 1 1 1 (=1 ≥⅔ ≥½ ≥⅓ >0)
   hello          -  0
   hello-world    -  0
   rectangle      -  0
+  salaries       -  0
   tee            -  0
 $ udge-latest-results $user | sed -e "s/^....-..-.. ..:..:../YYYY-MM-DD HH:MM:SS/; s/[0-9]ms/?ms/; s/[0-9]MB/?MB/"
 YYYY-MM-DD HH:MM:SS  add.c  0/6  ?ms  ?MB  incorrect output

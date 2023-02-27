@@ -1,0 +1,67 @@
+#!/usr/bin/env -S clitest -1
+#
+# Tests for the "salaries" example problem.
+#
+# This file is part of Udge.
+#
+#
+# Copyright (C) 2023  Rudy Matela
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# The "salaries" example problem is special because
+# it only support submissions in C wrapped in a zip or tarball
+# following a very specific format.
+#
+# It demonstrates the flexibility of Udge in allowing problems
+# to specify custom compilation scripts with detailed requirements.
+
+$ udge-judge salaries examples/salaries/employee.c
+aborted: only zip and tar submissions are supported for this problem
+compile error
+0/3
+$
+$ rm -f examples/salaries.zip
+$ rm -f examples/salaries.tar
+$ rm -f examples/salaries.tar.gz
+$
+$ zip -jq examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
+$ udge-judge salaries examples/salaries.zip
+3/3
+$
+$ tar -cf examples/salaries.tar -C examples/salaries {employee.h,employee.c,main.c}
+$ udge-judge salaries examples/salaries.tar
+3/3
+$
+$ tar -czf examples/salaries.tar.gz -C examples/salaries {employee.h,employee.c,main.c}
+$ udge-judge salaries examples/salaries.tar.gz
+3/3
+$
+$ rm -f examples/salaries.zip
+$ rm -f examples/salaries.tar
+$ rm -f examples/salaries.tar.gz
+$
+$ zip -q examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
+$ udge-judge salaries examples/salaries.zip 2>/dev/null
+compile error
+0/3
+$
+$ tar -cf examples/salaries.tar examples/salaries/{employee.h,employee.c,main.c}
+$ udge-judge salaries examples/salaries.tar 2>/dev/null
+compile error
+0/3
+$
+$ rm -f examples/salaries.zip
+$ rm -f examples/salaries.tar
