@@ -438,6 +438,19 @@ purge-users:
 # Use with care.  This can potentially delete more than wanted.
 uninstall-and-purge: uninstall purge-configs purge-users
 
+# uninstalls any css that is not vanilla udge
+purge-other-csss:
+	for fn in $(DESTDIR)$(PREFIX)/lib/udge/*.css; \
+	do \
+		bn="`basename $$fn`"; \
+		[ -e "lib/udge/$$bn" ] || { \
+			echo rm $$fn; \
+			rm      $$fn; \
+			echo rm /var/lib/udge/html/$$bn; \
+			rm      /var/lib/udge/html/$$bn; \
+		}; \
+	done
+
 # Run this as your regular user before dev-install
 # this task will fail after permissions are correctly setup
 # but at least var/problem will be relinked correctly.
