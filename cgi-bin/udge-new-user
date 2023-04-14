@@ -153,6 +153,15 @@ check-email() {
 		echo "invalid or unsupported email address"
 		return
 	}
+	# if the optional variable EMAIL_REGEX is set
+	# check if the given email matches it
+	[ -z "$EMAIL_REGEX" ] || LANG=C grep -qE "$EMAIL_REGEX" "$email_fn" || {
+		please_text=""
+		[ -z "$EMAIL_TEMPLATE" ] ||
+		please_text=", please use an email in the @${EMAIL_TEMPLATE#*@} domain"
+		echo "invalid domain$please_text"
+		return
+	}
 	diff -q $email_fn $email_confirmation_fn >/dev/null 2>/dev/null || {
 		echo "emails do not match"
 		return

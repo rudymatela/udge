@@ -23,6 +23,10 @@ NEW_USER=true
 SHARING_OPTIONS=false
 INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
 
+# Use these to restrict to emails of a specific domain:
+# EMAIL_TEMPLATE="email@etc.example.com"
+# EMAIL_REGEX='@(.*\.|)example.com$'
+
 JAVA_EXTRA_TIME=2
 CS_EXTRA_TIME=2
 ERL_EXTRA_TIME=6
