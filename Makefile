@@ -558,6 +558,9 @@ check-install-find:
 	diff -rud installable-files.txt installed-files.txt
 	rm installable-files.txt installed-files.txt
 
+ls-languages:
+	bash -c ". lib/udge/core; ls-languages"
+
 show-vars:
 	@[ "`id -u`" -ne 0 ] || echo 'Running as root'
 	@[ "`id -u`" -eq 0 ] || echo 'Running as non-root user'
