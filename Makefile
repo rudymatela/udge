@@ -561,6 +561,9 @@ check-install-find:
 ls-languages:
 	bash -c ". lib/udge/core; ls-languages"
 
+ls-problems:
+	bash -c ". lib/udge/core; ls-problems"
+
 show-vars:
 	@[ "`id -u`" -ne 0 ] || echo 'Running as root'
 	@[ "`id -u`" -eq 0 ] || echo 'Running as non-root user'
