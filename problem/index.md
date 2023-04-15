@@ -12,6 +12,7 @@ These are Udge's example problems:
 * [rectangle](/rectangle)
 * [cat](/cat)
 * [tee](/tee)
+* [salaries](/salaries)
 
 Add your problems on `/var/lib/udge/problem` and
 replace `/var/lib/udge/problem/index.md` with your own problem index.

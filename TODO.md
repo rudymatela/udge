@@ -1,10 +1,6 @@
 TODO list for Udge
 ==================
 
-* test zip submission through the web interface
-
-* add link to salaries in the index
-
 * replace the procmail dependency
 
 * carry on with the implementation of `udge-health`,
