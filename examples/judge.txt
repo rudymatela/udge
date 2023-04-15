@@ -27,7 +27,17 @@ $ udge-judge hello-world examples/hello-world/hello-world.c
 $ udge-judge hello-world examples/hello-world/0-wo.c
 incorrect output
 0/1
+$
 $ udge-judge hello path/to/file-not-found.c
 udge-judge, error: source file not found
+$
 $ udge-judge ehllo examples/hello/hello.c
 udge-judge, error: invalid problem code
+$
+$ rm -f examples/hello.zip{,.c}
+$ zip -jq examples/hello.zip examples/hello/hello.c
+$ mv    examples/hello.zip{,.c}
+$ udge-judge hello examples/hello.zip.c 2>/dev/null
+compile error
+0/6
+$ rm -f examples/hello.zip{,.c}
