@@ -353,9 +353,6 @@ install-bin:
 	install -m 0755 lib/udge/compile/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/r    $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0644 lib/udge/compile/zip  $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0644 lib/udge/compile/tar  $(DESTDIR)$(PREFIX)/lib/udge/compile
-	# ^ zip & tar are intentionally disabled by default by not setting the execution bit
 	install -m 0755 -d                           $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/c    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/hs   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib

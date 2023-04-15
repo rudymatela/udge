@@ -74,9 +74,6 @@ case "$src" in
 	*.rb)      lang=rb                                                       ;;
 	*.rkt)     lang=rkt                         ;extra_time=$RKT_EXTRA_TIME  ;;
 	*.scm)     lang=scm                                                      ;;
-	*.zip)     lang=zip                                                      ;;
-	*.tar)     lang=tar                                                      ;;
-	*.tar.*)   lang=tar                                                      ;;
 	*) errxit "unknown/unsupported file format or language"                  ;;
 esac
 
@@ -91,8 +88,16 @@ main=`basename $main`
 aslib=
 [ -f "$main" ] && aslib=-as-lib
 exe=exe$aslib$ext
-compile="$set/compile"
-[ -x "$compile" ] || compile="$lib/compile$aslib/$lang"
+compile="$set/../compile"
+[ -x "$compile" ] || {
+	compile="$lib/compile$aslib/$lang"
+	mime="`file -b --mime-type $src`"
+	case "$mime" in
+		text/*) ;;
+		application/javascript) ;;
+		*) errxit "unknown/unsupported file format ($mime)" ;;
+	esac
+}
 [ -e $exe ] ||
 "$compile" "$src" $exe "$main" >$dst/log 2>&1 ||
 verrxit "Failed to compile $src"

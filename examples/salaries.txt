@@ -29,39 +29,45 @@
 # to specify custom compilation scripts with detailed requirements.
 
 $ udge-judge salaries examples/salaries/employee.c
-aborted: only zip and tar submissions are supported for this problem
+aborted: only zip and tar submissions are supported for this problem, got text/x-c
 compile error
 0/3
 $
-$ rm -f examples/salaries.zip
-$ rm -f examples/salaries.tar
-$ rm -f examples/salaries.tar.gz
+$ rm -f examples/salaries.zip{,.c}
+$ rm -f examples/salaries.tar{,.c}
+$ rm -f examples/salaries.tar.gz{,.c}
 $
 $ zip -jq examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
-$ udge-judge salaries examples/salaries.zip
+$ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c
 3/3
 $
 $ tar -cf examples/salaries.tar -C examples/salaries {employee.h,employee.c,main.c}
-$ udge-judge salaries examples/salaries.tar
+$ mv examples/salaries.tar{,.c}
+$ udge-judge salaries examples/salaries.tar.c
 3/3
 $
 $ tar -czf examples/salaries.tar.gz -C examples/salaries {employee.h,employee.c,main.c}
-$ udge-judge salaries examples/salaries.tar.gz
+$ mv examples/salaries.tar.gz{,.c}
+$ udge-judge salaries examples/salaries.tar.gz.c
 3/3
 $
-$ rm -f examples/salaries.zip
-$ rm -f examples/salaries.tar
-$ rm -f examples/salaries.tar.gz
+$ rm -f examples/salaries.zip{,.c}
+$ rm -f examples/salaries.tar{,.c}
+$ rm -f examples/salaries.tar.gz{,.c}
 $
 $ zip -q examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
-$ udge-judge salaries examples/salaries.zip 2>/dev/null
+$ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c 2>/dev/null
 compile error
 0/3
 $
 $ tar -cf examples/salaries.tar examples/salaries/{employee.h,employee.c,main.c}
-$ udge-judge salaries examples/salaries.tar 2>/dev/null
+$ mv examples/salaries.tar{,.c}
+$ udge-judge salaries examples/salaries.tar.c 2>/dev/null
 compile error
 0/3
 $
-$ rm -f examples/salaries.zip
-$ rm -f examples/salaries.tar
+$ rm -f examples/salaries.zip{,.c}
+$ rm -f examples/salaries.tar{,.c}
+$ rm -f examples/salaries.tar.gz{,.c}
