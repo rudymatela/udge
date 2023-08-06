@@ -61,7 +61,7 @@ The only two dynamic pages are for submission and user creation.
 Udge is free/libre software.
 It is available under the GPLv2 license
 unless otherwise stated in specific files.
---- Copyright (C) 2015-2022  Rudy Matela ---
+--- Copyright (C) 2015-2023  Rudy Matela ---
 This program is distributed in the hope that it will be useful,
 but __without any warranty__; without even the implied warranty of
 __merchantability__ or __fitness for a particular purpose__.

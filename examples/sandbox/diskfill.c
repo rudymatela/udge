@@ -2,7 +2,7 @@
  * examples/sandbox/disk-usage.c: tries to fill up the disk
  *
  *
- * Copyright (C) 2020-2022  Rudy Matela
+ * Copyright (C) 2020-2023  Rudy Matela
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

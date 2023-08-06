@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
 <svg width="155mm" height="175mm" viewBox="-1 -1 602 682" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <!-- Copyright (C) 2020-2022 Rudy Matela -->
+  <!-- Copyright (C) 2020-2023 Rudy Matela -->
   <title>How Udge works</title>
-  <desc>How Udge works.  Copyright (C) 2020-2022 Rudy Matela</desc>
+  <desc>How Udge works.  Copyright (C) 2020-2023 Rudy Matela</desc>
   <g>
     <rect style="fill: #ffffff" x="360" y="40" width="100" height="40" rx="10" ry="10"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke: #002244" x="360" y="40" width="100" height="40" rx="10" ry="10"/>
@@ -262,7 +262,7 @@
   </g>
   <text font-size="4.51556" style="fill: #f8f8f8;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="55.9188">
     <tspan x="100" y="55.9188">title: How Udge works</tspan>
-    <tspan x="100" y="61.5632">Copyright (C) 2020-2022 Rudy Matela</tspan>
+    <tspan x="100" y="61.5632">Copyright (C) 2020-2023 Rudy Matela</tspan>
     <tspan x="100" y="67.2077">Available under the GPLv2 license.</tspan>
   </text>
   <g>

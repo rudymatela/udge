@@ -16,6 +16,6 @@ This is one of the default examples of Udge.  This differs from [hello](/hello)
 in that this version provides a simple 0/1 or 1/1 scoring.
 
 
-Copyright © 2020-2022  Rudy Matela
+Copyright © 2020-2023  Rudy Matela
 This text is available under the CC BY-SA 4.0 license
 or (at your option) the GFDL 1.3 license

@@ -2325,7 +2325,7 @@ all-user-htmls*#</dia:string>
         <dia:composite type="text">
           <dia:attribute name="string">
             <dia:string>#title: How Udge works
-Copyright (C) 2020-2022 Rudy Matela
+Copyright (C) 2020-2023 Rudy Matela
 Available under the GPLv2 license.#</dia:string>
           </dia:attribute>
           <dia:attribute name="font">

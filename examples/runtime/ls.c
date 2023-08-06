@@ -2,7 +2,7 @@
  * examples/runtime/ls.c: calls system("/usr/bin/ls /")
  *
  *
- * Copyright (C) 2020-2022  Rudy Matela
+ * Copyright (C) 2020-2023  Rudy Matela
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
