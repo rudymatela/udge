@@ -65,6 +65,8 @@ For later
 	- `https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies`
 	- `https://spectrum.ieee.org/top-programming-languages/`
 
+* (maybe) drop Erlang support?  Perhaps too hacky to maintain...
+
 * Fix Erlang/escript hackyness of copying the beam file.
 
 * Fix Erlang/escript slowness (cf. `ERL_EXTRA_TIME=3`).
