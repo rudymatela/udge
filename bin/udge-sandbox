@@ -44,6 +44,10 @@ prefix="$(dirname "$(dirname "$0")")"
 ENV=
 echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
 
+# NOTE: ulimit's manpage states that "-f" is in 512B blocks
+#       however "ulimit --help" states it is in 1024B / 1K
+#       We assume the "--help" option to be true below.
+
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
 ulimit -f 8192 # K, 8M, increased from 1M due to Erlang
