@@ -125,9 +125,16 @@ mkdir $dst/files
 [ -f thelib.beam ] && cp thelib.beam $dst/files # TODO: avoid this beam copy.  Hack!
 cd $dst/files
 
+# Hack for Erlang
+case $lang in
+	erl)  MAX_FILE_SIZE=32768 ;; # 32M, from the default of 1M
+	*)    MAX_FILE_SIZE=      ;; # use the default of 1
+esac
+
 # the order here does matter:
 # timeout should be after the $sandbox command
 # otherwise process termination may not work as nicely (cf. any 0-tle.c)
+MAX_FILE_SIZE=$MAX_FILE_SIZE \
 nice \
 	$sandbox \
 	timeout --preserve-status -v -k1s ${time_limit}s \

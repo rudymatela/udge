@@ -28,6 +28,7 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512 # processes
+[ -n "$MAX_FILE_SIZE" ] || MAX_FILE_SIZE=1024 # K, 1M
 
 # Erlang HACK:
 # on Ubuntu 20.04 with Erlang/OTP 22 [erts-10.6.4],
@@ -50,7 +51,7 @@ echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
 
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
-ulimit -f 32768 # K, 32M, increased from 1M and 8M due to Erlang
+ulimit -f $MAX_FILE_SIZE
 ulimit -i 8192 # signals # DO NOT COMMMIT, temporarily increased on 2022-10-22 due to
                          # timer_create: Resource temporarily unavailable
 ulimit -l 32 # K
