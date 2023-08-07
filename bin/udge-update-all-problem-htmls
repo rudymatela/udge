@@ -25,6 +25,11 @@ prefix="$(dirname "$(dirname "$0")")"
 force=$1
 bn=`basename $0`
 
+set -e
+
+# prevents warning "find: failed to restore initial working directory"
+cd /var/lib/udge
+
 doit() {
 	$what &&
 		echo "$bn: $@" ||
