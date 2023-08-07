@@ -28,6 +28,8 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
 [ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512 # processes
+
+# Hack for Erlang:
 [ -n "$MAX_FILE_SIZE" ] || MAX_FILE_SIZE=1024 # K, 1M
 
 # Erlang HACK:
@@ -55,7 +57,7 @@ echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
 
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
-ulimit -f $MAX_FILE_SIZE
+ulimit -f $MAX_FILE_SIZE # Hack for Erlang
 ulimit -i 1024 # signals
 ulimit -l 32 # K
 ulimit -m 2097152 # K, 2048M, 2G
