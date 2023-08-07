@@ -50,7 +50,7 @@ echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
 
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
-ulimit -f 8192 # K, 8M, increased from 1M due to Erlang
+ulimit -f 32768 # K, 32M, increased from 1M and 8M due to Erlang
 ulimit -i 8192 # signals # DO NOT COMMMIT, temporarily increased on 2022-10-22 due to
                          # timer_create: Resource temporarily unavailable
 ulimit -l 32 # K
