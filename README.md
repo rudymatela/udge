@@ -121,7 +121,7 @@ These are the optional dependencies:
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install make bash python nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev erlang-base racket r-base-core
+	apt-get install make bash python3 python-is-python3 nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev erlang-base racket r-base-core
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
@@ -205,7 +205,7 @@ First make sure you have all the [dependencies] installed.  Then:
 	located on `/etc/nginx/sites-available/udge`.
 
 
-7. (optional) start the Nginx server if you haven't done so with either:
+7. start the Nginx server if you haven't done so with either:
 
 	- `systemctl start nginx`; or
 	- `service nginx start`; or
@@ -214,7 +214,7 @@ First make sure you have all the [dependencies] installed.  Then:
 
 	which will depend on your Linux distribution.
 
-8. (optional) start and enable fcgiwrap and fcgiwrap.socket:
+8. start and enable fcgiwrap and fcgiwrap.socket:
 
 	- `systemctl start fcgiwrap.socket`
 	- `systemctl start fcgiwrap`
@@ -234,7 +234,7 @@ First make sure you have all the [dependencies] installed.  Then:
 
 11. (optional) install and configure a certificate with certbot
 
-		apt install certbot python-certbot-nginx  # or equivalent
+		apt install certbot python3-certbot-nginx  # or equivalent
 		sudo certbot --nginx -d udge.example.com -d www.udge.example.com
 
 12. (optional) add an extra `css` file to `/usr/local/lib/udge/extra.css`
