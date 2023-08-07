@@ -49,11 +49,14 @@ echo "$@" | grep -qE "(^| )escript " && ENV=HOME=/dev/null
 #       however "ulimit --help" states it is in 1024B / 1K
 #       We assume the "--help" option to be true below.
 
+# NOTE: If you get "timer_create: Resource temporarily unavailable"
+#       when running Udge (dev) tests in parallel, try increasing
+#       "-i" to 4096 or 8192 signals.
+
 ulimit -c 0 # K, disables core dumps
 ulimit -d 1048576 # K, 1024M, 1G
 ulimit -f $MAX_FILE_SIZE
-ulimit -i 8192 # signals # DO NOT COMMMIT, temporarily increased on 2022-10-22 due to
-                         # timer_create: Resource temporarily unavailable
+ulimit -i 1024 # signals
 ulimit -l 32 # K
 ulimit -m 2097152 # K, 2048M, 2G
 ulimit -n 256 # files
