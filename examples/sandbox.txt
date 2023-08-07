@@ -91,8 +91,7 @@ output limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/stdout-1m.c
-compile-and-run-1, error: output limit exceeded, cleaned up
-output limit exceeded
+incorrect output
 0/1
 $
 $ udge-judge hello-world examples/sandbox/stdout-1m1b.c
@@ -101,8 +100,7 @@ output limit exceeded
 0/1
 $
 $ udge-judge hello-world examples/sandbox/file-1m.c
-compile-and-run-1, error: output limit exceeded, cleaned up
-output limit exceeded
+incorrect output
 0/1
 $
 $ udge-judge hello-world examples/sandbox/file-1m1b.c

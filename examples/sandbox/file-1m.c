@@ -1,5 +1,5 @@
 /*
- * examples/sandbox/file-1m.c: creates an almost 2MiB file
+ * examples/sandbox/file-1m.c: produces 1MiB of output
  *
  *
  * Copyright (C) 2020-2023  Rudy Matela
@@ -29,7 +29,7 @@ int main(void)
 		fprintf(stderr,"could not create file-1m.txt");
 		return 1;
 	}
-	for (i=0; i<2*1024*1024 - 128*1024; i++)
+	for (i=0; i<1024*1024; i++)
 		putc('\0',f);
 	fclose(f);
 	return 0;

@@ -1,5 +1,5 @@
 /*
- * examples/sandbox/output-1m1b.c: produces 2MiB + 1B of output
+ * examples/sandbox/stdout-1m1b.c: creates a 1MiB+1B file
  *
  *
  * Copyright (C) 2020-2023  Rudy Matela
@@ -24,7 +24,7 @@
 int main(void)
 {
 	int i;
-	for (i=0; i<2*1024*1024; i++)
+	for (i=0; i<1024*1024; i++)
 		putchar('\0');
 	putchar('\0');
 	return 0;
