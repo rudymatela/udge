@@ -51,7 +51,7 @@ $
 $ udge-latest-results $user1 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/[0-9]ms/?ms/;s/[0-9]MB/?MB/"
 YYYY-MM-DD HH:MM:SS  add.c  4/6  ?ms  ?MB  incorrect output
 YYYY-MM-DD HH:MM:SS  add.c  6/6  ?ms  ?MB
-$ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/   *[0-9]*ms/  ?ms/;s/[0-9]MB/?MB/"
+$ udge-latest-results $user2 | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/   *[0-9]*ms/  ?ms/;s/  [ 0-9][0-9]MB/  ?MB/"
 YYYY-MM-DD HH:MM:SS  hello-world.lua  0/1  ?ms  ?MB  incorrect output
 YYYY-MM-DD HH:MM:SS  add.py           6/6  ?ms  ?MB
 $ udge-user-stats $user1 | sed -e "s/position .* on the rank/position ? on the rank/"
