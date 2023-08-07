@@ -27,7 +27,7 @@
 prefix="$(dirname "$(dirname "$0")")"
 . "$prefix/lib/udge/core"
 
-[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512
+[ -n "$MAX_PROCESSES" ] || MAX_PROCESSES=512 # processes
 
 # Erlang HACK:
 # on Ubuntu 20.04 with Erlang/OTP 22 [erts-10.6.4],
