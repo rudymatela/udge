@@ -507,4 +507,67 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-dasharray: 2; stroke: #888800" x1="578.25" y1="639.497" x2="572.776" y2="606.654"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #888800" points="575.88,610.072 572.592,605.551 570.948,610.894 "/>
   </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #004422" x1="568" y1="40" x2="597.682" y2="40"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #004422" points="593.353,42.5 598.353,40 593.353,37.5 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #442200" x1="568" y1="20" x2="598.658" y2="20"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #442200" points="594.329,22.5 599.329,20 594.329,17.5 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #002244" x1="568" y1="60" x2="598.658" y2="60"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #002244" points="594.329,62.5 599.329,60 594.329,57.5 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1.2; stroke: #004422" x1="568" y1="80" x2="594.908" y2="80"/>
+    <polygon style="fill: #004422" points="598.658,80 593.658,82.5 594.908,80 593.658,77.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 1.2; stroke: #004422" points="598.658,80 593.658,82.5 594.908,80 593.658,77.5 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1.2; stroke: #881100" x1="568" y1="100" x2="594.908" y2="100"/>
+    <polygon style="fill: #881100" points="598.658,100 593.658,102.5 594.908,100 593.658,97.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 1.2; stroke: #881100" points="598.658,100 593.658,102.5 594.908,100 593.658,97.5 "/>
+  </g>
+  <text font-size="6.4008" style="fill: #442200;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="18.4835">
+    <tspan x="592" y="18.4835">trigger</tspan>
+  </text>
+  <text font-size="6.4008" style="fill: #004422;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="38.4835">
+    <tspan x="592" y="38.4835">call</tspan>
+  </text>
+  <text font-size="6.4008" style="fill: #002244;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="58.4835">
+    <tspan x="592" y="58.4835">read</tspan>
+  </text>
+  <text font-size="6.4008" style="fill: #004422;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="78.4835">
+    <tspan x="592" y="78.4835">create</tspan>
+  </text>
+  <text font-size="6.4008" style="fill: #881100;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="98.4835">
+    <tspan x="592" y="98.4835">read</tspan>
+  </text>
+  <text font-size="6.4008" style="fill: #881100;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal" x="592" y="106.483">
+    <tspan x="592" y="106.483">delete</tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #ffffff" x="520" y="35" width="40" height="10"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #004422" x="520" y="35" width="40" height="10"/>
+    </g>
+    <text font-size="6.4008" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="540" y="42.4835">
+      <tspan x="540" y="42.4835">*program*</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="524" y="55" width="32" height="10" rx="2" ry="2"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke-linejoin: round; stroke: #002244" x="524" y="55" width="32" height="10" rx="2" ry="2"/>
+  </g>
+  <text font-size="6.4008" style="fill: #003366;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="540" y="62.4835">
+    <tspan x="540" y="62.4835">/data/</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="524" y="15" width="32" height="10" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke-linejoin: round; stroke: #442200" x="524" y="15" width="32" height="10" rx="20" ry="20"/>
+  </g>
+  <text font-size="6.4008" style="fill: #442200;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="540" y="22.4835">
+    <tspan x="540" y="22.4835">actor</tspan>
+  </text>
 </svg>
