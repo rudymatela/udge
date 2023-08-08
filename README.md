@@ -419,6 +419,8 @@ Here's a complete list of programs provided with Udge:
 
 ### A file-based Database
 
+![Udge relations](doc/udge-relations.svg)
+
 Udge stores information about problems, users, submissions and results
 in plain text files:
 

@@ -195,7 +195,7 @@ readme: var/html/README.html
 todo: var/html/TODO.html
 
 .PHONY: diagram
-diagram: var/html/doc/udge-diagram.svg
+diagram: var/html/doc/udge-diagram.svg var/html/doc/udge-relations.svg
 
 var/html/README.html: README.md
 	mkdir -p var/html
@@ -208,6 +208,10 @@ var/html/TODO.html: TODO.md
 var/html/doc/udge-diagram.svg: doc/udge-diagram.svg
 	mkdir -p var/html/doc
 	cp doc/udge-diagram.svg var/html/doc/udge-diagram.svg
+
+var/html/doc/udge-relations.svg: doc/udge-relations.svg
+	mkdir -p var/html/doc
+	cp doc/udge-relations.svg var/html/doc/udge-relations.svg
 
 tidy: \
 	udge.tidy \
