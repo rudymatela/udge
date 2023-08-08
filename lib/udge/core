@@ -107,6 +107,11 @@ maybe-cat() {
 	true
 }
 
+# returns true when there exists at least one user
+any-users() {
+	find $USERS/ -mindepth 1 -maxdepth 1 -type d | read
+}
+
 ls-users() {
 	[ -d $USERS ] || errxit "could not find USERS=$USERS"
 	find $USERS/ -mindepth 1 -maxdepth 1 -type d | sed -e "s,.*/,," | sort
