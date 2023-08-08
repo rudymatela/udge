@@ -1,12 +1,17 @@
 /*
- * examples/sandbox/fork4096.c: forks into 4096 processes
+ * examples/sandbox/fork4096.c: forks into 8192 processes
  *
- * This program forks into 4096 processes.
+ * This program forks into 8192 processes.
  * If Udge's sandbox functionality is working correctly then:
  *
  * $ udge-judge hello-world examples/sandbox/fork4096.c
  * time limit exceeded
  * 0/1
+ *
+ * The file name is a misnomer, it used to be that this
+ * forked into only 4096.  This has been doubled to accomodate
+ * parallel testing on systems with more processors (16)
+ * when MAX_PROCESSES is set to 8192.
  *
  *
  *
@@ -42,6 +47,7 @@ int main()
 	fork(); /* 1024 processes */
 	fork(); /* 2048 processes */
 	fork(); /* 4096 processes */
+	fork(); /* 8192 processes */
 	sleep(1);
 	return 0;
 }
