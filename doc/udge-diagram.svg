@@ -485,4 +485,26 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" x1="240" y1="480" x2="240" y2="446.236"/>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #004422" points="245,455.118 240,445.118 235,455.118 "/>
   </g>
+  <g>
+    <rect style="fill: #ffffff" x="540" y="580" width="60" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-dasharray: 2; stroke: #004422" x="540" y="580" width="60" height="20"/>
+  </g>
+  <text font-size="6.4008" style="fill: #004422;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="570" y="592.483">
+    <tspan x="570" y="592.483">*udge-judge*</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="560" y="640" width="40" height="20" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke-dasharray: 2; stroke: #888800" x="560" y="640" width="40" height="20" rx="20" ry="20"/>
+  </g>
+  <text font-size="6.4008" style="fill: #888800;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="580" y="652.483">
+    <tspan x="580" y="652.483">developer</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-linejoin: round; stroke-dasharray: 2; stroke: #002244" x1="435.195" y1="480.471" x2="552.25" y2="575.578"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #002244" points="547.661,575.07 553.118,576.283 550.814,571.19 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke-dasharray: 2; stroke: #888800" x1="578.25" y1="639.497" x2="572.776" y2="606.654"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #888800" points="575.88,610.072 572.592,605.551 570.948,610.894 "/>
+  </g>
 </svg>
