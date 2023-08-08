@@ -22,7 +22,7 @@
 #
 #
 # usage:
-#   check-1 path/to/problem/1 path/to/out/1
+#   check-1 path/to/problem/1 path/to/out/1 path/to/program.l [-v/--verbose]
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 
@@ -40,13 +40,16 @@ ferrxit() {
 
 sol="$1"
 run="$2"
-verbose="$3"
+src="$3"
+verbose="$4"
 
 [ -n "$sol" ] || ferrxit "must provide input folder"
 [ -n "$run" ] || ferrxit "must provide output folder"
 
 [ -d "$sol" ] || ferrxit "input folder not found: '$sol'"
 [ -d "$run" ] || warn    "output folder not found: '$run'"
+
+[ -f "$src" ] || warn "could not find source '$src', will not run check-src"
 
 check-exit-code() {
 	[ "$1" = 0 ]
@@ -120,4 +123,13 @@ fi
 if [ -e $sol/af ]
 then
 	$check $sol/af $run/files $verbose || fail "incorrect output files"
+fi
+
+# optionally check the source when check-src is present:
+#   formatting, author name, etc
+if [ -f "$src" ] && [ -x $sol/check-src ]
+then
+	reason="`grep reason: $sol/check-src | sed 's/.*reason: //' | head -1`"
+	[ -n "$reason" ] || reason="failed source check, please contact admin"
+	$sol/check-src $src $verbose || fail "$reason"
 fi

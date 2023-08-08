@@ -485,6 +485,7 @@ Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 * `1/time-limit`: (optional) the time limit in seconds (1 if not present)
 * `1/check-out`: (optional) script to check the output file
 * `1/check-exit-code`: (optional) script to check the exit code
+* `1/check-src`: (optional) script to check the source (e.g.: code-conventions)
 * `2/in`: test input 2
 * `2/out`: reference output 2
 * `2/...`: test set 2

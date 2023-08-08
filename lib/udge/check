@@ -22,7 +22,7 @@
 #
 #
 # usage:
-#   check path/to/problem path/to/out
+#   $ check path/to/problem path/to/out path/to/program.l [-v/--verbose]
 prefix="$(dirname "$(dirname "$(dirname "$0")")")"
 . "$prefix/lib/udge/core"
 
@@ -33,7 +33,8 @@ fail() {
 
 set="$1"
 out="$2"
-verbose="$3"
+src="$3"
+verbose="$4"
 
 [ -n "$set" ] || errxit "must provide input folder"
 [ -n "$out" ] || errxit "must provide output folder"
@@ -51,6 +52,6 @@ do
 	odir=$out$id
 	pts=`cator1 $idir/pts`
 	[ -n "$verbose" ] && echo "Checking $odir against $idir" >&2
-	$lib/check-1 $idir $odir $verbose && ((total+=$pts)) || break
+	$lib/check-1 $idir $odir $src $verbose && ((total+=$pts)) || break
 done
 echo $total/$outof

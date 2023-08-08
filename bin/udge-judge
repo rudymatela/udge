@@ -50,5 +50,5 @@ cd $tmpdir
 $compileandrun $problemdir $program $tmpdir/out $verbose
 [ `du -ms $tmpdir | cut -f1` -lt 12 ] || warn "big $tmpdir `du -hs $tmpdir | cut f1`"
 cd - >/dev/null
-$lib/check $problemdir $tmpdir/out $verbose
+$lib/check $problemdir $tmpdir/out $program $verbose
 rm -r $tmpdir
