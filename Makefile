@@ -81,7 +81,6 @@ test-judge: \
   hello-world-rb.clitest \
   hello-world-scm.clitest \
   hello-world-rkt.clitest \
-  hello-world-erl.clitest \
   hello-world-r.clitest \
   addition.clitest \
   addition-hs.clitest \
@@ -99,7 +98,6 @@ test-judge: \
   add-rb.clitest \
   add-scm.clitest \
   add-rkt.clitest \
-  add-erl.clitest \
   add-r.clitest \
   rectangle.clitest \
   rectangle-hs.clitest \
@@ -112,7 +110,6 @@ test-judge: \
   rectangle-rb.clitest \
   rectangle-scm.clitest \
   rectangle-rkt.clitest \
-  rectangle-erl.clitest \
   rectangle-r.clitest \
   runtime.clitest \
   cat.clitest \
@@ -355,7 +352,6 @@ install-bin:
 	install -m 0755 lib/udge/compile/rb   $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/rkt  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile
-	install -m 0755 lib/udge/compile/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 lib/udge/compile/r    $(DESTDIR)$(PREFIX)/lib/udge/compile
 	install -m 0755 -d                           $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/c    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
@@ -369,7 +365,6 @@ install-bin:
 	install -m 0755 lib/udge/compile-as-lib/rb   $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/rkt  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/scm  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
-	install -m 0755 lib/udge/compile-as-lib/erl  $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 lib/udge/compile-as-lib/r    $(DESTDIR)$(PREFIX)/lib/udge/compile-as-lib
 	install -m 0755 -d                       $(DESTDIR)$(PREFIX)/lib/udge/score
 	install -m 0755 lib/udge/score/fractions $(DESTDIR)$(PREFIX)/lib/udge/score
@@ -508,7 +503,7 @@ test-install:
 	make uninstall     DESTDIR=pkg/i
 	find pkg/i -type f
 	find pkg/i -type f | wc -l
-	[ "`find pkg/i -type f | wc -l`" -eq 134 ] # udgerc, nginx conf and problems
+	[ "`find pkg/i -type f | wc -l`" -eq 132 ] # udgerc, nginx conf and problems
 	rm -r pkg/i
 	rmdir pkg || true
 

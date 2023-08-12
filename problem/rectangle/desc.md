@@ -94,10 +94,6 @@ Alternatively, you can declare the rectangle type as:
 		public int Perimeter();
 	}
 
-#### Erlang
-
-	-record(rectangle, {width, height}).
-
 #### Java
 
 	public class Rectangle

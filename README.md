@@ -48,7 +48,6 @@ Features:
 	- [Ruby]
 	- [Racket]
 	- [Scheme]
-	- [Erlang]
 	- [R]
 
 [a simple plaintext file database]: #a-file-based-database
@@ -116,16 +115,15 @@ These are the optional dependencies:
 * [Ruby]       --- for [Ruby] submission support
 * [Racket]     --- for [Racket] submission support
 * [Guile]      --- for [Scheme] submission support
-* [Erlang]     --- for [Erlang] submission support
 * [R]          --- for [R] submission support
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install make bash python3 python-is-python3 nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev erlang-base racket r-base-core
+	apt-get install make bash python3 python-is-python3 nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev racket r-base-core
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils time discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile erlang racket-minimal r
+	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils time discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile racket-minimal r
 
 [dependencies]: #dependencies
 
@@ -654,7 +652,6 @@ Here are some alternatives:
 [C]:          https://en.wikipedia.org/wiki/The_C_Programming_Language
 [C++]:        https://en.wikipedia.org/wiki/The_C++_Programming_Language
 [C#]:         http://csharp.net/
-[Erlang]:     https://erlang.org/
 [Haskell]:    https://haskell.org/
 [Java]:       https://www.java.com/
 [JavaScript]: https://en.wikipedia.org/wiki/JavaScript
