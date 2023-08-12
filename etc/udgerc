@@ -27,6 +27,10 @@ INVALID_USER_REGEX="(^admin|admin$|[^a-z]admin|admin[^a-z])"
 # EMAIL_TEMPLATE="email@etc.example.com"
 # EMAIL_REGEX='@(.*\.|)example.com$'
 
+# Use this to place a message above the "Submit" button.
+# SUBMIT_MESSAGE="<p>Click the button below to submit your solution.</p>"
+# Make sure it is tidy:  $ curl -sL udge.example.com/submit | tidy -qe
+
 JAVA_EXTRA_TIME=2
 CS_EXTRA_TIME=2
 RKT_EXTRA_TIME=2

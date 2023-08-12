@@ -51,6 +51,7 @@ get() {
 	html-form-input file     program  'Program'  'program'  "$program_error"  "$program_value"
 	ls-problems  | html-form-select problem  'Problem id' 'select problem...'  "$problem_error"  "$problem_value"
 	ls-languages | html-form-select language 'Language'   'select language...' "$language_error" "$language_value"
+	[ -n "$SUBMIT_MESSAGE" ] && echo "$SUBMIT_MESSAGE"
 	echo "<input type="submit" name="submit" value="Submit">"
 	echo "</form>"
 	html-navbar submit
