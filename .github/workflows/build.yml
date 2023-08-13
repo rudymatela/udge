@@ -1,0 +1,18 @@
+# Builds and tests Udge on GitHub Actions
+#
+# 2023  Rudy Matela
+
+name: build
+on: [push]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: make --version
+      - run: diff --version
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # - run: make test-makefile # needs "dev" install
+      - run: make test-makefile-coverage
