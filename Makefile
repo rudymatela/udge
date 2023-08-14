@@ -436,14 +436,13 @@ uninstall-and-purge: uninstall purge-configs purge-users
 
 # uninstalls any css that is not vanilla udge
 purge-other-csss:
-	for fn in $(DESTDIR)$(PREFIX)/lib/udge/*.css; \
+	for fn in /var/lib/udge/html/*.css; \
 	do \
 		bn="`basename $$fn`"; \
-		[ -e "lib/udge/$$bn" ] || { \
+		[ -f "lib/udge/$$bn" ] || \
+		[ -f "/var/lib/udge/problem/$$bn" ] || { \
 			echo rm $$fn; \
 			rm      $$fn; \
-			echo rm /var/lib/udge/html/$$bn; \
-			rm      /var/lib/udge/html/$$bn; \
 		}; \
 	done
 
