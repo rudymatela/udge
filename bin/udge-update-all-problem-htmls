@@ -30,6 +30,18 @@ set -e
 # prevents warning "find: failed to restore initial working directory"
 cd $prefix
 
+install-csss() {
+	mkdir -p "$PUBLIC_HTML"
+
+	for css in $lib/*.css $PROBLEMS/*.css
+	do
+		dst="$PUBLIC_HTML/`basename $css`"
+		[ -f "$css" ]         || continue
+		[ -e "$dst" ]         || cp -v "$css" "$dst"
+		[ "$dst" -nt "$css" ] || cp -v "$css" "$dst"
+	done
+}
+
 doit() {
 	$what &&
 		echo "$bn: $@" ||
@@ -59,6 +71,7 @@ ls-mds() {
 }
 
 mkdir -p $PUBLIC_HTML
+install-csss
 for md in `ls-mds`
 do
 	# index.md, 404.md, forgot-password.md

@@ -25,7 +25,6 @@ prefix="$(dirname "$(dirname "$0")")"
 . "$lib/html"
 force=$1
 
-install-csss
 for user in `ls-users`
 do
 	$bin/udge-update-user-html $user $force

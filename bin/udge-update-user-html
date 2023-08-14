@@ -32,8 +32,6 @@ mkdir -p "$PUBLIC_HTML/u"
 
 set -e
 
-install-csss
-
 [ -e "$USERS/$user/anonymous" ] && {
 	rm -f $user_html
 	anon="`cat $USERS/$user/anonymous`"

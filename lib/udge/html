@@ -23,22 +23,10 @@
 # lists all css files in lib/udge/*.css
 # always starts with bootstrap then udge then others
 list-csss() {
-	echo bootstrap.css
-	echo udge.css
-	for css in $lib/*.css
+	for css in $PROBLEMS/*.css
 	do
+		[ -f "$css" ] || break
 		basename $css
-	done | grep -vE "(bootstrap.css|udge.css)"
-}
-
-install-csss() {
-	mkdir -p "$PUBLIC_HTML"
-
-	for css in `list-csss`
-	do
-		dst="$PUBLIC_HTML/$css"
-		[ -e "$dst" ]              || cp -v "$lib/$css" "$dst"
-		[ "$dst" -nt "$lib/$css" ] || cp -v "$lib/$css" "$dst"
 	done
 }
 
@@ -50,7 +38,7 @@ cat <<HTML
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 HTML
 [ -n "$page_author" ] && echo "<meta name=\"author\" content=\"$page_author\">"
-for css in `list-csss`
+for css in bootstrap.css udge.css `list-csss`
 do
 cat <<HTML
 <link rel="stylesheet" href="/$css">
