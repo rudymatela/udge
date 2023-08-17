@@ -83,6 +83,17 @@ Alternatively, you can declare the rectangle type as:
 
 	data Rectangle = Rectangle Int Int
 
+#### C++
+
+	class rectangle
+	{
+		public:
+		int width;
+		int height;
+		int area();
+		int perimeter();
+	};
+
 #### C♯
 
 	class Rectangle
@@ -129,7 +140,12 @@ Alternatively, you can declare the rectangle type as:
 	  end
 
 	  def area
+	    ...
+	  end
+
 	  def perimeter
+	    ...
+	  end
 	end
 
 #### Racket
