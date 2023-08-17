@@ -26,7 +26,7 @@
 
 if [ -n "$3" ]
 then
-    diff -rud -iEZbwB "$1" "$2"
+	diff -rud -iEZbwB "$1" "$2"
 else
-    diff -q   -iEZbwB "$1" "$2" >/dev/null
+	diff -q   -iEZbwB "$1" "$2" >/dev/null
 fi

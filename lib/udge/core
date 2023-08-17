@@ -228,15 +228,15 @@ finish() {
 # accepts -STOP -CONT or -KILL as arguments
 # defaults to -TERM
 killallother() {
-    me=$(whoami)
-    for pid in $(pgrep -u$me | grep -v "^$$\$")
-    do
-        kill $1 $pid 2>/dev/null || true
-    done
+	me=$(whoami)
+	for pid in $(pgrep -u$me | grep -v "^$$\$")
+	do
+		kill $1 $pid 2>/dev/null || true
+	done
 }
 
 stopthenkillallother() {
-    killallother -STOP
-    killallother -STOP
-    killallother -KILL
+	killallother -STOP
+	killallother -STOP
+	killallother -KILL
 }
