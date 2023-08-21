@@ -47,13 +47,13 @@ udge=`stat -c%U $SLOTS`
 group=`stat -c%G $SLOTS`
 
 echo "Changing ownership of $RUN to $udge.$group"
-chown $udge.$group $RUN
+chown $udge:$group $RUN
 for slot in `ls-slots`
 do
 	udgeslot=udge-$slot
 	id -g $udgeslot >/dev/null 2>&1 || udgeslot=$group
 	echo "Changing ownership of $RUN/$slot to $udge.$udgeslot"
-	chown $udge.$udgeslot $RUN/$slot
+	chown $udge:$udgeslot $RUN/$slot
 done
 
 ls -l $RUN

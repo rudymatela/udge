@@ -391,12 +391,12 @@ setup-users:
 	# by the udge user.
 	#
 	# html, slot and results need to be writable by the udge user.
-	chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/users
-	chown $(HTTPD_USER).udge $(DESTDIR)/var/lib/udge/submissions
-	chown          udge.udge $(DESTDIR)/var/lib/udge/html
-	chown -R       udge.udge $(DESTDIR)/var/lib/udge/slot
-	chown          udge.udge $(DESTDIR)/var/lib/udge/results
-	chown          udge.udge $(DESTDIR)/var/lib/udge/backups
+	chown $(HTTPD_USER):udge $(DESTDIR)/var/lib/udge/users
+	chown $(HTTPD_USER):udge $(DESTDIR)/var/lib/udge/submissions
+	chown          udge:udge $(DESTDIR)/var/lib/udge/html
+	chown -R       udge:udge $(DESTDIR)/var/lib/udge/slot
+	chown          udge:udge $(DESTDIR)/var/lib/udge/results
+	chown          udge:udge $(DESTDIR)/var/lib/udge/backups
 
 # Use with care.  This can potentially delete more than wanted.
 uninstall:
