@@ -91,7 +91,6 @@ To install and run Udge, you will need:
 * [diffutils]  --- for `diff` and whatnot
 * [discount]   --- for `markdown`
 * [fakechroot] --- for sandboxing
-* [procmail]   --- for `lockfile`
 
 You probably already have the following installed,
 but it does not hurt to double-check:

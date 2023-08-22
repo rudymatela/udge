@@ -39,9 +39,8 @@ set -e
 }
 
 doit() {
-	tmpfile="$user_html.html"
-	lockfile -r0 $tmpfile || errxit "instance still running?  if not, delete '$tmpfile' and try again"
-	chmod +w $tmpfile
+	tmpfile="`mktemp $user_html.XXXXXX`"
+	chmod +r "$tmpfile"
 	$lib/user-html "$user" > $tmpfile
 	mv $tmpfile $user_html
 	echo "`basename $0`: $@"

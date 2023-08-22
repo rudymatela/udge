@@ -1,8 +1,6 @@
 TODO list for Udge
 ==================
 
-* replace the procmail dependency
-
 * carry on with the implementation of `udge-health`,
   see `TODO:` comments over there
 

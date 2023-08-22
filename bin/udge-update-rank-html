@@ -37,8 +37,7 @@ set -e
 
 dst="$1"
 [ -n "$dst" ] || dst="$PUBLIC_HTML/$RANKPATH.html"
-tmpfile="$dst.html"
-lockfile -r0 "$tmpfile" || errxit "instance still running?  if not, delete '$tmpfile' and try again"
-chmod +w "$tmpfile"
+tmpfile="`mktemp $dst.XXXXXX`"
+chmod +r "$tmpfile"
 $lib/rank-html "$2" > $tmpfile
 mv "$tmpfile" "$dst"
