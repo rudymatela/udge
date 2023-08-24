@@ -37,6 +37,7 @@ jobs:
       #- run: make judge.clitest hello.clitest add.clitest runtime.clitest
 
       - run: make html
+      - run: sudo ln -rsf /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
       - run: sudo make start-services
       - run: sudo make enable-nginx-udge-site
       - run: curl -s udge
