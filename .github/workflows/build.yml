@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         uses: tecolicom/actions-use-apt-tools@v1 # MIT license
         with:
-          tools: clitest
+          tools: clitest fcgiwrap
 
       - run: echo $0
       - run: echo $SHELL
@@ -22,7 +22,7 @@ jobs:
       - run: ghc --version
       - run: clitest --version
       - run: nginx -v
-      - run: which fcgiwrap
+      - run: fcgiwrap -h
 
       - name: Check out repository
         uses: actions/checkout@v3
