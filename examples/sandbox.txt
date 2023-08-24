@@ -40,7 +40,6 @@ runtime error
 0/1
 $
 $ cc examples/sandbox/socket.c -o $tmp
-$ $tmp
 $ $tmp | grep "<h.>" | sed -e "s/<[^>]*>//g" | head -1
 Udge Online Judge
 $ MAX_PROCESSES=2048 udge-sandbox $tmp

@@ -31,8 +31,8 @@ jobs:
 
       - run: make test-makefile
       - run: make judge.clitest hello.clitest add.clitest runtime.clitest
-      # sandbox.clitest needs nginx due to network test
 
+      - run: sudo make enable-nginx-udge-site
       - run: sudo make start-services
-      - run: curl 127.0.0.1
+
       - run: make sandbox.clitest
