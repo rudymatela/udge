@@ -24,20 +24,21 @@ jobs:
       - run: clitest --version
       - run: nginx -v
       - run: fcgiwrap -h
+      - run: cat /etc/hosts
 
       - name: Check out repository
         uses: actions/checkout@v3
 
       - run: make dev-setup
       - run: sudo make dev-install
+      - run: sudo sed -ie 's/localhost$/localhost udge udge.example.com/' /etc/hosts
 
       - run: make test-makefile
       #- run: make judge.clitest hello.clitest add.clitest runtime.clitest
 
       - run: make html
-      - run: cat /etc/hosts
-      - run: curl udge
       - run: sudo make start-services
       - run: sudo make enable-nginx-udge-site
+      - run: curl -s udge
 
       - run: make sandbox.clitest
