@@ -34,4 +34,5 @@ jobs:
       # sandbox.clitest needs nginx due to network test
 
       - run: sudo make start-services
+      - run: curl 127.0.0.1
       - run: make sandbox.clitest
