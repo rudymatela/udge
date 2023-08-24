@@ -31,10 +31,22 @@ jobs:
 
       - run: sudo make install
       - run: sudo sed -ie 's/localhost$/localhost udge udge.example.com/' /etc/hosts
+
+      - run: make test-makefile
+      #- run: make judge.clitest hello.clitest add.clitest runtime.clitest
+
+      # - run: make html
       - run: sudo -u udge udge-update-all-problem-htmls
       - run: sudo -u udge udge-update-rank-html
+
+      - run: sudo ln -rsf /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
       - run: sudo make start-services
       - run: sudo make enable-nginx-udge-site
 
-      - run: make test-makefile
-      - run: make judge.clitest hello.clitest add.clitest runtime.clitest sandbox.clitest
+      - run: curl -s udge
+      - run: tail /var/log/nginx/access.log
+      - run: ls -l /var/lib/udge
+      - run: ls -l /var/lib/udge/html
+      - run: ls -l /etc/nginx/sites-enabled
+
+      - run: make sandbox.clitest
