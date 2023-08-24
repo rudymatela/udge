@@ -539,7 +539,7 @@ check-install-test:
 	diff -rud bin     $(DESTDIR)$(PREFIX)/bin
 	diff -rud cgi-bin $(DESTDIR)$(PREFIX)/cgi-bin
 	diff -rud etc/udgerc $(DESTDIR)/etc/udgerc
-	[ \! -e "/etc/nginx/sites-enabled" ] || \
+	[ \! -e "/etc/nginx/sites-enabled/udge" ] || \
 	diff -rud /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
 	[ -d $(DESTDIR)/var/lib/udge ]
 

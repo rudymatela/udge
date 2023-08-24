@@ -8,11 +8,25 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        uses: tecolicom/actions-use-apt-tools@v1 # MIT license
+        with:
+          tools: clitest
+
+      - run: echo $0
+      - run: echo $SHELL
       - run: make --version
       - run: diff --version
+      - run: gcc --version
+      - run: python --version
+      - run: ghc --version
+      - run: clitest --version
 
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # - run: make test-makefile # needs "dev" install
-      - run: make test-makefile-coverage
+      - run: sudo make install
+
+      - run: make test-makefile
+      - run: make judge.clitest hello.clitest add.clitest runtime.clitest
+      # sandbox.clitest needs nginx due to network test

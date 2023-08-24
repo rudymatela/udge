@@ -34,10 +34,10 @@ $
 $ udge-judge ehllo examples/hello/hello.c
 udge-judge, error: invalid problem code
 $
-$ rm -f examples/hello.zip{,.c}
+$ rm -f examples/hello.zip examples/hello.zip.c
 $ zip -jq examples/hello.zip examples/hello/hello.c
-$ mv    examples/hello.zip{,.c}
+$ mv    examples/hello.zip examples/hello.zip.c
 $ udge-judge hello examples/hello.zip.c 2>/dev/null
 compile error
 0/6
-$ rm -f examples/hello.zip{,.c}
+$ rm -f examples/hello.zip examples/hello.zip.c
