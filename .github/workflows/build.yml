@@ -21,6 +21,8 @@ jobs:
       - run: python --version
       - run: ghc --version
       - run: clitest --version
+      - run: nginx -v
+      - run: which fcgiwrap
 
       - name: Check out repository
         uses: actions/checkout@v3
