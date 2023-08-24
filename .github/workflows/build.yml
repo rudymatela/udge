@@ -32,7 +32,7 @@ jobs:
       - run: make test-makefile
       - run: make judge.clitest hello.clitest add.clitest runtime.clitest
 
-      - run: sudo make enable-nginx-udge-site
       - run: sudo make start-services
+      - run: sudo make enable-nginx-udge-site
 
       - run: make sandbox.clitest
