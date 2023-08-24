@@ -42,5 +42,6 @@ jobs:
       - run: curl -s udge
       - run: tail /var/log/nginx/access.log
       - run: cat /etc/nginx/nginx.conf
+      - run: ls -l /etc/nginx/sites-enabled
 
       - run: make sandbox.clitest
