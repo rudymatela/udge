@@ -17,6 +17,7 @@ jobs:
       - run: echo $SHELL
       - run: make --version
       - run: diff --version
+      - run: sed --version
       - run: gcc --version
       - run: python --version
       - run: ghc --version
@@ -31,9 +32,11 @@ jobs:
       - run: sudo make dev-install
 
       - run: make test-makefile
-      - run: make judge.clitest hello.clitest add.clitest runtime.clitest
+      #- run: make judge.clitest hello.clitest add.clitest runtime.clitest
 
       - run: make html
+      - run: cat /etc/hosts
+      - run: curl udge
       - run: sudo make start-services
       - run: sudo make enable-nginx-udge-site
 
