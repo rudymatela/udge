@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         uses: tecolicom/actions-use-apt-tools@v1 # MIT license
         with:
-          tools: clitest fcgiwrap
+          tools: clitest fcgiwrap discount
 
       - run: echo $0
       - run: echo $SHELL
@@ -27,7 +27,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - run: sudo make install
+      - run: make dev-setup
+      - run: sudo make dev-install
 
       - run: make test-makefile
       - run: make judge.clitest hello.clitest add.clitest runtime.clitest
