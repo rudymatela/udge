@@ -65,7 +65,28 @@ Allocated 1Mb.
 Allocated 256Mb.
 Failed to allocate 1Gb.: Cannot allocate memory
 $
+$ cc examples/sandbox/pinfo.c -o $tmp
+$ udge-sandbox 2>/dev/null $tmp | grep -vE '(/tmp/|cwd:)'
+
+stdout is working
+stdout is working
+whoami: root
+pid: 1
+$
 $ rm $tmp
+$
+$ udge-sandbox examples/sandbox/pinfo.sh 2>&1 | sed -e 's#/.*/udge#/.../udge#'
+PWD=/.../udge
+SHLVL=1
+_=/usr/bin/env
+
+stdout is working
+stdout is working
+stderr is working
+
+/.../udge
+root
+1
 $
 $ udge-judge hello-world examples/sandbox/sigterm.c
 time limit exceeded

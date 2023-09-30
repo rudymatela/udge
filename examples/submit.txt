@@ -195,7 +195,7 @@ Submit your solution
 program is missing
 422
 
-$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/pinfo.c | display
+$ curl -XPOST udge/submit -Fuser=$user -Fpassword=the-password -Flanguage=c -Fprogram=@examples/sandbox/pinfo.c | display
 Submit your solution – Udge Online Judge
 Submit your solution
 select the problem
