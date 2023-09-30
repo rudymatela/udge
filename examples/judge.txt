@@ -42,13 +42,5 @@ compile error
 0/6
 $ rm -f examples/hello.zip examples/hello.zip.c
 $
-$ file -bi examples/hello/ini.hs
-application/x-wine-extension-ini; charset=us-ascii
-$
-$ file -bi examples/hello/ini.hs -esoft
-text/plain; charset=us-ascii
-$
-$ # NOTE: the following is a regression test.  It should be 6/6.
 $ udge-judge hello examples/hello/ini.hs 2>/dev/null
-compile error
-0/6
+6/6

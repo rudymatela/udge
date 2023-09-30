@@ -89,7 +89,7 @@ exe=exe$aslib$ext
 compile="$set/../compile"
 [ -x "$compile" ] || {
 	compile="$lib/compile$aslib/$lang"
-	mime="`file -b --mime-type $src`"
+	mime="`file -b --mime-type -esoft $src`"
 	case "$mime" in
 		text/*) ;;
 		application/javascript) ;;
