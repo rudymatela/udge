@@ -70,10 +70,11 @@ $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c 2>/dev/null
 3/3
 $
-$ tar -cf examples/salaries.tar examples/salaries/{employee.h,employee.c,main.c}
+$ tar -cf examples/salaries.tar -C examples salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.tar{,.c}
 $ udge-judge salaries examples/salaries.tar.c 2>/dev/null
-compile error
-0/3
+3/3
+$
+$ ### cleanup ###
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}

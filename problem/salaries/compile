@@ -32,6 +32,8 @@ set -e
 # The name of the library we are unpacking from the zip/tar archive.
 lib=employee
 
+tarw="tar --strip-components=1 --wildcards"
+
 # Unpack the zip / tar archive into src/
 mkdir src
 mime="`file -b --mime-type "$1"`"
@@ -40,14 +42,15 @@ application/zip)
 	unzip -qjn "$1" -dsrc   "$lib.h"   "$lib.c"   "main.c" ||
 	unzip -qjn "$1" -dsrc "*/$lib.h" "*/$lib.c" "*/main.c" ;;
 application/gzip|application/x-tar)
-	tar   -xf "$1"  -Csrc   "$lib.h"   "$lib.c"   "main.c" ;;
+	tar    -xf "$1" -Csrc   "$lib.h"   "$lib.c"   "main.c" ||
+	$tarw  -xf "$1" -Csrc "*/$lib.h" "*/$lib.c" "*/main.c" ;;
 *)
 	errxit "aborted: only zip and tar submissions are supported for this problem, got $mime" ;;
 esac
 
 # Checks if the header file has been tampered with
 dirname="`dirname $0`"
-diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/$lib.h" src/$lib.h ||
+diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/$lib.h" "src/$lib.h" ||
 errxit "aborted: the header file has been tampered with"
 
 # Compiles the program
