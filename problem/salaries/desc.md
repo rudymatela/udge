@@ -91,8 +91,14 @@ The function `total_salary` should return the total sum of salaries.
 
 For this exercise, you should [submit] a zip or tar archive
 with (only) the `employee.h`, `employee.c` and `main.c` files.
-There should be no directories in this archive
-and all letters in the filenames should be lowercase.
+All letters in the filenames should be lowercase.
+The archive should contain no directories or one directory:
+either
+the files are placed in the root of the archive
+or in a single directory in the archive.
+In practice,
+this means you should "zip" the three files
+or a directory containing _only_ the three files.
 The marking scripts will specifically check for this.
 
 [submit]: /submit
