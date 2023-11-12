@@ -4,6 +4,9 @@
 #
 # This file is part of Udge.
 #
+# This compilation script expects a C program in a zip/tar archive.
+# Check the accompanying desc.md for more details of what is expected.
+#
 #
 # Copyright (C) 2023  Rudy Matela
 #
@@ -25,19 +28,26 @@ errxit() {
 }
 
 set -e
-dirname="`dirname $0`"
-mime="`file -b --mime-type "$1"`"
+
+# The name of the library we are unpacking from the zip/tar archive.
+lib=employee
+
+# Unpack the zip / tar archive into src/
 mkdir src
+mime="`file -b --mime-type "$1"`"
 case $mime in
-	application/zip)   unzip -qn "$1" -dsrc employee.h employee.c main.c ;;
-	application/gzip)  tar   -xf "$1" -Csrc employee.h employee.c main.c ;;
-	application/x-tar) tar   -xf "$1" -Csrc employee.h employee.c main.c ;;
+	application/zip)   unzip -qn "$1" -dsrc $lib.h $lib.c main.c ;;
+	application/gzip)  tar   -xf "$1" -Csrc $lib.h $lib.c main.c ;;
+	application/x-tar) tar   -xf "$1" -Csrc $lib.h $lib.c main.c ;;
 	*) errxit "aborted: only zip and tar submissions are supported for this problem, got $mime" ;;
 esac
 
-diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/employee.h" src/employee.h ||
+# Checks if the header file has been tampered with
+dirname="`dirname $0`"
+diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/$lib.h" src/$lib.h ||
 errxit "aborted: the header file has been tampered with"
 
+# Compiles the program
 [ -f "$3" ] && cp "$3" src # copy the main.c if it exists
 cd src
-cc $CFLAGS employee.c main.c -o "../$2" -lm
+cc $CFLAGS $lib.c main.c -o "../$2" -lm
