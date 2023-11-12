@@ -31,7 +31,7 @@
 $ udge-judge salaries examples/salaries/employee.c
 aborted: only zip and tar submissions are supported for this problem, got text/x-c
 compile error
-0/3
+0/6
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
@@ -40,17 +40,17 @@ $
 $ zip -jq examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c
-3/3
+6/6
 $
 $ tar -cf examples/salaries.tar -C examples/salaries {employee.h,employee.c,main.c}
 $ mv examples/salaries.tar{,.c}
 $ udge-judge salaries examples/salaries.tar.c
-3/3
+6/6
 $
 $ tar -czf examples/salaries.tar.gz -C examples/salaries {employee.h,employee.c,main.c}
 $ mv examples/salaries.tar.gz{,.c}
 $ udge-judge salaries examples/salaries.tar.gz.c
-3/3
+6/6
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
@@ -61,19 +61,29 @@ $ zip -rq salaries.zip salaries
 $ cd - >/dev/null
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c
-3/3
+6/6
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
 $ zip -q examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c 2>/dev/null
-3/3
+6/6
 $
 $ tar -cf examples/salaries.tar -C examples salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.tar{,.c}
 $ udge-judge salaries examples/salaries.tar.c 2>/dev/null
-3/3
+6/6
+$
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
+$
+$ ### tests of a partly incorrect solution ###
+$
+$ zip -jq examples/salaries.zip examples/salaries/{employee.h,funmain/{employee.c,main.c}}
+$ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c 2>/dev/null
+compile error
+3/6
 $
 $ ### cleanup ###
 $

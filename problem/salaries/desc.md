@@ -98,6 +98,13 @@ The marking scripts will specifically check for this.
 [submit]: /submit
 
 
+### Scoring
+
+* 1/6: works for the above example
+* 3/6: works for other examples
+* 6/6: properly implements the `employee.c` library
+
+
 Copyright © 2020-2023  Rudy Matela
 This text is available under the CC BY-SA 4.0 license
 or (at your option) the GFDL 1.3 license

@@ -35,7 +35,7 @@ lib=employee
 tarw="tar --strip-components=1 --wildcards"
 
 # Unpack the zip / tar archive into src/
-mkdir src
+mkdir -p src
 mime="`file -b --mime-type "$1"`"
 case $mime in
 application/zip)
@@ -57,3 +57,5 @@ errxit "aborted: the header file has been tampered with"
 [ -f "$3" ] && cp "$3" src # copy the main.c if it exists
 cd src
 cc $CFLAGS $lib.c main.c -o "../$2" -lm
+cd ..
+rm -r src
