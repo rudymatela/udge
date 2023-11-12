@@ -33,9 +33,7 @@ aborted: only zip and tar submissions are supported for this problem, got text/x
 compile error
 0/3
 $
-$ rm -f examples/salaries.zip{,.c}
-$ rm -f examples/salaries.tar{,.c}
-$ rm -f examples/salaries.tar.gz{,.c}
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
 $ zip -jq examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
@@ -52,9 +50,7 @@ $ mv examples/salaries.tar.gz{,.c}
 $ udge-judge salaries examples/salaries.tar.gz.c
 3/3
 $
-$ rm -f examples/salaries.zip{,.c}
-$ rm -f examples/salaries.tar{,.c}
-$ rm -f examples/salaries.tar.gz{,.c}
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
 $ zip -q examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
@@ -68,6 +64,4 @@ $ udge-judge salaries examples/salaries.tar.c 2>/dev/null
 compile error
 0/3
 $
-$ rm -f examples/salaries.zip{,.c}
-$ rm -f examples/salaries.tar{,.c}
-$ rm -f examples/salaries.tar.gz{,.c}
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
