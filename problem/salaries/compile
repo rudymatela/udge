@@ -37,9 +37,9 @@ mkdir src
 mime="`file -b --mime-type "$1"`"
 case $mime in
 application/zip)
-	unzip -qn "$1" -dsrc $lib.h $lib.c main.c ;;
+	unzip -qn "$1" -dsrc "$lib.h" "$lib.c" main.c ;;
 application/gzip|application/x-tar)
-	tar   -xf "$1" -Csrc $lib.h $lib.c main.c ;;
+	tar   -xf "$1" -Csrc "$lib.h" "$lib.c" main.c ;;
 *)
 	errxit "aborted: only zip and tar submissions are supported for this problem, got $mime" ;;
 esac
