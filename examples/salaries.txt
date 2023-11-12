@@ -35,6 +35,8 @@ compile error
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
+$ ### tests of a flat structure ###
+$
 $ zip -jq examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c
@@ -52,11 +54,21 @@ $ udge-judge salaries examples/salaries.tar.gz.c
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
 $
+$ ### tests of a single-directory structure ###
+$
+$ cd examples
+$ zip -rq salaries.zip salaries
+$ cd - >/dev/null
+$ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c
+3/3
+$
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
+$
 $ zip -q examples/salaries.zip examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c 2>/dev/null
-compile error
-0/3
+3/3
 $
 $ tar -cf examples/salaries.tar examples/salaries/{employee.h,employee.c,main.c}
 $ mv examples/salaries.tar{,.c}
