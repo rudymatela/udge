@@ -25,18 +25,17 @@ errxit() {
 set -e
 dirname="`dirname $0`"
 mime="`file -b --mime-type "$1"`"
+mkdir src
 case $mime in
-	application/zip)   unzip -qn "$1" employee.h employee.c main.c ;;
-	application/gzip)  tar   -xf "$1" employee.h employee.c main.c ;;
-	application/x-tar) tar   -xf "$1" employee.h employee.c main.c ;;
+	application/zip)   unzip -qn "$1" -dsrc employee.h employee.c main.c ;;
+	application/gzip)  tar   -xf "$1" -Csrc employee.h employee.c main.c ;;
+	application/x-tar) tar   -xf "$1" -Csrc employee.h employee.c main.c ;;
 	*) errxit "aborted: only zip and tar submissions are supported for this problem, got $mime" ;;
 esac
 
-diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/employee.h" employee.h ||
+diff -q --ignore-matching-lines='^//' -iEZbwB "$dirname/employee.h" src/employee.h ||
 errxit "aborted: the header file has been tampered with"
 
-cc $CFLAGS employee.c main.c -o "$2" -lm
-rm -f employee.h employee.c main.c
-# TODO: make it so that this last line is not needed
-# leaving main.c makes it so that udge wrongfully detects
-# this problem as --as-lib, compiling twice
+[ -f "$3" ] && cp "$3" src # copy the main.c if it exists
+cd src
+cc $CFLAGS employee.c main.c -o "../$2" -lm
