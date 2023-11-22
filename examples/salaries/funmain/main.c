@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include "employee.h"
 
-int total_salary(struct employee employees[], int n_employees)
+int total_salary(const struct employee employees[], size_t n_employees)
 {
 	int i;
 	int total = 0;
@@ -38,7 +38,7 @@ int total_salary(struct employee employees[], int n_employees)
 }
 
 
-struct employee *highest_salary(struct employee employees[], int n_employees)
+struct employee *highest_salary(const struct employee employees[], size_t n_employees)
 {
     int i;
     struct employee *pe = &employees[0];
@@ -48,7 +48,7 @@ struct employee *highest_salary(struct employee employees[], int n_employees)
 }
 
 
-struct employee *lowest_salary(struct employee employees[], int n_employees)
+struct employee *lowest_salary(const struct employee employees[], size_t n_employees)
 {
     int i;
     struct employee *pe = &employees[0];
