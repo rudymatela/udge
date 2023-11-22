@@ -85,6 +85,13 @@ $ udge-judge salaries examples/salaries.zip.c 2>/dev/null
 compile error
 3/6
 $
+$ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
+$
+$ ### test DOS / Windows line breaks ###
+$
+$ zip -jq examples/salaries.zip examples/salaries/{dos/employee.h,employee.c,main.c}
+$ mv examples/salaries.zip{,.c}
+$
 $ ### cleanup ###
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
