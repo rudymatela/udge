@@ -35,7 +35,7 @@ int total_salary(const struct employee employees[], size_t n_employees)
 }
 
 
-struct employee *highest_salary(const struct employee employees[], size_t n_employees)
+struct employee *highest_salary(struct employee employees[], size_t n_employees)
 {
     int i;
     struct employee *pe = &employees[0];
@@ -45,7 +45,7 @@ struct employee *highest_salary(const struct employee employees[], size_t n_empl
 }
 
 
-struct employee *lowest_salary(const struct employee employees[], size_t n_employees)
+struct employee *lowest_salary(struct employee employees[], size_t n_employees)
 {
     int i;
     struct employee *pe = &employees[0];
