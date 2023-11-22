@@ -89,6 +89,8 @@ check-out() {
 compile-error() {
 	[ -n "$verbose" ] && echo "$run/exe* does not exist or is not unique:" $run/exe* >&2
 	cat $run/log >&2
+	msg="`tail -1 $run/log | grep '^aborted: ' | sed -e 's/^aborted: //'`"
+	[ -n "$msg" ] && fail "compile error: $msg"
 	fail "compile error"
 }
 

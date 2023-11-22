@@ -30,7 +30,7 @@
 
 $ udge-judge salaries examples/salaries/employee.c
 aborted: only zip and tar submissions are supported for this problem, got text/x-c
-compile error
+compile error: only zip and tar submissions are supported for this problem, got text/x-c
 0/6
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
