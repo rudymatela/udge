@@ -91,6 +91,8 @@ $ ### test DOS / Windows line breaks ###
 $
 $ zip -jq examples/salaries.zip examples/salaries/{dos/employee.h,employee.c,main.c}
 $ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c 2>/dev/null
+6/6
 $
 $ ### cleanup ###
 $
