@@ -94,6 +94,14 @@ $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c 2>/dev/null
 6/6
 $
+$ ### test tampered header file ###
+$
+$ zip -jq examples/salaries.zip examples/salaries/{tamper/employee.h,employee.c,main.c}
+$ mv examples/salaries.zip{,.c}
+$ udge-judge salaries examples/salaries.zip.c 2>/dev/null
+compile error: the header file has been tampered with
+0/6
+$
 $ ### cleanup ###
 $
 $ rm -f examples/salaries.{zip,tar,tar.gz}{,.c}
