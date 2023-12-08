@@ -56,7 +56,7 @@ rmerrxit() {
 	errxit $msg
 }
 
-java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m" # -XX:+UseConcMarkSweepGC
+java="java -jar -Xms128m -Xmx256m -XX:CompressedClassSpaceSize=64m -XX:MaxMetaspaceSize=512m -XX:-UsePerfData" # -XX:+UseConcMarkSweepGC
 case "$src" in
 	*.c)       lang=c                                                        ;;
 	*.cc)      lang=cc                                                       ;;
