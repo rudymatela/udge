@@ -57,7 +57,7 @@ $
 $ ### tests of a single-directory structure ###
 $
 $ cd examples
-$ zip -rq salaries.zip salaries
+$ zip -rq salaries.zip salaries/*.{h,c}
 $ cd - >/dev/null
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c
