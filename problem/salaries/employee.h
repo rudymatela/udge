@@ -28,8 +28,8 @@
 #define MAX_NAME 60
 
 struct employee {
-    char name[MAX_NAME];
-    int salary;
+	char name[MAX_NAME];
+	int salary;
 };
 
 int total_salary(const struct employee employees[], size_t n_employees);
