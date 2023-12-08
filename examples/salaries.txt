@@ -57,7 +57,9 @@ $
 $ ### tests of a single-directory structure ###
 $
 $ cd examples
-$ zip -rq salaries.zip salaries/*.{h,c}
+$ # here using salaries/ as an argument would not work as
+$ # it would include the "tampered" header file salaries/tamper/employee.h
+$ zip -rq salaries.zip salaries/*.*
 $ cd - >/dev/null
 $ mv examples/salaries.zip{,.c}
 $ udge-judge salaries examples/salaries.zip.c
