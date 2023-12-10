@@ -11,7 +11,14 @@ jobs:
       - name: Install dependencies
         uses: tecolicom/actions-use-apt-tools@v1 # MIT license
         with:
-          tools: clitest fcgiwrap discount libmarkdown2 cracklib-runtime libcrack2 tidy
+          tools: clitest fcgiwrap discount libmarkdown2 libcrack2 tidy
+
+      - name: Install dependencies (timestamp)
+        uses: tecolicom/actions-use-apt-tools@v1 # MIT license
+        with:
+          tools: cracklib-runtime
+          method: timestamp
+          path: /var/cache/cracklib
 
       - run: echo $0
       - run: echo $SHELL
