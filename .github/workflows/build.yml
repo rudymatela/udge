@@ -13,6 +13,8 @@ jobs:
         with:
           tools: clitest fcgiwrap discount libmarkdown2 cracklib-runtime libcrack2 tidy
 
+      - run: sudo update-cracklib
+
       - run: echo $0
       - run: echo $SHELL
       - run: whoami
