@@ -13,6 +13,12 @@ jobs:
         with:
           tools: clitest fcgiwrap discount libmarkdown2 cracklib-runtime libcrack2 tidy
 
+      - name: Cache cracklib cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache/cracklib
+          key: ${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
+
       - run: echo $0
       - run: echo $SHELL
       - run: whoami
