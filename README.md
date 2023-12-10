@@ -118,11 +118,11 @@ These are the optional dependencies:
 
 On [Ubuntu] or [Debian], you can install all dependencies with:
 
-	apt-get install make bash python3 python-is-python3 nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot procmail clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev racket r-base-core
+	apt-get install make bash python3 python-is-python3 nginx fcgiwrap cron cracklib-runtime diffutils discount fakechroot clitest tidy gcc ghc openjdk-11-jdk lua mono-devel nodejs ruby guile-3.0 guile-3.0-dev racket r-base-core
 
 On [Arch Linux], with the exception of [clitest], you can install all dependencies with:
 
-	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils time discount fakechroot procmail tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile racket-minimal r
+	pacman -S make bash python nginx fcgiwrap cronie cracklib diffutils time discount fakechroot tidy gcc ghc jdk11-openjdk lua mono nodejs ruby guile racket-minimal r
 
 [dependencies]: #dependencies
 
@@ -639,7 +639,6 @@ Here are some alternatives:
 [diffutils]:  https://www.gnu.org/software/diffutils/
 [discount]:   https://www.pell.portland.or.us/~orc/Code/discount/
 [fakechroot]: https://github.com/dex4er/fakechroot
-[procmail]:   https://www.procmail.org/
 [coreutils]:  https://www.gnu.org/software/coreutils/
 [grep]:       https://www.gnu.org/software/grep/
 [psmisc]:     https://gitlab.com/psmisc/psmisc
