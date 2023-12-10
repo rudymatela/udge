@@ -18,7 +18,7 @@ jobs:
         with:
           tools: cracklib-runtime
           method: timestamp
-          path: /var/cache/cracklib
+          path: /etc /usr/bin /usr/sbin /usr/lib /usr/share /var/lib /var/cache/cracklib
 
       - run: echo $0
       - run: echo $SHELL
