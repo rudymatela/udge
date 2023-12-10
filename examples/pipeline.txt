@@ -212,4 +212,4 @@ $ udge-compile-and-run 1
 udge-compile-and-run: nothing to do on slot 1
 $ find /var/lib/udge/{submissions,slot} /run/udge -type f | anonymize
 
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

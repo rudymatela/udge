@@ -88,5 +88,5 @@ $ udge-rank 2>/dev/null | grep -E "($user1|$user2)" | sed -e "s/^[^.]*[.] *//;s/
 <u1>  1  1  1  1  1
 $
 $
-$ udge-delete-user $user1 -f
-$ udge-delete-user $user2 -f
+$ $SUDO_UDGE udge-delete-user $user1 -f
+$ $SUDO_UDGE udge-delete-user $user2 -f

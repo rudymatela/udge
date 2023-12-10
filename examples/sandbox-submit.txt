@@ -85,4 +85,4 @@ $ find /run/udge | sort
 /run/udge/6
 $
 $
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

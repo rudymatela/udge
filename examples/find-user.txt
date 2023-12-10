@@ -35,7 +35,7 @@ User created
 User created
 201
 
-$ udge-update-user-html $user | display
+$ $SUDO_UDGE udge-update-user-html $user | display
 
 $ curl -XPOST udge/u -Fuser=$user -Fpassword=not-the-password | display
 Find your user page – Udge Online Judge
@@ -53,4 +53,4 @@ fndYYYYMMDD-HHMMDD @ Udge Online Judge
 Scores by problem
 200
 
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

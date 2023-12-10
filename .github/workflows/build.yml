@@ -39,7 +39,6 @@ jobs:
         uses: actions/checkout@v3
 
       - run: sudo make install
-      - run: sudo gpasswd -a runner udge
       - run: sudo -u udge udge-update-all-problem-htmls
       - run: sudo -u udge udge-update-all-user-htmls
       - run: sudo -u udge udge-update-rank-html
@@ -57,6 +56,4 @@ jobs:
       # - run: make test-web
       - run: make index.clitest test-no-broken-links tidy
 
-      # The following currently fails on CI as we need write permissions to .../users/
-      # in order to udge-delete-user
-      # - run: make new-user.clitest find-user.clitest names.clitest
+      - run: make SUDO_UDGE="sudo -u udge" new-user.clitest find-user.clitest names.clitest

@@ -228,22 +228,22 @@ Pedro &quot;Dom Pedro II&quot; de Alcântara João Carlos Leopoldo Salvador Bibi
 Scores by problem
 200
 
-$ udge-delete-user $janeroe -f
-$ udge-delete-user $johndoe -f
-$ udge-delete-user $arf -f
-$ udge-delete-user $dem -f
-$ udge-delete-user $gef -f
-$ udge-delete-user $grf -f
-$ udge-delete-user $inf -f
-$ udge-delete-user $jaf -f
-$ udge-delete-user $krf -f
-$ udge-delete-user $plf -f
-$ udge-delete-user $plm -f
-$ udge-delete-user $ptf -f
-$ udge-delete-user $ptm -f
-$ udge-delete-user $ruf -f
-$ udge-delete-user $rum -f
-$ udge-delete-user $spf -f
-$ udge-delete-user $zhf -f
-$ udge-delete-user $zz1 -f
-$ udge-delete-user $zz2 -f
+$ $SUDO_UDGE udge-delete-user $janeroe -f
+$ $SUDO_UDGE udge-delete-user $johndoe -f
+$ $SUDO_UDGE udge-delete-user $arf -f
+$ $SUDO_UDGE udge-delete-user $dem -f
+$ $SUDO_UDGE udge-delete-user $gef -f
+$ $SUDO_UDGE udge-delete-user $grf -f
+$ $SUDO_UDGE udge-delete-user $inf -f
+$ $SUDO_UDGE udge-delete-user $jaf -f
+$ $SUDO_UDGE udge-delete-user $krf -f
+$ $SUDO_UDGE udge-delete-user $plf -f
+$ $SUDO_UDGE udge-delete-user $plm -f
+$ $SUDO_UDGE udge-delete-user $ptf -f
+$ $SUDO_UDGE udge-delete-user $ptm -f
+$ $SUDO_UDGE udge-delete-user $ruf -f
+$ $SUDO_UDGE udge-delete-user $rum -f
+$ $SUDO_UDGE udge-delete-user $spf -f
+$ $SUDO_UDGE udge-delete-user $zhf -f
+$ $SUDO_UDGE udge-delete-user $zz1 -f
+$ $SUDO_UDGE udge-delete-user $zz2 -f

@@ -334,10 +334,9 @@ $ cat $USERS/$user/email
 u@example.com
 $ cat $USERS/$user/name | sed -e "s/$user/username/"
 username
-$ cat $USERS/$user/password | wc -c
+$ $SUDO_UDGE cat $USERS/$user/password | wc -c
 65
-$ cat $USERS/$user/salt     | wc -c
+$ $SUDO_UDGE cat $USERS/$user/salt     | wc -c
 40
 $
-$
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

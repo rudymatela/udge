@@ -58,5 +58,5 @@ $ udge-pick-and-judge | grep "^./.$" | sort -u
 4/6
 $
 $
-$ udge-delete-user $user_s -f
-$ udge-delete-user $user_m -f
+$ $SUDO_UDGE udge-delete-user $user_s -f
+$ $SUDO_UDGE udge-delete-user $user_m -f

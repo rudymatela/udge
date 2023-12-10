@@ -80,4 +80,4 @@ $ udge-rank 2>/dev/null | grep $user | sed -e "s/^[^.]*[.] *//;s/$user/<user>/;s
 <user>  1  1  1  1  1
 $
 $
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

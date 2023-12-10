@@ -282,4 +282,4 @@ $ nice -n5 udge-pick-and-judge 2>/dev/null | grep "^./.$"
 0/1
 $
 $
-$ udge-delete-user $user -f
+$ $SUDO_UDGE udge-delete-user $user -f

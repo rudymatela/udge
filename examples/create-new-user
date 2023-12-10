@@ -31,4 +31,4 @@ curl \
 	-dname="$4" \
 	| grep -E "(<h.>|help-block|^[0-9]+$)" \
 	| sed -e "s/<[^>]*>//g" &&
-udge-update-user-html "$1" >/dev/null
+$SUDO_UDGE udge-update-user-html "$1" >/dev/null
