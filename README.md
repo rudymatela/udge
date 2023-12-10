@@ -218,6 +218,11 @@ First make sure you have all the [dependencies] installed.  Then:
 	- `systemctl enable fcgiwrap.socket`
 	- `systemctl enable fcgiwrap`
 
+	On Arch Linux,
+	you may want to update `/usr/lib/systemd/system/fcgiwrap.socket`
+	with `ListenStream=/run/fcgiwrap.socket` instead of `.sock`.
+	Or edit the nginx udge site config to match.
+
 9. enable Udge on Nginx and reload the configuration:
 
 		make enable-nginx-udge-site

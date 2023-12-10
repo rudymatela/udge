@@ -11,22 +11,50 @@ jobs:
       - name: Install dependencies
         uses: tecolicom/actions-use-apt-tools@v1 # MIT license
         with:
-          tools: clitest
+          tools: clitest fcgiwrap discount libmarkdown2 cracklib-runtime libcrack2 tidy
 
       - run: echo $0
       - run: echo $SHELL
+      - run: whoami
       - run: make --version
       - run: diff --version
+      - run: sed --version
       - run: gcc --version
       - run: python --version
       - run: ghc --version
       - run: clitest --version
+      - run: nginx -v
+      - run: fcgiwrap -h
+      - run: markdown --version
+      - run: tidy --version
+      - run: echo 'print --version' | cracklib-check
+
+      - run: cat /etc/hosts
+      - run: sudo sed -i 's/localhost$/localhost udge udge.example.com/' /etc/hosts
+      - run: cat /etc/hosts
 
       - name: Check out repository
         uses: actions/checkout@v3
 
       - run: sudo make install
+      - run: sudo gpasswd -a runner udge
+      - run: sudo -u udge udge-update-all-problem-htmls
+      - run: sudo -u udge udge-update-all-user-htmls
+      - run: sudo -u udge udge-update-rank-html
+
+      - run: sudo ln -rsf /etc/nginx/sites-available/udge /etc/nginx/sites-enabled/udge
+      - run: sudo make start-services
+      - run: sudo make enable-nginx-udge-site
 
       - run: make test-makefile
       - run: make judge.clitest hello.clitest add.clitest runtime.clitest
-      # sandbox.clitest needs nginx due to network test
+
+      - run: make sandbox.clitest
+      - run: make sandbox-fork.clitest
+
+      # - run: make test-web
+      - run: make index.clitest test-no-broken-links tidy
+
+      # The following currently fails on CI as we need write permissions to .../users/
+      # in order to udge-delete-user
+      # - run: make new-user.clitest find-user.clitest names.clitest

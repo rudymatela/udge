@@ -69,7 +69,7 @@ server {
 	}
 
 	location = /submit {
-		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_pass unix:/run/fcgiwrap.socket;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-submit;
 		include fastcgi_params;
 		fastcgi_intercept_errors off;
@@ -82,7 +82,7 @@ server {
 	}
 
 	location = /new-user {
-		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_pass unix:/run/fcgiwrap.socket;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-new-user;
 		include fastcgi_params;
 		fastcgi_intercept_errors off;
@@ -95,7 +95,7 @@ server {
 	}
 
 	location = /u {
-		fastcgi_pass unix:/run/fcgiwrap.sock;
+		fastcgi_pass unix:/run/fcgiwrap.socket;
 		fastcgi_param SCRIPT_FILENAME /usr/local/cgi-bin/udge-find-user-page;
 		include fastcgi_params;
 		fastcgi_intercept_errors off;

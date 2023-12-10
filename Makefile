@@ -152,7 +152,7 @@ test-happy: \
 
 test-sanity: test-makefile test-no-broken-links
 
-test-no-broken-links: html
+test-no-broken-links:
 	wget -nv -r udge/
 	rm -r udge/
 
@@ -182,7 +182,7 @@ html-force: readme todo diagram
 clean-html:
 	rm -rf var/html
 
-%.tidy: html
+%.tidy:
 	curl -sL $* | $(TIDY)
 
 .PHONY: readme
@@ -220,7 +220,7 @@ tidy: \
 	udge/rank.tidy \
 	tidy-public_html
 
-tidy-public_html: html
+tidy-public_html:
 	for file in `find var/html -name *.html`; do \
 		$(TIDY) "$$file" || break; done
 

@@ -66,7 +66,8 @@ Allocated 256Mb.
 Failed to allocate 1Gb.: Cannot allocate memory
 $
 $ cc examples/sandbox/pinfo.c -o $tmp
-$ udge-sandbox 2>/dev/null $tmp | grep -vE '(/tmp/|cwd:)'
+$ # (null) appears instead of root on some systems, the sed call normalizes this
+$ udge-sandbox 2>/dev/null $tmp | grep -vE '(/tmp/|cwd:)' | sed -e "s/(null)/root/"
 
 stdout is working
 stdout is working
