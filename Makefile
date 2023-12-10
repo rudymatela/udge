@@ -59,6 +59,7 @@ fastest:
 # Use MAX_PROCESSES=2048 in udgerc for this
 test-parallel: \
   test-makefile \
+  test-deps \
   test-judge \
   test-web-parallel
 
@@ -150,7 +151,7 @@ test-happy: \
   happy-day-2.clitest \
   happy-day-3.clitest
 
-test-sanity: test-makefile test-no-broken-links
+test-sanity: test-makefile test-deps test-no-broken-links
 
 test-no-broken-links:
 	wget -nv -r udge/
@@ -512,6 +513,21 @@ test-dev-install:
 	make check-install-test DESTDIR=pkg/d
 	rm -r pkg/d
 	rmdir pkg || true
+
+# tests dependencies of Udge itself by printing their versions
+test-deps:
+	make --version
+	diff --version
+	sed --version
+	gcc --version
+	python --version
+	ghc --version
+	clitest --version
+	nginx -v
+	fcgiwrap -h
+	markdown --version
+	tidy --version
+	echo 'print --version' | cracklib-check
 
 # lists files missing copyright notices
 list-missing-copyright:
