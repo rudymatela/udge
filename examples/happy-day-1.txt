@@ -23,7 +23,7 @@
 $ user=h1-`date "+%Y%m%d-%H%M%S"`
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions just in case...
+$ $SUDO_UDGE udge-pick-and-judge >/dev/null 2>/dev/null # try to clear submissions just in case...
 $
 $
 $ ./examples/create-new-user $user u@example.com correct-horse-battery-staple
@@ -41,9 +41,9 @@ $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g
 YYYY-MM-DD HH:MM:SS  add.c  -  -  -  queued
 $
 $
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ $SUDO_UDGE udge-pick-and-judge >/dev/null 2>/dev/null
 $ sleep 0.2
-$ udge-pick-and-judge >/dev/null 2>/dev/null
+$ $SUDO_UDGE udge-pick-and-judge >/dev/null 2>/dev/null
 $
 $
 $ udge-latest-results $user | sed -e "s/^[0-9-]* [0-9:]* /YYYY-MM-DD HH:MM:SS /g; s/[0-9]ms/?ms/; s/[0-9]MB/?MB/"
