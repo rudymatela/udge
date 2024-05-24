@@ -160,6 +160,7 @@ html-form-select() {
 }
 
 find-user-form() {
+	echo '<p style="font-size:smaller">Sharing your progress above is voluntary, you can configure this in the <a href="/settings">user settings</a> page.</p>'
 	echo "<h2>Find your user page</h2>"
 	echo "<form action="/u" method="POST" enctype="multipart/form-data">"
 	html-form-input text     user     "Username" 'username' "$user_error" "$user_value"
