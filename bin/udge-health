@@ -51,6 +51,7 @@ check-pwn() {
 	shift
 	for f in "$@"
 	do
+		[ -e "$f" ] || break
 		check-pwn-1 "$expected" "$f" || break
 	done
 }
@@ -79,6 +80,9 @@ check-dir $PUBLIC_HTML html
 check-dir $BACKUPS     backups
 check-dir $RUN         run
 
+root=`stat -Lc%U /etc/udgerc`
+[ -n "$root" ] || root=root
+echo "guessing root user to be $root"
 user=`stat -c%U $SLOTS`
 [ -n "$user" ] || user=udge
 echo "guessing udge user to be $user"
@@ -91,12 +95,12 @@ http=$(id -u www-data -n 2>/dev/null ||
 echo "guessing http user to be $http"
 
 # --- ownership and permissions of main files and directories --- #
-check-pwn "0644/-rw-r--r-- root.root"   /etc/udgerc
-check-pwn "2775/drwxrwsr-x $http.$user"  $USERS
-check-pwn "0755/drwxr-xr-x $user.$user" $PROBLEMS
+check-pwn "0644/-rw-r--r-- $root.$root" /etc/udgerc
+check-pwn "2775/drwxrwsr-x $http.$user" $USERS
+check-pwn "0755/drwxr-xr-x $root.$root" $PROBLEMS
 check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS
 check-pwn "0755/drwxr-xr-x $user.$user" $PUBLIC_HTML
-check-pwn "2775/drwxrwsr-x $http.$user"  $SUBMISSIONS
+check-pwn "2775/drwxrwsr-x $http.$user" $SUBMISSIONS
 check-pwn "0755/drwxr-xr-x $user.$user" $SLOTS
 check-pwn "0755/drwxr-xr-x $user.$user" $RUN
 check-pwn "0755/drwxr-xr-x $user.$user" $BACKUPS
@@ -113,14 +117,14 @@ check-pwn "0660/-rw-rw---- $http.$user" $USERS/*/salt
 # TODO: check other files on $PROBLEMS
 
 # --- ownership and permissions of results directory structure --- #
-check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/
-check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/*/
-check-pwn "0775/drwxrwxr-x $user.$user" $RESULTS/*/*/*/
-check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/*.*
-check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/result
-check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/*/time
-check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/*/best*
-check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/rank
+check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/
+check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/*/
+check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/*/*/
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/*.*
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/result
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/time
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best*
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/rank
 # TODO: check other files on $RESULTS
 # TODO: list results without users
 
@@ -128,4 +132,10 @@ check-pwn "0644/-rw-rw-r-- $user.$user" $RESULTS/*/rank
 # TODO: check web endpoints
 # TODO: other checks as well
 
-[ $nissues = 0 ] || echo $nissues issues found
+if [ $nissues = 0 ]
+then
+	echo "no issues found"
+else
+	echo $nissues issues found
+	exit 1
+fi

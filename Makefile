@@ -61,6 +61,7 @@ test-parallel: \
   test-makefile \
   test-deps \
   test-judge \
+  test-health \
   test-web-parallel
 
 # targets under this should be run sequentially (eg. w/ -j1)
@@ -118,6 +119,9 @@ test-judge: \
   salaries.clitest \
   sandbox.clitest \
   hello.clitest
+
+test-health:
+	udge-health
 
 # tests that use the web endpoint at udge/
 test-web: \
@@ -233,7 +237,7 @@ clean-slots:
 	rm -rf /run/udge/*/*
 
 clean-results:
-	rm -rf var/results
+	rm -rf var/results/*
 
 clean-users:
 	rm -rf var/users/*
@@ -447,13 +451,14 @@ purge-other-csss:
 		}; \
 	done
 
-# Run this as your regular user before dev-install
-# this task will fail after permissions are correctly setup
-# but at least var/problem will be relinked correctly.
+# Run this as your regular user before dev-install.
+# This task will fail if permissions are incorrectly set up.
+# Do not run as root.
 dev-setup:
 	install -m 0755 -d var
-	install -m 2770 -d var/users
+	install -m 2775 -d var/users
 	install -m 2775 -d var/submissions
+	install -m 0755 -d var/results
 	install -m 0755 -d var/slot
 	install -m 0755 -d var/slot/1
 	install -m 0755 -d var/slot/2
