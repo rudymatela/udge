@@ -59,14 +59,14 @@ check-pwn() {
 # display a file's permissions and ownership
 #
 # $ pwn /var/lib/udge/users
-# 2775/drwxrwsr-x http.udge
+# 2775/drwxrwsr-x http:udge
 # $ pwn /var/lib/udge/users/*
-# 2770/drwxrws--- http.udge
-# 644/-rw-r--r-- udge.udge
-# 2770/drwxrws--- http.udge
-# 2770/drwxrws--- http.udge
+# 2770/drwxrws--- http:udge
+# 0644/-rw-r--r-- udge:udge
+# 2770/drwxrws--- http:udge
+# 2770/drwxrws--- http:udge
 pwn() {
-	stat -Lc"%04a/%A %U.%G" "$@"
+	stat -Lc"%04a/%A %U:%G" "$@"
 }
 
 # --- existence of main files and directories --- #
@@ -95,37 +95,37 @@ http=$(id -u www-data -n 2>/dev/null ||
 echo "guessing http user to be $http"
 
 # --- ownership and permissions of main files and directories --- #
-check-pwn "0644/-rw-r--r-- $root.$root" /etc/udgerc
-check-pwn "2775/drwxrwsr-x $http.$user" $USERS
-check-pwn "0755/drwxr-xr-x $root.$root" $PROBLEMS
-check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS
-check-pwn "0755/drwxr-xr-x $user.$user" $PUBLIC_HTML
-check-pwn "2775/drwxrwsr-x $http.$user" $SUBMISSIONS
-check-pwn "0755/drwxr-xr-x $user.$user" $SLOTS
-check-pwn "0755/drwxr-xr-x $user.$user" $RUN
-check-pwn "0755/drwxr-xr-x $user.$user" $BACKUPS
+check-pwn "0644/-rw-r--r-- $root:$root" /etc/udgerc
+check-pwn "2775/drwxrwsr-x $http:$user" $USERS
+check-pwn "0755/drwxr-xr-x $root:$root" $PROBLEMS
+check-pwn "0755/drwxr-xr-x $user:$user" $RESULTS
+check-pwn "0755/drwxr-xr-x $user:$user" $PUBLIC_HTML
+check-pwn "2775/drwxrwsr-x $http:$user" $SUBMISSIONS
+check-pwn "0755/drwxr-xr-x $user:$user" $SLOTS
+check-pwn "0755/drwxr-xr-x $user:$user" $RUN
+check-pwn "0755/drwxr-xr-x $user:$user" $BACKUPS
 
 # --- ownership and permissions of user directory structure --- #
-check-pwn "2775/drwxrwsr-x $http.$user" $USERS/*/
-check-pwn "0664/-rw-rw-r-- $http.$user" $USERS/*/email
-check-pwn "0664/-rw-rw-r-- $http.$user" $USERS/*/name
-check-pwn "0660/-rw-rw---- $http.$user" $USERS/*/password
-check-pwn "0660/-rw-rw---- $http.$user" $USERS/*/salt
+check-pwn "2775/drwxrwsr-x $http:$user" $USERS/*/
+check-pwn "0664/-rw-rw-r-- $http:$user" $USERS/*/email
+check-pwn "0664/-rw-rw-r-- $http:$user" $USERS/*/name
+check-pwn "0660/-rw-rw---- $http:$user" $USERS/*/password
+check-pwn "0660/-rw-rw---- $http:$user" $USERS/*/salt
 # TODO: check there are no other files on $USERS with find
 
 # --- ownership and permissions of problem directory structure --- #
 # TODO: check other files on $PROBLEMS
 
 # --- ownership and permissions of results directory structure --- #
-check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/
-check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/*/
-check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/*/*/
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/*.*
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/result
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/time
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best.*
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/rank
+check-pwn "0755/drwxr-xr-x $user:$user" $RESULTS/*/
+check-pwn "0755/drwxr-xr-x $user:$user" $RESULTS/*/*/
+check-pwn "0755/drwxr-xr-x $user:$user" $RESULTS/*/*/*/
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/*/*/*.*
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/*/*/result
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/*/*/time
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/*/best
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/*/best.*
+check-pwn "0644/-rw-r--r-- $user:$user" $RESULTS/*/rank
 # TODO: check if there are no other files in $RESULTS
 
 # NOTE:
