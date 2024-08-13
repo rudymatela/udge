@@ -8,3 +8,5 @@ rectangle
 # Chapter 3: file manipulation
 cat
 tee
+# Chapter 4: zip files
+salaries
