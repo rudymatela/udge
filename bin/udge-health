@@ -123,7 +123,8 @@ check-pwn "0755/drwxr-xr-x $user.$user" $RESULTS/*/*/*/
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/*.*
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/result
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/time
-check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best*
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best
+check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best.*
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/rank
 # TODO: check other files on $RESULTS
 # TODO: list results without users
