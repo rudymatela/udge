@@ -126,8 +126,15 @@ check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/*/time
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/*/best.*
 check-pwn "0644/-rw-r--r-- $user.$user" $RESULTS/*/rank
-# TODO: check other files on $RESULTS
-# TODO: list results without users
+# TODO: check if there are no other files in $RESULTS
+
+# lists result folders without accompanying users
+for results in $RESULTS/*/
+do
+	[ -d $results ] || break # no results
+	user="`basename $results`"
+	[ -d "$USERS/$user" ] || issue "user '$user' does not exist, but $RESULTS/$user does"
+done
 
 # TODO: check other directory structures
 # TODO: check web endpoints
