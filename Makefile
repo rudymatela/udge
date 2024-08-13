@@ -378,13 +378,13 @@ install-bin:
 	install -m 0755 lib/udge/score/sum       $(DESTDIR)$(PREFIX)/lib/udge/score
 
 setup-users:
-	$(USERADD) -d/var/lib/udge -u360 udge || $(USERADD) -d/var/lib/udge udge
-	$(USERADD) -d/run/udge -u361 udge-1   || $(USERADD) -d/run/udge udge-1
-	$(USERADD) -d/run/udge -u362 udge-2   || $(USERADD) -d/run/udge udge-2
-	$(USERADD) -d/run/udge -u363 udge-3   || $(USERADD) -d/run/udge udge-3
-	$(USERADD) -d/run/udge -u364 udge-4   || $(USERADD) -d/run/udge udge-4
-	$(USERADD) -d/run/udge -u365 udge-5   || $(USERADD) -d/run/udge udge-5
-	$(USERADD) -d/run/udge -u366 udge-6   || $(USERADD) -d/run/udge udge-6
+	id -u udge   || $(USERADD) -d/var/lib/udge -u360 udge || $(USERADD) -d/var/lib/udge udge
+	id -u udge-1 || $(USERADD) -d/run/udge -u361 udge-1   || $(USERADD) -d/run/udge udge-1
+	id -u udge-2 || $(USERADD) -d/run/udge -u362 udge-2   || $(USERADD) -d/run/udge udge-2
+	id -u udge-3 || $(USERADD) -d/run/udge -u363 udge-3   || $(USERADD) -d/run/udge udge-3
+	id -u udge-4 || $(USERADD) -d/run/udge -u364 udge-4   || $(USERADD) -d/run/udge udge-4
+	id -u udge-5 || $(USERADD) -d/run/udge -u365 udge-5   || $(USERADD) -d/run/udge udge-5
+	id -u udge-6 || $(USERADD) -d/run/udge -u366 udge-6   || $(USERADD) -d/run/udge udge-6
 	# Notes on permissions and ownership.
 	#
 	# CGI scripts need permission to create entries on users/ and submissions/
