@@ -45,6 +45,7 @@ while read user scores
 do
 	((i++))
 	[ "$scores" = "$prev" ] || j=$i
+	umask 0022 # makes behaviour consistent across different systems ($RESULTS)
 	mkdir -p $RESULTS/$user
 	echo $j > $RESULTS/$user/rank
 	name=$user
