@@ -28,7 +28,7 @@
 # Recommended config using fcgiwrap:
 #
 # location = /settings {
-#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_pass unix:/run/fcgiwrap.socket;
 #   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-sharing-settings;
 #   include fastcgi.conf;
 # }

@@ -22,7 +22,7 @@
 # Recommended config using fcgiwrap:
 #
 # location = /new-user {
-#   fastcgi_pass unix:/run/fcgiwrap.sock;
+#   fastcgi_pass unix:/run/fcgiwrap.socket;
 #   fastcgi_param SCRIPT_FILENAME /usr/local/bin/udge-new-user;
 #   include fastcgi.conf;
 # }
