@@ -499,14 +499,6 @@ Each problem has a directory, `/var/lib/udge/problem/<problem>`.  Inside it:
 If there is only one test set, you are allowed to let `in` and `out` reside
 plainly without a subdir.
 
-At the root of the problem directory,
-you should place an `index.md` with the index of problems
-and an optional `list` of problems,
-usually matching the order of the index.
-If the list is not present,
-problems will appear lexicographically.
-If the list is present
-unlisted problems will not be shown.
 
 #### Submissions Directory --- `/var/lib/udge/submissions`
 
