@@ -143,6 +143,22 @@ done
 
 # TODO: check other directory structures
 # TODO: check web endpoints
+
+# Checks that all listed problems do actually exist
+[ -f $PROBLEMS/list ] &&
+for problem in `ls-problems`
+do
+       [ -d $PROBLEMS/$problem ] || issue "$problem is in $PROBLEMS/list but not in $PROBLEMS"
+done
+
+# Checks if there are any unlisted problems
+# depending on your application, this could be fine.
+[ -f $PROBLEMS/list ] &&
+for problem in `ls-problems-raw`
+do
+       grep -q "^$problem$" $PROBLEMS/list || issue "$problem is unlisted"
+done
+
 # TODO: other checks as well
 
 if [ $nissues = 0 ]
