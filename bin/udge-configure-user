@@ -53,7 +53,7 @@ umask 0002 # dir: rwxrwsr-x, file: rw-rw-r--
 anonymize() {
 	# make user anonymous in the rank
 	# and make the user page URL random
-	head -c16 /dev/random | hexdump -e '"%x"' >$user_dir/anonymous
+	head -c16 /dev/random | hexdump -e '"%08x"' >$user_dir/anonymous
 }
 
 deanonymize() {
