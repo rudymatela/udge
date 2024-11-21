@@ -57,3 +57,5 @@ jobs:
       - run: make index.clitest test-no-broken-links tidy
 
       - run: make SUDO_UDGE="sudo -u udge" new-user.clitest find-user.clitest names.clitest
+
+      - run: make SUDO_UDGE="sudo -u udge" test-happy
