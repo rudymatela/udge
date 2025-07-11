@@ -2,7 +2,7 @@ hello -- Hello, World!
 ----------------------
 
 Write a program that prints "Hello, World!" on the standard output device.
-Normally, the output device is the screen of a command line session:
+Normally, the standard output device is the screen of a command line session:
 
 	$ ./hello
 	Hello, World!
@@ -13,7 +13,7 @@ output of your program to a file, like so:
 	$ ./hello >outputfile.txt
 
 
-### Input and output
+### Input and output  #io
 
 No input should be read.
 
@@ -21,7 +21,10 @@ The output should contain a single line with the `Hello, World!` message.
 This line should be terminated in a line break.
 
 
-### Scoring
+------
+
+
+### Scoring  #scoring
 
 * 1/6: compiles
 * 2/6: prints something
@@ -31,10 +34,10 @@ This line should be terminated in a line break.
 * 6/6: prints "Hello, World!" exactly
 
 
-### Hints
+### Hints  #hints
 
 1. __Automated judge:__
-	Remember that when your program is submitted
+	Keep in mind that when your program is submitted
 	it will not be run by a human
 	but instead by an automated judge.
 	Instructions should be followed exactly

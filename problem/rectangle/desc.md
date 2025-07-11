@@ -17,11 +17,11 @@ how a console session with this program should look like:
 
 _Tip:_ use control+D (^D) to simulate the end of file and exit the program.
 
-### Input and Output
 
-Each line of input contains two numbers _w_ and _h_ where
+### Input and Output  #io
 
--1 000 ≤ w, h ≤ 1 000
+Each line of input contains two numbers _w_ and _h_
+where _-1 000 ≤ w, h ≤ 1 000_.
 
 For each line of input there should be one line of output in the following format:
 
@@ -42,7 +42,7 @@ the width, height, area and perimeter of the given rectangle respectively.
 	3x6 rectangle, area = 18, perimeter = 18
 	10x1 rectangle, area = 10, perimeter = 22
 
-### The `area` and `perimeter` functions
+### The `area` and `perimeter` functions  #function
 
 In order to get a full score,
 your program should be implemented using functions `area` and `perimeter`.
@@ -167,7 +167,7 @@ Alternatively, you can declare the rectangle type as:
 	perimeter <- function (rectangle)
 
 
-### Scoring
+### Scoring  #scoring
 
 * 1/3: works for the above example
 * 2/3: works for other test cases

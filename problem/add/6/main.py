@@ -1,3 +1,4 @@
+
 # main.py: main file for an "add" solution
 #
 # This is appended to the submitted Python program and tests the add function.
@@ -6,7 +7,7 @@
 # "in.txt" file.
 #
 #
-# Copyright (C) 2020-2023  Rudy Matela
+# Copyright (C) 2020  Rudy Matela
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License

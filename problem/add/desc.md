@@ -20,14 +20,20 @@ Here is an example session with this program:
 	1234 4321
 	5555
 
-### Input and Output
+### Input and Output  #io
 
 Each line of input contains two numbers _x_ and _y_ where
 
--2 000 000 000 ≤ x, y ≤ 2 000 000 000
+_-2 000 000 000 ≤ x, y ≤ 2 000 000 000_
 
 For each line of input there should be a line of output
 with the result of adding _x_ to _y_.
+
+Numbers may be given in the input with leading zeroes.
+The output should have no leading zeroes.
+Input is terminated by the [end-of-file (EOF)](#hints)
+
+%%(%%
 
 #### Example input
 
@@ -37,6 +43,7 @@ with the result of adding _x_ to _y_.
 	-123 321
 	1234 4321
 
+%%|%%
 
 #### Example output
 
@@ -46,7 +53,9 @@ with the result of adding _x_ to _y_.
 	198
 	5555
 
-### The `add` function
+%%)%%
+
+### The `add` function  #function
 
 In order to get a full score,
 your program should be implemented using an `add` function
@@ -69,7 +78,12 @@ Please refer to the information for the chosen language:
 If you are confused by the above,
 try earning a partial score first.
 
-### Scoring
+Specifically for this exercise when using Python, JavaScript, Lua or Ruby,
+avoid using `sys.exit()`, `process.exit()`, `os.exit()` or `exit`,
+as your program is appended with some extra assertions in one of the test sets.
+
+
+### Scoring  #scoring
 
 * 1/6: works for the above example but produces output in an incorrect format
 * 2/6: works for the above example and produces output in the correct format
@@ -78,7 +92,7 @@ try earning a partial score first.
 * 5/6: works for edge cases
 * 6/6: implements the `add` function
 
-### Hints
+### Hints  #hints
 
 1. __Redirecting input:__
 	On most systems (Windows / Linux / OS X),
@@ -115,7 +129,7 @@ try earning a partial score first.
 	- _In Python._
 		The pattern `for line in sys.stdin:` can be used
 		to create a loop where a file is processed line by line
-		until the end-of-file.
+		until the end-of-file (EOF).
 
 	- _In Haskell._
 		You can use `interact` to declare the main function
