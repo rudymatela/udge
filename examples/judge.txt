@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$ udge-judge hello examples/hello/hello.c -v
+$ udge-judge hello examples/hello/hello.c
 6/6
 $ udge-judge hello-world examples/hello-world/hello-world.c
 1/1
