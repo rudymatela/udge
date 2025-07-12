@@ -59,6 +59,28 @@ chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
 exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
 
+# Starting with Ubuntu 24.04, -r and -m do not seem to work by default.
+#
+# For -r, we get:
+#
+#     $ udge-judge ... ... -v
+#     unshare: write failed /proc/self/uid_map: Operation not permitted
+#
+# For -m, we get:
+#
+#     unshare: cannot change root filesystem propagation: Permission denied
+#
+# So use -Un and -ipuf then or set the following in `/etc/sysctl.d/20-apparmor.conf`:
+#
+#     kernel.apparmor_restrict_unprivileged_userns = 1
+#
+# as noted here:
+#
+# * https://discourse.ubuntu.com/t/spec-unprivileged-user-namespace-restrictions-via-apparmor-in-ubuntu-23-10/37626
+# * https://nitrojacob.wordpress.com/2024/08/14/unshare-r-on-ubuntu-24-04-23-10/
+#
+# On CI, I'll add a simple s/-Urn -impuf/-Un -ipuf/ for now.  (2025-07 Rudy)
+
 # In a fresh user, only 5 processes are needed, they are:
 #
 # 1. udge-build-and-run
