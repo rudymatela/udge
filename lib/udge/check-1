@@ -116,7 +116,9 @@ $checkexitcode "$exitcode" || fail "$message"
 
 # checks standard output and standard error
 check=check-out
+[ -x $sol/../check-out ] && check=$sol/../check-out
 [ -x $sol/check-out ] && check=$sol/check-out
+# [ -n "$verbose" ] && echo running $check $sol/out $run/out $verbose
 $check $sol/out $run/out $verbose || fail "incorrect output"
 if [ -e $sol/err ]
 then
