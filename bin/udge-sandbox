@@ -57,7 +57,8 @@ ulimit -x 1024 # file locks
 
 chroot=
 [ -n "$CHROOT" ] && chroot="fakechroot chroot $CHROOT"
-exec unshare -Urn -impuf --kill-child env -i $chroot "$@"
+exec unshare -Urn -imuf --kill-child env -i $chroot "$@"
+# 2026-03: -impuf not working on Arch.  Removing -p temporarily.
 
 # Starting with Ubuntu 24.04, -r and -m do not seem to work by default.
 #
