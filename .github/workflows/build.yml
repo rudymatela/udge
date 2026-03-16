@@ -48,7 +48,7 @@ jobs:
       - run: sudo make enable-nginx-udge-site
 
       - run: make test-makefile
-      - run: sed -i 's/-Urn -impuf/-Un -ipuf/' bin/udge-sandbox
+      - run: sed -i 's/-Urn -imuf/-Un -iuf/' bin/udge-sandbox
       - run: make judge.clitest hello.clitest add.clitest runtime.clitest
 
       # better not due to the patch above... (-Un -ipuf)
